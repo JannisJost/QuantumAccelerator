@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.main.FeaturesController">
+   <children>
+      <VBox alignment="CENTER" layoutX="232.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="imgLogo" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#triggerAnimationLogo" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../styles/icons/appLogo_Big.png" />
+               </image>
+            </ImageView>
+            <Label prefHeight="36.0" prefWidth="344.0" text="Quantum Accelerator Features:">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Label prefHeight="20.0" prefWidth="170.0" text="Free Storage" />
+            <Label prefHeight="20.0" prefWidth="170.0" text="Disable Background Apps" />
+            <Label prefHeight="20.0" prefWidth="170.0" text="Disable Windows Visuals" />
+            <Label prefHeight="21.0" prefWidth="170.0" text="Boost games" />
+         </children>
+      </VBox>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <buttons>
+          <Button mnemonicParsing="false" text="Patchnotes" textFill="WHITE" />
+        </buttons>
+         <padding>
+            <Insets right="5.0" />
+         </padding>
+      </ButtonBar>
+   </children>
+</AnchorPane>

@@ -1,0 +1,40 @@
+.root{
+-fx-background-color: rgba(48,48, 48, 0.3);
+}
+.button{
+	-fx-text-fill: #09ff00;
+	-fx-background-color: transparent;
+	-fx-border-color: #2ea664;
+	-fx-border-width: 1px;
+}
+.button:hover{
+	-fx-background-color: #2ea664;
+}
+.axis {
+    -fx-tick-label-fill: white;
+}
+#topBar{
+	-fx-background-color: rgba(48,48, 48, 0.3);
+}
+.chart-alternative-row-fill {
+    -fx-fill:rgba(48,48, 48, 0.6);
+    -fx-stroke: rgba(48,48, 48, 0.6);
+}
+.default-color0.chart-series-line { -fx-stroke: #09ff00; }
+.chart-plot-background {
+    -fx-background-color:rgba(48,48, 48, 0.3);
+}
+.chart-vertical-grid-lines {
+    -fx-stroke: rgba(255, 255, 255, 0.6);
+}
+.chart-horizontal-grid-lines {
+    -fx-stroke: rgba(255,255, 255, 0.6);
+}
+.hbox{
+	-fx-background-color: transparent;
+}
+.chart-title {
+  -fx-text-fill: #09ff00;
+  -fx-font-size: 30;
+  -fx-font-weight: bold;
+}

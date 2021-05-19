@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.popupwindows.RemoveLogsController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ListView fx:id="lstLogFiles" prefHeight="200.0" prefWidth="200.0" visible="false" />
+            <Button fx:id="btnDelLogFiles" mnemonicParsing="false" onAction="#delLogFiles" prefHeight="50.0" prefWidth="130.0" text="Delete log files" visible="false" />
+         </children>
+         <padding>
+            <Insets left="5.0" right="5.0" top="45.0" />
+         </padding>
+      </VBox>
+      <Button fx:id="btnStartScan" layoutX="235.0" layoutY="259.0" mnemonicParsing="false" onAction="#startScan" prefHeight="50.0" prefWidth="130.0" text="Scan for log files" />
+      <ProgressBar fx:id="progressTask" layoutX="200.0" layoutY="189.0" prefWidth="200.0" progress="0.0" />
+      <Label fx:id="lblStatus" alignment="CENTER" layoutX="186.0" layoutY="62.0" text="Log scanner" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Label>
+      <Pane onMouseDragged="#moveWindowSecond" onMousePressed="#moveWindow" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #b6d1fb;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="btnClose" layoutX="557.0" layoutY="5.0" mnemonicParsing="false" onAction="#close" text="X" />
+         </children></Pane>
+   </children>
+</AnchorPane>

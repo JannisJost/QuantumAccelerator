@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="508.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.main.MainViewController">
+    <children>
+      <BorderPane id="borderPane" fx:id="mainPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox id="leftBar" fx:id="vbox1" prefWidth="185.0" spacing="5.0" styleClass="vbox" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="70.0" prefWidth="175.0">
+                     <children>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../styles/icons/menubar/CPU.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ProgressIndicator fx:id="progCPUUsage" prefHeight="20.0" prefWidth="38.0" progress="0.0" scaleX="0.8" scaleY="0.8">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <tooltip>
+                              <Tooltip text="CPU usage" />
+                           </tooltip>
+                        </ProgressIndicator>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../styles/icons/menubar/memory.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ProgressIndicator fx:id="progMemory" onMouseClicked="#runGarbageCollector" progress="0.0" scaleX="0.8" scaleY="0.8">
+                           <tooltip>
+                              <Tooltip text="Memory usage" />
+                           </tooltip>
+                        </ProgressIndicator>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
+                        <Button fx:id="btnShowSystemGraph" minHeight="15.0" minWidth="15.0" mnemonicParsing="false" onAction="#showSystemGraph" prefHeight="50.0" prefWidth="18.0" text="▶">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="9.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </HBox>
+                  <Button fx:id="btnShowStorage" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showStorage" prefHeight="70.0" prefWidth="180.0" text="Storage" VBox.vgrow="ALWAYS">
+                     <graphic>
+                        <ImageView cache="true" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../styles/icons/button/Storage.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="btnShowPrivacy" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showPrivacy" prefHeight="70.0" prefWidth="180.0" text="Privacy" VBox.vgrow="ALWAYS">
+                     <graphic>
+                        <ImageView cache="true" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../styles/icons/button/Privacy.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnDelWindowsApps" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showDelWindowsApps" prefHeight="70.0" prefWidth="180.0" text="Bloatware" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <graphic>
+                        <ImageView cache="true" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../styles/icons/button/delete.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnGameBooster" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showGamingbooster" pickOnBounds="false" prefHeight="70.0" prefWidth="180.0" text="Gamebooster" VBox.vgrow="ALWAYS">
+                     <graphic>
+                        <ImageView cache="true" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../styles/icons/button/controller.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="btnExtras" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showExtras" prefHeight="70.0" prefWidth="185.0" style="-fx-background-color: ;" text="Advanced" VBox.vgrow="ALWAYS">
+                     <graphic>
+                        <ImageView cache="true" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../styles/icons/button/extra.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <ButtonBar fx:id="btnBarLeft" buttonMinWidth="45.0" buttonOrder="" prefHeight="24.0" prefWidth="260.0">
+                    <buttons>
+                        <Button fx:id="btnAbout" graphicTextGap="0.0" mnemonicParsing="false" onAction="#openViewAbout">
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../styles/icons/button/About.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btnFeatures" graphicTextGap="0.0" mnemonicParsing="false" onAction="#showFeatures" prefHeight="50.0" prefWidth="50.0">
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../styles/icons/button/paper.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                      <Button fx:id="btnSettings" graphicTextGap="0.0" mnemonicParsing="false" onAction="#openSettings" prefHeight="50.0" prefWidth="50.0">
+                           <graphic>
+                              <ImageView fx:id="imgSettings" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../styles/icons/button/Settings.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                    </buttons>
+                  </ButtonBar>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" />
+               </padding>
+            </VBox>
+         </left>
+         <top>
+            <HBox id="topBar" alignment="CENTER_RIGHT" blendMode="SRC_ATOP" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" onMouseDragged="#moveWindowSecond" onMousePressed="#moveWindow" prefHeight="40.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="btnChangeTheme" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#changeTheme" prefHeight="30.0" prefWidth="40.0" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fx:id="imgTheme" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Darkmode on/off" />
+                     </tooltip>
+                  </Button>
+                  <Button fx:id="btnNotifications" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#showOrHideNotifications" prefHeight="31.0" prefWidth="130.0" text="Notifications" HBox.hgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../styles/icons/button/notification.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Shows notifications (press again to close)" />
+                     </tooltip>
+                  </Button>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <Button fx:id="btnMinimize" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#minimize" prefHeight="31.0" prefWidth="33.0" HBox.hgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../styles/icons/menubar/minimize.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="-5.0" top="-5.0" />
+                     </padding></Button>
+                  <Button fx:id="btnFullscreen" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#fullScreen" prefHeight="31.0" prefWidth="33.0" HBox.hgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fx:id="imgMaximize" fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../styles/icons/menubar/maximize.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="-5.0" top="-5.0" />
+                     </padding></Button>
+                  <Button fx:id="btnCloseApplication" contentDisplay="CENTER" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#closeApplication" prefHeight="31.0" prefWidth="33.0" HBox.hgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../styles/icons/menubar/close.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="-5.0" top="-5.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin></Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <effect>
+                  <DropShadow height="10.5" radius="2.125" width="0.0" />
+               </effect>
+            </HBox>
+         </top>
+      </BorderPane>
+    </children>
+</AnchorPane>

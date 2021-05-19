@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.popupwindows.TempScannerController">
+   <children>
+      <VBox fx:id="vboxBeforeScan" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="lblStatus" text="Folder scanner">
+               <font>
+                  <Font name="Century Gothic" size="29.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+            <ProgressBar fx:id="progressTask" prefWidth="200.0" progress="0.0" visible="false">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </ProgressBar>
+            <GridPane hgap="20.0" prefWidth="0.0">
+              <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <CheckBox fx:id="chkSearchTemp" mnemonicParsing="false" selected="true" text="Search Temp folders" GridPane.columnIndex="1">
+                     <tooltip>
+                        <Tooltip text="Searches for temporary files (your computer doesn't need them)" />
+                     </tooltip>
+                  </CheckBox>
+                  <CheckBox fx:id="chkSearchCache" mnemonicParsing="false" selected="true" text="Search cache folders" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <RadioButton fx:id="chkQuickScan" mnemonicParsing="false" text="Quick scan">
+                     <tooltip>
+                        <Tooltip text="Cleans specific folders and reads from earliers scans" />
+                     </tooltip>
+                  </RadioButton>
+                  <RadioButton fx:id="chkDeepScan" mnemonicParsing="false" prefHeight="22.0" prefWidth="99.0" selected="true" text="Deep scan" GridPane.rowIndex="1">
+                     <tooltip>
+                        <Tooltip text="Scans the whole computer" />
+                     </tooltip>
+                  </RadioButton>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </GridPane>
+            <Button fx:id="btnStartScan" mnemonicParsing="false" onAction="#startScan" scaleX="1.5" scaleY="1.5" text="Start scan">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="15.0" />
+               </VBox.margin>
+               <tooltip>
+                  <Tooltip text="Starts the scan (increased CPU and storage usage)" />
+               </tooltip>
+            </Button>
+            <Button fx:id="btnEditBlacklist" mnemonicParsing="false" onAction="#showBlacklist" text="Show blacklist">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin></Button>
+            <Button fx:id="btnCancelScan" mnemonicParsing="false" onAction="#cancelScan" text="Cancel" textFill="WHITE" visible="false">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin></Button>
+         </children>
+      </VBox>
+      <Pane onMouseDragged="#moveWindowSecond" onMousePressed="#moveWindow" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #b6d1fb;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="599.2" spacing="5.0">
+               <children>
+                  <Button fx:id="btnMinimize" mnemonicParsing="false" onAction="#minimize" prefWidth="30.0" text="-" />
+                  <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeWindow" prefHeight="30.0" prefWidth="30.0" text="X" />
+               </children>
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+            </HBox>
+         </children>
+      </Pane>
+      <VBox fx:id="vboxAfterScan" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="lblSize" prefHeight="21.0" prefWidth="358.0" text="Size" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

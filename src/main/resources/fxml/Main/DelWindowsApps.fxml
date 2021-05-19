@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.main.DelWindowsAppsController">
+   <children>
+      <SplitPane dividerPositions="0.5" layoutX="6.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <VBox fx:id="vboxCheckboxes" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <Group fx:id="groupCheckboxes" />
+                        <CheckBox fx:id="chkSelectAll" mnemonicParsing="false" onAction="#selectAll" prefHeight="21.0" prefWidth="275.0" text="Select all" />
+                        <Separator prefWidth="200.0" />
+                        <CheckBox fx:id="chkDelCoartana" accessibleText="Microsoft.549981C3F5F10" mnemonicParsing="false" text="Delete Cortana" />
+                        <CheckBox fx:id="chkDelCandyCrush" accessibleText="*CandyCrush*" mnemonicParsing="false" text="Delete Candy Crush" />
+                        <CheckBox fx:id="chkDelMaps" accessibleText="Microsoft.WindowsMaps" mnemonicParsing="false" text="Delete Maps" />
+                        <CheckBox fx:id="chkDelFeedbackHub" accessibleText="Microsoft.WindowsFeedbackHub" mnemonicParsing="false" text="Delete Feedback Hub" />
+                        <CheckBox fx:id="chkDelCamera" accessibleText="Microsoft.WindowsCamera" mnemonicParsing="false" text="Delete Camera" />
+                        <CheckBox fx:id="chkDeleteNews" accessibleText="Microsoft.News" mnemonicParsing="false" text="Delete Microsoft News" />
+                        <CheckBox fx:id="chkDelSolitaire" accessibleText="Microsoft.MicrosoftSolitaireCollection" mnemonicParsing="false" text="Delete Solitaire Collection" />
+                        <CheckBox fx:id="chkDelWeather" accessibleText="Microsoft.BingWeather" mnemonicParsing="false" text="Microsoft Weather" />
+                        <CheckBox fx:id="chkDelDefaultMail" accessibleText="Microsoft.windowscommunicationsapps" mnemonicParsing="false" text="Default Mail" />
+                     </children>
+                  </VBox>
+                  <ButtonBar prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <buttons>
+                      <Button fx:id="btnApply" mnemonicParsing="false" onAction="#applyDelApps" text="Run" />
+                    </buttons>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                  </ButtonBar>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <Button fx:id="btnRevokeRights" mnemonicParsing="false" prefHeight="50.0" prefWidth="285.0" text="Revoke app rights" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

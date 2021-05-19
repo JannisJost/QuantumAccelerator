@@ -1,0 +1,28 @@
+.sliderCPU .track{
+    -fx-background-color:
+        -fx-shadow-highlight-color,
+        linear-gradient(to bottom, derive(-fx-text-box-border, -10%), -fx-text-box-border),
+        linear-gradient(from 75% 75% to 100% 100%, #21dd00, #ff0000
+        );
+    -fx-background-insets: 0 0 -1 0, 0, 1;
+    -fx-background-radius: 0.25em, 0.25em, 0.166667em; 
+    -fx-padding: 0.25em; 
+}
+.sliderMaxTemp .track{
+	    -fx-background-color:
+        -fx-shadow-highlight-color,
+        linear-gradient(to bottom, derive(-fx-text-box-border, -10%), -fx-text-box-border),
+        linear-gradient(from 25% 25% to 100% 100%, #ffbb00, #ff0000
+        );
+    -fx-background-insets: 0 0 -1 0, 0, 1;
+    -fx-background-radius: 0.25em, 0.25em, 0.166667em; 
+    -fx-padding: 0.25em; 
+	}
+	.slider .track{
+	-fx-pref-height: 20;
+	-fx-background-radius: 10px;
+	}
+	.slider .thumb{
+	-fx-pref-height: 20;
+    -fx-pref-width: 20;
+	}

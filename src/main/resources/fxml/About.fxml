@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.popupwindows.AboutController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../styles/backgroundimages/background_main.jpg" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="-0.18" hue="-0.2" saturation="-0.32" />
+         </effect>
+      </ImageView>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="4.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="lblTitle" text="About QuantumAccelerator" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Pro Light" size="39.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblVersion" text="V 1.0 (Beta)" textFill="WHITE">
+               <font>
+                  <Font name="Sitka Display Italic" size="22.0" />
+               </font>
+            </Label>
+            <Label text="Thank you for trusting QuantumAccelerator" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Developed by Dragxfly" textFill="WHITE" />
+            <Label text="EmptyStandbyList by Wen Jia Liu " textFill="WHITE" />
+            <Label text="Beta tester: Arial" textFill="WHITE" />
+            <HBox alignment="CENTER" prefHeight="44.0" prefWidth="600.0">
+               <children>
+                  <Label text="Icons by" textFill="WHITE">
+                     <tooltip>
+                        <Tooltip text="Icons by Icons8" />
+                     </tooltip>
+                  </Label>
+                  <ImageView fx:id="imgIcons8" fitHeight="44.0" fitWidth="44.0" onMouseClicked="#openIconsEight" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../styles/icons/about/Icons8_Logo.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <buttons>
+          <Button fx:id="btnGithub" graphicTextGap="0.0" mnemonicParsing="false" onAction="#openGithub" text="Github">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../styles/icons/about/Github.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnSupport" graphicTextGap="0.0" mnemonicParsing="false" onAction="#openSupport" text="Support">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../styles/icons/about/Support.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnDonate" graphicTextGap="0.0" mnemonicParsing="false" onAction="#openDonate" text="Donate">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../styles/icons/about/Donate.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+        </buttons>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </ButtonBar>
+      <Pane opacity="0.13" prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <ButtonBar onMouseDragged="#moveWindowSecond" onMousePressed="#moveWindow" prefHeight="40.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <buttons>
+          <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeWindow" prefHeight="31.0" text="X" />
+        </buttons>
+         <padding>
+            <Insets right="5.0" />
+         </padding>
+      </ButtonBar>
+   </children>
+</AnchorPane>

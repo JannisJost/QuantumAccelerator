@@ -1,0 +1,37 @@
+.root{
+	-fx-background-radius: 10px;	
+}
+.customToolTip{
+	-fx-background-color: rgba(48,48, 48, 0.7);
+}
+.label{
+	-fx-text-fill: white;
+}
+.button{
+	-fx-background-radius: 5px;	
+	-fx-border-radius: 5px;
+	-fx-text-fill: white;
+	-fx-background-color: transparent;
+	-fx-border-color: white;
+	-fx-border-width: 1px;
+}
+.button:hover{
+	-fx-background-color: rgba(255, 255, 255, 0.3);
+}
+.hbox{
+}
+.title{
+	-fx-font-weight: bold;
+}
+.progress-bar{
+	-fx-background-color: transparent;
+}
+.progress-bar > .track {
+  -fx-text-box-border: transparent;
+  -fx-control-inner-background: transparent;
+  -fx-background-color: transparent;
+}
+.progress-bar > .bar {
+  -fx-background-color: rgba(255, 255, 255, 0.7);
+  -fx-background-radius: 0;
+}

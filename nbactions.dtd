@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+    TODO define vocabulary identification
+    PUBLIC ID: -//vendor//vocabulary//EN
+    SYSTEM ID: http://server/path/nbactions.dtd
+
+-->
+
+<!--
+    An example how to use this DTD from your XML document:
+
+    <?xml version="1.0"?>
+
+    <!DOCTYPE actions SYSTEM "nbactions.dtd">
+
+    <actions>
+    ...
+    </actions>
+-->
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT actions (action)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT action (actionName|goals|properties)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT actionName (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT goals (goal)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT goal (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT properties (runfx.args|jpda.listen)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT runfx.args (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT jpda.listen (#PCDATA)>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" styleClass="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.popupwindows.SystemMonitorController">
+   <children>
+      <Pane id="topBar" layoutX="194.0" layoutY="69.0" onMouseDragged="#moveWindowSecond" onMousePressed="#moveWindow" prefHeight="40.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox fx:id="hboxTopBar" alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="640.0" spacing="5.0">
+               <children>
+                  <Button fx:id="btnAlwaysOnTop" mnemonicParsing="false" onAction="#changeAlwaysOnTop" text="Toggle always on top">
+                     <tooltip>
+                        <Tooltip text="While activated this window will be displayed above all others" />
+                     </tooltip>
+                  </Button>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeWindow" text="X" />
+               </children>
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+            </HBox>
+         </children>
+      </Pane>
+      <LineChart fx:id="lineChartCPUUsage" animated="false" createSymbols="false" layoutX="6.0" layoutY="50.0" legendVisible="false" prefHeight="430.0" prefWidth="634.0" title="CPU" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="50.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+   </children>
+</AnchorPane>

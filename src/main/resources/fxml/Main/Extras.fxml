@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.main.ExtrasController">
+   <children>
+      <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="300.0" spacing="10.0">
+               <children>
+                  <Label text="Security" />
+                  <Separator prefWidth="200.0" />
+                  <Button fx:id="btnCreateRestorepoint" mnemonicParsing="false" onAction="#openCreateRestorePoint" prefHeight="50.0" prefWidth="285.0" text="Create restorepoint" />
+                  <Button fx:id="btnEnableGodmode" mnemonicParsing="false" onAction="#enableGodmode" prefHeight="50.0" prefWidth="285.0" text="Enable Godmode">
+                     <tooltip>
+                        <Tooltip text="Creates a &quot;Godemode&quot; folder on your desktop which stores shortcuts to settings in it" />
+                     </tooltip>
+                  </Button>
+                  <HBox alignment="CENTER_LEFT" spacing="5.0">
+                     <children>
+                        <Button fx:id="btnZipBombIdentifier" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#openZipBombIdentifier" prefHeight="50.0" prefWidth="263.0" text="Zip bomb identifier" />
+                        <ImageView fitHeight="20.0" fitWidth="20.0" onMouseEntered="#openHelpZipBomb" pickOnBounds="true" preserveRatio="true" styleClass="help">
+                           <image>
+                              <Image url="@../../styles/icons/help/help.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <Button fx:id="btnOrganizeDesktop" mnemonicParsing="false" onAction="#organizeDesktop" prefHeight="50.0" prefWidth="285.0" text="Organize desktop" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="300.0" spacing="10.0">
+               <children>
+                  <Label text="Computer testing" />
+                  <Separator prefWidth="200.0" />
+                  <Button fx:id="btnCreateCPULoad" mnemonicParsing="false" onAction="#generateCPULoad" prefHeight="50.0" prefWidth="285.0" text="CPU stress test" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
