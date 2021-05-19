@@ -1,6 +1,6 @@
 # QuantumAccelerator
 
-QuantumAccelerator is a completely free application to manage Windows 10 with style.
+QuantumAccelerator is a completely free and open source application to manage your Windows 10.
 
 ## Features:
    * Free storage
