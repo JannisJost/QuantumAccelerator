@@ -1,2 +1,3 @@
-# CyberQuantum
-A free program to boost optimize and tweak Windows 10
+# QuantumAccelerator
+
+QuantumAccelerator is a application you can use to manage Windows 10.
