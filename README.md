@@ -4,7 +4,7 @@ The developers behind QuantumAccelerator are not responsible for any damage caus
 
 # QuantumAccelerator
 
-QuantumAccelerator is a completely free and open source application to manage your Windows 10.
+QuantumAccelerator is a free and open source application to easily manage Windows 10 at one place.
 
 ## Features:
    * Free storage
@@ -16,4 +16,10 @@ QuantumAccelerator is a completely free and open source application to manage yo
      * CPU stress test
      * Zip bomb detector
      * Create restore points
+
+## Special thanks
+
+Feature requests and prerelease testing:   Arial
+
+EmptyStandbyList.exe:                      Wen Jia Liu aka. @wj32
 
