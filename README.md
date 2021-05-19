@@ -5,7 +5,7 @@ QuantumAccelerator is a completely free and open source application to manage yo
 ## Features:
    * Free storage
    * Debloat Windows 10 (basically delete all preinstalled apps)
-   * Manage privacy settings in one place
+   * Manage privacy settings
    * Gamebooster
    * Advanced:
      * Monitor CPU 
