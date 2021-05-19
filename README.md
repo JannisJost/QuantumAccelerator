@@ -15,5 +15,5 @@ QuantumAccelerator is a completely free and open source application to manage yo
      * Monitor CPU (load and temperature)
      * CPU stress test
      * Zip bomb detector
-     * Create restore point
+     * Create restore points
 
