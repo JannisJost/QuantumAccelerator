@@ -12,7 +12,7 @@ QuantumAccelerator is a completely free and open source application to manage yo
    * Manage privacy settings
    * Gamebooster
    * Advanced:
-     * Monitor CPU 
+     * Monitor CPU (load and temperature)
      * CPU stress test
      * Zip bomb detector
      * Create restore point
