@@ -1,3 +1,7 @@
+⚠**DISCLAIMER**⚠
+
+The developers behind QuantumAccelerator are not responsible for any damage caused by the QuantumAccelerator software or any damage related to the QuantumAccelerator app. This application is not yet final and may lead to system damage, please only use it if you are an experienced user.
+
 # QuantumAccelerator
 
 QuantumAccelerator is a completely free and open source application to manage your Windows 10.
