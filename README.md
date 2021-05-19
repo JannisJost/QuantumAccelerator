@@ -1,6 +1,6 @@
 ⚠**DISCLAIMER**⚠
 
-The developers behind QuantumAccelerator are not responsible for any damage caused by the QuantumAccelerator software or any damage related to the QuantumAccelerator app. This application is not yet final and may lead to system damage, please only use it if you are an experienced user.
+The developers behind QuantumAccelerator are not responsible for any damage caused by the QuantumAccelerator software or any damage related to the QuantumAccelerator app. This application is not yet final and may lead to system damage, please only use QuantumAccelerator if you are an experienced user or use a VM.
 
 # QuantumAccelerator
 
