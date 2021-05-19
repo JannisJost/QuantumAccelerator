@@ -1,6 +1,6 @@
 ⚠**DISCLAIMER**⚠
 
-The developers behind QuantumAccelerator are not responsible for any damage caused by the QuantumAccelerator software or any damage related to the QuantumAccelerator app. This application is not yet final and may lead to system damage although we do our best to prevent this. Please only use QuantumAccelerator if you are an experienced user or use a VM.
+The developers behind QuantumAccelerator are not responsible for any damage caused by the QuantumAccelerator software or any damage related to the QuantumAccelerator app. This application is not yet final and may lead to system damage although we do our best to prevent that. Please do only use QuantumAccelerator if you are an experienced user or use a VM.
 
 # QuantumAccelerator
 
@@ -19,7 +19,7 @@ QuantumAccelerator is a free and open source application to easily manage Window
 
 ## Special thanks
 
-Feature requests and prerelease testing:   Arial
+Feature requests and prerelease testing:   *Arial*
 
-EmptyStandbyList.exe:                      Wen Jia Liu aka. @wj32
+EmptyStandbyList.exe:                      *Wen Jia Liu aka. @wj32*
 
