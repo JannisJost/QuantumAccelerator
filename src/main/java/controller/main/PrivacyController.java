@@ -3,6 +3,7 @@ package controller.main;
 import ch.dragxfly.quantumaccelerator.Executors.PrivacyExecutor;
 import ch.dragxfly.quantumaccelerator.tasks.PrivacyTasks;
 import ch.dragxfly.quantumaccelerator.Style.CustomToolTip;
+import ch.dragxfly.quantumaccelerator.ViewManager.ViewOpener;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.prefs.BackingStoreException;
@@ -103,6 +104,7 @@ public class PrivacyController implements Initializable {
 
     @FXML
     private void showTelemetryOptions(ActionEvent event) {
+        new ViewOpener().openThemeableView("/fxml/TelemetryOptions.fxml", "Telemetry options", false);
     }
 
     @FXML
