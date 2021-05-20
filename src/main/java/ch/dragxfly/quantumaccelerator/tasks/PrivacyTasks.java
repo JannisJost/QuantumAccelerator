@@ -1,7 +1,7 @@
 package ch.dragxfly.quantumaccelerator.tasks;
 
+import com.profesorfalken.jpowershell.PowerShell;
 import javafx.concurrent.Task;
-import shellscripts.PowerShell;
 
 /**
  *
@@ -9,13 +9,11 @@ import shellscripts.PowerShell;
  */
 public class PrivacyTasks {
 
-    private final PowerShell ps = new PowerShell();
-
     public Task getDeactivateCamTask() {
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                ps.runPowershellScript("deactivateCamera");
+                PowerShell.executeSingleCommand("Disable-PnpDevice -InstanceId (Get-PnpDevice -FriendlyName *webcam* -Class Camera -Status OK).InstanceId -Confirm:$false");
                 return null;
             }
         };
@@ -26,7 +24,7 @@ public class PrivacyTasks {
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                ps.runPowershellScript("activateCamera");
+                PowerShell.executeSingleCommand("Enable-PnpDevice -InstanceId (Get-PnpDevice -FriendlyName *webcam* -Class Camera ).InstanceId -Confirm:$false");
                 return null;
             }
         };

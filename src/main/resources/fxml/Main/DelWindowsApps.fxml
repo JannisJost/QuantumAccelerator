@@ -33,6 +33,7 @@
                         <CheckBox fx:id="chkDelSolitaire" accessibleText="Microsoft.MicrosoftSolitaireCollection" mnemonicParsing="false" text="Delete Solitaire Collection" />
                         <CheckBox fx:id="chkDelWeather" accessibleText="Microsoft.BingWeather" mnemonicParsing="false" text="Microsoft Weather" />
                         <CheckBox fx:id="chkDelDefaultMail" accessibleText="Microsoft.windowscommunicationsapps" mnemonicParsing="false" text="Default Mail" />
+                        <CheckBox fx:id="checkDelPrint3D" accessibleText="Microsoft.Print3D" mnemonicParsing="false" text="Delete Print3D" />
                      </children>
                   </VBox>
                   <ButtonBar prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">

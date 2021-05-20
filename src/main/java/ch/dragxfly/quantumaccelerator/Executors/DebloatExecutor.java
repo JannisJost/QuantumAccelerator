@@ -1,4 +1,4 @@
-package ch.dragxfly.quantumaccelerator.booster;
+package ch.dragxfly.quantumaccelerator.Executors;
 
 import ch.dragxfly.quantumaccelerator.notifications.LoadingScreen;
 import com.profesorfalken.jpowershell.PowerShell;
@@ -10,11 +10,11 @@ import javafx.concurrent.Task;
  *
  * @author janni
  */
-public class Debloater {
+public class DebloatExecutor {
 
     private List<String> appsToDelete = new LinkedList<>();
 
-    public Debloater(List<String> appsToDelete) {
+    public DebloatExecutor(List<String> appsToDelete) {
         this.appsToDelete = appsToDelete;
     }
 

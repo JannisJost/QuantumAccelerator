@@ -1,1 +1,0 @@
-﻿Weather: Get-AppxPackage *bingweather* | Remove-AppxPackage

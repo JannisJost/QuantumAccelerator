@@ -1,1 +1,0 @@
-﻿Get-AppxPackage *bingnews* | Remove-AppxPackage

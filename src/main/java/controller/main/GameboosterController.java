@@ -4,7 +4,7 @@ import animatefx.animation.AnimationFX;
 import animatefx.animation.SlideInUp;
 import ch.dragxfly.quantumaccelerator.CustomControls.ToggleSwitch;
 import ch.dragxfly.quantumaccelerator.tasks.GameboosterTasks;
-import ch.dragxfly.quantumaccelerator.booster.GameboosterManager;
+import ch.dragxfly.quantumaccelerator.Executors.GameboosterManager;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;

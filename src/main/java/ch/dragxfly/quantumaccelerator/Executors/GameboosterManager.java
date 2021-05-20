@@ -1,4 +1,4 @@
-package ch.dragxfly.quantumaccelerator.booster;
+package ch.dragxfly.quantumaccelerator.Executors;
 
 import shellscripts.PowerShell;
 import java.io.File;
@@ -54,14 +54,13 @@ public class GameboosterManager {
     }
 
     private void deleteInstallerFromDownloads() {
-        File[] installerFiles;
         try {
             String osDrive = System.getenv("SystemDrive");
             String userName = System.getProperty("user.name");
             File folder = new File(osDrive + "\\Users\\" + userName + "\\Downloads");
-            File[] listOfFiles = folder.listFiles();
-            for (File file : listOfFiles) {
-                if (file.getName().contains("Installer") || file.getName().contains("installer") || file.getName().contains("setup") && file.canExecute()) {
+            File[] filesInDownload = folder.listFiles();
+            for (File file : filesInDownload) {
+                if (file.getName().contains("Installer") || file.getName().contains("install") || file.getName().contains("installer") || file.getName().contains("setup") && file.canExecute()) {
                     file.delete();
                 }
             }
@@ -84,11 +83,11 @@ public class GameboosterManager {
     }
 
     private void deactivateBackgroundApps() {
-        powershell.runPowershellScript("DeactivateBackgroundApps");
+        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Reg Add HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\BackgroundAccessApplications /v GlobalUserDisabled /t REG_DWORD /d 1 /f");
     }
 
     private void reactivateBackgroundApps() {
-        powershell.runPowershellScript("ReactivateBackgroundApps");
+        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Reg Add HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\BackgroundAccessApplications /v GlobalUserDisabled /t REG_DWORD /d 0 /f ");
     }
 
     private void increaseGPUPriotity() {

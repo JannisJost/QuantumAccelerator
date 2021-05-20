@@ -1,4 +1,4 @@
-package ch.dragxfly.quantumaccelerator.booster;
+package ch.dragxfly.quantumaccelerator.Executors;
 
 import java.util.List;
 

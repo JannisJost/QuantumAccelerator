@@ -1,6 +1,6 @@
 package controller.main;
 
-import ch.dragxfly.quantumaccelerator.CustomControls.ToggleSwitch;
+import ch.dragxfly.quantumaccelerator.Executors.PrivacyExecutor;
 import ch.dragxfly.quantumaccelerator.tasks.PrivacyTasks;
 import ch.dragxfly.quantumaccelerator.Style.CustomToolTip;
 import java.net.URL;
@@ -42,11 +42,14 @@ public class PrivacyController implements Initializable {
     private Task t;
     @FXML
     private VBox vboxCheckboxes;
-    private CustomToolTip toolTip = new CustomToolTip();
+    private final CustomToolTip toolTip = new CustomToolTip();
     @FXML
     private Button btnFileShredder;
     @FXML
     private Button btnTelemetryOptions;
+    @FXML
+    private Button btnRun;
+    private PrivacyExecutor executor;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -70,7 +73,7 @@ public class PrivacyController implements Initializable {
         }
         t.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
-            public void handle(WorkerStateEvent t) {
+            public void handle(WorkerStateEvent t1) {
                 setText();
             }
         });
@@ -100,6 +103,11 @@ public class PrivacyController implements Initializable {
 
     @FXML
     private void showTelemetryOptions(ActionEvent event) {
+    }
+
+    @FXML
+    private void RunSelectedPrivacyOptions(ActionEvent event) {
+        boolean deleteDNSCache = chkDeleteDNSCache.isSelected();
     }
 
 }

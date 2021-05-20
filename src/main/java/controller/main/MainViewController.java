@@ -11,7 +11,7 @@ import ch.dragxfly.quantumaccelerator.FXMLmanager;
 import ch.dragxfly.quantumaccelerator.Hardware.HardwareObserver;
 import ch.dragxfly.quantumaccelerator.Style.Animations.ButtonAnimator;
 import ch.dragxfly.quantumaccelerator.Style.Animations.MainAnimations;
-import ch.dragxfly.quantumaccelerator.booster.Booster;
+import ch.dragxfly.quantumaccelerator.Executors.Booster;
 import ch.dragxfly.quantumaccelerator.notifications.NotificationManager;
 import controller.popupwindows.SystemMonitorController;
 import java.io.IOException;

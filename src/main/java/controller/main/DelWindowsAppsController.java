@@ -1,6 +1,6 @@
 package controller.main;
 
-import ch.dragxfly.quantumaccelerator.booster.Debloater;
+import ch.dragxfly.quantumaccelerator.Executors.DebloatExecutor;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
@@ -48,6 +48,8 @@ public class DelWindowsAppsController implements Initializable {
     private VBox vboxCheckboxes;
     @FXML
     private CheckBox chkDelDefaultMail;
+    @FXML
+    private CheckBox checkDelPrint3D;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -70,7 +72,7 @@ public class DelWindowsAppsController implements Initializable {
                 .map(item -> (CheckBox) item)
                 .filter(item -> item.isSelected() == true && item.getAccessibleText() != null)
                 .forEach(item -> toDelete.add(item.getAccessibleText()));
-        Debloater debloater = new Debloater(toDelete);
+        DebloatExecutor debloater = new DebloatExecutor(toDelete);
         debloater.startDebloating();
     }
 
