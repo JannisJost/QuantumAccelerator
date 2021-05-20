@@ -1,6 +1,5 @@
 package ch.dragxfly.quantumaccelerator.Executors;
 
-import java.awt.Panel;
 import java.io.IOException;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -31,7 +30,7 @@ public class PrivacyExecutor {
             deleteBrowserHistory();
         }
     }
-
+//Deletes the DNS cache via console
     private void deleteDNSCache() {
         Runtime rt = Runtime.getRuntime();
         try {
