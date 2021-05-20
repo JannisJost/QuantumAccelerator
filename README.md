@@ -18,6 +18,14 @@ QuantumAccelerator is a free and open source application to easily manage Window
      * Zip bomb detector
      * Create restore points
 
+## Screenshots
+
+## FAQ
+
+**How do I install QuantumAccelerator?**
+
+
+
 ## Special thanks
 
 Feature requests and prerelease testing:   *Arial*
