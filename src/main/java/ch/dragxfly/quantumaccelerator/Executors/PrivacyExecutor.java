@@ -1,12 +1,19 @@
 package ch.dragxfly.quantumaccelerator.Executors;
 
+import java.awt.Panel;
 import java.io.IOException;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 
 /**
  *
  * @author janni
  */
 public class PrivacyExecutor {
+
+    VBox vbox = new VBox();
+    Label lblInfo;
 
     public PrivacyExecutor() {
 
@@ -44,6 +51,7 @@ public class PrivacyExecutor {
 //Shows info with information on what is being executed
 
     private void showStatusPanel() {
-
+        vbox.getChildren().add(lblInfo);
+        Scene scene = new Scene(vbox);
     }
 }

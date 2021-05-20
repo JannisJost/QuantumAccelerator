@@ -3,8 +3,6 @@ package controller.popupwindows;
 import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.FolderChooser;
 import java.net.URL;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
