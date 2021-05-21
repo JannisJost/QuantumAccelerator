@@ -20,7 +20,7 @@ QuantumAccelerator is a free and open source application to easily manage Window
 
 ## Screenshots
 
-## FAQ
+## QA
 
 **How do I install QuantumAccelerator?**
 
