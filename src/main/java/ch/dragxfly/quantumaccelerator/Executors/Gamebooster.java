@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
  *
  * @author janni
  */
-public class GameboosterManager {
+public class Gamebooster {
 
     private final PowerShell powershell = new PowerShell();
 
@@ -18,6 +18,7 @@ public class GameboosterManager {
         deactivateBackgroundApps();
         increaseGPUPriotity();
         deactivateWindowsVisualFX();
+        stopWindowsSearch();
     }
 
     public void stopGameboost(boolean resetPowerPlan, boolean resetGPUPrio) throws IOException, InterruptedException {
@@ -30,6 +31,7 @@ public class GameboosterManager {
             decreaseGPUPriotityToNormal();
         }
         activateWindowsVisualFX();
+        startWindowsSearch();
     }
 
     public void killUnnecessaryBackgroundProcesses() {
@@ -104,6 +106,15 @@ public class GameboosterManager {
 
     private void activateWindowsVisualFX() {
         powershell.runPowershellScript("EnableWindowsVisualFX");
+    }
+
+    private void stopWindowsSearch() {
+        powershell.runPowershellScript("Stop-Service -Name WSearch");
+    }
+
+    private void startWindowsSearch() {
+        powershell.runPowershellScript("Start-Service -Name WSearch");
+
     }
 
 }

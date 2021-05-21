@@ -33,6 +33,8 @@ public class ExtrasController implements Initializable {
     private Button btnCreateCPULoad;
     private CPUBenchmark benchmark;
     private final ExtrasExecutor executor = new ExtrasExecutor();
+    @FXML
+    private Button btnHelpZipBombIdentifier;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -53,13 +55,6 @@ public class ExtrasController implements Initializable {
     }
 
     @FXML
-    private void openHelpZipBomb(MouseEvent event) {
-        toolTip.showToolTip("A so-called zip bomb is a normal zipped (compressed) file, which in its zipped form isn’t malicious at all."
-                + "\nBut if you decide to unzip a zip bomb, a nasty surprise awaits you, because all or a lot of your storage will be filled."
-                + "\nThis happens because zip bombs contain files that get compressed down to a minimum of their unzipped size. This tool helps you to identify such files without unzipping them.", event);
-    }
-
-    @FXML
     private void generateCPULoad(ActionEvent event) {
         new ViewOpener().openThemeableView("/fxml/CPUStresstest.fxml", "CPU stress test", false);
     }
@@ -67,6 +62,13 @@ public class ExtrasController implements Initializable {
     @FXML
     private void enableGodmode(ActionEvent event) {
         executor.createGodModeFolder();
+    }
+
+    @FXML
+    private void showToolTipZipBomb(MouseEvent event) {
+        toolTip.showToolTip("A so-called zip bomb is a normal zipped (compressed) file, which in its zipped form isn’t malicious at all."
+                + "\nBut if you decide to unzip a zip bomb, a nasty surprise awaits you, because all or a lot of your storage will be filled."
+                + "\nThis happens because zip bombs contain files that get compressed down to a minimum of their unzipped size. This tool helps you to identify such files without unzipping them.", event);
     }
 
 }

@@ -38,3 +38,6 @@
   -fx-font-size: 30;
   -fx-font-weight: bold;
 }
+.label{
+	-fx-text-fill: rgba(255,255, 255, 0.6);
+}

@@ -22,10 +22,6 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
 
     @FXML
     private Button btnClose;
-    @FXML
-    private Button btnStopDiagnosticTracking;
-    @FXML
-    private Button btnStopPushService;
     private double xOffset = 0;
     private double yOffset = 0;
     private ToggleSwitch tglTrackingService = new ToggleSwitch();
@@ -34,17 +30,11 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
     private ToggleSwitch tglMRTTelemetry = new ToggleSwitch();
 
     @FXML
-    private GridPane gridTrackingService;
-    @FXML
-    private GridPane gridPushService;
-    @FXML
-    private GridPane gridCEIPTasks;
-    @FXML
-    private GridPane gridMRTTelemetry;
-    @FXML
     private Button btnSaveAndApply;
     @FXML
     private Button btnCancel;
+    @FXML
+    private GridPane gridSettings;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -52,24 +42,16 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
         tglPushService.setSwitchedOn(true);
         tglCEIPTasks.setSwitchedOn(true);
         tglMRTTelemetry.setSwitchedOn(true);
-        gridTrackingService.add(tglTrackingService, 1, 0);
-        gridPushService.add(tglPushService, 1, 0);
-        gridCEIPTasks.add(tglCEIPTasks, 1, 0);
-        gridMRTTelemetry.add(tglMRTTelemetry, 1, 0);
+        gridSettings.add(tglMRTTelemetry, 1, 0);
+        gridSettings.add(tglCEIPTasks, 1, 1);
+        gridSettings.add(tglTrackingService, 1, 2);
+        gridSettings.add(tglPushService, 1, 3);
     }
 
     @FXML
     private void closeWindow(ActionEvent event) {
         Stage currentStage = (Stage) btnClose.getScene().getWindow();
         currentStage.close();
-    }
-
-    @FXML
-    private void stopDiagnosticTracking(ActionEvent event) {
-    }
-
-    @FXML
-    private void stopPushService(ActionEvent event) {
     }
 
     @Override
@@ -99,6 +81,7 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
 
     @FXML
     private void saveAndApply(ActionEvent event) {
+        
     }
 
 }

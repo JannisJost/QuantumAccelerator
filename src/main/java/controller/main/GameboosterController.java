@@ -4,7 +4,7 @@ import animatefx.animation.AnimationFX;
 import animatefx.animation.SlideInUp;
 import ch.dragxfly.quantumaccelerator.CustomControls.ToggleSwitch;
 import ch.dragxfly.quantumaccelerator.tasks.GameboosterTasks;
-import ch.dragxfly.quantumaccelerator.Executors.GameboosterManager;
+import ch.dragxfly.quantumaccelerator.Executors.Gamebooster;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
@@ -36,7 +36,7 @@ public class GameboosterController implements Initializable {
     @FXML
     private ToggleButton toggleBtnGameboost;
 
-    private GameboosterManager gameboost;
+    private Gamebooster gameboost;
     private AnimationFX labelAnim;
     @FXML
     private ProgressIndicator progressBoost;
@@ -66,7 +66,7 @@ public class GameboosterController implements Initializable {
         gridSettingsDeactivateGamebooster.add(tglswResetPowerPlan, 1, 0);
         gridSettingsDeactivateGamebooster.add(tglswCPUPrio, 1, 1);
         gameBoosterIsActive = toggleBtnGameboost.isSelected();
-        gameboost = new GameboosterManager();
+        gameboost = new Gamebooster();
         prefs = Preferences.userRoot().node(this.getClass().getName());
         gameBoosterIsActive = prefs.getBoolean("GameboosterIsActive", false);
         toggleBtnGameboost.setSelected(gameBoosterIsActive);
