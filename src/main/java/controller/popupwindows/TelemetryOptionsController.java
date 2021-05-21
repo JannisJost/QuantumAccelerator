@@ -9,10 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
@@ -32,17 +30,32 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
     private double yOffset = 0;
     private ToggleSwitch tglTrackingService = new ToggleSwitch();
     private ToggleSwitch tglPushService = new ToggleSwitch();
+    private ToggleSwitch tglCEIPTasks = new ToggleSwitch();
+    private ToggleSwitch tglMRTTelemetry = new ToggleSwitch();
+
     @FXML
     private GridPane gridTrackingService;
     @FXML
     private GridPane gridPushService;
+    @FXML
+    private GridPane gridCEIPTasks;
+    @FXML
+    private GridPane gridMRTTelemetry;
+    @FXML
+    private Button btnSaveAndApply;
+    @FXML
+    private Button btnCancel;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tglTrackingService.setSwitchedOn(true);
         tglPushService.setSwitchedOn(true);
+        tglCEIPTasks.setSwitchedOn(true);
+        tglMRTTelemetry.setSwitchedOn(true);
         gridTrackingService.add(tglTrackingService, 1, 0);
         gridPushService.add(tglPushService, 1, 0);
+        gridCEIPTasks.add(tglCEIPTasks, 1, 0);
+        gridMRTTelemetry.add(tglMRTTelemetry, 1, 0);
     }
 
     @FXML
@@ -78,6 +91,14 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
         Stage currentStage = (Stage) btnClose.getScene().getWindow();
         xOffset = currentStage.getX() - event.getScreenX();
         yOffset = currentStage.getY() - event.getScreenY();
+    }
+
+    @FXML
+    private void cancel(ActionEvent event) {
+    }
+
+    @FXML
+    private void saveAndApply(ActionEvent event) {
     }
 
 }

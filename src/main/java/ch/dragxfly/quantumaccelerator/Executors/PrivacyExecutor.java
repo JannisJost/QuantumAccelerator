@@ -4,20 +4,21 @@ import java.io.IOException;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  *
  * @author janni
  */
 public class PrivacyExecutor {
-
+    
     VBox vbox = new VBox();
     Label lblInfo;
-
+    
     public PrivacyExecutor() {
-
+        
     }
-
+    
     public void run(boolean deleteDNSCache, boolean deleteCookies, boolean deleteBrowserHistory) {
         showStatusPanel();
         if (deleteDNSCache) {
@@ -31,7 +32,9 @@ public class PrivacyExecutor {
         }
     }
 //Deletes the DNS cache via console
+
     private void deleteDNSCache() {
+        lblInfo.setText("Deleting DNS cache");
         Runtime rt = Runtime.getRuntime();
         try {
             rt.exec(new String[]{"ipconfig", "/flushdns"});
@@ -39,18 +42,21 @@ public class PrivacyExecutor {
             System.err.println("could not delete DNS cache: " + e);
         }
     }
-
+    
     private void deleteCookies() {
-
+        lblInfo.setText("Deleting coolies");
     }
-
+    
     private void deleteBrowserHistory() {
-
+        lblInfo.setText("Deleting browser history");
+        
     }
 //Shows info with information on what is being executed
 
     private void showStatusPanel() {
         vbox.getChildren().add(lblInfo);
         Scene scene = new Scene(vbox);
+        Stage s = new Stage();
+        s.setScene(scene);
     }
 }

@@ -1,5 +1,6 @@
 package controller.main;
 
+import ch.dragxfly.quantumaccelerator.Executors.ExtrasExecutor;
 import ch.dragxfly.quantumaccelerator.ViewManager.ViewOpener;
 import ch.dragxfly.quantumaccelerator.Hardware.Benchmark.CPUBenchmark;
 import ch.dragxfly.quantumaccelerator.Style.CustomToolTip;
@@ -11,9 +12,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-
-
-
 
 /**
  * FXML Controller class
@@ -34,6 +32,7 @@ public class ExtrasController implements Initializable {
     @FXML
     private Button btnCreateCPULoad;
     private CPUBenchmark benchmark;
+    private final ExtrasExecutor executor = new ExtrasExecutor();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -67,9 +66,7 @@ public class ExtrasController implements Initializable {
 
     @FXML
     private void enableGodmode(ActionEvent event) {
-        String godmodePath = System.getProperty("user.home") + "\\Desktop\\Godmode.{ED7BA470-8E54-465E-825C-99712043E01C}";
-        FolderCreator folderCreator = new FolderCreator();
-        folderCreator.createFolder(godmodePath);
+        executor.createGodModeFolder();
     }
 
 }
