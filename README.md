@@ -24,6 +24,7 @@ QuantumAccelerator is a free and open source application to easily manage Window
 
 **How do I install QuantumAccelerator?**
 
+At the moment you'll need to download the jar from releases, but to be able to run it you'll need JavaFX (Openjfx) installed. But I am working on an installer which will eliminate the need to already have JavaFX installed.
 
 
 ## Special thanks
