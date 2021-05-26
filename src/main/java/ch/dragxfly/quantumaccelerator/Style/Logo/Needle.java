@@ -1,11 +1,7 @@
 package ch.dragxfly.quantumaccelerator.Style.Logo;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
-import javafx.util.Duration;
 
 /**
  *

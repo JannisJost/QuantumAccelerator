@@ -24,17 +24,18 @@ import javafx.util.Duration;
  */
 public class LogoController implements Initializable {
 
-    private SVGPath svgGear;
-    private SVGPath svgNeedle;
-    private SVGPath svgDash;
-    @FXML
-    private StackPane paneLogo;
-    private final double height;
     static final double PROP_DASH_HEIGHT = 2.3751617076326;
     static final double PROP_NEEDLE_HEIGHT = 4.340425531914894;
     static final double PROP_GEAR_HEIGHT = 1.830508474576271;
     static final double PROP_SPACING_NEEDLE = 10.8695652173913;
     static final double PROP_MOVE_NEEDLE = 11.92207792207792;
+
+    @FXML
+    private StackPane paneLogo;
+    private final SVGPath svgGear;
+    private final SVGPath svgNeedle;
+    private final SVGPath svgDash;
+    private final double height;
     private Timeline timeline;
 
     @Override
