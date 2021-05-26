@@ -50,7 +50,7 @@
             <Label text="Beta tester: Arial" textFill="WHITE" />
             <HBox alignment="CENTER" prefHeight="44.0" prefWidth="600.0">
                <children>
-                  <Label text="Icons by" textFill="WHITE">
+                  <Label text="Icons by" textFill="WHITE" underline="true">
                      <tooltip>
                         <Tooltip text="Icons by Icons8" />
                      </tooltip>

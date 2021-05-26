@@ -35,6 +35,7 @@ public class LogoController implements Initializable {
     static final double PROP_GEAR_HEIGHT = 1.830508474576271;
     static final double PROP_SPACING_NEEDLE = 10.8695652173913;
     static final double PROP_MOVE_NEEDLE = 11.92207792207792;
+    private Timeline timeline;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -69,7 +70,7 @@ public class LogoController implements Initializable {
         Point3D point = new Point3D(0, 100, 0);
         svgDash.setRotationAxis(point);
         svgGear.setRotationAxis(point);
-        Timeline timeline = new Timeline(
+        timeline = new Timeline(
                 new KeyFrame(Duration.seconds(0.75),
                         new KeyValue(svgDash.rotateProperty(), 180),
                         new KeyValue(svgGear.rotateProperty(), 0)),
@@ -107,13 +108,31 @@ public class LogoController implements Initializable {
     }
 
     public void stopLoadingAnimation() {
+        timeline.stop();
+        reset();
         svgNeedle.setVisible(true);
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(4), new KeyValue(svgNeedle.rotateProperty(), 10)),
-                new KeyFrame(Duration.seconds(4), new KeyValue(svgNeedle.rotateProperty(), -70)),
-                new KeyFrame(Duration.seconds(4), new KeyValue(svgNeedle.rotateProperty(), 0))
+        Timeline stopAnimation = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(svgNeedle.rotateProperty(), -200)),
+                new KeyFrame(Duration.seconds(1.5), new KeyValue(svgNeedle.rotateProperty(), 0)),
+                new KeyFrame(Duration.seconds(2), new KeyValue(svgNeedle.opacityProperty(), 1),
+                        new KeyValue(svgGear.opacityProperty(), 1),
+                        new KeyValue(svgDash.opacityProperty(), 1)),
+                new KeyFrame(Duration.seconds(3), new KeyValue(svgNeedle.opacityProperty(), 0),
+                        new KeyValue(svgGear.opacityProperty(), 0),
+                        new KeyValue(svgDash.opacityProperty(), 0))
         );
-        timeline.play();
-        setVisible(false);
+        stopAnimation.play();
+        stopAnimation.setOnFinished(event -> {
+            setVisible(false);
+            reset();
+        });
+    }
+
+    private void reset() {
+        svgGear.setOpacity(1);
+        svgDash.setOpacity(1);
+        svgNeedle.setOpacity(1);
+        svgDash.setRotate(0);
+        svgGear.setRotate(0);
     }
 }

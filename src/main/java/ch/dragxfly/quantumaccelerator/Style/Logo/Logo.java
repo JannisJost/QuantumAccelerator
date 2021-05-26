@@ -32,7 +32,8 @@ public class Logo extends VBox {
         controller.playLoadingAnimation();
     }
 
-    public void playLoadingFinished() {
+    public void stopLoadingAnimation() {
+        controller.stopLoadingAnimation();
     }
 
     public void setShowing(boolean visible) {

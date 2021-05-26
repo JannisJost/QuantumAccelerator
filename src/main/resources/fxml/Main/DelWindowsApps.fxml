@@ -25,6 +25,7 @@
                         <CheckBox fx:id="chkSelectAll" mnemonicParsing="false" onAction="#selectAll" prefHeight="21.0" prefWidth="275.0" text="Select all" />
                         <Separator prefWidth="200.0" />
                         <CheckBox fx:id="chkDelCoartana" accessibleText="Microsoft.549981C3F5F10" mnemonicParsing="false" text="Delete Cortana" />
+                        <CheckBox fx:id="chkXboxGamebar" mnemonicParsing="false" text="Xbox Gamebar" />
                         <CheckBox fx:id="chkDelCandyCrush" accessibleText="*CandyCrush*" mnemonicParsing="false" text="Delete Candy Crush" />
                         <CheckBox fx:id="chkDelMaps" accessibleText="Microsoft.WindowsMaps" mnemonicParsing="false" text="Delete Maps" />
                         <CheckBox fx:id="chkDelFeedbackHub" accessibleText="Microsoft.WindowsFeedbackHub" mnemonicParsing="false" text="Delete Feedback Hub" />
