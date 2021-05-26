@@ -1,10 +1,10 @@
 package controller.main;
 
-import animatefx.animation.AnimationFX;
-import animatefx.animation.SlideInUp;
 import ch.dragxfly.quantumaccelerator.CustomControls.ToggleSwitch;
 import ch.dragxfly.quantumaccelerator.tasks.GameboosterTasks;
 import ch.dragxfly.quantumaccelerator.Executors.Gamebooster;
+import ch.dragxfly.quantumaccelerator.Style.Logo.Logo;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
@@ -21,6 +21,7 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -37,13 +38,8 @@ public class GameboosterController implements Initializable {
     private ToggleButton toggleBtnGameboost;
 
     private Gamebooster gameboost;
-    private AnimationFX labelAnim;
     @FXML
     private ProgressIndicator progressBoost;
-    private Thread thread;
-    private Preferences prefs;
-    private boolean gameBoosterIsActive;
-    boolean resetPowerPlan;
     @FXML
     private Button btnApplyCheckBoxes;
     private boolean resetGPUPrio;
@@ -56,8 +52,15 @@ public class GameboosterController implements Initializable {
     private CheckBox chkDelInstallersFromDownload;
     @FXML
     private GridPane gridSettingsDeactivateGamebooster;
+    @FXML
+    private VBox vboxGameboosterSwitch;
+    private Thread thread;
+    private Preferences prefs;
+    private boolean gameBoosterIsActive;
+    boolean resetPowerPlan;
     private final ToggleSwitch tglswResetPowerPlan = new ToggleSwitch();
     private final ToggleSwitch tglswCPUPrio = new ToggleSwitch();
+    private Logo logo;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -70,9 +73,15 @@ public class GameboosterController implements Initializable {
         prefs = Preferences.userRoot().node(this.getClass().getName());
         gameBoosterIsActive = prefs.getBoolean("GameboosterIsActive", false);
         toggleBtnGameboost.setSelected(gameBoosterIsActive);
-        labelAnim = new SlideInUp(lblGameboostStatus);
         anchorPaneGameboosterSwitch.setStyle(gameBoosterIsActive ? "-fx-background-color:#83c480;" : "-fx-background-color:#c48080;");
         lblGameboostStatus.setText(gameBoosterIsActive ? "active" : "deactivated");
+        try {
+            logo = new Logo(64);
+        } catch (IOException ex) {
+            System.err.println(ex);
+        }
+        logo.setShowing(false);
+        vboxGameboosterSwitch.getChildren().add(logo);
     }
 
     private void freeRAM(ActionEvent event) {
@@ -85,7 +94,8 @@ public class GameboosterController implements Initializable {
         resetGPUPrio = tglswCPUPrio.getIsActivated();
         gameBoosterIsActive = toggleBtnGameboost.isSelected();
         prefs.putBoolean("GameboosterIsActive", gameBoosterIsActive);
-        progressBoost.setVisible(true);
+        logo.setShowing(true, true);
+        logo.playLoadingAnimation();
         Task boost = getGameboosterTask();
         Task stopBoost = getDeactivateGameboosterTask();
         lblGameboostStatus.setText(gameBoosterIsActive ? "initializing..." : "deactivating...");
@@ -94,8 +104,7 @@ public class GameboosterController implements Initializable {
         boost.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent t) {
-                progressBoost.setVisible(false);
-                labelAnim.play();
+                logo.setShowing(false);
                 anchorPaneGameboosterSwitch.setStyle("-fx-background-color:#83c480;");
                 lblGameboostStatus.setText("active");
             }
@@ -103,8 +112,7 @@ public class GameboosterController implements Initializable {
         stopBoost.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent t) {
-                progressBoost.setVisible(false);
-                labelAnim.play();
+                logo.setShowing(false);
                 anchorPaneGameboosterSwitch.setStyle("-fx-background-color:#c48080;");
                 lblGameboostStatus.setText("deactivated");
             }
