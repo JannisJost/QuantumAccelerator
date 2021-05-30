@@ -32,8 +32,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -42,24 +40,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.TextFlow;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class MainViewController implements Initializable, Observer {
 
-    private CheckBox backgroundApps;
-    private CheckBox powerPlan;
-    private CheckBox deleteTemp;
-    private CheckBox delDownloadInstaller;
-    private Label state;
-    private TextFlow log;
     private ResourceBundle bundle;
     private Locale locale;
     @FXML
     private Button btnGameBooster;
-    private ProgressIndicator progress;
     @FXML
     private BorderPane mainPane;
     @FXML
@@ -100,9 +89,6 @@ public class MainViewController implements Initializable, Observer {
     boolean lightThemeActive;
     @FXML
     private Button btnFullscreen;
-    private static final javafx.geometry.Rectangle2D SCREEN_BOUNDS = Screen.getPrimary()
-            .getVisualBounds();
-    private boolean isFullscreen = false;
     @FXML
     private Button btnMinimize;
     private static final String LIGHTTHEMEISACTIVE = "darktheme";
@@ -124,6 +110,7 @@ public class MainViewController implements Initializable, Observer {
     private static final String ANIMATIONSACTIVE = "playanimations";
     @FXML
     private ImageView imgMaximize;
+    private boolean isFullscreen = false;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -273,8 +260,8 @@ public class MainViewController implements Initializable, Observer {
         //Add logic to save variables before closing
         try {
             pref.flush();
-        } catch (Exception e) {
-            System.err.println("Error while flushing pref on closing");
+        } catch (BackingStoreException e) {
+            System.err.println("Error while flushing pref while closing");
         }
         System.exit(0);
     }
@@ -407,14 +394,15 @@ public class MainViewController implements Initializable, Observer {
         }
     }
 
+    public void startup() {
+        mainPane.setCenter(viewsModel.getFeatures());
+        selectButton(btnFeatures);
+        viewOpener.openThemeableView("/fxml/RestorePointCreator.fxml", "Restore", true);
+    }
+
     @FXML
     private void runGarbageCollector(MouseEvent event) {
         System.gc();
     }
 
-    public void runStartup() {
-        mainPane.setCenter(viewsModel.getFeatures());
-        selectButton(btnFeatures);
-        viewOpener.openThemeableView("/fxml/RestorePointCreator.fxml", "Restore", true);
-    }
 }

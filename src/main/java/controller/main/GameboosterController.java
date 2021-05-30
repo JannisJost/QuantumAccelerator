@@ -84,14 +84,10 @@ public class GameboosterController implements Initializable {
         vboxGameboosterSwitch.getChildren().add(logo);
     }
 
-    private void freeRAM(ActionEvent event) {
-        gameboost.freeRAM();
-    }
-
     @FXML
     private void activateOrDeactivateGameboost(ActionEvent event) {
-        resetPowerPlan = tglswResetPowerPlan.getIsActivated();
-        resetGPUPrio = tglswCPUPrio.getIsActivated();
+        resetPowerPlan = tglswResetPowerPlan.isActivated();
+        resetGPUPrio = tglswCPUPrio.isActivated();
         gameBoosterIsActive = toggleBtnGameboost.isSelected();
         prefs.putBoolean("GameboosterIsActive", gameBoosterIsActive);
         logo.setShowing(true, true);
@@ -126,7 +122,6 @@ public class GameboosterController implements Initializable {
                 gameboost.runGameboost();
                 return null;
             }
-
         };
         return boosterTask;
     }

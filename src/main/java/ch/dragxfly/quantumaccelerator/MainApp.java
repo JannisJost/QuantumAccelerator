@@ -43,7 +43,7 @@ public class MainApp extends Application {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
         controller.setStarterTheme();
-        controller.runStartup();
+        controller.startup();
         new FadeIn(root).play();
     }
 

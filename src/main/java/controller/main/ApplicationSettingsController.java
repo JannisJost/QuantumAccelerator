@@ -47,7 +47,7 @@ public class ApplicationSettingsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         gridGeneral.add(tglswAutostart, 1, 0);
         gridPerformance.add(tglswPlayAnimations, 1, 0);
-        tglswPlayAnimations.getPropertySwitchedOn().addListener(event->{
+        tglswPlayAnimations.isSwitchedOn().addListener(event->{
             changePlayAnimations();
         });
         choiseLanguage.getItems().add("English");
@@ -78,7 +78,7 @@ public class ApplicationSettingsController implements Initializable {
     }
 
     private void changePlayAnimations() {
-        boolean playAnimations = tglswPlayAnimations.getIsActivated();
+        boolean playAnimations = tglswPlayAnimations.isActivated();
         pref.putBoolean(ANIMATIONSACTIVE, playAnimations);
         try {
             pref.flush();

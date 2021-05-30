@@ -24,12 +24,12 @@ public class ToggleSwitch extends Parent {
     private ParallelTransition animation = new ParallelTransition(switchAnimation, colorTransition);
 
     public ToggleSwitch() {
-        //configures the background
+        //configures background
         Rectangle background = new Rectangle(50, 25);
         background.setFill(Color.web("#7D7D7D"));
         background.setArcWidth(25);
         background.setArcHeight(50);
-        //configures the thumb of the toggle switch
+        //configures thumb
         Circle thumb = new Circle(12.5);
         thumb.setCenterX(12.5);
         thumb.setCenterY(12.5);
@@ -50,7 +50,7 @@ public class ToggleSwitch extends Parent {
         });
     }
 
-    public boolean getIsActivated() {
+    public boolean isActivated() {
         return switchedOn.getValue();
     }
 
@@ -58,7 +58,7 @@ public class ToggleSwitch extends Parent {
         this.switchedOn.set(isOn);
     }
 
-    public BooleanProperty getPropertySwitchedOn() {
+    public BooleanProperty isSwitchedOn() {
         return switchedOn;
     }
 }

@@ -5,6 +5,7 @@ import ch.dragxfly.quantumaccelerator.Executors.TelemetryBlocker;
 import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,6 +30,10 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
     private final ToggleSwitch tglPushService = new ToggleSwitch();
     private final ToggleSwitch tglCEIPTasks = new ToggleSwitch();
     private final ToggleSwitch tglMRTTelemetry = new ToggleSwitch();
+    private static final String KEY_TRACKING_SERVICES = "trackingservices";
+    private static final String KEY_PUSH_SERVICE = "pushservice";
+    private static final String KEY_CEIP = "CEIP";
+    private static final String KEY_MRT = "MRT";
 
     @FXML
     private Button btnSaveAndApply;
@@ -36,13 +41,14 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
     private Button btnCancel;
     @FXML
     private GridPane gridSettings;
+    private final Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tglTrackingService.setSwitchedOn(true);
-        tglPushService.setSwitchedOn(true);
-        tglCEIPTasks.setSwitchedOn(true);
-        tglMRTTelemetry.setSwitchedOn(true);
+        tglTrackingService.setSwitchedOn(prefs.getBoolean(KEY_TRACKING_SERVICES, false));
+        tglPushService.setSwitchedOn(prefs.getBoolean(KEY_PUSH_SERVICE, false));
+        tglCEIPTasks.setSwitchedOn(prefs.getBoolean(KEY_CEIP, false));
+        tglMRTTelemetry.setSwitchedOn(prefs.getBoolean(KEY_MRT, false));
         gridSettings.add(tglMRTTelemetry, 1, 0);
         gridSettings.add(tglCEIPTasks, 1, 1);
         gridSettings.add(tglTrackingService, 1, 2);
@@ -82,7 +88,9 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
 
     @FXML
     private void saveAndApply(ActionEvent event) {
-
+        prefs.putBoolean(KEY_TRACKING_SERVICES, tglTrackingService.isActivated());
+        prefs.putBoolean(KEY_MRT, tglMRTTelemetry.isActivated());
+        prefs.putBoolean(KEY_PUSH_SERVICE, tglPushService.isActivated());
     }
 
 }

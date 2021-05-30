@@ -42,7 +42,7 @@
                   </VBox>
                   <ButtonBar prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <buttons>
-                      <Button fx:id="btnRun" mnemonicParsing="false" onAction="#RunSelectedPrivacyOptions" text="Run" />
+                      <Button fx:id="btnRun" mnemonicParsing="false" onAction="#applyPrivacyOptions" text="Run" />
                     </buttons>
                      <padding>
                         <Insets right="5.0" />

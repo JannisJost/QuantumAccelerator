@@ -75,17 +75,17 @@ public class PrivacyController implements Initializable {
         t.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent t1) {
-                setText();
+                setCameraButtonText();
             }
         });
     }
 
-    private void setText() {
+    private void setCameraButtonText() {
         btnDeactivateCam.setText(camIsActive ? "Deactivate cam" : "Activate cam");
     }
 
-    public void TextOnStart() {
-        setText();
+    public void setDefaultCameraButtonText() {
+        setCameraButtonText();
     }
 
     @FXML
@@ -108,7 +108,7 @@ public class PrivacyController implements Initializable {
     }
 
     @FXML
-    private void RunSelectedPrivacyOptions(ActionEvent event) {
+    private void applyPrivacyOptions(ActionEvent event) {
         boolean deleteDNSCache = chkDeleteDNSCache.isSelected();
     }
 

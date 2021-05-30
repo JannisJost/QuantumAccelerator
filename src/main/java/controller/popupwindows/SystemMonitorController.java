@@ -60,7 +60,7 @@ public class SystemMonitorController extends ThemeableWindow implements Initiali
     public void initialize(URL url, ResourceBundle rb) {
         tglswMeasureCPUTemp.setSwitchedOn(true);
         hboxTopBar.getChildren().add(0, tglswMeasureCPUTemp);
-        showCPUTemp.bindBidirectional(tglswMeasureCPUTemp.getPropertySwitchedOn());
+        showCPUTemp.bindBidirectional(tglswMeasureCPUTemp.isSwitchedOn());
         showCPUTemp.addListener(event -> {
             changeShowCPUTemp();
         });

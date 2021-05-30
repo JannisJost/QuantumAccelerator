@@ -10,7 +10,7 @@ import javafx.concurrent.Task;
 public class TelemetryBlocker {
 
     private Task telemetryBlockerTask;
-    PowerShell ps;
+    private PowerShell ps;
 
     public void blockTelemetry(boolean disableMRT, boolean disableCEIP, boolean disableTrackingService, boolean disablePushService) {
 
