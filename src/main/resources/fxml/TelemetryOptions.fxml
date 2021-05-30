@@ -18,8 +18,8 @@
          <children>
             <GridPane fx:id="gridSettings" hgap="10.0" VBox.vgrow="ALWAYS">
               <columnConstraints>
-                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="290.0" minWidth="10.0" prefWidth="199.0" />
-                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="391.0" minWidth="10.0" prefWidth="381.0" />
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="290.0" minWidth="10.0" prefWidth="255.0" />
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="391.0" minWidth="10.0" prefWidth="325.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -28,22 +28,22 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="MRT telemetry:">
+                  <Label text="Disable MRT telemetry:">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label text="CEIP Tasks:" GridPane.rowIndex="1">
+                  <Label text="Disable CEIP Tasks:" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="21.0" prefWidth="258.0" text="Diagnostic Tracking Service:" GridPane.rowIndex="2">
+                  <Label prefHeight="21.0" prefWidth="258.0" text="Disable Diagnostic Tracking Service:" GridPane.rowIndex="2">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label text="dmwappushservice:" GridPane.rowIndex="3">
+                  <Label text="Disable dmwappushservice:" GridPane.rowIndex="3">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>

@@ -1,6 +1,7 @@
 package controller.popupwindows;
 
 import ch.dragxfly.quantumaccelerator.CustomControls.ToggleSwitch;
+import ch.dragxfly.quantumaccelerator.Executors.TelemetryBlocker;
 import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,10 +25,10 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
     private Button btnClose;
     private double xOffset = 0;
     private double yOffset = 0;
-    private ToggleSwitch tglTrackingService = new ToggleSwitch();
-    private ToggleSwitch tglPushService = new ToggleSwitch();
-    private ToggleSwitch tglCEIPTasks = new ToggleSwitch();
-    private ToggleSwitch tglMRTTelemetry = new ToggleSwitch();
+    private final ToggleSwitch tglTrackingService = new ToggleSwitch();
+    private final ToggleSwitch tglPushService = new ToggleSwitch();
+    private final ToggleSwitch tglCEIPTasks = new ToggleSwitch();
+    private final ToggleSwitch tglMRTTelemetry = new ToggleSwitch();
 
     @FXML
     private Button btnSaveAndApply;
@@ -81,7 +82,7 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
 
     @FXML
     private void saveAndApply(ActionEvent event) {
-        
+
     }
 
 }

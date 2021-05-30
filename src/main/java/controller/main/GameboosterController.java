@@ -104,7 +104,7 @@ public class GameboosterController implements Initializable {
         boost.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent t) {
-                logo.stopLoadingAnimation();
+                logo.playLoadingFinishedAnimation();
                 anchorPaneGameboosterSwitch.setStyle("-fx-background-color:#83c480;");
                 lblGameboostStatus.setText("active");
             }
@@ -112,7 +112,7 @@ public class GameboosterController implements Initializable {
         stopBoost.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent t) {
-                logo.stopLoadingAnimation();
+                logo.playLoadingFinishedAnimation();
                 anchorPaneGameboosterSwitch.setStyle("-fx-background-color:#c48080;");
                 lblGameboostStatus.setText("deactivated");
             }

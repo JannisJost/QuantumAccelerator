@@ -73,15 +73,6 @@ public class ApplicationSettingsController implements Initializable {
         }
     }
 
-    private void switchNotificationSoundSld(MouseEvent event) {
-        double state = sldNotificationSound.getValue();
-        if (state == 0) {
-            sldNotificationSound.setValue(1);
-        } else {
-            sldNotificationSound.setValue(0);
-        }
-    }
-
     @FXML
     private void applySettings(ActionEvent event) {
     }

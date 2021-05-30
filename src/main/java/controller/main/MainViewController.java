@@ -11,7 +11,6 @@ import ch.dragxfly.quantumaccelerator.FXMLmanager;
 import ch.dragxfly.quantumaccelerator.Hardware.HardwareObserver;
 import ch.dragxfly.quantumaccelerator.Style.Animations.ButtonAnimator;
 import ch.dragxfly.quantumaccelerator.Style.Animations.MainAnimations;
-import ch.dragxfly.quantumaccelerator.Executors.Booster;
 import ch.dragxfly.quantumaccelerator.notifications.NotificationManager;
 import controller.popupwindows.SystemMonitorController;
 import java.io.IOException;
@@ -47,7 +46,6 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 
 public class MainViewController implements Initializable, Observer {
 
@@ -135,15 +133,6 @@ public class MainViewController implements Initializable, Observer {
         FXMLmanager object = new FXMLmanager();
         Pane view = object.getPage("Features");
         mainPane.setCenter(view);
-    }
-
-    private void Apply(ActionEvent event) {
-        boolean boolBackgroundApps = backgroundApps.isSelected();
-        boolean boolPowerPlan = powerPlan.isSelected();
-        boolean boolDeleteTemp = deleteTemp.isSelected();
-        boolean boolDelDownloadInstaller = delDownloadInstaller.isSelected();
-        Booster booster = new Booster(state, log, progress, boolBackgroundApps, boolPowerPlan, boolDeleteTemp, boolDelDownloadInstaller);
-        booster.boost();
     }
 
     @FXML
@@ -360,7 +349,6 @@ public class MainViewController implements Initializable, Observer {
         } else {
             stage.setMaximized(false);
             imgMaximize.setImage(new Image("/styles/icons/menubar/maximize.png"));
-
         }
         isFullscreen = !isFullscreen;
         System.setProperty("prism.forcerepaint", "false");

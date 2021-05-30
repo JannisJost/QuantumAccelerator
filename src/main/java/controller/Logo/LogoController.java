@@ -108,7 +108,7 @@ public class LogoController implements Initializable {
         svgNeedle.setVisible(visible);
     }
 
-    public void stopLoadingAnimation() {
+    public void playLoadingFinishedAnimation() {
         timeline.stop();
         reset();
         svgNeedle.setVisible(true);
@@ -129,6 +129,9 @@ public class LogoController implements Initializable {
         });
     }
 
+    /**
+     * Resets the state changed by the animation
+     */
     private void reset() {
         svgGear.setOpacity(1);
         svgDash.setOpacity(1);

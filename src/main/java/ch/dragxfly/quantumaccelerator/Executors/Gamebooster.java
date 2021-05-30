@@ -34,19 +34,6 @@ public class Gamebooster {
         startWindowsSearch();
     }
 
-    public void killUnnecessaryBackgroundProcesses() {
-        try {
-            String dir = System.getProperty("user.dir");
-            dir = dir.replaceAll("\\\\", "/");
-            String batchFileLocation = dir + "/batch_files/closeBackgroundProcesses.bat";
-            Process p = Runtime.getRuntime().exec(batchFileLocation);
-            p.waitFor();
-            showJOptionPane("killed background processes", "Success");
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
-    }
-
     public void freeRAM() {
         System.gc();
     }

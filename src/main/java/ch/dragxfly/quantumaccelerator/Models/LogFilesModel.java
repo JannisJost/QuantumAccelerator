@@ -1,4 +1,4 @@
-package Models;
+package ch.dragxfly.quantumaccelerator.Models;
 
 import java.util.ArrayList;
 import java.util.List;
