@@ -91,6 +91,8 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
         prefs.putBoolean(KEY_TRACKING_SERVICES, tglTrackingService.isActivated());
         prefs.putBoolean(KEY_MRT, tglMRTTelemetry.isActivated());
         prefs.putBoolean(KEY_PUSH_SERVICE, tglPushService.isActivated());
+        prefs.putBoolean(KEY_CEIP, tglCEIPTasks.isActivated());
+        TelemetryBlocker blocker = new TelemetryBlocker();
     }
 
 }
