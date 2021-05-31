@@ -100,7 +100,6 @@ public class BlacklistTempCacheFilesController extends ThemeableWindow implement
     @Override
     public void update(Observable o, Object arg) {
         if (o.getClass().equals(FolderChooser.class)) {
-            System.out.println((String) arg);
             lstBlacklistedItems.getItems().add((String) arg);
         }
     }
@@ -111,5 +110,6 @@ public class BlacklistTempCacheFilesController extends ThemeableWindow implement
 
     @FXML
     private void saveBlacklist(ActionEvent event) {
+        
     }
 }

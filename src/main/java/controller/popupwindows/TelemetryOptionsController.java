@@ -84,15 +84,23 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
 
     @FXML
     private void cancel(ActionEvent event) {
+        Stage currentStage = (Stage) btnClose.getScene().getWindow();
+        currentStage.close();
     }
 
     @FXML
     private void saveAndApply(ActionEvent event) {
+        setApplyingState(true);
         prefs.putBoolean(KEY_TRACKING_SERVICES, tglTrackingService.isActivated());
         prefs.putBoolean(KEY_MRT, tglMRTTelemetry.isActivated());
         prefs.putBoolean(KEY_PUSH_SERVICE, tglPushService.isActivated());
         prefs.putBoolean(KEY_CEIP, tglCEIPTasks.isActivated());
         TelemetryBlocker blocker = new TelemetryBlocker();
+        blocker.blockTelemetry(this, tglMRTTelemetry.isActivated(), tglCEIPTasks.isActivated(), tglTrackingService.isActivated(), tglPushService.isActivated());
     }
 
+    public void setApplyingState(boolean isApplying) {
+        btnClose.setDisable(isApplying);
+        btnCancel.setDisable(isApplying);
+    }
 }

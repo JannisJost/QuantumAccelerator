@@ -96,11 +96,11 @@ public class Gamebooster {
     }
 
     private void stopWindowsSearch() {
-        powershell.runPowershellScript("Stop-Service -Name WSearch");
+        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Stop-Service -Name WSearch");
     }
 
     private void startWindowsSearch() {
-        powershell.runPowershellScript("Start-Service -Name WSearch");
+        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Start-Service -Name WSearch");
 
     }
 
