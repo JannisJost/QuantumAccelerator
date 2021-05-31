@@ -87,6 +87,6 @@ public class ApplicationSettingsController implements Initializable {
     }
 
     public void setPlayAnimations(boolean selected) {
-        tglswPlayAnimations.setSwitchedOn(selected);
+        tglswPlayAnimations.setActivated(selected);
     }
 }

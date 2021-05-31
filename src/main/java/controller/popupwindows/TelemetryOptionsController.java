@@ -45,10 +45,10 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tglTrackingService.setSwitchedOn(prefs.getBoolean(KEY_TRACKING_SERVICES, false));
-        tglPushService.setSwitchedOn(prefs.getBoolean(KEY_PUSH_SERVICE, false));
-        tglCEIPTasks.setSwitchedOn(prefs.getBoolean(KEY_CEIP, false));
-        tglMRTTelemetry.setSwitchedOn(prefs.getBoolean(KEY_MRT, false));
+        tglTrackingService.setActivated(prefs.getBoolean(KEY_TRACKING_SERVICES, false));
+        tglPushService.setActivated(prefs.getBoolean(KEY_PUSH_SERVICE, false));
+        tglCEIPTasks.setActivated(prefs.getBoolean(KEY_CEIP, false));
+        tglMRTTelemetry.setActivated(prefs.getBoolean(KEY_MRT, false));
         gridSettings.add(tglMRTTelemetry, 1, 0);
         gridSettings.add(tglCEIPTasks, 1, 1);
         gridSettings.add(tglTrackingService, 1, 2);
@@ -88,6 +88,11 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
         currentStage.close();
     }
 
+    /**
+     * Saves and applies the chosen telemetry option
+     *
+     * @param event
+     */
     @FXML
     private void saveAndApply(ActionEvent event) {
         setApplyingState(true);

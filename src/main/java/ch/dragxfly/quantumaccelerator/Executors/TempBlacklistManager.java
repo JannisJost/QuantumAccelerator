@@ -18,6 +18,9 @@ public class TempBlacklistManager {
     private FileReader reader;
     private FileWriter writer;
 
+    /**
+     * Sets the reader and writer on invocation
+     */
     public TempBlacklistManager() {
         try {
             reader = new FileReader(PATH_TO_BLACKLISTTXT);
@@ -26,26 +29,43 @@ public class TempBlacklistManager {
         }
     }
 
+    /**
+     * Writes the blacklisted paths to a txt file (currently always overwrites
+     * it will be fixed later)
+     *
+     * @param blacklist List of paths to the blacklisted folders
+     * @throws IOException
+     */
     public void writeToBlacklistFile(List<String> blacklist) throws IOException {
         createBlacklistFilesAndFolders();
         writer.write("");
         for (String path : blacklist) {
             writer.append(path);
         }
+        writer.close();
     }
 
+    /**
+     * Reads the blacklisted paths from the txt file
+     *
+     * @return list of blacklisted path
+     * @throws IOException
+     */
+    public List<String> getBlacklist() throws IOException {
+        reader.read();
+        return null;
+    }
+/**
+ * Creates the blacklisted file and its parent folders 
+ * @throws IOException 
+ */
     private void createBlacklistFilesAndFolders() throws IOException {
         File blacklistFolder = new File(PATH_TO_BLACKLISTFOLDER);
         File blacklistTxt = new File(PATH_TO_BLACKLISTTXT);
         if (!blacklistFolder.exists()) {
             blacklistFolder.mkdirs();
-        }
-        if (!blacklistTxt.exists()) {
+        } else if (!blacklistTxt.exists()) {
             blacklistTxt.createNewFile();
         }
-    }
-
-    public List<String> getBlacklist() {
-        return null;
     }
 }

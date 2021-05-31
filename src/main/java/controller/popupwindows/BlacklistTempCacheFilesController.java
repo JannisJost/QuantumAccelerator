@@ -8,8 +8,6 @@ import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,8 +40,6 @@ public class BlacklistTempCacheFilesController extends ThemeableWindow implement
     private double xOffset = 0;
     private double yOffset = 0;
     private FolderChooser folderChooser;
-    static final String BLACKLIST = "blacklist";
-    private final Preferences pref = Preferences.userRoot();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -116,9 +112,10 @@ public class BlacklistTempCacheFilesController extends ThemeableWindow implement
     private void saveBlacklist(ActionEvent event) {
         TempBlacklistManager manager = new TempBlacklistManager();
         try {
+            System.out.println(lstBlacklistedItems.getItems().size());
             manager.writeToBlacklistFile(lstBlacklistedItems.getItems());
         } catch (IOException ex) {
-            Logger.getLogger(BlacklistTempCacheFilesController.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
         }
     }
 }

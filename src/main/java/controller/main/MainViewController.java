@@ -66,15 +66,11 @@ public class MainViewController implements Initializable, Observer {
     @FXML
     private Button btnExtras;
     //Non FXML
-    private final ButtonAnimator btnAnimator = new ButtonAnimator();
     private final NotificationManager notificationManager = new NotificationManager();
     @FXML
     private Button btnAbout;
     @FXML
     private Button btnCloseApplication;
-
-    private double xOffset;
-    private double yOffset;
     @FXML
     private Button btnNotifications;
     @FXML
@@ -85,19 +81,11 @@ public class MainViewController implements Initializable, Observer {
     private Button btnChangeTheme;
     @FXML
     private ImageView imgTheme;
-    private final Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
     boolean lightThemeActive;
     @FXML
     private Button btnFullscreen;
     @FXML
     private Button btnMinimize;
-    private static final String LIGHTTHEMEISACTIVE = "darktheme";
-    private static final String CURRENTTHEME = "currentTheme";
-    private final Preferences pref = Preferences.userRoot();
-    private Scene scene;
-    private final ViewOpener viewOpener = new ViewOpener();
-    private Pane view;
-    private final HardwareObserver hardware = new HardwareObserver();
     @FXML
     private ProgressIndicator progCPUUsage;
     @FXML
@@ -106,11 +94,23 @@ public class MainViewController implements Initializable, Observer {
     private Button btnShowSystemGraph;
     @FXML
     private ImageView imgSettings;
-    private final MainAnimations animation = new MainAnimations();
-    private static final String ANIMATIONSACTIVE = "playanimations";
     @FXML
     private ImageView imgMaximize;
+
+    private final Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
+    private static final String LIGHTTHEMEISACTIVE = "darktheme";
+    private static final String CURRENTTHEME = "currentTheme";
+    private final ButtonAnimator btnAnimator = new ButtonAnimator();
+    private final MainAnimations animation = new MainAnimations();
+    private static final String ANIMATIONSACTIVE = "playanimations";
+    private final Preferences pref = Preferences.userRoot();
+    private Scene scene;
+    private final ViewOpener viewOpener = new ViewOpener();
+    private Pane view;
     private boolean isFullscreen = false;
+    private double xOffset;
+    private double yOffset;
+    private final HardwareObserver hardware = new HardwareObserver();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -122,6 +122,11 @@ public class MainViewController implements Initializable, Observer {
         mainPane.setCenter(view);
     }
 
+    /**
+     * Sets "Features" as center content
+     *
+     * @param event
+     */
     @FXML
     private void showFeatures(ActionEvent event) {
         if (menuButtonPressedLast != btnFeatures) {
@@ -181,14 +186,6 @@ public class MainViewController implements Initializable, Observer {
         }
     }
 
-    public void loadLang(String lang) {
-        locale = new Locale(lang);
-        bundle = ResourceBundle.getBundle("languages.lang", locale);
-        btnFeatures.setText(bundle.getString("btnFeatures"));
-        btnShowStorage.setText(bundle.getString("btnShowStorage"));
-        btnShowPrivacy.setText(bundle.getString("btnShowPrivacy"));
-    }
-
     @FXML
     private void showExtras(ActionEvent event) {
         if (menuButtonPressedLast != btnExtras) {
@@ -199,11 +196,21 @@ public class MainViewController implements Initializable, Observer {
         }
     }
 
+    /**
+     * Opens the "about" aka. credits window
+     *
+     * @param event
+     */
     @FXML
     private void openViewAbout(ActionEvent event) {
         viewOpener.openThemeableView("/fxml/About.fxml", "About", false);
     }
 
+    /**
+     * Used to move the window with the cursor
+     *
+     * @param event
+     */
     @FXML
     private void moveWindowSecond(MouseEvent event) {
         //Moves the window if it is not in Fullscreen
@@ -214,6 +221,11 @@ public class MainViewController implements Initializable, Observer {
         }
     }
 
+    /**
+     * Used to move the window with the cursor
+     *
+     * @param event
+     */
     @FXML
     private void moveWindow(MouseEvent event) {
         if (!isFullscreen) {
@@ -237,10 +249,10 @@ public class MainViewController implements Initializable, Observer {
             //Plays animation if activated
             if (pref.getBoolean(ANIMATIONSACTIVE, true)) {
                 view = (Pane) mainPane.getRight();
-                AnimationFX animation = new BounceOutRight(view);
-                animation.play();
+                AnimationFX animationNotificationOut = new BounceOutRight(view);
+                animationNotificationOut.play();
                 btnNotifications.setDisable(true);
-                animation.setOnFinished(new EventHandler<ActionEvent>() {
+                animationNotificationOut.setOnFinished(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent arg0) {
                         btnNotifications.setDisable(false);
@@ -255,6 +267,11 @@ public class MainViewController implements Initializable, Observer {
         }
     }
 
+    /**
+     * Closes/stops the whole application and saves the prefs before
+     *
+     * @param event
+     */
     @FXML
     private void closeApplication(ActionEvent event) {
         //Add logic to save variables before closing
@@ -341,6 +358,11 @@ public class MainViewController implements Initializable, Observer {
         System.setProperty("prism.forcerepaint", "false");
     }
 
+    /**
+     * Iconifies the window
+     *
+     * @param event
+     */
     @FXML
     private void minimize(ActionEvent event) {
         Stage stage = (Stage) btnMinimize.getScene().getWindow();
@@ -372,6 +394,11 @@ public class MainViewController implements Initializable, Observer {
         });
     }
 
+    /**
+     * Shows the "system monitor" popup
+     *
+     * @param event
+     */
     @FXML
     private void showSystemGraph(ActionEvent event) {
         try {
@@ -394,6 +421,9 @@ public class MainViewController implements Initializable, Observer {
         }
     }
 
+    /**
+     * Is called from the invocator on startup
+     */
     public void startup() {
         mainPane.setCenter(viewsModel.getFeatures());
         selectButton(btnFeatures);
@@ -403,6 +433,14 @@ public class MainViewController implements Initializable, Observer {
     @FXML
     private void runGarbageCollector(MouseEvent event) {
         System.gc();
+    }
+
+    public void loadLang(String lang) {
+        locale = new Locale(lang);
+        bundle = ResourceBundle.getBundle("languages.lang", locale);
+        btnFeatures.setText(bundle.getString("btnFeatures"));
+        btnShowStorage.setText(bundle.getString("btnShowStorage"));
+        btnShowPrivacy.setText(bundle.getString("btnShowPrivacy"));
     }
 
 }

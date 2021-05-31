@@ -35,6 +35,7 @@ public class ToggleSwitch extends Parent {
         thumb.setCenterY(12.5);
         thumb.setFill(Color.LIGHTGRAY);
         thumb.setStroke(Color.GRAY);
+        //configures the "on click" animation
         switchAnimation.setNode(thumb);
         colorTransition.setShape(background);
         getChildren().addAll(background, thumb);
@@ -50,11 +51,20 @@ public class ToggleSwitch extends Parent {
         });
     }
 
+    /**
+     *
+     * @return if toggle is activated
+     */
     public boolean isActivated() {
         return switchedOn.getValue();
     }
 
-    public void setSwitchedOn(boolean isOn) {
+    /**
+     * Sets the "activated" propertie of the toggle switch
+     *
+     * @param isOn state to change toggle switch to
+     */
+    public void setActivated(boolean isOn) {
         this.switchedOn.set(isOn);
     }
 

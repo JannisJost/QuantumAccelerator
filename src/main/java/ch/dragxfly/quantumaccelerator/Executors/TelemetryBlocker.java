@@ -38,12 +38,14 @@ public class TelemetryBlocker {
 
     private void setTrackingService(boolean disableTrackingService) {
         com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Stop-Service -Name DiagTrack");
-        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Set-Service -Name DiagTrack -StartupType " + (disableTrackingService ? "Disable" : "Automatic"));
+        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Set-Service -Name DiagTrack -StartupType "
+                + (disableTrackingService ? "Disable" : "Automatic"));
     }
 
     private void setPushService(boolean disablePushService) {
         com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Stop-Service -Name dmwappushservice");
-        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Set-Service -Name dmwappushservice -StartupType " + (disablePushService ? "Disable" : "Automatic"));
+        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Set-Service -Name dmwappushservice -StartupType "
+                + (disablePushService ? "Disable" : "Automatic"));
     }
 
 }

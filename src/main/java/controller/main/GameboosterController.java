@@ -64,8 +64,8 @@ public class GameboosterController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tglswResetPowerPlan.setSwitchedOn(true);
-        tglswCPUPrio.setSwitchedOn(true);
+        tglswResetPowerPlan.setActivated(true);
+        tglswCPUPrio.setActivated(true);
         gridSettingsDeactivateGamebooster.add(tglswResetPowerPlan, 1, 0);
         gridSettingsDeactivateGamebooster.add(tglswCPUPrio, 1, 1);
         gameBoosterIsActive = toggleBtnGameboost.isSelected();
