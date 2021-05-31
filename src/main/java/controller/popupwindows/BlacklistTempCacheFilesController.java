@@ -1,11 +1,15 @@
 package controller.popupwindows;
 
+import ch.dragxfly.quantumaccelerator.Executors.TempBlacklistManager;
 import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.FolderChooser;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -110,6 +114,11 @@ public class BlacklistTempCacheFilesController extends ThemeableWindow implement
 
     @FXML
     private void saveBlacklist(ActionEvent event) {
-        
+        TempBlacklistManager manager = new TempBlacklistManager();
+        try {
+            manager.writeToBlacklistFile(lstBlacklistedItems.getItems());
+        } catch (IOException ex) {
+            Logger.getLogger(BlacklistTempCacheFilesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
