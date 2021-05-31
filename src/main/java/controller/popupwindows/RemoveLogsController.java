@@ -21,7 +21,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import winbooster.SearchEngine.FolderScanner.SearchEngine;
+import ch.dragxfly.quantumaccelerator.SearchEngine.FolderScanner.SearchEngine;
 
 /**
  * FXML Controller class

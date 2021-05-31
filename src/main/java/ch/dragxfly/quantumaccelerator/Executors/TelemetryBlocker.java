@@ -11,6 +11,16 @@ public class TelemetryBlocker {
 
     private Task telemetryBlockerTask;
 
+    /**
+     *
+     * @param invocator
+     * @param disableMRT defines wether to activate/deactivate "MRT"
+     * @param disableCEIP defines wether to activate/deactivate "CEIP"
+     * @param disableTrackingService defines wether to activate/deactivate
+     * "Tracking Service"
+     * @param disablePushService defines wether to activate/deactivate "Push
+     * Services"
+     */
     public void blockTelemetry(TelemetryOptionsController invocator, boolean disableMRT, boolean disableCEIP, boolean disableTrackingService, boolean disablePushService) {
         telemetryBlockerTask = new Task() {
             @Override

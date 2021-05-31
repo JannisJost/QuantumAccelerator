@@ -1,4 +1,4 @@
-package winbooster.SearchEngine.FolderScanner;
+package ch.dragxfly.quantumaccelerator.SearchEngine.FolderScanner;
 
 import java.io.File;
 import java.nio.file.Files;

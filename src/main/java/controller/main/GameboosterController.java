@@ -126,6 +126,11 @@ public class GameboosterController implements Initializable {
         return boosterTask;
     }
 
+    /**
+     * Creates a task which deactivates Gamebooster
+     *
+     * @return task which deactivates Gamebooster
+     */
     private Task getDeactivateGameboosterTask() {
         Task<Void> stopTask = new Task<Void>() {
             @Override

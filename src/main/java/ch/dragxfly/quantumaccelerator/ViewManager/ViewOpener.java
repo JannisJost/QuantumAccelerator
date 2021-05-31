@@ -12,8 +12,6 @@ import javafx.stage.StageStyle;
  */
 public class ViewOpener {
 
-    private Stage splash;
-
     public void openView(String path, String title) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -55,7 +53,7 @@ public class ViewOpener {
             fxmlLoader.setLocation(getClass().getResource(path));
             Scene scene = new Scene(fxmlLoader.load());
             return scene;
-        } catch (Exception e) {
+        } catch (IOException e) {
             return null;
         }
     }

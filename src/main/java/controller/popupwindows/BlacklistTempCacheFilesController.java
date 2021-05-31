@@ -1,6 +1,6 @@
 package controller.popupwindows;
 
-import ch.dragxfly.quantumaccelerator.Executors.TempBlacklistManager;
+import ch.dragxfly.quantumaccelerator.Executors.TempfilesBlacklistManager;
 import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.FolderChooser;
 import java.io.IOException;
@@ -8,7 +8,6 @@ import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
-import java.util.prefs.Preferences;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -40,6 +39,7 @@ public class BlacklistTempCacheFilesController extends ThemeableWindow implement
     private double xOffset = 0;
     private double yOffset = 0;
     private FolderChooser folderChooser;
+    private final TempfilesBlacklistManager manager = new TempfilesBlacklistManager();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -110,12 +110,16 @@ public class BlacklistTempCacheFilesController extends ThemeableWindow implement
 
     @FXML
     private void saveBlacklist(ActionEvent event) {
-        TempBlacklistManager manager = new TempBlacklistManager();
         try {
-            System.out.println(lstBlacklistedItems.getItems().size());
             manager.writeToBlacklistFile(lstBlacklistedItems.getItems());
         } catch (IOException ex) {
             System.err.println(ex);
+        }
+    }
+
+    public void fillBlacklist() throws IOException {
+        for (String path : manager.getBlacklist()) {
+            lstBlacklistedItems.getItems().add(path);
         }
     }
 }

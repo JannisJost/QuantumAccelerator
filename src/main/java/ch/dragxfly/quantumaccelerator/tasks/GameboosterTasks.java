@@ -4,7 +4,7 @@ import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.FileDeleter;
 import java.util.List;
 import javafx.concurrent.Task;
 import shellscripts.CMD;
-import winbooster.SearchEngine.FolderScanner.SearchEngine;
+import ch.dragxfly.quantumaccelerator.SearchEngine.FolderScanner.SearchEngine;
 
 /**
  *

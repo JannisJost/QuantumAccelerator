@@ -27,7 +27,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import winbooster.SearchEngine.FolderScanner.SearchEngine;
+import ch.dragxfly.quantumaccelerator.SearchEngine.FolderScanner.SearchEngine;
 
 /**
  * FXML Controller class
