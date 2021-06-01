@@ -1,4 +1,4 @@
-package ch.dragxfly.quantumaccelerator.fileAndFolderManagement;
+package ch.dragxfly.quantumaccelerator.fileAndFolderManagement.creator;
 
 import java.io.File;
 

@@ -1,4 +1,4 @@
-package winbooster.SearchEngine.FolderScanner.Model;
+package ch.dragxfly.quantumaccelerator.fileAndFolderManagement.SearchEngine.FolderScanner.Model;
 
 import java.util.ArrayList;
 import java.util.List;

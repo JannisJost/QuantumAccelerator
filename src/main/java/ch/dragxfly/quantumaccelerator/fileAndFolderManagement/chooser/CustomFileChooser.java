@@ -1,4 +1,4 @@
-package ch.dragxfly.quantumaccelerator.fileAndFolderManagement;
+package ch.dragxfly.quantumaccelerator.fileAndFolderManagement.chooser;
 
 import java.awt.Container;
 import javax.swing.JFileChooser;

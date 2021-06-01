@@ -1,6 +1,6 @@
 package ch.dragxfly.quantumaccelerator.Executors;
 
-import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.FolderCreator;
+import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.creator.FolderCreator;
 import java.io.File;
 
 /**

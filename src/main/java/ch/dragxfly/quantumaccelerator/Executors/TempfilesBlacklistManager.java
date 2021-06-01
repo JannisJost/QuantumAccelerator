@@ -81,4 +81,13 @@ public class TempfilesBlacklistManager {
             blacklistTxt.createNewFile();
         }
     }
+
+    public List<String> removeBlacklisted(LinkedList<String> listFolders) {
+        try {
+            listFolders.removeAll(getBlacklist());
+        } catch (IOException ex) {
+            System.err.print("Could not remove blacklisted folders " + ex);
+        }
+        return listFolders;
+    }
 }

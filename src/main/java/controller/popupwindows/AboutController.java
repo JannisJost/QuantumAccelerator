@@ -5,7 +5,7 @@ import animatefx.animation.AnimationFX;
 import animatefx.animation.LightSpeedIn;
 import animatefx.animation.Pulse;
 import ch.dragxfly.quantumaccelerator.Style.Animations.ButtonAnimator;
-import ch.dragxfly.quantumaccelerator.Web.WebsiteOpener;
+import ch.dragxfly.quantumaccelerator.ViewManager.Web.WebsiteOpener;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;

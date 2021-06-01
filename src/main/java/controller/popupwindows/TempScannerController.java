@@ -27,7 +27,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import ch.dragxfly.quantumaccelerator.SearchEngine.FolderScanner.SearchEngine;
+import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.SearchEngine.FolderScanner.SearchEngine;
+import java.util.ArrayList;
 
 /**
  * FXML Controller class
@@ -145,18 +146,18 @@ public class TempScannerController extends ThemeableWindow implements Initializa
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
+                List<String> tempFiles = new ArrayList<>();
                 quickScan = chkQuickScan.isSelected();
                 boolean temp = chkSearchTemp.isSelected();
                 boolean cache = chkSearchCache.isSelected();
                 if (quickScan) {
                 } else {
                     if (cache == true && temp == true) {
-                        engine.searchFoldersContaining("C:\\", new String[]{"temp", "cache"});
+                       tempFiles=  engine.searchFoldersContaining("C:\\", new String[]{"temp", "cache"});
                     } else if (temp == true) {
-                        engine.searchFoldersContaining("C:\\", "temp");
+                        tempFiles = engine.searchFoldersContaining("C:\\", "temp");
                     }
                 }
-                List<String> tempFiles = engine.getRequested();
                 model.setTempFiles(tempFiles);
                 model.setAccessDenied(engine.getAccessDenied());
                 return null;

@@ -1,4 +1,4 @@
-package ch.dragxfly.quantumaccelerator.fileAndFolderManagement;
+package ch.dragxfly.quantumaccelerator.fileAndFolderManagement.chooser;
 
 import java.util.Observable;
 import java.util.Observer;

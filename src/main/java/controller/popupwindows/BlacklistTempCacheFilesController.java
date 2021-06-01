@@ -2,7 +2,7 @@ package controller.popupwindows;
 
 import ch.dragxfly.quantumaccelerator.Executors.TempfilesBlacklistManager;
 import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
-import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.FolderChooser;
+import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.chooser.FolderChooser;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Observable;

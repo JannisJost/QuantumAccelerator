@@ -1,5 +1,5 @@
 
-package winbooster.SearchEngine.FolderScanner;
+package ch.dragxfly.quantumaccelerator.fileAndFolderManagement.SearchEngine.FolderScanner;
 
 /**
  *

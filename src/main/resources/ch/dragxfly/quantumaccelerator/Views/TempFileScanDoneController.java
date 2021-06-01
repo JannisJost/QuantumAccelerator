@@ -11,7 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
-import winbooster.SearchEngine.FolderScanner.TempFilesHolder;
+import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.SearchEngine.FolderScanner.TempFilesHolder;
 
 /**
  * FXML Controller class

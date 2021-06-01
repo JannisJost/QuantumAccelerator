@@ -4,7 +4,7 @@ import ch.dragxfly.quantumaccelerator.Executors.ExtrasExecutor;
 import ch.dragxfly.quantumaccelerator.ViewManager.ViewOpener;
 import ch.dragxfly.quantumaccelerator.Hardware.Benchmark.CPUBenchmark;
 import ch.dragxfly.quantumaccelerator.Style.CustomToolTip;
-import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.FolderCreator;
+import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.creator.FolderCreator;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;

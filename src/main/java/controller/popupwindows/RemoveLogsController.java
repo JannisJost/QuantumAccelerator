@@ -2,7 +2,7 @@ package controller.popupwindows;
 
 import ch.dragxfly.quantumaccelerator.Models.LogFilesModel;
 import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
-import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.FileDeleter;
+import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.deleter.FileDeleter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import ch.dragxfly.quantumaccelerator.SearchEngine.FolderScanner.SearchEngine;
+import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.SearchEngine.FolderScanner.SearchEngine;
 
 /**
  * FXML Controller class
@@ -83,8 +83,8 @@ public class RemoveLogsController extends ThemeableWindow implements Initializab
             @Override
             protected Void call() throws Exception {
                 SearchEngine engine = new SearchEngine();
-                engine.searchForFilesWithExtension("C:\\", "log");
-                model.setLogFiles(engine.getRequested());
+                
+                model.setLogFiles(engine.searchForFilesWithExtension("C:\\", "log"));
                 return null;
             }
         };

@@ -1,6 +1,8 @@
-package ch.dragxfly.quantumaccelerator.SearchEngine.FolderScanner;
+package ch.dragxfly.quantumaccelerator.fileAndFolderManagement.SearchEngine.FolderScanner;
 
+import ch.dragxfly.quantumaccelerator.Executors.TempfilesBlacklistManager;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,11 +20,13 @@ public class SearchEngine {
     private boolean stillSearching = true;
     private final List<String> foldersBefore = new LinkedList<>();
     private final List<String> accessDenied = new LinkedList<>();
-    private final List<String> requestedFiles = new LinkedList<>();
     private final List<String> children = new LinkedList<>();
     private List<String> foldersOnly = new LinkedList<>();
+    TempfilesBlacklistManager blacklistManager = new TempfilesBlacklistManager();
 
-    public void searchFoldersContaining(String startDirectory, String toSearchFor) {
+    public List<String> searchFoldersContaining(String startDirectory, String toSearchFor) {
+        List<String> requested = new LinkedList<>();
+
         foldersBefore.add(startDirectory);
         do {
             children.clear();
@@ -34,11 +38,14 @@ public class SearchEngine {
             foldersOnly = getFoldersOnly(children);
             stillSearching();
             foldersBefore.addAll(foldersOnly);
-            requestedFiles.addAll(getEndingWith(foldersOnly, toSearchFor));
+            requested.addAll(getEndingWith(foldersOnly, toSearchFor));
         } while (stillSearching);
+        return requested;
     }
 
-    public void searchFoldersContaining(String startDirectory, String[] toSearchFor) {
+    public List<String> searchFoldersContaining(String startDirectory, String[] toSearchFor) {
+        List<String> requested = new LinkedList<>();
+
         foldersBefore.add(startDirectory);
         do {
             children.clear();
@@ -50,11 +57,13 @@ public class SearchEngine {
             foldersOnly = getFoldersOnly(children);
             stillSearching();
             foldersBefore.addAll(foldersOnly);
-            requestedFiles.addAll(getEndingWith(foldersOnly, toSearchFor));
+            requested.addAll(getEndingWith(foldersOnly, toSearchFor));
         } while (stillSearching);
+        return requested;
     }
 
-    public void searchForFilesContaining(String startDirectory, String[] toSearchFor) {
+    public List<String> searchForFilesContaining(String startDirectory, String[] toSearchFor) {
+        List<String> requested = new LinkedList<>();
         foldersBefore.add(startDirectory);
         do {
             children.clear();
@@ -68,8 +77,9 @@ public class SearchEngine {
             List<String> filesOnly = children;
             stillSearching();
             foldersBefore.addAll(foldersOnly);
-            requestedFiles.addAll(getFilesContaining(filesOnly, toSearchFor));
+            requested.addAll(getFilesContaining(filesOnly, toSearchFor));
         } while (stillSearching);
+        return requested;
     }
 
     /**
@@ -78,7 +88,8 @@ public class SearchEngine {
      * to bottom of the file system
      * @param extension file extention to search for
      */
-    public void searchForFilesWithExtension(String startDirectory, String extension) {
+    public List<String> searchForFilesWithExtension(String startDirectory, String extension) {
+        List<String> requested = new LinkedList<>();
         foldersBefore.add(startDirectory);
         do {
             children.clear();
@@ -92,8 +103,9 @@ public class SearchEngine {
             List<String> filesOnly = children;
             stillSearching();
             foldersBefore.addAll(foldersOnly);
-            requestedFiles.addAll(getFileWithExtension(filesOnly, extension));
+            requested.addAll(getFileWithExtension(filesOnly, extension));
         } while (stillSearching);
+        return requested;
     }
 
     private List<String> getChildren(String path) {
@@ -102,8 +114,7 @@ public class SearchEngine {
         try {
             files = Files.list(Paths.get(path)).map(Path::toFile)
                     .collect(Collectors.toList());
-        } catch (Exception e) {
-            //System.out.println(e);
+        } catch (IOException e) {
             accessDenied.add(path);
         }
         return FilesToString(files);
@@ -149,14 +160,6 @@ public class SearchEngine {
             }
         }
         return endWith;
-    }
-
-    /**
-     *
-     * @return Files which where searched before
-     */
-    public List<String> getRequested() {
-        return requestedFiles;
     }
 
     public List<String> getAccessDenied() {

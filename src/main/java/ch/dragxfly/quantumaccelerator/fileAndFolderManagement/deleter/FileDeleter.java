@@ -1,4 +1,4 @@
-package ch.dragxfly.quantumaccelerator.fileAndFolderManagement;
+package ch.dragxfly.quantumaccelerator.fileAndFolderManagement.deleter;
 
 import java.io.File;
 import java.io.IOException;

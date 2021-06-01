@@ -2,7 +2,7 @@ package controller.popupwindows;
 
 import Models.TempfileModel;
 import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
-import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.FileDeleter;
+import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.deleter.FileDeleter;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.FileSizeCalculator;
 import java.net.URL;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import winbooster.SearchEngine.FolderScanner.Model.ScanDoneModel;
+import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.SearchEngine.FolderScanner.Model.ScanDoneModel;
 
 /**
  * FXML Controller class

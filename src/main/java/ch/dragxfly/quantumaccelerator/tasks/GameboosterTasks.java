@@ -1,10 +1,10 @@
 package ch.dragxfly.quantumaccelerator.tasks;
 
-import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.FileDeleter;
+import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.deleter.FileDeleter;
 import java.util.List;
 import javafx.concurrent.Task;
 import shellscripts.CMD;
-import ch.dragxfly.quantumaccelerator.SearchEngine.FolderScanner.SearchEngine;
+import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.SearchEngine.FolderScanner.SearchEngine;
 
 /**
  *
@@ -33,8 +33,7 @@ public class GameboosterTasks {
             protected Void call() throws Exception {
                 String downloadsPath = System.getProperty("user.home") + "/Downloads";
                 String[] installerNames = {"installer", "setup", ".msi"};
-                engine.searchForFilesContaining(downloadsPath, installerNames);
-                List<String> installers = engine.getRequested();
+                List<String> installers = engine.searchForFilesContaining(downloadsPath, installerNames);
                 FileDeleter fDeleter = new FileDeleter();
                 fDeleter.deleteFile(installers);
                 return null;
