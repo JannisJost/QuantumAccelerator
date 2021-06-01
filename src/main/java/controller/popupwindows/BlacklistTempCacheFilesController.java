@@ -47,6 +47,11 @@ public class BlacklistTempCacheFilesController extends ThemeableWindow implement
         lstBlacklistedItems.getSelectionModel().selectedItemProperty().addListener(listener -> {
             enableBtnRemove();
         });
+        try {
+            lstBlacklistedItems.getItems().addAll(manager.getBlacklist());
+        } catch (IOException ex) {
+            System.err.println(ex);
+        }
     }
 
     @Override
@@ -58,8 +63,7 @@ public class BlacklistTempCacheFilesController extends ThemeableWindow implement
 
     @FXML
     private void closeWindow(ActionEvent event) {
-        Stage s = (Stage) btnClose.getScene().getWindow();
-        s.close();
+        close();
     }
 
     @FXML
@@ -91,10 +95,14 @@ public class BlacklistTempCacheFilesController extends ThemeableWindow implement
         folderChooser.show();
     }
 
-    @FXML
-    private void cancel(ActionEvent event) {
+    private void close() {
         Stage currentStage = (Stage) btnClose.getScene().getWindow();
         currentStage.close();
+    }
+
+    @FXML
+    private void cancel(ActionEvent event) {
+        close();
     }
 
     @Override
@@ -105,21 +113,25 @@ public class BlacklistTempCacheFilesController extends ThemeableWindow implement
     }
 
     private void enableBtnRemove() {
-        btnRemoveItem.setDisable(false);
+        if (!lstBlacklistedItems.getItems().isEmpty()) {
+            btnRemoveItem.setDisable(false);
+        }
     }
 
     @FXML
     private void saveBlacklist(ActionEvent event) {
         try {
             manager.writeToBlacklistFile(lstBlacklistedItems.getItems());
+            close();
         } catch (IOException ex) {
             System.err.println(ex);
         }
     }
 
-    public void fillBlacklist() throws IOException {
-        for (String path : manager.getBlacklist()) {
-            lstBlacklistedItems.getItems().add(path);
-        }
+    @FXML
+    private void removeSelectedItem(ActionEvent event) {
+        String selectedItem = lstBlacklistedItems.getSelectionModel().getSelectedItem();
+        lstBlacklistedItems.getItems().remove(selectedItem);
     }
+
 }

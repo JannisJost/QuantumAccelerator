@@ -7,7 +7,6 @@ import animatefx.animation.BounceInRight;
 import animatefx.animation.BounceOutRight;
 import animatefx.animation.RotateIn;
 import animatefx.animation.RotateOut;
-import ch.dragxfly.quantumaccelerator.FXMLmanager;
 import ch.dragxfly.quantumaccelerator.Hardware.HardwareObserver;
 import ch.dragxfly.quantumaccelerator.Style.Animations.ButtonAnimator;
 import ch.dragxfly.quantumaccelerator.Style.Animations.MainAnimations;
@@ -117,8 +116,6 @@ public class MainViewController implements Initializable, Observer {
         hardware.addObserver(this);
         hardware.startObserver();
         //Sets the "Feature" view as default view from start
-        FXMLmanager object = new FXMLmanager();
-        Pane view = object.getPage("Features");
         mainPane.setCenter(view);
     }
 

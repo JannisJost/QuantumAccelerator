@@ -1,12 +1,13 @@
 package ch.dragxfly.quantumaccelerator.Executors;
 
-import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -17,19 +18,23 @@ public class TempfilesBlacklistManager {
     private static final String PATH_TO_BLACKLISTTXT = "C:\\Program Files\\QuantumAccelerator\\Blacklists\\tempBlacklist.txt";
     private static final String PATH_TO_BLACKLISTFOLDER = "C:\\Program Files\\QuantumAccelerator\\Blacklists\\";
 
-    private FileReader reader;
     private FileWriter writer;
-    BufferedReader bReader;
+    private FileReader fr;
+    private Scanner scanner;
 
     /**
      * Sets the reader and writer on invocation
+     *
      */
     public TempfilesBlacklistManager() {
         try {
-            reader = new FileReader(PATH_TO_BLACKLISTTXT);
-            bReader = new BufferedReader(reader);
-            writer = new FileWriter(PATH_TO_BLACKLISTTXT);
+            createBlacklistFilesAndFolders();
+            fr = new FileReader(PATH_TO_BLACKLISTTXT);
+            scanner = new Scanner(fr);
+        } catch (FileNotFoundException ex) {
+            System.err.println(ex);
         } catch (IOException ex) {
+            System.err.println(ex);
         }
     }
 
@@ -41,8 +46,7 @@ public class TempfilesBlacklistManager {
      * @throws IOException
      */
     public void writeToBlacklistFile(List<String> blacklist) throws IOException {
-        createBlacklistFilesAndFolders();
-        writer.write("");
+        writer = new FileWriter(PATH_TO_BLACKLISTTXT);
         for (String path : blacklist) {
             writer.append(path + "\n");
         }
@@ -57,10 +61,8 @@ public class TempfilesBlacklistManager {
      */
     public List<String> getBlacklist() throws IOException {
         List<String> blacklistedPaths = new LinkedList<>();
-        String line;
-        reader.read();
-        while ((line = bReader.readLine()) != null) {
-            blacklistedPaths.add(line);
+        while (scanner.hasNextLine()) {
+            blacklistedPaths.add(scanner.nextLine());
         }
         return blacklistedPaths;
     }

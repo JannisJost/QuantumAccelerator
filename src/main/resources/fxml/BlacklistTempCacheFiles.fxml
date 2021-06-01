@@ -19,7 +19,7 @@
                </VBox.margin></ListView>
             <ButtonBar prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                <Button fx:id="btnRemoveItem" disable="true" mnemonicParsing="false" text="Remove" />
+                <Button fx:id="btnRemoveItem" disable="true" mnemonicParsing="false" onAction="#removeSelectedItem" text="Remove" />
                   <Button fx:id="btnAddItem" mnemonicParsing="false" onAction="#addBlacklistedFolder" text="Add" />
               </buttons>
             </ButtonBar>
