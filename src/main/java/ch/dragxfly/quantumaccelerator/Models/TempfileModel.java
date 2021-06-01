@@ -1,5 +1,6 @@
-package Models;
+package ch.dragxfly.quantumaccelerator.Models;
 
+import ch.dragxfly.quantumaccelerator.Executors.TempfilesBlacklistManager;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  */
 public class TempfileModel {
 
-    private List<String> tempFiles = new ArrayList<>();
+    private final List<String> tempFiles = new ArrayList<>();
     private List<String> accessDenied = new ArrayList<>();
 
     public void setTempFiles(List<String> tempFiles) {
@@ -20,8 +21,12 @@ public class TempfileModel {
         this.tempFiles.add(user + "\\AppData\\Local\\Temp");
     }
 
+    /**
+     *
+     * @return list without the blacklisted folders
+     */
     public List<String> getTempFilesList() {
-        return tempFiles;
+        return new TempfilesBlacklistManager().removeBlacklisted((ArrayList<String>) tempFiles);
     }
 
     public List<String> getAccessDenied() {
