@@ -43,7 +43,7 @@ At the moment you'll need to download the jar from releases, but to be able to r
 
 ## Special thanks
 
-Feature requests and prerelease testing:   *Arial*
+Feature requests and testing:              *Arial*
 
 EmptyStandbyList.exe:                      *Wen Jia Liu aka. @wj32*
 
