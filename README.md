@@ -11,8 +11,6 @@ With this application I want to enable less tech experienced people to be able, 
 Managing files and privacy settings is heavily trust based and in my opinion should be available to everyone, that's why this application is completely free and open source (the code won't be perfectly clean, because I am still learning a lot about coding [suggestions for improvement are always welcome 😉 ])
 
 
-Corrected with https://www.spellchecker.us/
-
 ## Features:
    * Free storage
    * Debloat Windows 10 (delete preinstalled apps)
