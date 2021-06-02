@@ -6,9 +6,9 @@ This application is not yet final and may lead to system damage although we do o
 # QuantumAccelerator
 
 QuantumAccelerator is a free and open source application to easily manage Windows 10 in one place.
-With this application I want to enable less tech experienced people to be able, to easily manage their OS, especially its privacy settings. It isn't made with only less tech experienced people in mind, it accelerates the process of managing the OS for everyone and more advanced features will be added later.
+With this application I want to allow less tech experienced people to be able to manage their computer, especially when it comes to privacy. It isn't made with only less tech experienced people in mind, it accelerates the process of managing the operating system for everyone, and more advanced features will be added later.
 
-Managing files and privacy settings is heavily trust based and in my opinion should be available to everyone, that's why this application is completely free and open source (the code won't be perfectly clean, because I am still learning a lot about coding [suggestions for improvement are always welcome 😉 ])
+Managing files and privacy settings is heavily trust based and in my opinion should be available to everyone. That's why this application is completely free and open source. (the code won't be perfectly clean, because I am still learning a lot about coding) suggestions for improvement are always welcome 😉
 
 
 ## Features:
