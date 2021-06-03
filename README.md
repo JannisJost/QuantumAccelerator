@@ -32,6 +32,10 @@ Will be added soon!
 
 At the moment you'll need to download the jar from releases, but to be able to run it you'll need JavaFX (Openjfx) installed. But I am working on an installer which will eliminate the need to have JavaFX installed.
 
+* **Some features do not work properly, what should I do?**
+
+Some actions like measuring CPU temp, deleting files and some more require admin permissions to properly work. Make sure you're runnning QuantumAccelerator as admin, in case your problem still persists, please report to us with a detailed description of your problem.
+
 * **What are the system requirements?**
 
 **Operating system**: *Windows 10*
