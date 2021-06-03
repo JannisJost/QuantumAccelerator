@@ -61,6 +61,7 @@ public class TempfilesBlacklistManager {
      * @throws IOException
      */
     public List<String> getBlacklist() throws IOException {
+        createBlacklistFilesAndFolders();
         List<String> blacklistedPaths = new LinkedList<>();
         while (scanner.hasNextLine()) {
             blacklistedPaths.add(scanner.nextLine());
