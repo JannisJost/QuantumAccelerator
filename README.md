@@ -49,5 +49,6 @@ Some actions like measuring CPU temp, deleting files and some more require admin
 
 Feature requests and testing:              *Arial*
 
-EmptyStandbyList.exe:                      *Wen Jia Liu aka. @wj32*
+EmptyStandbyList.exe:                      <a href="https://github.com/wj32" URL> *Wen Jia Liu aka. wj32* </a> <!-- link to wj32 github -->
 
+Logo:                                       *Joshua B.*
