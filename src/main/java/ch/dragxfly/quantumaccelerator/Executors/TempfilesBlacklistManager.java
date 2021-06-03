@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -82,7 +83,7 @@ public class TempfilesBlacklistManager {
         }
     }
 
-    public List<String> removeBlacklisted(LinkedList<String> listFolders) {
+    public LinkedList<String> removeBlacklisted(LinkedList<String> listFolders) {
         try {
             listFolders.removeAll(getBlacklist());
         } catch (IOException ex) {

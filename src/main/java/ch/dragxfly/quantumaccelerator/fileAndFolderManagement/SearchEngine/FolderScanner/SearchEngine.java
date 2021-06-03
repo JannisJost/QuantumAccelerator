@@ -18,15 +18,15 @@ import java.util.stream.Collectors;
 public class SearchEngine {
 
     private final List<String> accessDenied = new LinkedList<>();
-    List<String> requested = new LinkedList<>();
+    LinkedList<String> requested = new LinkedList<>();
 
-    public List<String> searchFoldersContaining(String startDirectory, String toSearchFor) {
+    public LinkedList<String> searchFoldersContaining(String startDirectory, String toSearchFor) {
         requested.clear();
         searchFolders(startDirectory, toSearchFor);
         return requested;
     }
 
-    public List<String> searchFoldersContaining(String startDirectory, String[] toSearchFor) {
+    public LinkedList<String> searchFoldersContaining(String startDirectory, String[] toSearchFor) {
         requested.clear();
         searchFolders(startDirectory, toSearchFor);
         return requested;
@@ -54,7 +54,7 @@ public class SearchEngine {
         }
     }
 
-    public List<String> searchForFilesContaining(String startDirectory, String[] toSearchFor) {
+    public LinkedList<String> searchForFilesContaining(String startDirectory, String[] toSearchFor) {
         searchFiles(startDirectory, toSearchFor);
         return requested;
     }
@@ -88,9 +88,9 @@ public class SearchEngine {
      * @param startDirectory defines the directory from which to start searching
      * to bottom of the file system
      * @param extension file extention to search for
-     * @return files with specified extension 
+     * @return files with specified extension
      */
-    public List<String> searchForFilesWithExtension(String startDirectory, String extension) {
+    public LinkedList<String> searchForFilesWithExtension(String startDirectory, String extension) {
         requested.clear();
         searchFiles(startDirectory, extension);
         return requested;
@@ -122,6 +122,11 @@ public class SearchEngine {
         return listString;
     }
 
+    /**
+     *
+     * @param toSort list of paths still containing files
+     * @return toSort without the files
+     */
     private List<String> getFoldersOnly(List<String> toSort) {
         //Returns a list without files (folders only)
         List<String> foldersOnly = new LinkedList<>();

@@ -1,6 +1,6 @@
 package controller.popupwindows;
 
-import Models.TempfileModel;
+import ch.dragxfly.quantumaccelerator.Models.TempfileModel;
 import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.deleter.FileDeleter;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.FileSizeCalculator;
@@ -24,13 +24,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.SearchEngine.FolderScanner.Model.ScanDoneModel;
+import java.util.prefs.BackingStoreException;
 
 /**
  * FXML Controller class
  *
  * @author janni
  */
-public class ScanDoneController extends ThemeableWindow implements Initializable {
+public class TempFileScanDoneController extends ThemeableWindow implements Initializable {
 
     @FXML
     private ListView<CheckBox> lstTempFiles;
@@ -183,12 +184,11 @@ public class ScanDoneController extends ThemeableWindow implements Initializable
     public void setTheme() {
         try {
             super.getPref().sync();
-        } catch (Exception e) {
+        } catch (BackingStoreException e) {
 
         }
         Scene scene = btnClose.getScene();
         scene.getStylesheets().clear();
-        scene.getStylesheets().add(super.getPref().get(super.getCURRENTTHEME(), ""));
+        scene.getStylesheets().add(super.getPref().get(ThemeableWindow.getCURRENTTHEME(), ""));
     }
-
 }

@@ -1,6 +1,6 @@
 package controller.popupwindows;
 
-import Models.TempfileModel;
+import ch.dragxfly.quantumaccelerator.Models.TempfileModel;
 import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
 import ch.dragxfly.quantumaccelerator.ViewManager.ViewOpener;
 import java.io.IOException;
@@ -29,6 +29,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.SearchEngine.FolderScanner.SearchEngine;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * FXML Controller class
@@ -90,6 +91,7 @@ public class TempScannerController extends ThemeableWindow implements Initializa
         progressTask.progressProperty().bind(taskSearch.progressProperty());
         t1 = new Thread(taskSearch);
         t1.setDaemon(true);
+        t1.setPriority(Thread.MAX_PRIORITY);
         t1.start();
         taskSearch.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
@@ -118,9 +120,9 @@ public class TempScannerController extends ThemeableWindow implements Initializa
         try {
             Stage current = (Stage) btnCancelScan.getScene().getWindow();
             current.close();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ScanDone.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TempFileScanDone.fxml"));
             Parent root = loader.load();
-            ScanDoneController controller = loader.getController();
+            TempFileScanDoneController controller = loader.getController();
             controller.setModel(model);
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -138,7 +140,7 @@ public class TempScannerController extends ThemeableWindow implements Initializa
     @FXML
     private void closeWindow(ActionEvent event) {
         Stage stage = (Stage) btnClose.getScene().getWindow();
-        
+
         stage.close();
     }
 
@@ -146,16 +148,18 @@ public class TempScannerController extends ThemeableWindow implements Initializa
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                List<String> tempFiles = new ArrayList<>();
-                quickScan = chkQuickScan.isSelected();
+                LinkedList<String> tempFiles = new LinkedList<>();
                 boolean temp = chkSearchTemp.isSelected();
                 boolean cache = chkSearchCache.isSelected();
+                quickScan = chkQuickScan.isSelected();
                 if (quickScan) {
                 } else {
                     if (cache == true && temp == true) {
-                       tempFiles=  engine.searchFoldersContaining("C:\\", new String[]{"temp", "cache"});
+                        tempFiles = engine.searchFoldersContaining("C:\\", new String[]{"temp", "cache"});
                     } else if (temp == true) {
                         tempFiles = engine.searchFoldersContaining("C:\\", "temp");
+                    } else {
+                        tempFiles = engine.searchFoldersContaining("C:\\", "cache");
                     }
                 }
                 model.setTempFiles(tempFiles);
