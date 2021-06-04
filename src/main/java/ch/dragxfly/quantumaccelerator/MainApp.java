@@ -31,11 +31,13 @@ public class MainApp extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Main/MainView.fxml"));
         Parent root = loader.load();
         MainViewController controller = loader.getController();
+        //stores the views to make them accesible to the MainViewController
         ViewsModel viewsModel = new ViewsModel(features, storage, gamebooster, delWindowsApps, extras, privacy, settings);
         controller.setViewsModel(viewsModel);
         Scene scene = new Scene(root);
         scene.getStylesheets().clear();
         scene.getRoot().setStyle("");
+        //sets app logo as icon
         Image iconImage = new Image("/styles/icons/appLogo_Big.png");
         stage.getIcons().add(iconImage);
         stage.setTitle("QuantumAccelerator");
@@ -43,6 +45,7 @@ public class MainApp extends Application {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
         controller.setStarterTheme();
+        //runs stuff that is required on startup
         controller.startup();
         new FadeIn(root).play();
     }
@@ -52,7 +55,7 @@ public class MainApp extends Application {
     }
 
     /**
-     * Loads all the "main" views
+     * Loads all the views held in the main view
      */
     private void setViews() {
         try {

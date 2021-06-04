@@ -1,9 +1,6 @@
 package controller.popupwindows;
 
 import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
-import animatefx.animation.AnimationFX;
-import animatefx.animation.LightSpeedIn;
-import animatefx.animation.Pulse;
 import ch.dragxfly.quantumaccelerator.Style.Animations.ButtonAnimator;
 import ch.dragxfly.quantumaccelerator.ViewManager.Web.WebsiteOpener;
 import java.awt.Desktop;
@@ -43,7 +40,7 @@ public class AboutController extends ThemeableWindow implements Initializable {
     private ImageView imgIcons8;
     @FXML
     private Label lblTitle;
-    private ButtonAnimator animator = new ButtonAnimator();
+    private final ButtonAnimator animator = new ButtonAnimator();
     WebsiteOpener webopener = new WebsiteOpener();
     @FXML
     private Label lblVersion;
@@ -75,9 +72,14 @@ public class AboutController extends ThemeableWindow implements Initializable {
     @FXML
     private void openGithub(ActionEvent event) {
         animator.animate(btnGithub);
-        webopener.openWebsite("https://github.com/JannisJost");
+        webopener.openWebsite("https://github.com/JannisJost/QuantumAccelerator");
     }
 
+    /**
+     * opens a new mail in the mail client to quantumaccelerwin10@gmail.com
+     *
+     * @param event
+     */
     @FXML
     private void openSupport(ActionEvent event) {
         animator.animate(btnSupport);
@@ -97,6 +99,11 @@ public class AboutController extends ThemeableWindow implements Initializable {
         animator.animate(btnDonate);
     }
 
+    /**
+     * Opens the website of Icons8
+     *
+     * @param event
+     */
     @FXML
     private void openIconsEight(MouseEvent event) {
         webopener.openWebsite("https://icons8.com/");

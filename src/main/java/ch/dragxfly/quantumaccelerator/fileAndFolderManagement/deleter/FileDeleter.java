@@ -11,6 +11,11 @@ import org.apache.commons.io.FileDeleteStrategy;
  */
 public class FileDeleter {
 
+    /**
+     * Deletes the given file
+     *
+     * @param path path pointing to the file to delete
+     */
     public void deleteFile(String path) {
         File tempFile = new File(path);
         try {
@@ -21,7 +26,12 @@ public class FileDeleter {
         System.out.println("File " + path + " deleted successfully");
     }
 
-    public void deleteFile(List<String> path) {
+    /**
+     * Deletes all the given files
+     *
+     * @param path list of paths pointing to the files to delete
+     */
+    public void deleteFiles(List<String> path) {
         for (int i = 0; i < path.size(); i++) {
             File tempFile = new File(path.get(i));
             try {

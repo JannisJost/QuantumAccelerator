@@ -11,14 +11,14 @@ import javafx.stage.Stage;
  * @author janni
  */
 public class PrivacyExecutor {
-    
+
     VBox vbox = new VBox();
     Label lblInfo;
-    
+
     public PrivacyExecutor() {
-        
+
     }
-    
+
     public void run(boolean deleteDNSCache, boolean deleteCookies, boolean deleteBrowserHistory) {
         showStatusPanel();
         if (deleteDNSCache) {
@@ -31,8 +31,10 @@ public class PrivacyExecutor {
             deleteBrowserHistory();
         }
     }
-//Deletes the DNS cache via console
 
+    /**
+     * Deletes the DNS cache via the terminal
+     */
     private void deleteDNSCache() {
         lblInfo.setText("Deleting DNS cache");
         Runtime rt = Runtime.getRuntime();
@@ -42,17 +44,19 @@ public class PrivacyExecutor {
             System.err.println("could not delete DNS cache: " + e);
         }
     }
-    
+
     private void deleteCookies() {
-        lblInfo.setText("Deleting coolies");
+        lblInfo.setText("Deleting cookies");
     }
-    
+
     private void deleteBrowserHistory() {
         lblInfo.setText("Deleting browser history");
-        
-    }
-//Shows info with information on what is being executed
 
+    }
+
+    /**
+     * graphically shows to user what its doing
+     */
     private void showStatusPanel() {
         vbox.getChildren().add(lblInfo);
         Scene scene = new Scene(vbox);

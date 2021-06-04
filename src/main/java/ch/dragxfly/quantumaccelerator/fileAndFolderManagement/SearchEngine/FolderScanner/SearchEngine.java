@@ -20,6 +20,14 @@ public class SearchEngine {
     private final List<String> accessDenied = new LinkedList<>();
     LinkedList<String> requested = new LinkedList<>();
 
+    /**
+     * searches for folders containing a specific String in name
+     *
+     * @param startDirectory directory to start searching to buttom of file
+     * system from
+     * @param toSearchFor String to search foldernames containing it
+     * @return list of all folders which names contain toSearchFor
+     */
     public LinkedList<String> searchFoldersContaining(String startDirectory, String toSearchFor) {
         requested.clear();
         searchFolders(startDirectory, toSearchFor);

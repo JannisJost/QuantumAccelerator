@@ -57,7 +57,6 @@ public class TempFileScanDoneController extends ThemeableWindow implements Initi
     @FXML
     private Label lblSize;
 
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
@@ -88,6 +87,9 @@ public class TempFileScanDoneController extends ThemeableWindow implements Initi
         yOffset = currentStage.getY() - event.getScreenY();
     }
 
+    /**
+     * Loads the temp/cache files into the list view
+     */
     public void loadList() {
         Task taskGetList = getTaskLoadList();
         Thread t1 = new Thread(taskGetList);
@@ -106,7 +108,7 @@ public class TempFileScanDoneController extends ThemeableWindow implements Initi
             protected Void call() throws Exception {
                 System.gc();
                 List<String> tempFiles = tempFileModel.getTempFilesList();
-                double sizeInMBytes = new FileSizeCalculator().getFileSize(tempFiles);
+                double sizeInMBytes = new FileSizeCalculator().getFileSizeInMbytes(tempFiles);
                 List<CheckBox> boxes = new ArrayList<>();
                 for (String tempFile : tempFiles) {
                     CheckBox chk = new CheckBox();
@@ -136,6 +138,11 @@ public class TempFileScanDoneController extends ThemeableWindow implements Initi
         btnDelete.setVisible(true);
     }
 
+    /**
+     * Deletes all the temps files selected in lstTempFiles
+     *
+     * @param event
+     */
     @FXML
     private void deleteTempFiles(ActionEvent event) {
         lblSelectedTempFiles.setVisible(false);
@@ -168,7 +175,7 @@ public class TempFileScanDoneController extends ThemeableWindow implements Initi
                         toDelete.add(chk.getText());
                     }
                 }
-                deleter.deleteFile(toDelete);
+                deleter.deleteFiles(toDelete);
                 return null;
             }
         };

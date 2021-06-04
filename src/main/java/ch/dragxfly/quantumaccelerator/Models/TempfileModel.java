@@ -26,7 +26,10 @@ public class TempfileModel {
     public List<String> getTempFilesList() {
         return new TempfilesBlacklistManager().removeBlacklisted(tempFiles);
     }
-    
+    /**
+     * 
+     * @return list of files/folders for which access was denied
+     */
     public List<String> getAccessDenied() {
         return accessDenied;
     }

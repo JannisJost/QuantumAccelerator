@@ -35,7 +35,7 @@ public class GameboosterTasks {
                 String[] installerNames = {"installer", "setup", ".msi"};
                 List<String> installers = engine.searchForFilesContaining(downloadsPath, installerNames);
                 FileDeleter fDeleter = new FileDeleter();
-                fDeleter.deleteFile(installers);
+                fDeleter.deleteFiles(installers);
                 return null;
             }
         };

@@ -64,8 +64,6 @@ public class MainViewController implements Initializable, Observer {
     private Button btnSettings;
     @FXML
     private Button btnExtras;
-    //Non FXML
-    private final NotificationManager notificationManager = new NotificationManager();
     @FXML
     private Button btnAbout;
     @FXML
@@ -95,7 +93,8 @@ public class MainViewController implements Initializable, Observer {
     private ImageView imgSettings;
     @FXML
     private ImageView imgMaximize;
-
+    //Non FXML
+    private final NotificationManager notificationManager = new NotificationManager();
     private final Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
     private static final String LIGHTTHEMEISACTIVE = "darktheme";
     private static final String CURRENTTHEME = "currentTheme";
@@ -103,7 +102,6 @@ public class MainViewController implements Initializable, Observer {
     private final MainAnimations animation = new MainAnimations();
     private static final String ANIMATIONSACTIVE = "playanimations";
     private final Preferences pref = Preferences.userRoot();
-    private Scene scene;
     private final ViewOpener viewOpener = new ViewOpener();
     private Pane view;
     private boolean isFullscreen = false;
@@ -196,7 +194,7 @@ public class MainViewController implements Initializable, Observer {
     /**
      * Opens the "about" aka. credits window
      *
-     * @param event
+     * @param event about button clicked
      */
     @FXML
     private void openViewAbout(ActionEvent event) {
@@ -232,10 +230,16 @@ public class MainViewController implements Initializable, Observer {
         }
     }
 
+    /**
+     * Shows or hides the notification tab
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     private void showOrHideNotifications(ActionEvent event) throws IOException {
         btnAnimator.animate(btnNotifications);
-        view = FXMLLoader.load(getClass().getResource("/fxml/Main/Notifications.fxml"));;
+        view = FXMLLoader.load(getClass().getResource("/fxml/Main/Notifications.fxml"));
         if (!notificationManager.notificationIsShowing()) {
             notificationManager.changeViewed();
             mainPane.setRight(view);
@@ -294,25 +298,21 @@ public class MainViewController implements Initializable, Observer {
     }
 
     public void setStarterTheme() {
-        if (pref.get(CURRENTTHEME, "/styles/darktheme.css").equals("/styles/darktheme.css")) {
-            lightThemeActive = true;
-        } else {
-            lightThemeActive = false;
-        }
+        lightThemeActive = pref.get(CURRENTTHEME, "/styles/darktheme.css").equals("/styles/darktheme.css");
         btnChangeTheme.fire();
     }
 
     @FXML
     public void changeTheme(ActionEvent event) {
         String file;
-        Scene scene = ((Node) event.getSource()).getScene();
-        scene.getStylesheets().clear();
+        Scene currentScene = ((Node) event.getSource()).getScene();
+        currentScene.getStylesheets().clear();
         if (lightThemeActive) {
-            scene.getStylesheets().add("/styles/darktheme.css");
+            currentScene.getStylesheets().add("/styles/darktheme.css");
             pref.put(CURRENTTHEME, "/styles/darktheme.css");
             file = "/styles/icons/button/darktheme.png";
         } else {
-            scene.getStylesheets().add("/styles/lighttheme.css");
+            currentScene.getStylesheets().add("/styles/lighttheme.css");
             pref.put(CURRENTTHEME, "/styles/lighttheme.css");
             file = "/styles/icons/button/lighttheme.png";
         }
@@ -328,12 +328,9 @@ public class MainViewController implements Initializable, Observer {
             AnimationFX animOut = new RotateOut(imgTheme);
             animOut.play();
             prefs.putBoolean(LIGHTTHEMEISACTIVE, lightThemeActive);
-            animOut.setOnFinished(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent arg0) {
-                    imgTheme.setImage(image);
-                    new RotateIn(imgTheme).play();
-                }
+            animOut.setOnFinished((ActionEvent arg0) -> {
+                imgTheme.setImage(image);
+                new RotateIn(imgTheme).play();
             });
         } else {
             imgTheme.setImage(image);
@@ -382,12 +379,9 @@ public class MainViewController implements Initializable, Observer {
             progCPUUsage.setStyle("");
         }
         //Runlater sets the prog indicators
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                progMemory.setProgress(memoryUsage);
-                progCPUUsage.setProgress(CPUUsage);
-            }
+        Platform.runLater(() -> {
+            progMemory.setProgress(memoryUsage);
+            progCPUUsage.setProgress(CPUUsage);
         });
     }
 
@@ -404,12 +398,12 @@ public class MainViewController implements Initializable, Observer {
             SystemMonitorController controller = loader.getController();
             hardware.addObserver(controller);
             controller.setHardware(hardware);
-            Scene scene = new Scene(root);
+            Scene sceneSystemMonitor = new Scene(root);
             Stage stage = new Stage();
-            stage.setScene(scene);
+            stage.setScene(sceneSystemMonitor);
             stage.initStyle(StageStyle.UNDECORATED);
             stage.initStyle(StageStyle.TRANSPARENT);
-            scene.setFill(Color.TRANSPARENT);
+            sceneSystemMonitor.setFill(Color.TRANSPARENT);
             stage.setTitle("System monitor");
             stage.show();
             controller.setTheme();
@@ -432,6 +426,11 @@ public class MainViewController implements Initializable, Observer {
         System.gc();
     }
 
+    /**
+     * Loads a language (not yet working)
+     *
+     * @param lang language to load
+     */
     public void loadLang(String lang) {
         locale = new Locale(lang);
         bundle = ResourceBundle.getBundle("languages.lang", locale);

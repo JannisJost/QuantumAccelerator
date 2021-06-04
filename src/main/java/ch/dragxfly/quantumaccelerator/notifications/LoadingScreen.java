@@ -25,10 +25,14 @@ public class LoadingScreen extends ThemeableWindow implements Observer {
     private final Stage stage;
     private final ProgressIndicator loader = new ProgressIndicator();
 
-    public LoadingScreen(String text) {
+    /**
+     *
+     * @param loadingText text to be displayed while loading
+     */
+    public LoadingScreen(String loadingText) {
         loader.setScaleX(1.5);
         loader.setScaleY(1.5);
-        this.text = text;
+        this.text = loadingText;
         vbox.setAlignment(Pos.CENTER);
         vbox.setSpacing(20);
         vbox.setFillWidth(true);
@@ -62,6 +66,6 @@ public class LoadingScreen extends ThemeableWindow implements Observer {
     @Override
     public void setTheme() {
         scene.getStylesheets().clear();
-        scene.getStylesheets().add(super.getPref().get(super.getCURRENTTHEME(), ""));
+        scene.getStylesheets().add(super.getPref().get(ThemeableWindow.getCURRENTTHEME(), ""));
     }
 }

@@ -176,7 +176,7 @@ public class RemoveLogsController extends ThemeableWindow implements Initializab
             @Override
             protected Void call() throws Exception {
                 FileDeleter deleter = new FileDeleter();
-                deleter.deleteFile(toDelete);
+                deleter.deleteFiles(toDelete);
                 return null;
             }
         };

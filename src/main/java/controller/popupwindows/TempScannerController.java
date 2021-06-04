@@ -5,7 +5,6 @@ import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
 import ch.dragxfly.quantumaccelerator.ViewManager.ViewOpener;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.prefs.BackingStoreException;
 import javafx.concurrent.Task;
@@ -28,7 +27,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.SearchEngine.FolderScanner.SearchEngine;
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -170,6 +168,11 @@ public class TempScannerController extends ThemeableWindow implements Initializa
         return task;
     }
 
+    /**
+     * Cancels the scan on cancel button pressed
+     *
+     * @param event
+     */
     @FXML
     private void cancelScan(ActionEvent event) {
         btnCancelScan.setDisable(true);
