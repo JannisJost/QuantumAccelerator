@@ -13,21 +13,21 @@ import javafx.stage.Stage;
 public class PrivacyExecutor {
 
     VBox vbox = new VBox();
-    Label lblInfo;
+    Label lblStatus;
 
     public PrivacyExecutor() {
 
     }
 
-    public void run(boolean deleteDNSCache, boolean deleteCookies, boolean deleteBrowserHistory) {
+    public void run(boolean doDeleteDNSCache, boolean doDeleteCookies, boolean doDeleteBrowserHistory) {
         showStatusPanel();
-        if (deleteDNSCache) {
+        if (doDeleteDNSCache) {
             deleteDNSCache();
         }
-        if (deleteCookies) {
+        if (doDeleteCookies) {
             deleteCookies();
         }
-        if (deleteBrowserHistory) {
+        if (doDeleteBrowserHistory) {
             deleteBrowserHistory();
         }
     }
@@ -36,7 +36,7 @@ public class PrivacyExecutor {
      * Deletes the DNS cache via the terminal
      */
     private void deleteDNSCache() {
-        lblInfo.setText("Deleting DNS cache");
+        lblStatus.setText("Deleting DNS cache");
         Runtime rt = Runtime.getRuntime();
         try {
             rt.exec(new String[]{"ipconfig", "/flushdns"});
@@ -46,11 +46,11 @@ public class PrivacyExecutor {
     }
 
     private void deleteCookies() {
-        lblInfo.setText("Deleting cookies");
+        lblStatus.setText("Deleting cookies");
     }
 
     private void deleteBrowserHistory() {
-        lblInfo.setText("Deleting browser history");
+        lblStatus.setText("Deleting browser history");
 
     }
 
@@ -58,7 +58,7 @@ public class PrivacyExecutor {
      * graphically shows to user what its doing
      */
     private void showStatusPanel() {
-        vbox.getChildren().add(lblInfo);
+        vbox.getChildren().add(lblStatus);
         Scene scene = new Scene(vbox);
         Stage s = new Stage();
         s.setScene(scene);
