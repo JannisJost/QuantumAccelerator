@@ -27,6 +27,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.SearchEngine.FolderScanner.SearchEngine;
+import controller.popupwindows.warning.InfoWindow;
 import java.util.LinkedList;
 
 /**
@@ -35,7 +36,7 @@ import java.util.LinkedList;
  * @author janni
  */
 public class TempScannerController extends ThemeableWindow implements Initializable {
-
+    
     @FXML
     private CheckBox chkSearchTemp;
     @FXML
@@ -72,14 +73,14 @@ public class TempScannerController extends ThemeableWindow implements Initializa
     private Thread searchThread;
     TempfileModel model = new TempfileModel();
     SearchEngine engine = new SearchEngine();
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ToggleGroup gp = new ToggleGroup();
         chkDeepScan.setToggleGroup(gp);
         chkQuickScan.setToggleGroup(gp);
     }
-
+    
     @FXML
     private void startScan(ActionEvent event) throws InterruptedException {
         lblStatus.setText("Scanning...");
@@ -98,7 +99,7 @@ public class TempScannerController extends ThemeableWindow implements Initializa
             }
         });
     }
-
+    
     private void startScanViewChanges() {
         chkDeepScan.setVisible(false);
         chkQuickScan.setVisible(false);
@@ -134,14 +135,14 @@ public class TempScannerController extends ThemeableWindow implements Initializa
             System.err.println(e);
         }
     }
-
+    
     @FXML
     private void closeWindow(ActionEvent event) {
         Stage stage = (Stage) btnClose.getScene().getWindow();
-
+        
         stage.close();
     }
-
+    
     private Task getTaskSearchEngine() {
         Task<Void> task = new Task<Void>() {
             @Override
@@ -183,23 +184,23 @@ public class TempScannerController extends ThemeableWindow implements Initializa
             taskSearch.cancel();
             searchThread.stop();
         }
-
+        
     }
-
+    
     @FXML
     private void moveWindowSecond(MouseEvent event) {
         Stage currentStage = (Stage) btnClose.getScene().getWindow();
         currentStage.setX(event.getScreenX() + xOffset);
         currentStage.setY(event.getScreenY() + yOffset);
     }
-
+    
     @FXML
     private void moveWindow(MouseEvent event) {
         Stage currentStage = (Stage) btnClose.getScene().getWindow();
         xOffset = currentStage.getX() - event.getScreenX();
         yOffset = currentStage.getY() - event.getScreenY();
     }
-
+    
     @Override
     public void setTheme() {
         try {
@@ -211,15 +212,23 @@ public class TempScannerController extends ThemeableWindow implements Initializa
         scene.getStylesheets().clear();
         scene.getStylesheets().add(super.getPref().get(ThemeableWindow.getCURRENTTHEME(), ""));
     }
-
+    
     @FXML
     private void minimize(ActionEvent event) {
         Stage s = (Stage) btnClose.getScene().getWindow();
         s.setIconified(true);
     }
-
+    
     @FXML
     private void showBlacklist(ActionEvent event) {
         new ViewOpener().openThemeableView("/fxml/BlacklistTempCacheFiles.fxml", "Blacklist", false);
+    }
+    
+    @FXML
+    private void showExperiencedUserOnlyInfo(ActionEvent event) {
+        if (chkSearchCache.isSelected()) {
+            boolean isKeepSelected = new InfoWindow().ShowInfoWindow("Searching and deleting cache will probably harm your system, please only continue if you know what you are doing!");
+            chkSearchCache.setSelected(isKeepSelected);
+        }
     }
 }
