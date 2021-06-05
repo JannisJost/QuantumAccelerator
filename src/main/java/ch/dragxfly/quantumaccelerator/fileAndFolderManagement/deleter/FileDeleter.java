@@ -23,7 +23,6 @@ public class FileDeleter {
         } catch (IOException e) {
             System.err.println(e);
         }
-        System.out.println("File " + path + " deleted successfully");
     }
 
     /**

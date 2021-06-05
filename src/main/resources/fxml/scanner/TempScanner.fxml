@@ -40,7 +40,7 @@
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <CheckBox fx:id="chkSearchTemp" mnemonicParsing="false" selected="true" text="Search Temp folders" GridPane.columnIndex="1">
@@ -48,7 +48,7 @@
                         <Tooltip text="Searches for temporary files (your computer doesn't need them)" />
                      </tooltip>
                   </CheckBox>
-                  <CheckBox fx:id="chkSearchCache" mnemonicParsing="false" selected="true" text="Search cache folders" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <CheckBox fx:id="chkSearchCache" mnemonicParsing="false" text="Search cache folders" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <RadioButton fx:id="chkQuickScan" mnemonicParsing="false" text="Quick scan">
                      <tooltip>
                         <Tooltip text="Cleans specific folders and reads from earliers scans" />
@@ -64,6 +64,10 @@
                   <Insets />
                </VBox.margin>
             </GridPane>
+            <Button fx:id="btnEditBlacklist" mnemonicParsing="false" onAction="#showBlacklist" text="Blacklist">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin></Button>
             <Button fx:id="btnStartScan" mnemonicParsing="false" onAction="#startScan" scaleX="1.5" scaleY="1.5" text="Start scan">
                <VBox.margin>
                   <Insets bottom="10.0" top="15.0" />
@@ -72,10 +76,6 @@
                   <Tooltip text="Starts the scan (increased CPU and storage usage)" />
                </tooltip>
             </Button>
-            <Button fx:id="btnEditBlacklist" mnemonicParsing="false" onAction="#showBlacklist" text="Show blacklist">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin></Button>
             <Button fx:id="btnCancelScan" mnemonicParsing="false" onAction="#cancelScan" text="Cancel" textFill="WHITE" visible="false">
                <VBox.margin>
                   <Insets top="5.0" />

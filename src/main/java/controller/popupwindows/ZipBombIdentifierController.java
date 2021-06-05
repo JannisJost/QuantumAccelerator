@@ -2,6 +2,7 @@ package controller.popupwindows;
 
 import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
 import animatefx.animation.Shake;
+import ch.dragxfly.quantumaccelerator.Executors.errorhandling.ErrorWindow;
 import controller.main.MainViewController;
 import java.awt.FileDialog;
 import java.io.File;
@@ -49,22 +50,20 @@ public class ZipBombIdentifierController extends ThemeableWindow implements Init
     private ListView<String> lstZipFolders;
     @FXML
     private Button btnClose;
-    private double xOffset;
-    private double yOffset;
     @FXML
     private Button btnScan;
-    private final Preferences pref = Preferences.userNodeForPackage(MainViewController.class);
-    private final String LIGHTTHEME_IS_ACTIVE = "gameboosteractive";
-    private FileDialog fd;
     @FXML
     private ProgressIndicator progScan;
-    private List<String> zipBombs = new ArrayList<>();
     @FXML
     private Label lblScanDone;
     @FXML
     private HBox hboxLabel;
     @FXML
     private Label lblHint;
+    //non FXML
+    private double xOffset;
+    private double yOffset;
+    private final List<String> zipBombs = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -160,11 +159,11 @@ public class ZipBombIdentifierController extends ThemeableWindow implements Init
                             compressedSize = ze.getCompressedSize();
                         }
                         if (compressedSize * 10 < uncompressedSize) {
-                            zipBombs.add(zipPath.toString());
+                            zipBombs.add(zipPath);
                         }
                     }
                 } catch (IOException e) {
-
+                    new ErrorWindow().showErrorWindow("Error while scanning zip files");
                 }
                 return null;
             }
@@ -173,6 +172,7 @@ public class ZipBombIdentifierController extends ThemeableWindow implements Init
     }
 
     @Override
+
     public void setTheme() {
         try {
             super.getPref().sync();

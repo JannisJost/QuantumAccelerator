@@ -1,5 +1,6 @@
 package ch.dragxfly.quantumaccelerator.ViewManager;
 
+import ch.dragxfly.quantumaccelerator.Executors.errorhandling.ErrorWindow;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -23,8 +24,7 @@ public class ViewOpener {
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
-            System.out.println(e);
-            System.out.println("Failed to open new Window");
+            new ErrorWindow().showErrorWindow("Could not open Window " + path);
         }
     }
 
@@ -42,8 +42,7 @@ public class ViewOpener {
             stage.setAlwaysOnTop(alwaysOnTop);
             themeable.setTheme();
         } catch (IOException e) {
-            System.out.println(e);
-            System.out.println("Failed to open new Window");
+            new ErrorWindow().showErrorWindow("Could not open Window " + path);
         }
     }
 

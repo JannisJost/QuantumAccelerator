@@ -1,5 +1,6 @@
 package shellscripts;
 
+import ch.dragxfly.quantumaccelerator.Executors.errorhandling.ErrorWindow;
 import java.io.IOException;
 
 /**
@@ -11,14 +12,14 @@ public class PowerShell {
     public void runPowershellScript(String nameOfScript) {
         try {
             //Gets current working path
-            String powershellScriptDirectorie = "@" + nameOfScript + ".ps1";
+            String pathToScript = "@" + nameOfScript + ".ps1";
             Runtime runtime = Runtime.getRuntime();
             //Runs Powershell script to search activate or create powerplan
-            Process processPowershell = runtime.exec("cmd.exe /c powershell.exe " + powershellScriptDirectorie);
+            Process processPowershell = runtime.exec("cmd.exe /c powershell.exe " + pathToScript);
             //Waiting for Powershell command to finish
             processPowershell.waitFor();
         } catch (IOException | InterruptedException e) {
-            System.out.println("Not able to run PowerShellScript " + nameOfScript);
+            new ErrorWindow().showErrorWindow("Could not run " + nameOfScript);
         }
 
     }

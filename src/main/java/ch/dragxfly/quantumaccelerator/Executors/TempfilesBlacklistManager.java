@@ -75,7 +75,6 @@ public class TempfilesBlacklistManager {
      * @throws IOException
      */
     private void createBlacklistFilesAndFolders() throws IOException {
-        File blacklistFolder = new File(PATH_TO_BLACKLISTFOLDER);
         File blacklistTxt = new File(PATH_TO_BLACKLISTTXT);
         new FolderCreator().createFolder(PATH_TO_BLACKLISTFOLDER);
         if (!blacklistTxt.exists()) {

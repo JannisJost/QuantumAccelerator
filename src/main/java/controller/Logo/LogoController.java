@@ -32,9 +32,9 @@ public class LogoController implements Initializable {
 
     @FXML
     private StackPane paneLogo;
-    private final SVGPath svgGear;
-    private final SVGPath svgNeedle;
-    private final SVGPath svgDash;
+    private final SVGPath Gear;
+    private final SVGPath Needle;
+    private final SVGPath Dash;
     private final double height;
     private Timeline timeline;
 
@@ -43,9 +43,9 @@ public class LogoController implements Initializable {
     }
 
     public LogoController(double height) {
-        svgDash = new Dash(height / PROP_DASH_HEIGHT);
-        svgNeedle = new Needle(height / PROP_NEEDLE_HEIGHT);
-        svgGear = new Gear(height / PROP_GEAR_HEIGHT);
+        Dash = new Dash(height / PROP_DASH_HEIGHT);
+        Needle = new Needle(height / PROP_NEEDLE_HEIGHT);
+        Gear = new Gear(height / PROP_GEAR_HEIGHT);
         this.height = height;
     }
 
@@ -55,37 +55,37 @@ public class LogoController implements Initializable {
         paneLogo.setMaxHeight(height + 10);
         paneLogo.setMaxWidth(height * 1.5);
         setMargins();
-        paneLogo.getChildren().addAll(svgDash, svgNeedle, svgGear);
+        paneLogo.getChildren().addAll(Dash, Needle, Gear);
     }
 
     private void setMargins() {
-        double halfDash = height / PROP_DASH_HEIGHT / 2;
-        double halfGear = height / PROP_GEAR_HEIGHT / 2;
-        double halfNeedle = height / PROP_NEEDLE_HEIGHT / 2;
-        svgNeedle.setTranslateY(-height / PROP_MOVE_NEEDLE + halfNeedle);
-        svgDash.setTranslateY(-height / 2 + halfDash);
-        svgGear.setTranslateY(height / 2 - halfGear);
+        double halfDashHeight = height / PROP_DASH_HEIGHT / 2;
+        double halfGearHeight = height / PROP_GEAR_HEIGHT / 2;
+        double halfNeedleHeight = height / PROP_NEEDLE_HEIGHT / 2;
+        Needle.setTranslateY(-height / PROP_MOVE_NEEDLE + halfNeedleHeight);
+        Dash.setTranslateY(-height / 2 + halfDashHeight);
+        Gear.setTranslateY(height / 2 - halfGearHeight);
     }
 
     public void playLoadingAnimation() {
         Point3D point = new Point3D(0, 100, 0);
-        svgDash.setRotationAxis(point);
-        svgGear.setRotationAxis(point);
+        Dash.setRotationAxis(point);
+        Gear.setRotationAxis(point);
         timeline = new Timeline(
                 new KeyFrame(Duration.seconds(0.75),
-                        new KeyValue(svgDash.rotateProperty(), 180),
-                        new KeyValue(svgGear.rotateProperty(), 0)),
+                        new KeyValue(Dash.rotateProperty(), 180),
+                        new KeyValue(Gear.rotateProperty(), 0)),
                 new KeyFrame(Duration.seconds(1.5),
-                        new KeyValue(svgDash.rotateProperty(), 180),
-                        new KeyValue(svgGear.rotateProperty(), 180)
+                        new KeyValue(Dash.rotateProperty(), 180),
+                        new KeyValue(Gear.rotateProperty(), 180)
                 ),
                 new KeyFrame(Duration.seconds(2.25),
-                        new KeyValue(svgDash.rotateProperty(), 0),
-                        new KeyValue(svgGear.rotateProperty(), 180)
+                        new KeyValue(Dash.rotateProperty(), 0),
+                        new KeyValue(Gear.rotateProperty(), 180)
                 ),
                 new KeyFrame(Duration.seconds(3),
-                        new KeyValue(svgDash.rotateProperty(), 0),
-                        new KeyValue(svgGear.rotateProperty(), 0)
+                        new KeyValue(Dash.rotateProperty(), 0),
+                        new KeyValue(Gear.rotateProperty(), 0)
                 )
         );
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -93,34 +93,34 @@ public class LogoController implements Initializable {
     }
 
     public void setVisible(boolean visible, boolean isLoadingLogo) {
-        svgGear.setVisible(visible);
-        svgDash.setVisible(visible);
+        Gear.setVisible(visible);
+        Dash.setVisible(visible);
         if (isLoadingLogo) {
-            svgNeedle.setVisible(false);
+            Needle.setVisible(false);
         } else {
-            svgNeedle.setVisible(visible);
+            Needle.setVisible(visible);
         }
     }
 
     public void setVisible(boolean visible) {
-        svgGear.setVisible(visible);
-        svgDash.setVisible(visible);
-        svgNeedle.setVisible(visible);
+        Gear.setVisible(visible);
+        Dash.setVisible(visible);
+        Needle.setVisible(visible);
     }
 
     public void playLoadingFinishedAnimation() {
         timeline.stop();
         reset();
-        svgNeedle.setVisible(true);
+        Needle.setVisible(true);
         Timeline stopAnimation = new Timeline(
-                new KeyFrame(Duration.ZERO, new KeyValue(svgNeedle.rotateProperty(), -200)),
-                new KeyFrame(Duration.seconds(1.5), new KeyValue(svgNeedle.rotateProperty(), 0)),
-                new KeyFrame(Duration.seconds(2), new KeyValue(svgNeedle.opacityProperty(), 1),
-                        new KeyValue(svgGear.opacityProperty(), 1),
-                        new KeyValue(svgDash.opacityProperty(), 1)),
-                new KeyFrame(Duration.seconds(3), new KeyValue(svgNeedle.opacityProperty(), 0),
-                        new KeyValue(svgGear.opacityProperty(), 0),
-                        new KeyValue(svgDash.opacityProperty(), 0))
+                new KeyFrame(Duration.ZERO, new KeyValue(Needle.rotateProperty(), -200)),
+                new KeyFrame(Duration.seconds(1.5), new KeyValue(Needle.rotateProperty(), 0)),
+                new KeyFrame(Duration.seconds(2), new KeyValue(Needle.opacityProperty(), 1),
+                        new KeyValue(Gear.opacityProperty(), 1),
+                        new KeyValue(Dash.opacityProperty(), 1)),
+                new KeyFrame(Duration.seconds(3), new KeyValue(Needle.opacityProperty(), 0),
+                        new KeyValue(Gear.opacityProperty(), 0),
+                        new KeyValue(Dash.opacityProperty(), 0))
         );
         stopAnimation.play();
         stopAnimation.setOnFinished(event -> {
@@ -133,10 +133,10 @@ public class LogoController implements Initializable {
      * Resets the state changed by the animation
      */
     private void reset() {
-        svgGear.setOpacity(1);
-        svgDash.setOpacity(1);
-        svgNeedle.setOpacity(1);
-        svgDash.setRotate(0);
-        svgGear.setRotate(0);
+        Gear.setOpacity(1);
+        Dash.setOpacity(1);
+        Needle.setOpacity(1);
+        Dash.setRotate(0);
+        Gear.setRotate(0);
     }
 }

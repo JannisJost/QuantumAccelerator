@@ -27,19 +27,19 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        setViews();
+        createMainViews();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Main/MainView.fxml"));
         Parent root = loader.load();
         MainViewController controller = loader.getController();
-        //stores the views to make them accesible to the MainViewController
+        //stores the views to make them accessible to the MainViewController
         ViewsModel viewsModel = new ViewsModel(features, storage, gamebooster, delWindowsApps, extras, privacy, settings);
         controller.setViewsModel(viewsModel);
         Scene scene = new Scene(root);
         scene.getStylesheets().clear();
         scene.getRoot().setStyle("");
         //sets app logo as icon
-        Image iconImage = new Image("/styles/icons/appLogo_Big.png");
-        stage.getIcons().add(iconImage);
+        Image icon = new Image("/styles/icons/appLogo_Big.png");
+        stage.getIcons().add(icon);
         stage.setTitle("QuantumAccelerator");
         stage.setScene(scene);
         stage.initStyle(StageStyle.UNDECORATED);
@@ -57,7 +57,7 @@ public class MainApp extends Application {
     /**
      * Loads all the views held in the main view
      */
-    private void setViews() {
+    private void createMainViews() {
         try {
             ViewCreator creator = new ViewCreator();
             features = creator.getViewFeatures();

@@ -13,22 +13,22 @@ public class TelemetryBlocker {
 
     /**
      *
-     * @param invocator
-     * @param disableMRT defines wether to activate/deactivate "MRT"
-     * @param disableCEIP defines wether to activate/deactivate "CEIP"
-     * @param disableTrackingService defines wether to activate/deactivate
+     * @param invocator invocator of this instance
+     * @param isDisableMRT defines wether to activate/deactivate "MRT"
+     * @param isDisableCEIP defines wether to activate/deactivate "CEIP"
+     * @param isDisableTrackingService defines wether to activate/deactivate
      * "Tracking Service"
-     * @param disablePushService defines wether to activate/deactivate "Push
+     * @param isDisablePushService defines wether to activate/deactivate "Push
      * Services"
      */
-    public void blockTelemetry(TelemetryOptionsController invocator, boolean disableMRT, boolean disableCEIP, boolean disableTrackingService, boolean disablePushService) {
+    public void blockTelemetry(TelemetryOptionsController invocator, boolean isDisableMRT, boolean isDisableCEIP, boolean isDisableTrackingService, boolean isDisablePushService) {
         telemetryBlockerTask = new Task() {
             @Override
             protected Object call() throws Exception {
-                setMRT(disableMRT);
-                setCEIP(disableCEIP);
-                setTrackingService(disableTrackingService);
-                setPushService(disablePushService);
+                setMRT(isDisableMRT);
+                setCEIP(isDisableCEIP);
+                setTrackingService(isDisableTrackingService);
+                setPushService(isDisablePushService);
                 return null;
             }
         };

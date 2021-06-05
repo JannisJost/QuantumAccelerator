@@ -1,5 +1,6 @@
 package ch.dragxfly.quantumaccelerator.Executors;
 
+import ch.dragxfly.quantumaccelerator.Executors.errorhandling.ErrorWindow;
 import java.io.IOException;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -19,15 +20,15 @@ public class PrivacyExecutor {
 
     }
 
-    public void run(boolean doDeleteDNSCache, boolean doDeleteCookies, boolean doDeleteBrowserHistory) {
+    public void run(boolean isDeleteDNSCache, boolean isDeleteCookies, boolean isDeleteBrowserHistory) {
         showStatusPanel();
-        if (doDeleteDNSCache) {
+        if (isDeleteDNSCache) {
             deleteDNSCache();
         }
-        if (doDeleteCookies) {
+        if (isDeleteCookies) {
             deleteCookies();
         }
-        if (doDeleteBrowserHistory) {
+        if (isDeleteBrowserHistory) {
             deleteBrowserHistory();
         }
     }
@@ -41,7 +42,8 @@ public class PrivacyExecutor {
         try {
             rt.exec(new String[]{"ipconfig", "/flushdns"});
         } catch (IOException e) {
-            System.err.println("could not delete DNS cache: " + e);
+            new ErrorWindow().showErrorWindow("Could not delete DNS-cache \n "
+                    + "Error: " + e);
         }
     }
 

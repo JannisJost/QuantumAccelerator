@@ -21,13 +21,13 @@ public class Gamebooster {
         stopWindowsSearch();
     }
 
-    public void stopGameboost(boolean resetPowerPlan, boolean resetGPUPrio) throws IOException, InterruptedException {
-        if (resetPowerPlan) {
+    public void stopGameboost(boolean isResetPowerPlan, boolean isResetGPUPrio) throws IOException, InterruptedException {
+        if (isResetPowerPlan) {
             runDeactivateUltimatePowerShell();
         }
         //Later only reactivate if user wants to
         reactivateBackgroundApps();
-        if (resetGPUPrio) {
+        if (isResetGPUPrio) {
             decreaseGPUPriotityToNormal();
         }
         activateWindowsVisualFX();
@@ -101,7 +101,6 @@ public class Gamebooster {
 
     private void startWindowsSearch() {
         com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Start-Service -Name WSearch");
-
     }
 
 }

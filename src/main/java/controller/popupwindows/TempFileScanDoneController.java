@@ -45,17 +45,18 @@ public class TempFileScanDoneController extends ThemeableWindow implements Initi
     private Label lblStatus;
     @FXML
     private Label lblSelectedTempFiles;
-    private TempfileModel tempFileModel;
     @FXML
     private Label lblAccessDenied;
     @FXML
     private HBox hBoxLabels;
     @FXML
     private Label lblSize;
+    //non FXML
     private double xOffset;
     private double yOffset;
+    private TempfileModel tempFileModel;
     private final ScanDoneModel model = new ScanDoneModel();
-    private List<CheckBox> chksTempFiles = new ArrayList<>();
+    private final List<CheckBox> chksTempFiles = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

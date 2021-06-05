@@ -13,10 +13,10 @@ import java.util.TimerTask;
 public class CustomToolTipTasks extends Observable {
 
     private Timer timer;
-    private int passedTime = 0;
-    private final BigDecimal percentPerTick = new BigDecimal(0.0083333333333333);
-    private CustomToolTip toolTip;
     private TimerTask timerTask;
+    private int passedTime = 0;
+    private CustomToolTip toolTip;
+    private final BigDecimal percentPerTick = new BigDecimal(0.0083333333333333);
 
     public void startCountdownTimer(CustomToolTip toolTip) {
         this.toolTip = toolTip;
@@ -31,7 +31,7 @@ public class CustomToolTipTasks extends Observable {
     }
 
     private TimerTask getCountdown() {
-        TimerTask task = new TimerTask(){
+        TimerTask task = new TimerTask() {
             @Override
             public void run() {
                 passedTime += 1;

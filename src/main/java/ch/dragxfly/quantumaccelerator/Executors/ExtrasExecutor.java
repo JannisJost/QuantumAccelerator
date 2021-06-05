@@ -11,11 +11,11 @@ public class ExtrasExecutor {
 
     public void createGodModeFolder() {
         FolderCreator folderCreator = new FolderCreator();
-        String godmodePath = System.getProperty("user.home") + "\\Desktop\\Godmode.{ED7BA470-8E54-465E-825C-99712043E01C}";
-        if (new File(godmodePath).exists()) {
+        String godmodeFolderPath = System.getProperty("user.home") + "\\Desktop\\Godmode.{ED7BA470-8E54-465E-825C-99712043E01C}";
+        if (new File(godmodeFolderPath).exists()) {
         } else {
-            godmodePath = System.getProperty("user.home") + "OneDrive\\Desktop\\Godmode.{ED7BA470-8E54-465E-825C-99712043E01C}";
+            godmodeFolderPath = System.getProperty("user.home") + "OneDrive\\Desktop\\Godmode.{ED7BA470-8E54-465E-825C-99712043E01C}";
         }
-        folderCreator.createFolder(godmodePath);
+        folderCreator.createFolder(godmodeFolderPath);
     }
 }

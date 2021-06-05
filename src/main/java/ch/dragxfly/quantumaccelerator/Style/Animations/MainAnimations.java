@@ -9,7 +9,7 @@ import javafx.util.Duration;
  *
  * @author janni
  */
-public class MainAnimations {
+public final class MainAnimations {
 
     private final RotateTransition rotateTransition = new RotateTransition();
     private final Preferences pref = Preferences.userRoot();

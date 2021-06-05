@@ -9,7 +9,7 @@ import java.io.File;
 public class FolderCreator {
 /**
  * Creates all folders if they dont already exist with a given path
- * @param path 
+ * @param path to folder to create
  */
     public void createFolder(String path) {
         File toCreate = new File(path);

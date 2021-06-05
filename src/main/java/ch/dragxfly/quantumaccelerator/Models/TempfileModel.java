@@ -30,11 +30,11 @@ public class TempfileModel {
      * 
      * @return list of files/folders for which access was denied
      */
-    public List<String> getAccessDenied() {
+    public List<String> getAccessDeniedFolders() {
         return accessDenied;
     }
     
-    public void setAccessDenied(List<String> accessDenied) {
+    public void setAccessDeniedFolders(List<String> accessDenied) {
         this.accessDenied = accessDenied;
     }
 }

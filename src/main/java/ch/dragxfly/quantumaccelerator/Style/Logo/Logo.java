@@ -7,6 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 
 /**
+ * QuantumAccelerator Logo which can also be used for loading animations
  *
  * @author janni
  */

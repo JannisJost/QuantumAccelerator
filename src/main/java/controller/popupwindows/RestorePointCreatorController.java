@@ -4,6 +4,7 @@ import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
 import ch.dragxfly.quantumaccelerator.tasks.RestorepointTasks;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.prefs.BackingStoreException;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
@@ -61,19 +62,19 @@ public class RestorePointCreatorController extends ThemeableWindow implements In
 
     @FXML
     private void close(ActionEvent event) {
-        Stage stage = (Stage) btnDenie.getScene().getWindow();
-        stage.close();
+        Stage currentStage = (Stage) btnDenie.getScene().getWindow();
+        currentStage.close();
     }
 
     @Override
     public void setTheme() {
         try {
             super.getPref().sync();
-        } catch (Exception e) {
+        } catch (BackingStoreException e) {
         }
         Scene scene = btnDenie.getScene();
         scene.getStylesheets().clear();
-        scene.getStylesheets().add(super.getPref().get(super.getCURRENTTHEME(), ""));
+        scene.getStylesheets().add(super.getPref().get(ThemeableWindow.getCURRENTTHEME(), ""));
     }
 
 }

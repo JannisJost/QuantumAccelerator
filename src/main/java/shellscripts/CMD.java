@@ -1,5 +1,6 @@
 package shellscripts;
 
+import ch.dragxfly.quantumaccelerator.Executors.errorhandling.ErrorWindow;
 import java.io.IOException;
 
 /**
@@ -13,7 +14,7 @@ public class CMD {
             Process p1 = Runtime.getRuntime().exec(command);
             p1.waitFor();
         } catch (InterruptedException | IOException ex) {
-            System.out.println("Error while executing CMD");
+            new ErrorWindow().showErrorWindow("Could not execute CMD command " + command);
         }
 
     }
@@ -24,7 +25,7 @@ public class CMD {
             p1.waitFor();
         } catch (IOException ex) {
         } catch (InterruptedException ex) {
-            System.err.println("Error while running CMD");
+            new ErrorWindow().showErrorWindow("Could not execute CMD command " + command);
         }
     }
 }

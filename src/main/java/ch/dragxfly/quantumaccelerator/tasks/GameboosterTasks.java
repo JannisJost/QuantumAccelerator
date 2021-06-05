@@ -17,8 +17,8 @@ public class GameboosterTasks {
             @Override
             protected Void call() throws Exception {
                 String executablePath = System.getProperty("user.dir") + "\\src\\main\\java\\EmptyStandbyListBy_WenJiaLiu";
-                String command = "cd " + executablePath + " && .\\EmptyStandbyList.exe standbylist && exit";
-                new CMD().executeCmdCommandCMDVisible(command);
+                String clearStandbyListCommand = "cd " + executablePath + " && .\\EmptyStandbyList.exe standbylist && exit";
+                new CMD().executeCmdCommandCMDVisible(clearStandbyListCommand);
                 return null;
             }
         };
@@ -27,13 +27,13 @@ public class GameboosterTasks {
 
     public Task getTaskDeleteInstallerFromDownload() {
         Task<Void> task = new Task<Void>() {
-            SearchEngine engine = new SearchEngine();
+            SearchEngine searchEngine = new SearchEngine();
 
             @Override
             protected Void call() throws Exception {
                 String downloadsPath = System.getProperty("user.home") + "/Downloads";
                 String[] installerNames = {"installer", "setup", ".msi"};
-                List<String> installers = engine.searchForFilesContaining(downloadsPath, installerNames);
+                List<String> installers = searchEngine.searchForFilesContaining(downloadsPath, installerNames);
                 FileDeleter fDeleter = new FileDeleter();
                 fDeleter.deleteFiles(installers);
                 return null;

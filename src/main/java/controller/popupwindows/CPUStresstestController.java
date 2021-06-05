@@ -37,8 +37,6 @@ public class CPUStresstestController extends ThemeableWindow implements Initiali
     private Slider sliderKeepLoadAt;
     @FXML
     private Button btnClose;
-    private double xOffset = 0;
-    private double yOffset = 0;
     @FXML
     private VBox vboxConfigure;
     @FXML
@@ -47,7 +45,6 @@ public class CPUStresstestController extends ThemeableWindow implements Initiali
     private Button btnStopCPUStressTest;
     @FXML
     private Slider sliderMaxTemp;
-    private CPUBenchmark benchmark;
     @FXML
     private Label lblThreads;
     @FXML
@@ -56,6 +53,10 @@ public class CPUStresstestController extends ThemeableWindow implements Initiali
     private Label lblStressTestStatus;
     @FXML
     private Label lblFanSpeed;
+    //non FXML
+    private double xOffset = 0;
+    private double yOffset = 0;
+    private CPUBenchmark benchmark;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -102,8 +103,8 @@ public class CPUStresstestController extends ThemeableWindow implements Initiali
         if (benchmark != null) {
             benchmark.stopLoad();
         }
-        Stage s = (Stage) btnClose.getScene().getWindow();
-        s.close();
+        Stage currentStage = (Stage) btnClose.getScene().getWindow();
+        currentStage.close();
     }
 
     @FXML
@@ -128,12 +129,9 @@ public class CPUStresstestController extends ThemeableWindow implements Initiali
     }
 
     public void adjustStressTestStats(int threads, double cpuTemp) {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                lblThreads.setText("Active threads: " + threads);
-                lblCPUTemp.setText("CPU temp: " + cpuTemp + "℃");
-            }
+        Platform.runLater(() -> {
+            lblThreads.setText("Active threads: " + threads);
+            lblCPUTemp.setText("CPU temp: " + cpuTemp + "℃");
         });
     }
 }

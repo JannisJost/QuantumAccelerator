@@ -22,6 +22,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.SearchEngine.FolderScanner.SearchEngine;
+import java.util.prefs.BackingStoreException;
 
 /**
  * FXML Controller class
@@ -36,15 +37,16 @@ public class RemoveLogsController extends ThemeableWindow implements Initializab
     private ProgressBar progressTask;
     @FXML
     private Button btnStartScan;
-    private final LogFilesModel model = new LogFilesModel();
     @FXML
     private ListView<CheckBox> lstLogFiles;
     @FXML
     private Button btnDelLogFiles;
     @FXML
     private Button btnClose;
+    //non FXML
     private double xOffset = 0;
     private double yOffset = 0;
+    private final LogFilesModel model = new LogFilesModel();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -56,15 +58,15 @@ public class RemoveLogsController extends ThemeableWindow implements Initializab
         Task searchLogFiles = getTaskSearchLogFiles();
         Task loadList = getTaskLoadList();
         progressTask.progressProperty().bind(searchLogFiles.progressProperty());
-        Thread t1 = new Thread(searchLogFiles);
-        Thread t2 = new Thread(loadList);
-        t1.start();
+        Thread searchLogfilesThread = new Thread(searchLogFiles);
+        Thread loadListThread = new Thread(loadList);
+        searchLogfilesThread.start();
         lblStatus.setText("Searching for log files");
         searchLogFiles.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent t) {
                 lblStatus.setText("Loading list");
-                t2.start();
+                loadListThread.start();
             }
         });
         loadList.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
@@ -82,9 +84,8 @@ public class RemoveLogsController extends ThemeableWindow implements Initializab
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                SearchEngine engine = new SearchEngine();
-                
-                model.setLogFiles(engine.searchForFilesWithExtension("C:\\", "log"));
+                SearchEngine searchEngine = new SearchEngine();
+                model.setLogFiles(searchEngine.searchForFilesWithExtension("C:\\", "log"));
                 return null;
             }
         };
@@ -147,12 +148,11 @@ public class RemoveLogsController extends ThemeableWindow implements Initializab
     public void setTheme() {
         try {
             super.getPref().sync();
-        } catch (Exception e) {
-
+        } catch (BackingStoreException e) {
         }
         Scene scene = btnClose.getScene();
         scene.getStylesheets().clear();
-        scene.getStylesheets().add(super.getPref().get(super.getCURRENTTHEME(), ""));
+        scene.getStylesheets().add(super.getPref().get(ThemeableWindow.getCURRENTTHEME(), ""));
     }
 
     @FXML

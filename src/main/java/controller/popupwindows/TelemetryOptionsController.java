@@ -24,23 +24,23 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
 
     @FXML
     private Button btnClose;
-    private double xOffset = 0;
-    private double yOffset = 0;
-    private final ToggleSwitch tglTrackingService = new ToggleSwitch();
-    private final ToggleSwitch tglPushService = new ToggleSwitch();
-    private final ToggleSwitch tglCEIPTasks = new ToggleSwitch();
-    private final ToggleSwitch tglMRTTelemetry = new ToggleSwitch();
-    private static final String KEY_TRACKING_SERVICES = "trackingservices";
-    private static final String KEY_PUSH_SERVICE = "pushservice";
-    private static final String KEY_CEIP = "CEIP";
-    private static final String KEY_MRT = "MRT";
-
     @FXML
     private Button btnSaveAndApply;
     @FXML
     private Button btnCancel;
     @FXML
     private GridPane gridSettings;
+    //non FXML
+    private double xOffset = 0;
+    private double yOffset = 0;
+    private static final String KEY_CEIP = "CEIP";
+    private static final String KEY_MRT = "MRT";
+    private static final String KEY_PUSH_SERVICE = "pushservice";
+    private final ToggleSwitch tglTrackingService = new ToggleSwitch();
+    private final ToggleSwitch tglPushService = new ToggleSwitch();
+    private final ToggleSwitch tglCEIPTasks = new ToggleSwitch();
+    private final ToggleSwitch tglMRTTelemetry = new ToggleSwitch();
+    private static final String KEY_TRACKING_SERVICES = "trackingservices";
     private final Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
 
     @Override

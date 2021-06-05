@@ -35,33 +35,33 @@ import javafx.util.Pair;
  */
 public class SystemMonitorController extends ThemeableWindow implements Initializable, Observer {
 
-    private final List<Pair<Double, String>> cpuUsageHistory = new LinkedList<>();
-    private final List<Pair<Double, String>> cpuTempHistory = new LinkedList<>();
-
-    private final List<Double> memoryUsageHistory = new ArrayList<>();
     @FXML
     private Button btnClose;
     @FXML
     private LineChart<String, Double> lineChartCPUUsage;
-    private HardwareObserver hardware;
-    private Pair<Double, String> cpuLoadPair;
-    private Pair<Double, String> cpuTempPair;
-    private double xOffset = 0;
-    private double yOffset = 0;
-    private boolean alwaysOnTop = false;
     @FXML
     private Button btnAlwaysOnTop;
     @FXML
     private HBox hboxTopBar;
+    //non FXML
+    private double xOffset = 0;
+    private double yOffset = 0;
+    private HardwareObserver hardware;
+    private boolean isAlwaysOnTop = false;
+    private Pair<Double, String> cpuLoadPair;
+    private Pair<Double, String> cpuTempPair;
     private final ToggleSwitch tglswMeasureCPUTemp = new ToggleSwitch();
-    private BooleanProperty showCPUTemp = new SimpleBooleanProperty(false);
+    private final BooleanProperty isShowCPUTemp = new SimpleBooleanProperty(false);
+    private final List<Pair<Double, String>> cpuUsageHistory = new LinkedList<>();
+    private final List<Pair<Double, String>> cpuTempHistory = new LinkedList<>();
+    private final List<Double> memoryUsageHistory = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tglswMeasureCPUTemp.setActivated(true);
         hboxTopBar.getChildren().add(0, tglswMeasureCPUTemp);
-        showCPUTemp.bindBidirectional(tglswMeasureCPUTemp.isSwitchedOn());
-        showCPUTemp.addListener(event -> {
+        isShowCPUTemp.bindBidirectional(tglswMeasureCPUTemp.isSwitchedOn());
+        isShowCPUTemp.addListener(event -> {
             changeShowCPUTemp();
         });
         hboxTopBar.getChildren().add(0, new Label("Measure CPU temp"));
@@ -116,7 +116,7 @@ public class SystemMonitorController extends ThemeableWindow implements Initiali
             }
         }
         lineChartCPUUsage.getData().add(seriesLoad);
-        if (showCPUTemp.getValue()) {
+        if (isShowCPUTemp.getValue()) {
             lineChartCPUUsage.getData().add(seriesTemp);
         }
     }
@@ -142,7 +142,7 @@ public class SystemMonitorController extends ThemeableWindow implements Initiali
 
     @FXML
     private void moveWindowSecond(MouseEvent event) {
-        if (!alwaysOnTop) {
+        if (!isAlwaysOnTop) {
             Stage currentStage = (Stage) btnClose.getScene().getWindow();
             currentStage.setX(event.getScreenX() + xOffset);
             currentStage.setY(event.getScreenY() + yOffset);
@@ -151,7 +151,7 @@ public class SystemMonitorController extends ThemeableWindow implements Initiali
 
     @FXML
     private void moveWindow(MouseEvent event) {
-        if (!alwaysOnTop) {
+        if (!isAlwaysOnTop) {
             Stage currentStage = (Stage) btnClose.getScene().getWindow();
             xOffset = currentStage.getX() - event.getScreenX();
             yOffset = currentStage.getY() - event.getScreenY();
@@ -165,9 +165,9 @@ public class SystemMonitorController extends ThemeableWindow implements Initiali
         Scene scene = btnClose.getScene();
         Stage s = (Stage) btnClose.getScene().getWindow();
         scene.getStylesheets().clear();
-        alwaysOnTop = !alwaysOnTop;
-        s.setAlwaysOnTop(alwaysOnTop);
-        if (alwaysOnTop) {
+        isAlwaysOnTop = !isAlwaysOnTop;
+        s.setAlwaysOnTop(isAlwaysOnTop);
+        if (isAlwaysOnTop) {
             s.setX(0);
             s.setY(0);
             scene.getStylesheets().add("/styles/transparent_SystemMonitor.css");
@@ -180,7 +180,7 @@ public class SystemMonitorController extends ThemeableWindow implements Initiali
     }
 
     private void changeShowCPUTemp() {
-        if (showCPUTemp.getValue()) {
+        if (isShowCPUTemp.getValue()) {
             hardware.setMeasureCPUTemp(true);
         } else {
             hardware.setMeasureCPUTemp(false);

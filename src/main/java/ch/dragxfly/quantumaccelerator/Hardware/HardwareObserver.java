@@ -21,16 +21,16 @@ import javafx.concurrent.Task;
  */
 public class HardwareObserver extends Observable {
 
-    private double cpuUsage = 0;
-    private double memoryUsage = 0;
-    private final OperatingSystemMXBean operatingSystemMXBean = ManagementFactory.getPlatformMXBean(OperatingSystemMXBean.class);
-    private Thread timerThread = new Thread();
-    private TimerTask observerTask;
-    private Timer timer;
-    private Components components;
     private Cpu cpu;
+    private Timer timer;
     private double cpuTemp = 0;
-    private boolean measureCPUTemp = false;
+    private double cpuUsage = 0;
+    private Components components;
+    private TimerTask observerTask;
+    private double memoryUsage = 0;
+    private boolean isMeasureCPUTemp = false;
+    private Thread timerThread = new Thread();
+    private final OperatingSystemMXBean operatingSystemMXBean = ManagementFactory.getPlatformMXBean(OperatingSystemMXBean.class);
 
     public void startObserver() {
         observerTask = getObserveTask();
@@ -48,7 +48,7 @@ public class HardwareObserver extends Observable {
                 if (cpuUsage > 1) {
                     cpuUsage = 1;
                 }
-                if (measureCPUTemp) {
+                if (isMeasureCPUTemp) {
                     Platform.runLater(() -> {
                         measureCPUTemp();
                     });
@@ -105,6 +105,6 @@ public class HardwareObserver extends Observable {
     }
 
     public void setMeasureCPUTemp(boolean measureCPUTemp) {
-        this.measureCPUTemp = measureCPUTemp;
+        this.isMeasureCPUTemp = measureCPUTemp;
     }
 }

@@ -18,7 +18,7 @@ import javafx.util.Duration;
 public class ToggleSwitch extends Parent {
 
     private final double animationDurationInSecs = 0.25;
-    private BooleanProperty switchedOn = new SimpleBooleanProperty(false);
+    private BooleanProperty isSwitchedOn = new SimpleBooleanProperty(false);
     private TranslateTransition switchAnimation = new TranslateTransition(Duration.seconds(animationDurationInSecs));
     private FillTransition colorTransition = new FillTransition(Duration.seconds(animationDurationInSecs));
     private ParallelTransition animation = new ParallelTransition(switchAnimation, colorTransition);
@@ -39,7 +39,7 @@ public class ToggleSwitch extends Parent {
         switchAnimation.setNode(thumb);
         colorTransition.setShape(background);
         getChildren().addAll(background, thumb);
-        switchedOn.addListener((obs, oldState, newState) -> {
+        isSwitchedOn.addListener((obs, oldState, newState) -> {
             boolean isOn = newState;
             switchAnimation.setToX(isOn ? 50 - 25 : 0);
             colorTransition.setFromValue(isOn ? Color.web("#7D7D7D") : Color.web("#2EA664"));
@@ -47,7 +47,7 @@ public class ToggleSwitch extends Parent {
             animation.play();
         });
         setOnMouseClicked(event -> {
-            switchedOn.set(!switchedOn.getValue());
+            isSwitchedOn.set(!isSwitchedOn.getValue());
         });
     }
 
@@ -56,7 +56,7 @@ public class ToggleSwitch extends Parent {
      * @return if toggle is activated
      */
     public boolean isActivated() {
-        return switchedOn.getValue();
+        return isSwitchedOn.getValue();
     }
 
     /**
@@ -65,10 +65,10 @@ public class ToggleSwitch extends Parent {
      * @param isOn state to change toggle switch to
      */
     public void setActivated(boolean isOn) {
-        this.switchedOn.set(isOn);
+        this.isSwitchedOn.set(isOn);
     }
 
     public BooleanProperty isSwitchedOn() {
-        return switchedOn;
+        return isSwitchedOn;
     }
 }

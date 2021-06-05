@@ -275,7 +275,6 @@ public class MainViewController implements Initializable, Observer {
      */
     @FXML
     private void closeApplication(ActionEvent event) {
-        //Add logic to save variables before closing
         try {
             pref.flush();
         } catch (BackingStoreException e) {
@@ -288,13 +287,13 @@ public class MainViewController implements Initializable, Observer {
         this.viewsModel = viewsModel;
     }
 
-    private void selectButton(Button b) {
+    private void selectButton(Button pressedButton) {
         if (menuButtonPressedLast != null) {
-            //Resets the look of the now unselected button
+            //Resets the look of the unselected button
             menuButtonPressedLast.setStyle("");
         }
-        b.setStyle("-fx-border-width: 0 0 0 5;");
-        menuButtonPressedLast = b;
+        pressedButton.setStyle("-fx-border-width: 0 0 0 5;");
+        menuButtonPressedLast = pressedButton;
     }
 
     public void setStarterTheme() {

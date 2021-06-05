@@ -113,7 +113,7 @@ public class AboutController extends ThemeableWindow implements Initializable {
     public void setTheme() {
         Scene scene = btnClose.getScene();
         scene.getStylesheets().clear();
-        scene.getStylesheets().add(super.getPref().get(super.getCURRENTTHEME(), ""));
+        scene.getStylesheets().add(super.getPref().get(ThemeableWindow.getCURRENTTHEME(), ""));
     }
 
 }
