@@ -37,16 +37,12 @@ public class TempFileScanDoneController extends ThemeableWindow implements Initi
     private ListView<CheckBox> lstTempFiles;
     @FXML
     private Button btnClose;
-    private double xOffset;
-    private double yOffset;
     @FXML
     private Button btnDelete;
     @FXML
     private ProgressIndicator loadLoading;
-    List<CheckBox> chksTempFiles = new ArrayList<>();
     @FXML
     private Label lblStatus;
-    private final ScanDoneModel model = new ScanDoneModel();
     @FXML
     private Label lblSelectedTempFiles;
     private TempfileModel tempFileModel;
@@ -56,6 +52,10 @@ public class TempFileScanDoneController extends ThemeableWindow implements Initi
     private HBox hBoxLabels;
     @FXML
     private Label lblSize;
+    private double xOffset;
+    private double yOffset;
+    private final ScanDoneModel model = new ScanDoneModel();
+    private List<CheckBox> chksTempFiles = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -90,19 +90,19 @@ public class TempFileScanDoneController extends ThemeableWindow implements Initi
     /**
      * Loads the temp/cache files into the list view
      */
-    public void loadList() {
-        Task taskGetList = getTaskLoadList();
+    public void loadTempfilesList() {
+        Task taskGetList = getTaskLoadTempFileList();
         Thread t1 = new Thread(taskGetList);
         t1.start();
         taskGetList.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent t) {
-                showList();
+                showTempfilesList();
             }
         });
     }
 
-    private Task getTaskLoadList() {
+    private Task getTaskLoadTempFileList() {
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
@@ -124,12 +124,12 @@ public class TempFileScanDoneController extends ThemeableWindow implements Initi
         return task;
     }
 
-    private void showList() {
+    private void showTempfilesList() {
         for (CheckBox chk : model.getCheckBoxes()) {
             lstTempFiles.getItems().add(chk);
         }
         lblSize.setText("You can free " + model.getSizeInMBytes() + " MB");
-        lblAccessDenied.setText("Could not search " + tempFileModel.getAccessDenied().size() + " folders");
+        lblAccessDenied.setText("Could not search " + tempFileModel.getAccessDeniedFolders().size() + " folders");
         lblSelectedTempFiles.setText("Found " + tempFileModel.getTempFilesList().size() + " folders");
         hBoxLabels.setVisible(true);
         lblStatus.setVisible(false);
@@ -159,7 +159,7 @@ public class TempFileScanDoneController extends ThemeableWindow implements Initi
         deleteTempFiles.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent t) {
-                DeleteDone();
+                DeleteIsDone();
             }
         });
     }
@@ -182,7 +182,7 @@ public class TempFileScanDoneController extends ThemeableWindow implements Initi
         return task;
     }
 
-    private void DeleteDone() {
+    private void DeleteIsDone() {
         loadLoading.setVisible(false);
         lblStatus.setText("All temp files deleted");
     }
