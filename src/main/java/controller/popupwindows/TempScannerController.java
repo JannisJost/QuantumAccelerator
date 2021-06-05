@@ -54,8 +54,6 @@ public class TempScannerController extends ThemeableWindow implements Initializa
     private Label lblStatus;
     @FXML
     private ProgressBar progressTask;
-    private Task taskSearch;
-    private String size;
     @FXML
     private Button btnCancelScan;
     @FXML
@@ -70,6 +68,7 @@ public class TempScannerController extends ThemeableWindow implements Initializa
     private boolean quickScan;
     private double xOffset = 0;
     private double yOffset = 0;
+    private Task taskSearch;
     private Thread searchThread;
     TempfileModel model = new TempfileModel();
     SearchEngine engine = new SearchEngine();
