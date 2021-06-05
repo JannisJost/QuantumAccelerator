@@ -55,4 +55,5 @@ Logo:                                       *Joshua B.*
 
 ## Contact
 Official Discord server: <a href="https://discord.gg/ERVeQdmt" URL>Join</a> <!-- Discord invitation link -->
+
 Mail: quantumaccelerwin10@gmail.com
