@@ -1,10 +1,12 @@
 package controller.popupwindows.warning;
 
+import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -14,7 +16,7 @@ import javafx.stage.Stage;
  *
  * @author janni
  */
-public class ErrorController implements Initializable {
+public class ErrorController extends ThemeableWindow implements Initializable {
 
     @FXML
     private Button btnClose;
@@ -35,5 +37,12 @@ public class ErrorController implements Initializable {
 
     public void setErrorMessage(String errorText) {
         lblErrorText.setText(errorText);
+    }
+
+    @Override
+    public void setTheme() {
+        Scene scene = btnClose.getScene();
+        scene.getStylesheets().clear();
+        scene.getStylesheets().add(super.getPref().get(ThemeableWindow.getCURRENTTHEME(), ""));
     }
 }
