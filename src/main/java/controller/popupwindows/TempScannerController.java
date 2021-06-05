@@ -58,20 +58,21 @@ public class TempScannerController extends ThemeableWindow implements Initializa
     private String size;
     @FXML
     private Button btnCancelScan;
-    TempfileModel model = new TempfileModel();
-    SearchEngine engine = new SearchEngine();
     @FXML
     private RadioButton chkQuickScan;
     @FXML
     private RadioButton chkDeepScan;
-    private boolean quickScan;
-    private double xOffset = 0;
-    private double yOffset = 0;
-    private Thread t1;
     @FXML
     private Button btnMinimize;
     @FXML
     private Button btnEditBlacklist;
+    //non FXML
+    private boolean quickScan;
+    private double xOffset = 0;
+    private double yOffset = 0;
+    private Thread searchThread;
+    TempfileModel model = new TempfileModel();
+    SearchEngine engine = new SearchEngine();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -87,10 +88,10 @@ public class TempScannerController extends ThemeableWindow implements Initializa
         progressTask.setVisible(true);
         taskSearch = getTaskSearchEngine();
         progressTask.progressProperty().bind(taskSearch.progressProperty());
-        t1 = new Thread(taskSearch);
-        t1.setDaemon(true);
-        t1.setPriority(Thread.MAX_PRIORITY);
-        t1.start();
+        searchThread = new Thread(taskSearch);
+        searchThread.setDaemon(true);
+        searchThread.setPriority(Thread.MAX_PRIORITY);
+        searchThread.start();
         taskSearch.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent t) {
@@ -129,7 +130,7 @@ public class TempScannerController extends ThemeableWindow implements Initializa
             stage.setTitle("Scan done");
             stage.show();
             controller.setTheme();
-            controller.loadList();
+            controller.loadTempfilesList();
         } catch (IOException e) {
             System.err.println(e);
         }
@@ -161,7 +162,7 @@ public class TempScannerController extends ThemeableWindow implements Initializa
                     }
                 }
                 model.setTempFiles(tempFiles);
-                model.setAccessDenied(engine.getAccessDenied());
+                model.setAccessDeniedFolders(engine.getAccessDenied());
                 return null;
             }
         };
@@ -181,7 +182,7 @@ public class TempScannerController extends ThemeableWindow implements Initializa
         progressTask.setVisible(false);
         if (taskSearch.isRunning()) {
             taskSearch.cancel();
-            t1.stop();
+            searchThread.stop();
         }
 
     }
