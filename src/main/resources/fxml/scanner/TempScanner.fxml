@@ -48,7 +48,7 @@
                         <Tooltip text="Searches for temporary files (your computer doesn't need them)" />
                      </tooltip>
                   </CheckBox>
-                  <CheckBox fx:id="chkSearchCache" mnemonicParsing="false" text="Search cache folders" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <CheckBox fx:id="chkSearchCache" mnemonicParsing="false" onAction="#showExperiencedUserOnlyInfo" text="Search cache folders" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <RadioButton fx:id="chkQuickScan" mnemonicParsing="false" text="Quick scan">
                      <tooltip>
                         <Tooltip text="Cleans specific folders and reads from earliers scans" />

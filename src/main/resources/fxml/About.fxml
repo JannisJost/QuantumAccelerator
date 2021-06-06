@@ -27,16 +27,6 @@
       </ImageView>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="4.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="lblTitle" text="About QuantumAccelerator" textFill="WHITE">
-               <font>
-                  <Font name="Verdana Pro Light" size="39.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblVersion" text="V 1.0 (Beta)" textFill="WHITE">
-               <font>
-                  <Font name="Sitka Display Italic" size="22.0" />
-               </font>
-            </Label>
             <Label text="Thank you for trusting QuantumAccelerator" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
@@ -44,6 +34,16 @@
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
+            </Label>
+            <Label fx:id="lblTitle" text="About QuantumAccelerator" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Pro Light" size="39.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblVersion" text="V 0.1 (Beta)" textFill="WHITE">
+               <font>
+                  <Font name="Sitka Display Italic" size="22.0" />
+               </font>
             </Label>
             <Label text="Developed by Dragxfly" textFill="WHITE" />
             <Label text="EmptyStandbyList by Wen Jia Liu " textFill="WHITE" />
