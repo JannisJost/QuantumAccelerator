@@ -36,31 +36,31 @@ public class GameboosterController implements Initializable {
     private Label lblGameboostStatus;
     @FXML
     private ToggleButton toggleBtnGameboost;
-
-    private Gamebooster gameboost;
     @FXML
     private ProgressIndicator progressBoost;
     @FXML
     private Button btnApplyCheckBoxes;
-    private boolean resetGPUPrio;
     @FXML
     private Button btnFreeStandbyRAM;
-    private final GameboosterTasks tasks = new GameboosterTasks();
-    private boolean canRunStandByCleaner = true;
-    private Task task;
     @FXML
     private CheckBox chkDelInstallersFromDownload;
     @FXML
     private GridPane gridSettingsDeactivateGamebooster;
     @FXML
     private VBox vboxGameboosterSwitch;
-    private Thread thread;
-    private Preferences prefs;
-    private boolean gameBoosterIsActive;
-    boolean resetPowerPlan;
-    private final ToggleSwitch tglswResetPowerPlan = new ToggleSwitch();
-    private final ToggleSwitch tglswCPUPrio = new ToggleSwitch();
+    //non FXML
+    private Task task;
     private Logo logo;
+    private Thread thread;
+    boolean resetPowerPlan;
+    private Preferences prefs;
+    private Gamebooster gameboost;
+    private boolean isResetGPUPrio;
+    private boolean gameBoosterIsActive;
+    private boolean canRunStandByCleaner = true;
+    private final ToggleSwitch tglswCPUPrio = new ToggleSwitch();
+    private final GameboosterTasks tasks = new GameboosterTasks();
+    private final ToggleSwitch tglswResetPowerPlan = new ToggleSwitch();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -87,7 +87,7 @@ public class GameboosterController implements Initializable {
     @FXML
     private void activateOrDeactivateGameboost(ActionEvent event) {
         resetPowerPlan = tglswResetPowerPlan.isActivated();
-        resetGPUPrio = tglswCPUPrio.isActivated();
+        isResetGPUPrio = tglswCPUPrio.isActivated();
         gameBoosterIsActive = toggleBtnGameboost.isSelected();
         prefs.putBoolean("GameboosterIsActive", gameBoosterIsActive);
         logo.setShowing(true, true);
@@ -135,7 +135,7 @@ public class GameboosterController implements Initializable {
         Task<Void> stopTask = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                gameboost.stopGameboost(resetPowerPlan, resetGPUPrio);
+                gameboost.stopGameboost(resetPowerPlan, isResetGPUPrio);
                 return null;
             }
         };
