@@ -85,7 +85,7 @@ public class RemoveLogsController extends ThemeableWindow implements Initializab
             @Override
             protected Void call() throws Exception {
                 SearchEngine searchEngine = new SearchEngine();
-                model.setLogFiles(searchEngine.searchForFilesWithExtension("C:\\", "log"));
+                model.setLogFiles(searchEngine.searchForFilesWithExtension("C:\\", ".log"));
                 return null;
             }
         };
