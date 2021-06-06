@@ -30,7 +30,7 @@ Will be added soon!
 
  * **How do I install QuantumAccelerator?**
 
-At the moment you'll need to download the jar from releases, but to be able to run it you'll need JavaFX (Openjfx) installed. I am working on an installer which will eliminate the need to have JavaFX installed.
+Just download the jar from releases, to be able to run it you'll need JavaFX (Openjfx) installed. If you have not installed JavaFX you can download the installer which is bigger but doesnt need Java or JavaFX installed and utilizes an Windows executable file wich can be run as administrator more easily.
 
 * **Some features do not work properly, what should I do?**
 
@@ -45,13 +45,28 @@ Some actions like measuring CPU temp, deleting files and some more require admin
 **CPU/GPU**: *Any capable of running Windows 10*
 
 
+## Support QuantumAccelerator
+
+If you like QuantumAccelerator and you want to support me you can do the following things:
+
+* Give this repository a star
+
+* Leave a good rating on SourceForge
+
+* Recommend QuantumAccelerator to your family and friends
+
+* (Financial support will be added later)
+
+
 ## Special thanks
 
 Feature requests and testing:              *Arial*
 
-EmptyStandbyList.exe:                      <a href="https://github.com/wj32" URL> *Wen Jia Liu aka. wj32* </a> <!-- link to wj32 github -->
+EmptyStandbyList.exe:                      <a href="https://github.com/wj32" URL> *Wen Jia Liu aka. wj32* </a> <!-- link to wj32's github -->
 
 Logo:                                       *Joshua B.*
+
+Icons:                                     <a href="https://icons8.com/" URL> *Icons8* </a>
 
 ## Contact
 Official Discord server: <a href="https://discord.gg/ERVeQdmt" URL>Join</a> <!-- Discord invitation link -->
