@@ -25,7 +25,7 @@ public class SearchEngine {
      *
      * @param startDirectory directory to start searching to buttom of file
      * system from
-     * @param toSearchFor String to search foldernames containing it
+     * @param toSearchFor lowercase String to search foldernames containing it
      * @return list of all folders which names contain toSearchFor
      */
     public LinkedList<String> searchFoldersContaining(String startDirectory, String toSearchFor) {
@@ -43,7 +43,7 @@ public class SearchEngine {
     public void searchFolders(String startDirectory, String toSearchFor) {
         if (!getChildren(startDirectory).isEmpty()) {
             for (String path : getFoldersOnly(getChildren(startDirectory))) {
-                if (path.contains(toSearchFor)) {
+                if (path.toLowerCase().endsWith(toSearchFor)) {
                     requested.add(path);
                 }
                 searchFolders(path, toSearchFor);
@@ -54,8 +54,11 @@ public class SearchEngine {
     public void searchFolders(String startDirectory, String[] toSearchFor) {
         if (!getChildren(startDirectory).isEmpty()) {
             for (String path : getFoldersOnly(getChildren(startDirectory))) {
-                if (Arrays.asList(toSearchFor).contains(path)) {
-                    requested.add(path);
+                for (int i = 0; i < toSearchFor.length - 1; i++) {
+                    if (path.toLowerCase().endsWith(toSearchFor[i])) {
+                        requested.add(path);
+                        break;
+                    }
                 }
                 searchFolders(path, toSearchFor);
             }
