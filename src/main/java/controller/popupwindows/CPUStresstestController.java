@@ -2,6 +2,7 @@ package controller.popupwindows;
 
 import ch.dragxfly.quantumaccelerator.Hardware.Benchmark.CPUBenchmark;
 import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
+import controller.popupwindows.warning.InfoWindow;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.prefs.BackingStoreException;
@@ -133,5 +134,13 @@ public class CPUStresstestController extends ThemeableWindow implements Initiali
             lblThreads.setText("Active threads: " + threads);
             lblCPUTemp.setText("CPU temp: " + cpuTemp + "℃");
         });
+    }
+
+    @FXML
+    private void warningMightOverheat(ActionEvent event) {
+        if (!chkStopIfTempHigh.isSelected()) {
+            boolean isDisable = !new InfoWindow().ShowInfoWindow("In very rare cases disabling this option might lead to overheating. If your system has overheating issues, you might wanna keep this option enabled");
+            chkStopIfTempHigh.setSelected(isDisable);
+        }
     }
 }
