@@ -30,19 +30,23 @@ Will be added soon!
 
  * **How do I install QuantumAccelerator?**
 
-Just download the jar from releases, to be able to run it you'll need JavaFX (Openjfx) installed. If you have not installed JavaFX you can download the installer which is bigger but doesnt need Java or JavaFX installed and utilizes an Windows executable file wich can be run as administrator more easily.
+Just download the jar from <a href="https://github.com/JannisJost/QuantumAccelerator/releases" URL>releases</a>, to be able to run it you'll need JavaFX (Openjfx) installed. If you have not installed JavaFX you can download the installer which is bigger but doesnt need Java or JavaFX installed and utilizes an Windows executable file wich can be run as administrator more easily.
 
 * **Some features do not work properly, what should I do?**
 
-Some actions like measuring CPU temp, deleting files and some more require admin permissions to properly work. Make sure you're runnning QuantumAccelerator as admin, in case your problem still persists, please report it to us with a detailed description of your problem.
+Some actions like measuring CPU temp, deleting files and some more require admin permissions to properly work. Make sure you're running QuantumAccelerator as admin, in case your problem still persists, please report it to me with a detailed description of your problem through issues or on the official Discord server.
 
 * **What are the system requirements?**
 
 **Operating system**: *Windows 10*
 
-**Java**: *Java 8 or newer with JavaFX/Openjfx (Java 8 is recommmended, because it comes with JavaFX)*
+**Java (jar only)**: *Java 8 or newer with JavaFX/Openjfx (Java 8 is recommmended, because it comes with JavaFX)*
 
 **CPU/GPU**: *Any capable of running Windows 10*
+
+* **How to compile QuantumAccelerator myself?**
+
+Open the code in NetBeans IDE 8.2 and compile it from there. If you want an exe file use the command "mvn jfx:native" (get more info about Zenjava Maven plugin from <a href="https://github.com/javafx-maven-plugin/javafx-maven-plugin" URL>here.</a>) with Java JDK 1.8
 
 
 ## Support QuantumAccelerator
@@ -57,6 +61,9 @@ If you like QuantumAccelerator and you want to support me you can do the followi
 
 * (Financial support will be added later)
 
+## Contribute
+
+Saddly you can not directly contribute at the moment. Visit again later for updates.
 
 ## Special thanks
 
