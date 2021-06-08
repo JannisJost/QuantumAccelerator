@@ -3,8 +3,7 @@ package controller.popupwindows;
 import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
 import animatefx.animation.Shake;
 import ch.dragxfly.quantumaccelerator.Executors.errorhandling.ErrorWindow;
-import controller.main.MainViewController;
-import java.awt.FileDialog;
+import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.FileOperations;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -13,7 +12,6 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.prefs.BackingStoreException;
-import java.util.prefs.Preferences;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import javafx.concurrent.Task;
@@ -75,7 +73,7 @@ public class ZipBombIdentifierController extends ThemeableWindow implements Init
         new Thread(chooseZip).start();
     }
 
-    @FXML
+    @FXML 
     private void closeWindow(ActionEvent event) {
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
@@ -189,7 +187,7 @@ public class ZipBombIdentifierController extends ThemeableWindow implements Init
         Dragboard db = event.getDragboard();
         if (db.hasFiles()) {
             File f = db.getFiles().get(0);
-            if (FilenameUtils.getExtension(f.getName()).equalsIgnoreCase("zip") && !lstZipFolders.getItems().contains(f.getAbsolutePath())) {
+            if (new FileOperations().getExtension(f.getName()).equalsIgnoreCase("zip") && !lstZipFolders.getItems().contains(f.getAbsolutePath())) {
                 listNotEmpty();
                 lstZipFolders.getItems().add(f.getAbsolutePath());
             } else {

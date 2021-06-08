@@ -48,7 +48,7 @@
                <VBox.margin>
                   <Insets left="20.0" right="20.0" />
                </VBox.margin></Slider>
-            <CheckBox fx:id="chkStopIfTempHigh" mnemonicParsing="false" selected="true" text="Stop if temp reaches: 80℃/176.00℉" />
+            <CheckBox fx:id="chkStopIfTempHigh" mnemonicParsing="false" onAction="#warningMightOverheat" selected="true" text="Stop if temp reaches: 80℃/176.00℉" />
             <Slider fx:id="sliderMaxTemp" blockIncrement="1.0" majorTickUnit="1.0" min="80.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" styleClass="sliderMaxTemp">
                <VBox.margin>
                   <Insets left="20.0" right="20.0" />

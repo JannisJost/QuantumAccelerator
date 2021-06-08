@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -18,8 +19,10 @@
          <children>
             <GridPane fx:id="gridSettings" hgap="10.0" VBox.vgrow="ALWAYS">
               <columnConstraints>
-                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="290.0" minWidth="10.0" prefWidth="255.0" />
-                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="391.0" minWidth="10.0" prefWidth="325.0" />
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="290.0" minWidth="0.0" prefWidth="187.0" />
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="391.0" minWidth="0.0" prefWidth="57.0" />
+                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="391.0" minWidth="10.0" prefWidth="201.0" />
+                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="391.0" minWidth="10.0" prefWidth="121.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -28,22 +31,27 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Disable MRT telemetry:">
+                  <Label text="MRT telemetry:">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label text="Disable CEIP Tasks:" GridPane.rowIndex="1">
+                  <Label text="CEIP Tasks:" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="21.0" prefWidth="258.0" text="Disable Diagnostic Tracking Service:" GridPane.rowIndex="2">
+                  <Label prefHeight="21.0" prefWidth="258.0" text="Diagnostic Tracking Service:" GridPane.rowIndex="2">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label text="Disable dmwappushservice:" GridPane.rowIndex="3">
+                  <Label text="dmwappushservice:" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label text="Wifi sense:" GridPane.columnIndex="2">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -67,6 +75,7 @@
          </padding></HBox>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <buttons>
+            <ProgressIndicator fx:id="progApplyingOptions" visible="false" />
             <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
           <Button fx:id="btnSaveAndApply" mnemonicParsing="false" onAction="#saveAndApply" text="Save and apply" />
         </buttons>
