@@ -22,9 +22,6 @@ Managing files and privacy settings is heavily trust based and in my opinion sho
      * Zip bomb detector
      * Create restore points
 
-## Screenshots
-
-Will be added soon!
 
 ## QA
 
@@ -64,6 +61,13 @@ If you like QuantumAccelerator and you want to support me you can do the followi
 ## Contribute
 
 Saddly you can not directly contribute at the moment. Visit again later for updates.
+
+## Screenshots
+
+![Mainscreen](https://github.com/JannisJost/QuantumAccelerator/blob/master/screenshots/Homescreen.png "Homescreen")
+![Darkmode](https://github.com/JannisJost/QuantumAccelerator/blob/master/screenshots/Darkmode.png "Darkmode")
+![System monitor](https://github.com/JannisJost/QuantumAccelerator/blob/master/screenshots/SystemMonitor.png "System monitor")
+
 
 ## Special thanks
 
