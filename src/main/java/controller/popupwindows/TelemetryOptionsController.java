@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -30,17 +31,22 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
     private Button btnCancel;
     @FXML
     private GridPane gridSettings;
+    @FXML
+    private ProgressIndicator progApplyingOptions;
     //non FXML
     private double xOffset = 0;
     private double yOffset = 0;
     private static final String KEY_CEIP = "CEIP";
     private static final String KEY_MRT = "MRT";
     private static final String KEY_PUSH_SERVICE = "pushservice";
+    private static final String KEY_TRACKING_SERVICES = "trackingservices";
+    private static final String KEY_WIFI_SENSE = "wifisense";
+    // toggle switches
     private final ToggleSwitch tglTrackingService = new ToggleSwitch();
     private final ToggleSwitch tglPushService = new ToggleSwitch();
     private final ToggleSwitch tglCEIPTasks = new ToggleSwitch();
     private final ToggleSwitch tglMRTTelemetry = new ToggleSwitch();
-    private static final String KEY_TRACKING_SERVICES = "trackingservices";
+    private final ToggleSwitch tglWifiSense = new ToggleSwitch();
     private final Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
 
     @Override
@@ -49,10 +55,12 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
         tglPushService.setActivated(prefs.getBoolean(KEY_PUSH_SERVICE, false));
         tglCEIPTasks.setActivated(prefs.getBoolean(KEY_CEIP, false));
         tglMRTTelemetry.setActivated(prefs.getBoolean(KEY_MRT, false));
+        tglWifiSense.setActivated(prefs.getBoolean(KEY_WIFI_SENSE, false));
         gridSettings.add(tglMRTTelemetry, 1, 0);
         gridSettings.add(tglCEIPTasks, 1, 1);
         gridSettings.add(tglTrackingService, 1, 2);
         gridSettings.add(tglPushService, 1, 3);
+        gridSettings.add(tglWifiSense, 3, 0);
     }
 
     @FXML
@@ -100,11 +108,14 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
         prefs.putBoolean(KEY_MRT, tglMRTTelemetry.isActivated());
         prefs.putBoolean(KEY_PUSH_SERVICE, tglPushService.isActivated());
         prefs.putBoolean(KEY_CEIP, tglCEIPTasks.isActivated());
+        prefs.putBoolean(KEY_WIFI_SENSE, tglWifiSense.isActivated());
         TelemetryBlocker blocker = new TelemetryBlocker();
-        blocker.blockTelemetry(this, tglMRTTelemetry.isActivated(), tglCEIPTasks.isActivated(), tglTrackingService.isActivated(), tglPushService.isActivated());
+        blocker.blockTelemetry(this, tglMRTTelemetry.isActivated(), tglCEIPTasks.isActivated(), tglTrackingService.isActivated(), tglPushService.isActivated(), tglWifiSense.isActivated());
     }
 
     public void setApplyingState(boolean isApplying) {
+        progApplyingOptions.setVisible(isApplying);
+        gridSettings.setDisable(isApplying);
         btnClose.setDisable(isApplying);
         btnCancel.setDisable(isApplying);
     }

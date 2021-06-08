@@ -14,21 +14,22 @@ public class TelemetryBlocker {
     /**
      *
      * @param invocator invocator of this instance
-     * @param isDisableMRT defines wether to activate/deactivate "MRT"
-     * @param isDisableCEIP defines wether to activate/deactivate "CEIP"
-     * @param isDisableTrackingService defines wether to activate/deactivate
+     * @param isEnabledMRT defines wether to activate/deactivate "MRT"
+     * @param isEnabledCEIP defines wether to activate/deactivate "CEIP"
+     * @param isEnabledTrackingService defines wether to activate/deactivate
      * "Tracking Service"
-     * @param isDisablePushService defines wether to activate/deactivate "Push
+     * @param isEnabledPushService defines wether to activate/deactivate "Push
      * Services"
      */
-    public void blockTelemetry(TelemetryOptionsController invocator, boolean isDisableMRT, boolean isDisableCEIP, boolean isDisableTrackingService, boolean isDisablePushService) {
+    public void blockTelemetry(TelemetryOptionsController invocator, boolean isEnabledMRT, boolean isEnabledCEIP, boolean isEnabledTrackingService, boolean isEnabledPushService, boolean isEnabledWifiSense) {
         telemetryBlockerTask = new Task() {
             @Override
             protected Object call() throws Exception {
-                setMRT(isDisableMRT);
-                setCEIP(isDisableCEIP);
-                setTrackingService(isDisableTrackingService);
-                setPushService(isDisablePushService);
+                setMRT(isEnabledMRT);
+                setCEIP(isEnabledCEIP);
+                setTrackingService(isEnabledTrackingService);
+                setPushService(isEnabledPushService);
+                setWifiSense(isEnabledWifiSense);
                 return null;
             }
         };
@@ -38,24 +39,26 @@ public class TelemetryBlocker {
         new Thread(telemetryBlockerTask).start();
     }
 
-    private void setMRT(boolean disableMRT) {
-        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("New-ItemProperty -Path \"HKLM:\\Software\\Policies\\Microsoft\\MRT\" -Name DontReportInfectionInformation -Value " + (disableMRT ? "0" : "1") + " -Force");
+    private void setMRT(boolean isEnabledMRT) {
+        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("New-ItemProperty -Path \"HKLM:\\Software\\Policies\\Microsoft\\MRT\" -Name DontReportInfectionInformation -Value " + (isEnabledMRT ? "1" : "0") + " -Force");
     }
 
-    private void setCEIP(boolean disableCEIP) {
-        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Get-ScheduledTask -TaskPath \"\\Microsoft\\Windows\\Customer Experience Improvement Program\\\" | " + (disableCEIP ? "Disable-ScheduledTask" : "Enable-ScheduledTask"));
+    private void setCEIP(boolean isEnabledCEIP) {
+        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Get-ScheduledTask -TaskPath \"\\Microsoft\\Windows\\Customer Experience Improvement Program\\\" | " + (isEnabledCEIP ? "Enable-ScheduledTask" : "Disable-ScheduledTask"));
     }
 
-    private void setTrackingService(boolean disableTrackingService) {
-        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Stop-Service -Name DiagTrack");
+    private void setTrackingService(boolean isEnabledTrackingService) {
         com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Set-Service -Name DiagTrack -StartupType "
-                + (disableTrackingService ? "Disable" : "Automatic"));
+                + (isEnabledTrackingService ? "Automatic" : "Disable"));
     }
 
     private void setPushService(boolean disablePushService) {
-        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Stop-Service -Name dmwappushservice");
         com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Set-Service -Name dmwappushservice -StartupType "
                 + (disablePushService ? "Disable" : "Automatic"));
+    }
+
+    private void setWifiSense(boolean isEnabledWifiSense) {
+        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("New-ItemProperty -Path \"HKLM:\\SOFTWARE\\Microsoft\\WcmSvc\\wifinetworkmanager\\config\" -Name AutoConnectAllowedOEM -Value " + (isEnabledWifiSense ? "1" : "0") + "-Force");
     }
 
 }
