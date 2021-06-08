@@ -73,7 +73,7 @@ public class ZipBombIdentifierController extends ThemeableWindow implements Init
         new Thread(chooseZip).start();
     }
 
-    @FXML 
+    @FXML
     private void closeWindow(ActionEvent event) {
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
@@ -198,9 +198,7 @@ public class ZipBombIdentifierController extends ThemeableWindow implements Init
 
     @FXML
     private void dragOverList(DragEvent event) {
-        if (event.getDragboard().hasFiles()) {
-            event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
-        }
+        event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
         Dragboard db = event.getDragboard();
         if (event.getDragboard().hasFiles()) {
             File f = db.getFiles().get(0);
