@@ -36,21 +36,24 @@ public class PrivacyController implements Initializable {
     private CheckBox chkSelectAll;
     @FXML
     private Button btnDeactivateCam;
-    private final PrivacyTasks tasks = new PrivacyTasks();
-    private final Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
-    private final static String CAMISACTIVE = "camera";
-    boolean camIsActive;
-    private Task t;
     @FXML
     private VBox vboxCheckboxes;
-    private final CustomToolTip toolTip = new CustomToolTip();
     @FXML
     private Button btnFileShredder;
     @FXML
     private Button btnTelemetryOptions;
     @FXML
     private Button btnRun;
+    @FXML
+    private Button btnPasswordGenerator;
+    //non FXML
+    private Task t;
+    boolean camIsActive;
     private PrivacyExecutor executor;
+    private final static String CAMISACTIVE = "camera";
+    private final PrivacyTasks tasks = new PrivacyTasks();
+    private final CustomToolTip toolTip = new CustomToolTip();
+    private final Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -110,6 +113,11 @@ public class PrivacyController implements Initializable {
     @FXML
     private void applyPrivacyOptions(ActionEvent event) {
         boolean deleteDNSCache = chkDeleteDNSCache.isSelected();
+    }
+
+    @FXML
+    private void showPasswordGenerator(ActionEvent event) {
+        new ViewOpener().openThemeableView("/fxml/popup/passwordgenerator/PasswordGenerator.fxml", "Password generator", false);
     }
 
 }

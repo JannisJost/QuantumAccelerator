@@ -57,8 +57,9 @@
                         <Insets top="5.0" />
                      </padding>
                      <children>
-                        <Button fx:id="btnDeactivateCam" mnemonicParsing="false" onAction="#activateOrDeactivateCam" prefHeight="50.0" prefWidth="285.0" text="Deactivate/activate cam" />
                         <Button fx:id="btnTelemetryOptions" mnemonicParsing="false" onAction="#showTelemetryOptions" prefHeight="50.0" prefWidth="285.0" text="Telemetry options" />
+                        <Button fx:id="btnPasswordGenerator" layoutX="15.0" layoutY="135.0" mnemonicParsing="false" onAction="#showPasswordGenerator" prefHeight="50.0" prefWidth="285.0" text="Password generator" />
+                        <Button fx:id="btnDeactivateCam" mnemonicParsing="false" onAction="#activateOrDeactivateCam" prefHeight="50.0" prefWidth="285.0" text="Deactivate/activate cam" />
                         <Button fx:id="btnFileShredder" mnemonicParsing="false" prefHeight="50.0" prefWidth="285.0" text="File shredder" />
                      </children></VBox>
                </children>
