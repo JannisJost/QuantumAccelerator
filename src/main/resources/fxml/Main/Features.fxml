@@ -32,7 +32,7 @@
       </VBox>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <buttons>
-          <Button mnemonicParsing="false" text="Patchnotes" textFill="WHITE" />
+          <Button fx:id="btnPatchnotes" mnemonicParsing="false" onAction="#openPatchnotes" text="Patchnotes" textFill="WHITE" />
         </buttons>
          <padding>
             <Insets right="5.0" />

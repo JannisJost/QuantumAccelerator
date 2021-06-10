@@ -31,7 +31,7 @@
             </HBox>
          </children>
       </Pane>
-      <LineChart fx:id="lineChartCPUUsage" animated="false" createSymbols="false" layoutX="6.0" layoutY="50.0" legendVisible="false" prefHeight="430.0" prefWidth="634.0" title="CPU" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="50.0">
+      <LineChart fx:id="lineChartCPUUsage" alternativeColumnFillVisible="true" animated="false" createSymbols="false" layoutX="6.0" layoutY="50.0" prefHeight="430.0" prefWidth="634.0" title="CPU" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="50.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>

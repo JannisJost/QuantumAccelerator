@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.prefs.BackingStoreException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import javafx.concurrent.Task;
@@ -172,11 +171,6 @@ public class ZipBombIdentifierController extends ThemeableWindow implements Init
     @Override
 
     public void setTheme() {
-        try {
-            super.getPref().sync();
-        } catch (BackingStoreException e) {
-
-        }
         Scene scene = btnClose.getScene();
         scene.getStylesheets().clear();
         scene.getStylesheets().add(super.getPref().get(ThemeableWindow.getCURRENTTHEME(), ""));

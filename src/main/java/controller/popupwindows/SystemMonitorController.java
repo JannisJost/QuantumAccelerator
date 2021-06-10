@@ -106,7 +106,9 @@ public class SystemMonitorController extends ThemeableWindow implements Initiali
     private void fillChart() {
         lineChartCPUUsage.getData().clear();
         XYChart.Series seriesLoad = new XYChart.Series();
+        seriesLoad.setName("Load");
         XYChart.Series seriesTemp = new XYChart.Series();
+        seriesTemp.setName("Temperature");
         for (Pair<Double, String> value : cpuUsageHistory) {
             seriesLoad.getData().add(new XYChart.Data(value.getValue(), value.getKey()));
         }

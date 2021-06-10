@@ -1,5 +1,5 @@
 .root{
--fx-background-color: rgba(48,48, 48, 0.3);
+-fx-background-color: rgba(48,48, 48, 0.4);
 }
 .button{
 	-fx-text-fill: #09ff00;
@@ -21,6 +21,11 @@
     -fx-stroke: rgba(48,48, 48, 0.6);
 }
 .default-color0.chart-series-line { -fx-stroke: #09ff00; }
+.default-color0.chart-line-symbol{-fx-background-color: #09ff00, #09ff00;}
+.default-color1.chart-series-line { -fx-stroke: #fc0a83; }
+.default-color1.chart-line-symbol{-fx-background-color: #fc0a83, #fc0a83;}
+
+
 .chart-plot-background {
     -fx-background-color:rgba(48,48, 48, 0.3);
 }
@@ -29,6 +34,9 @@
 }
 .chart-horizontal-grid-lines {
     -fx-stroke: rgba(255,255, 255, 0.6);
+}
+.chart-legend {
+   -fx-background-color:  rgba(255,255, 255, 0.2);
 }
 .hbox{
 	-fx-background-color: transparent;
