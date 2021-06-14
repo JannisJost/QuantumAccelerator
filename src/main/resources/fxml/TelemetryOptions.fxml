@@ -56,6 +56,11 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
+                  <Label text="Send maleware samples to Microsoft:" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
                </children>
                <padding>
                   <Insets bottom="40.0" />

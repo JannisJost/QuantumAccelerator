@@ -41,26 +41,31 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
     private static final String KEY_PUSH_SERVICE = "pushservice";
     private static final String KEY_TRACKING_SERVICES = "trackingservices";
     private static final String KEY_WIFI_SENSE = "wifisense";
+    private static final String SEND_MALEWARE_SAMPLES = "sendmalewaresamples";
+
     // toggle switches
     private final ToggleSwitch tglTrackingService = new ToggleSwitch();
     private final ToggleSwitch tglPushService = new ToggleSwitch();
     private final ToggleSwitch tglCEIPTasks = new ToggleSwitch();
     private final ToggleSwitch tglMRTTelemetry = new ToggleSwitch();
     private final ToggleSwitch tglWifiSense = new ToggleSwitch();
+    private final ToggleSwitch tglSendMalewareSamples = new ToggleSwitch();
     private final Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tglTrackingService.setActivated(prefs.getBoolean(KEY_TRACKING_SERVICES, false));
-        tglPushService.setActivated(prefs.getBoolean(KEY_PUSH_SERVICE, false));
-        tglCEIPTasks.setActivated(prefs.getBoolean(KEY_CEIP, false));
-        tglMRTTelemetry.setActivated(prefs.getBoolean(KEY_MRT, false));
+        tglTrackingService.setActivated(prefs.getBoolean(KEY_TRACKING_SERVICES, true));
+        tglPushService.setActivated(prefs.getBoolean(KEY_PUSH_SERVICE, true));
+        tglCEIPTasks.setActivated(prefs.getBoolean(KEY_CEIP, true));
+        tglMRTTelemetry.setActivated(prefs.getBoolean(KEY_MRT, true));
         tglWifiSense.setActivated(prefs.getBoolean(KEY_WIFI_SENSE, false));
+        tglSendMalewareSamples.setActivated(prefs.getBoolean(SEND_MALEWARE_SAMPLES, true));
         gridSettings.add(tglMRTTelemetry, 1, 0);
         gridSettings.add(tglCEIPTasks, 1, 1);
         gridSettings.add(tglTrackingService, 1, 2);
         gridSettings.add(tglPushService, 1, 3);
         gridSettings.add(tglWifiSense, 3, 0);
+        gridSettings.add(tglSendMalewareSamples, 3, 1);
     }
 
     @FXML
@@ -104,13 +109,14 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
     @FXML
     private void saveAndApply(ActionEvent event) {
         setApplyingState(true);
+        prefs.putBoolean(SEND_MALEWARE_SAMPLES, tglSendMalewareSamples.isActivated());
         prefs.putBoolean(KEY_TRACKING_SERVICES, tglTrackingService.isActivated());
         prefs.putBoolean(KEY_MRT, tglMRTTelemetry.isActivated());
         prefs.putBoolean(KEY_PUSH_SERVICE, tglPushService.isActivated());
         prefs.putBoolean(KEY_CEIP, tglCEIPTasks.isActivated());
         prefs.putBoolean(KEY_WIFI_SENSE, tglWifiSense.isActivated());
         TelemetryBlocker blocker = new TelemetryBlocker();
-        blocker.blockTelemetry(this, tglMRTTelemetry.isActivated(), tglCEIPTasks.isActivated(), tglTrackingService.isActivated(), tglPushService.isActivated(), tglWifiSense.isActivated());
+        blocker.blockTelemetry(this, tglMRTTelemetry.isActivated(), tglCEIPTasks.isActivated(), tglTrackingService.isActivated(), tglPushService.isActivated(), tglWifiSense.isActivated(), tglSendMalewareSamples.isActivated());
     }
 
     public void setApplyingState(boolean isApplying) {

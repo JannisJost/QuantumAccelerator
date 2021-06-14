@@ -20,8 +20,11 @@ public class TelemetryBlocker {
      * "Tracking Service"
      * @param isEnabledPushService defines wether to activate/deactivate "Push
      * Services"
+     * @param isEnabledWifiSense defines wether to activate/deactivate "Wifi
+     * Sense"
      */
-    public void blockTelemetry(TelemetryOptionsController invocator, boolean isEnabledMRT, boolean isEnabledCEIP, boolean isEnabledTrackingService, boolean isEnabledPushService, boolean isEnabledWifiSense) {
+    public void blockTelemetry(TelemetryOptionsController invocator, boolean isEnabledMRT, boolean isEnabledCEIP,
+            boolean isEnabledTrackingService, boolean isEnabledPushService, boolean isEnabledWifiSense, boolean isEnabledSendMalewareSamples) {
         telemetryBlockerTask = new Task() {
             @Override
             protected Object call() throws Exception {
@@ -30,6 +33,7 @@ public class TelemetryBlocker {
                 setTrackingService(isEnabledTrackingService);
                 setPushService(isEnabledPushService);
                 setWifiSense(isEnabledWifiSense);
+                setSendMalewareSamples(isEnabledSendMalewareSamples);
                 return null;
             }
         };
@@ -61,4 +65,7 @@ public class TelemetryBlocker {
         com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("New-ItemProperty -Path \"HKLM:\\SOFTWARE\\Microsoft\\WcmSvc\\wifinetworkmanager\\config\" -Name AutoConnectAllowedOEM -Value " + (isEnabledWifiSense ? "1" : "0") + "-Force");
     }
 
+    private void setSendMalewareSamples(boolean isEnabledSendMalewareSamples) {
+        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("New-ItemProperty -Path \"HKLM:\\Software\\Policies\\Microsoft\\Windows Defender\\Spynet\" -Name SubmitSamplesConsent -Value " + (isEnabledSendMalewareSamples ? "1" : "2") + " -Force");
+    }
 }
