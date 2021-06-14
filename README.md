@@ -5,6 +5,8 @@ This application is not yet final and may lead to system damage although we do o
 
 # QuantumAccelerator
 
+[![Download QuantumAccelerator](https://img.shields.io/sourceforge/dt/quantumaccelerator.svg)](https://sourceforge.net/projects/quantumaccelerator/files/latest/download)
+
 QuantumAccelerator is a free and open source application to easily manage Windows 10 in one place.
 With this application I want to allow less tech experienced people to be able to manage their computer, especially when it comes to privacy. It isn't made with only less tech experienced people in mind, it accelerates the process of managing the operating system for everyone, and more advanced features will be added later.
 
@@ -27,11 +29,13 @@ Managing files and privacy settings is heavily trust based and in my opinion sho
 
  * **How do I install QuantumAccelerator?**
 
-Just download the jar from <a href="https://github.com/JannisJost/QuantumAccelerator/releases" URL>releases</a>, to be able to run it you'll need JavaFX (Openjfx) installed. If you have not installed JavaFX you can download the installer which is bigger but doesnt need Java or JavaFX installed and utilizes an Windows executable file wich can be run as administrator more easily.
+Just download the jar from <a href="https://github.com/JannisJost/QuantumAccelerator/releases" URL>releases</a>, to be able to run it you'll need JavaFX (Openjfx) installed. If you have not installed JavaFX you can download the installer which is bigger but doesnt need Java or JavaFX installed and utilizes an Windows executable file wich can be run as administrator more easily. You can also download QuantumAccelerator from Sourceforge just click on the button bellow.
+
+[![Download QuantumAccelerator](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/quantumaccelerator/files/latest/download)
 
 * **Some features do not work properly, what should I do?**
 
-Some actions like measuring CPU temp, deleting files and some more require admin permissions to properly work. Make sure you're running QuantumAccelerator as admin, in case your problem still persists, please report it to me with a detailed description of your problem through issues or on the official Discord server.
+Some actions like measuring CPU temp, deleting files and some more require admin permissions to properly work. Make sure you're running QuantumAccelerator as admin, in case your problem still persists, please report it to me with a detailed description of your problem through issues or on the official Discord server. Also make sure to set your PowerShell execution policies to "RemoteSigned".
 
 * **What are the system requirements?**
 
