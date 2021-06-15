@@ -45,10 +45,9 @@ Some actions like measuring CPU temp, deleting files and some more require admin
 
 **CPU/GPU**: *Any capable of running Windows 10*
 
-* **How to compile QuantumAccelerator myself?**
+* **How can I compile QuantumAccelerator myself?**
 
-Open the code in NetBeans IDE 8.2 and compile it from there. If you want an exe file use the command "mvn jfx:native" (get more info about Zenjava Maven plugin from <a href="https://github.com/javafx-maven-plugin/javafx-maven-plugin" URL>here.</a>) with Java JDK 1.8
-
+Open the code in NetBeans IDE 8.2 and compile it from there. If you want an exe file use the command "mvn jfx:native" (get more info about Zenjava Maven plugin from <a href="https://github.com/javafx-maven-plugin/javafx-maven-plugin" URL>here</a>) with Java JDK 1.8. If you want to create an installer with <a href="https://github.com/jrsoftware/issrc" URL>INNO Setup</a> yourself, take a look at the <a href="https://github.com/JannisJost/QuantumAccelerator/tree/master/installer" URL>installer folder</a>.
 
 ## Support QuantumAccelerator
 
@@ -74,6 +73,8 @@ Saddly you can not directly contribute at the moment. Visit again later for upda
 
 
 ## Special thanks
+
+First of all thank you all for using and trusting QuantumAccelerator. Without you this project would not be the same!
 
 Feature requests and testing:              *Arial*
 
