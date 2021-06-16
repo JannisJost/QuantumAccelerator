@@ -3,7 +3,7 @@
 #define MyAppVersion "0.2-beta"
 #define MyAppPublisher "Dragxfly"
 #define MyAppURL "https://github.com/JannisJost/QuantumAccelerator"
-#define MyAppExeName "QuantumAccelerator_setup_02_beta.exe"
+#define MyAppExeName "QuantumAccelerator.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
