@@ -24,6 +24,9 @@ Managing files and privacy settings is heavily trust based and in my opinion sho
      * Zip bomb detector
      * Create restore points
 
+## Download
+
+[![Download QuantumAccelerator](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/quantumaccelerator/files/latest/download)
 
 ## QA
 
@@ -31,7 +34,6 @@ Managing files and privacy settings is heavily trust based and in my opinion sho
 
 Just download the jar from <a href="https://github.com/JannisJost/QuantumAccelerator/releases" URL>releases</a>, to be able to run it you'll need JavaFX (Openjfx) installed. If you have not installed JavaFX you can download the installer which is bigger but doesnt need Java or JavaFX installed and utilizes an Windows executable file wich can be run as administrator more easily. You can also download QuantumAccelerator from Sourceforge just click on the button bellow.
 
-[![Download QuantumAccelerator](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/quantumaccelerator/files/latest/download)
 
 * **Some features do not work properly, what should I do?**
 
@@ -45,10 +47,9 @@ Some actions like measuring CPU temp, deleting files and some more require admin
 
 **CPU/GPU**: *Any capable of running Windows 10*
 
-* **How to compile QuantumAccelerator myself?**
+* **How can I compile QuantumAccelerator myself?**
 
-Open the code in NetBeans IDE 8.2 and compile it from there. If you want an exe file use the command "mvn jfx:native" (get more info about Zenjava Maven plugin from <a href="https://github.com/javafx-maven-plugin/javafx-maven-plugin" URL>here.</a>) with Java JDK 1.8
-
+Open the code in NetBeans IDE 8.2 and compile it from there. If you want an exe file use the command "mvn jfx:native" (get more info about Zenjava Maven plugin from <a href="https://github.com/javafx-maven-plugin/javafx-maven-plugin" URL>here</a>) with Java JDK 1.8. If you want to create an installer with <a href="https://github.com/jrsoftware/issrc" URL>INNO Setup</a> yourself, take a look at the <a href="https://github.com/JannisJost/QuantumAccelerator/tree/master/installer" URL>installer folder</a>.
 
 ## Support QuantumAccelerator
 
@@ -74,6 +75,8 @@ Saddly you can not directly contribute at the moment. Visit again later for upda
 
 
 ## Special thanks
+
+First of all thank you all for using and trusting QuantumAccelerator. Without you this project would not be the same!
 
 Feature requests and testing:              *Arial*
 
