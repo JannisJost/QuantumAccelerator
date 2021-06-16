@@ -24,6 +24,9 @@ Managing files and privacy settings is heavily trust based and in my opinion sho
      * Zip bomb detector
      * Create restore points
 
+## Download
+
+[![Download QuantumAccelerator](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/quantumaccelerator/files/latest/download)
 
 ## QA
 
@@ -31,7 +34,6 @@ Managing files and privacy settings is heavily trust based and in my opinion sho
 
 Just download the jar from <a href="https://github.com/JannisJost/QuantumAccelerator/releases" URL>releases</a>, to be able to run it you'll need JavaFX (Openjfx) installed. If you have not installed JavaFX you can download the installer which is bigger but doesnt need Java or JavaFX installed and utilizes an Windows executable file wich can be run as administrator more easily. You can also download QuantumAccelerator from Sourceforge just click on the button bellow.
 
-[![Download QuantumAccelerator](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/quantumaccelerator/files/latest/download)
 
 * **Some features do not work properly, what should I do?**
 
