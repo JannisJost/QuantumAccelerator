@@ -64,10 +64,12 @@
                                       <rowConstraints>
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
                                           <Label text="Reset power plan (rec)" />
                                           <Label text="Reset CPU priority (rec)" GridPane.rowIndex="1" />
+                                          <Label text="Reset SysMain" GridPane.rowIndex="2" />
                                        </children>
                                     </GridPane>
                                  </children>

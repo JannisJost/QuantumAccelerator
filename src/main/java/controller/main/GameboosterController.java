@@ -56,18 +56,22 @@ public class GameboosterController implements Initializable {
     private Preferences prefs;
     private Gamebooster gameboost;
     private boolean isResetGPUPrio;
+    private boolean isResetSysMain;
     private boolean gameBoosterIsActive;
     private boolean canRunStandByCleaner = true;
     private final ToggleSwitch tglswCPUPrio = new ToggleSwitch();
     private final GameboosterTasks tasks = new GameboosterTasks();
+    private final ToggleSwitch tglswResetSysMain = new ToggleSwitch();
     private final ToggleSwitch tglswResetPowerPlan = new ToggleSwitch();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tglswResetPowerPlan.setActivated(true);
         tglswCPUPrio.setActivated(true);
+        tglswResetSysMain.setActivated(true);
         gridSettingsDeactivateGamebooster.add(tglswResetPowerPlan, 1, 0);
         gridSettingsDeactivateGamebooster.add(tglswCPUPrio, 1, 1);
+        gridSettingsDeactivateGamebooster.add(tglswResetSysMain, 1, 2);
         gameBoosterIsActive = toggleBtnGameboost.isSelected();
         gameboost = new Gamebooster();
         prefs = Preferences.userRoot().node(this.getClass().getName());
@@ -88,6 +92,7 @@ public class GameboosterController implements Initializable {
     private void activateOrDeactivateGameboost(ActionEvent event) {
         resetPowerPlan = tglswResetPowerPlan.isActivated();
         isResetGPUPrio = tglswCPUPrio.isActivated();
+        isResetSysMain = tglswResetSysMain.isActivated();
         gameBoosterIsActive = toggleBtnGameboost.isSelected();
         prefs.putBoolean("GameboosterIsActive", gameBoosterIsActive);
         logo.setShowing(true, true);
@@ -135,7 +140,7 @@ public class GameboosterController implements Initializable {
         Task<Void> stopTask = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                gameboost.stopGameboost(resetPowerPlan, isResetGPUPrio);
+                gameboost.stopGameboost(resetPowerPlan, isResetGPUPrio, isResetSysMain);
                 return null;
             }
         };

@@ -14,6 +14,7 @@ public class Gamebooster {
     private final PowerShell powershell = new PowerShell();
 
     public void runGameboost() throws InterruptedException, IOException {
+        disableSysMain();
         runUltimatePowerPowerShell();
         deactivateBackgroundApps();
         increaseGPUPriotity();
@@ -21,7 +22,7 @@ public class Gamebooster {
         stopWindowsSearch();
     }
 
-    public void stopGameboost(boolean isResetPowerPlan, boolean isResetGPUPrio) throws IOException, InterruptedException {
+    public void stopGameboost(boolean isResetPowerPlan, boolean isResetGPUPrio, boolean resetSysMain) throws IOException, InterruptedException {
         if (isResetPowerPlan) {
             runDeactivateUltimatePowerShell();
         }
@@ -29,6 +30,9 @@ public class Gamebooster {
         reactivateBackgroundApps();
         if (isResetGPUPrio) {
             decreaseGPUPriotityToNormal();
+        }
+        if (resetSysMain) {
+            enableSysMain();
         }
         activateWindowsVisualFX();
         startWindowsSearch();
@@ -61,6 +65,15 @@ public class Gamebooster {
     private void showJOptionPane(String title, String message) {
         JOptionPane.showMessageDialog(null, title, message, JOptionPane.INFORMATION_MESSAGE);
 
+    }
+    //Disables superfetcher and prefetcher
+
+    private void disableSysMain() {
+        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Stop-Service -Force -Name “SysMain”; Set-Service -Name “SysMain” -StartupType Disabled");
+    }
+
+    private void enableSysMain() {
+        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Start-Service -Force -Name “SysMain”; Set-Service -Name “SysMain” -StartupType Automatic");
     }
 
     private void runUltimatePowerPowerShell() throws InterruptedException, IOException {
