@@ -7,7 +7,10 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -19,16 +22,52 @@
                <children>
                   <Label text="Security" />
                   <Separator prefWidth="200.0" />
-                  <Button fx:id="btnCreateRestorepoint" mnemonicParsing="false" onAction="#openCreateRestorePoint" prefHeight="50.0" prefWidth="285.0" text="Create restorepoint" />
-                  <Button fx:id="btnEnableGodmode" mnemonicParsing="false" onAction="#enableGodmode" prefHeight="50.0" prefWidth="285.0" text="Enable Godmode">
-                     <tooltip>
-                        <Tooltip text="Creates a &quot;Godemode&quot; folder on your desktop which stores shortcuts to settings in it" />
-                     </tooltip>
-                  </Button>
-                  <HBox alignment="CENTER_LEFT" spacing="5.0">
+                  <HBox alignment="CENTER" spacing="5.0" />
+                  <GridPane hgap="5.0" vgap="10.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="260.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="19.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
                      <children>
-                        <Button fx:id="btnZipBombIdentifier" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#openZipBombIdentifier" prefHeight="50.0" prefWidth="263.0" text="Zip bomb identifier" />
-                        <Button fx:id="btnHelpZipBombIdentifier" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#showToolTipZipBomb" prefHeight="20.0" prefWidth="20.0" styleClass="btnHelp" text="?">
+                        <Button fx:id="btnCreateRestorepoint" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openCreateRestorePoint" prefHeight="50.0" prefWidth="285.0" text="Create restorepoint" />
+                        <Button fx:id="btnEnableGodmode" mnemonicParsing="false" onAction="#enableGodmode" prefHeight="50.0" prefWidth="285.0" text="Enable Godmode" GridPane.rowIndex="1">
+                           <tooltip>
+                              <Tooltip text="Creates a &quot;Godemode&quot; folder on your desktop which stores shortcuts to settings in it" />
+                           </tooltip>
+                        </Button>
+                        <Button fx:id="btnZipBombIdentifier" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#openZipBombIdentifier" prefHeight="50.0" prefWidth="263.0" text="Zip bomb identifier" GridPane.rowIndex="2" />
+                        <Button fx:id="btnHelpZipBombIdentifier" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#showToolTipZipBomb" prefHeight="20.0" prefWidth="20.0" styleClass="btnHelp" text="?" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="btnOrganizeDesktop" mnemonicParsing="false" onAction="#organizeDesktop" prefHeight="50.0" prefWidth="285.0" text="Organize desktop" GridPane.rowIndex="3" />
+                        <Button fx:id="btnHelpOrganizeDesktop" layoutX="276.0" layoutY="145.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#showToolTipOrganizeDesktop" prefHeight="20.0" prefWidth="20.0" styleClass="btnHelp" text="?" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="btnHelpGodmode" layoutX="276.0" layoutY="145.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#ShowToolTipGodmode" prefHeight="20.0" prefWidth="20.0" styleClass="btnHelp" text="?" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="btnHelpRestorepoint" layoutX="276.0" layoutY="85.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#showToolTipRestorepoint" prefHeight="20.0" prefWidth="20.0" styleClass="btnHelp" text="?" GridPane.columnIndex="1">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -37,8 +76,7 @@
                            </cursor>
                         </Button>
                      </children>
-                  </HBox>
-                  <Button fx:id="btnOrganizeDesktop" mnemonicParsing="false" onAction="#organizeDesktop" prefHeight="50.0" prefWidth="285.0" text="Organize desktop" />
+                  </GridPane>
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
@@ -48,7 +86,29 @@
                <children>
                   <Label text="Computer testing" />
                   <Separator prefWidth="200.0" />
-                  <Button fx:id="btnCreateCPULoad" mnemonicParsing="false" onAction="#generateCPULoad" prefHeight="50.0" prefWidth="285.0" text="CPU stress test" />
+                  <GridPane hgap="5.0" vgap="10.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="260.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="19.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button fx:id="btnHelpStressTest" layoutX="276.0" layoutY="85.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#showToolTipStressTest" prefHeight="20.0" prefWidth="20.0" styleClass="btnHelp" text="?" GridPane.columnIndex="1">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="btnCreateCPULoad" mnemonicParsing="false" onAction="#generateCPULoad" prefHeight="50.0" prefWidth="285.0" text="CPU stress test" />
+                     </children>
+                  </GridPane>
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />

@@ -2,7 +2,8 @@ package controller.main;
 
 import ch.dragxfly.quantumaccelerator.Executors.PrivacyExecutor;
 import ch.dragxfly.quantumaccelerator.tasks.PrivacyTasks;
-import ch.dragxfly.quantumaccelerator.Style.CustomToolTip;
+import ch.dragxfly.quantumaccelerator.CustomControls.CustomToolTip;
+import ch.dragxfly.quantumaccelerator.CustomControls.ToolTipTexts;
 import ch.dragxfly.quantumaccelerator.ViewManager.ViewOpener;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
@@ -46,6 +48,14 @@ public class PrivacyController implements Initializable {
     private Button btnRun;
     @FXML
     private Button btnPasswordGenerator;
+    @FXML
+    private ProgressIndicator progChangingCamState;
+    @FXML
+    private Button btnHelpTelemetry;
+    @FXML
+    private Button btnHelpPwGen;
+    @FXML
+    private Button btnHelpCam;
     //non FXML
     private Task t;
     boolean camIsActive;
@@ -62,6 +72,7 @@ public class PrivacyController implements Initializable {
 
     @FXML
     private void activateOrDeactivateCam(ActionEvent event) {
+        progChangingCamState.setVisible(true);
         if (camIsActive) {
             t = tasks.getDeactivateCamTask();
         } else {
@@ -78,6 +89,7 @@ public class PrivacyController implements Initializable {
         t.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent t1) {
+                progChangingCamState.setVisible(false);
                 setCameraButtonText();
             }
         });
@@ -100,9 +112,7 @@ public class PrivacyController implements Initializable {
 
     @FXML
     private void showToolTipDNSCache(MouseEvent event) {
-        toolTip.showToolTip("The DNS cache stores data locally on your Computer, based on the websites you visit the most, to make the DNS queries from a server unnecessary and speeds up your requests.\n"
-                + "This may sound nice at first, but if someone hacks your computer he can read your DNS-cache and in this way collect data about you. Also if a website has a new IP but your computer\n"
-                + "still uses the outdated local information stored on your computer you might not be able to reach your beloved website even tho it is online.", event);
+        toolTip.showToolTip(new ToolTipTexts().getDeleteDNSCache(), event);
     }
 
     @FXML
@@ -118,6 +128,21 @@ public class PrivacyController implements Initializable {
     @FXML
     private void showPasswordGenerator(ActionEvent event) {
         new ViewOpener().openThemeableView("/fxml/popup/passwordgenerator/PasswordGenerator.fxml", "Password generator", false);
+    }
+
+    @FXML
+    private void showToolTipTelemetry(MouseEvent event) {
+        new CustomToolTip().showToolTip(new ToolTipTexts().getTelemetry(), event);
+    }
+
+    @FXML
+    private void showToolTipPwGen(MouseEvent event) {
+        new CustomToolTip().showToolTip(new ToolTipTexts().getPwGen(), event);
+    }
+
+    @FXML
+    private void showToolTipCam(MouseEvent event) {
+        new CustomToolTip().showToolTip(new ToolTipTexts().getCam(), event);
     }
 
 }

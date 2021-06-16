@@ -3,8 +3,8 @@ package controller.main;
 import ch.dragxfly.quantumaccelerator.Executors.ExtrasExecutor;
 import ch.dragxfly.quantumaccelerator.ViewManager.ViewOpener;
 import ch.dragxfly.quantumaccelerator.Hardware.Benchmark.CPUBenchmark;
-import ch.dragxfly.quantumaccelerator.Style.CustomToolTip;
-import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.creator.FolderCreator;
+import ch.dragxfly.quantumaccelerator.CustomControls.CustomToolTip;
+import ch.dragxfly.quantumaccelerator.CustomControls.ToolTipTexts;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -28,13 +28,22 @@ public class ExtrasController implements Initializable {
     private Button btnOrganizeDesktop;
     @FXML
     private Button btnZipBombIdentifier;
-    private final CustomToolTip toolTip = new CustomToolTip();
     @FXML
     private Button btnCreateCPULoad;
-    private CPUBenchmark benchmark;
-    private final ExtrasExecutor executor = new ExtrasExecutor();
     @FXML
     private Button btnHelpZipBombIdentifier;
+    @FXML
+    private Button btnHelpOrganizeDesktop;
+    @FXML
+    private Button btnHelpGodmode;
+    @FXML
+    private Button btnHelpRestorepoint;
+    @FXML
+    private Button btnHelpStressTest;
+    //non FXML
+    private CPUBenchmark benchmark;
+    private final CustomToolTip toolTip = new CustomToolTip();
+    private final ExtrasExecutor executor = new ExtrasExecutor();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -66,9 +75,28 @@ public class ExtrasController implements Initializable {
 
     @FXML
     private void showToolTipZipBomb(MouseEvent event) {
-        toolTip.showToolTip("A so-called zip bomb is a normal zipped (compressed) file, which in its zipped form isn’t malicious at all."
-                + "\nBut if you decide to unzip a zip bomb, a nasty surprise awaits you, because all or a lot of your storage will be filled."
-                + "\nThis happens because zip bombs contain files that get compressed down to a minimum of their unzipped size. This tool helps you to identify such files without unzipping them.", event);
+        toolTip.showToolTip(new ToolTipTexts().getZipBombIdentifier(), event);
+    }
+
+    @FXML
+    private void showToolTipOrganizeDesktop(MouseEvent event) {
+        toolTip.showToolTip(new ToolTipTexts().getOrganizeDesktop(), event);
+    }
+
+    @FXML
+    private void ShowToolTipGodmode(MouseEvent event) {
+        toolTip.showToolTip(new ToolTipTexts().getEnableGodMode(), event);
+    }
+
+    @FXML
+    private void showToolTipRestorepoint(MouseEvent event) {
+        toolTip.showToolTip(new ToolTipTexts().getRestorepoint(), event);
+    }
+
+    @FXML
+    private void showToolTipStressTest(MouseEvent event) {
+        toolTip.showToolTip(new ToolTipTexts().getStressTest(), event);
+
     }
 
 }

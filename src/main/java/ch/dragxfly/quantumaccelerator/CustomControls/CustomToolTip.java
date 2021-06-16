@@ -1,4 +1,4 @@
-package ch.dragxfly.quantumaccelerator.Style;
+package ch.dragxfly.quantumaccelerator.CustomControls;
 
 import ch.dragxfly.quantumaccelerator.tasks.CustomToolTipTasks;
 import java.util.Observable;
@@ -65,6 +65,7 @@ public class CustomToolTip implements Observer {
         });
         vbox.setSpacing(5);
         hbox.setAlignment(Pos.CENTER_RIGHT);
+        lblInfo.setWrapText(true);
         lblInfo.setMaxWidth(350);
         lblInfo.setWrapText(true);
         vbox.setPadding(new Insets(5, 5, 5, 5));
