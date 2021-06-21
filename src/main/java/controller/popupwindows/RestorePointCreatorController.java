@@ -3,6 +3,7 @@ package controller.popupwindows;
 import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
 import ch.dragxfly.quantumaccelerator.tasks.RestorepointTasks;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.prefs.BackingStoreException;
 import javafx.concurrent.Task;
@@ -19,12 +20,11 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
  *
  * @author janni
  */
 public class RestorePointCreatorController extends ThemeableWindow implements Initializable {
-
+    
     @FXML
     private Button btnAccept;
     @FXML
@@ -35,11 +35,12 @@ public class RestorePointCreatorController extends ThemeableWindow implements In
     private Label lblStatus;
     @FXML
     private HBox vboxButtons;
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setLanguage(super.getLanguage());
     }
-
+    
     @FXML
     private void createRestorepoint(ActionEvent event) {
         btnAccept.setVisible(false);
@@ -59,13 +60,13 @@ public class RestorePointCreatorController extends ThemeableWindow implements In
             }
         });
     }
-
+    
     @FXML
     private void close(ActionEvent event) {
         Stage currentStage = (Stage) btnDenie.getScene().getWindow();
         currentStage.close();
     }
-
+    
     @Override
     public void setTheme() {
         try {
@@ -76,5 +77,14 @@ public class RestorePointCreatorController extends ThemeableWindow implements In
         scene.getStylesheets().clear();
         scene.getStylesheets().add(super.getPref().get(ThemeableWindow.getCURRENTTHEME(), ""));
     }
-
+    
+    @Override
+    public void setLanguage(String lang) {
+        Locale locale = new Locale(lang);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.popup", locale);
+        lblStatus.setText(bundle.getString("lblRestoreStatus"));
+        btnAccept.setText(bundle.getString("btnAccept"));
+        btnDenie.setText(bundle.getString("btnDenie"));
+    }
+    
 }

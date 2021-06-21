@@ -68,4 +68,9 @@ public class LoadingScreen extends ThemeableWindow implements Observer {
         scene.getStylesheets().clear();
         scene.getStylesheets().add(super.getPref().get(ThemeableWindow.getCURRENTTHEME(), ""));
     }
+
+    @Override
+    public void setLanguage(String language) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

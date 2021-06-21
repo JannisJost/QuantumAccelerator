@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -116,4 +117,10 @@ public class AboutController extends ThemeableWindow implements Initializable {
         scene.getStylesheets().add(super.getPref().get(ThemeableWindow.getCURRENTTHEME(), ""));
     }
 
+    @Override
+    public void setLanguage(String language) {
+        ResourceBundle bundle;
+        Locale locale = new Locale(language);
+        bundle = ResourceBundle.getBundle("languages.lang", locale);
+    }
 }

@@ -233,4 +233,9 @@ public class TempScannerController extends ThemeableWindow implements Initializa
             chkSearchCache.setSelected(isKeepSelected);
         }
     }
+
+    @Override
+    public void setLanguage(String language) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -1,10 +1,12 @@
 package controller.main;
 
+import ch.dragxfly.quantumaccelerator.ViewManager.MultilingualView;
 import controller.popupwindows.TempScannerController;
 import ch.dragxfly.quantumaccelerator.ViewManager.ViewOpener;
 import controller.popupwindows.RemoveLogsController;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 import javafx.event.ActionEvent;
@@ -20,11 +22,10 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 /**
- * FXML Controller class
  *
  * @author janni
  */
-public class StorageController implements Initializable {
+public class StorageController extends MultilingualView implements Initializable {
 
     @FXML
     private Button btnApply;
@@ -36,15 +37,18 @@ public class StorageController implements Initializable {
     private CheckBox chkSelectAll;
     @FXML
     private Button btnRemoveLogs;
+    @FXML
+    private VBox vboxCheckboxes;
+    @FXML
+    private CheckBox chkDoubleFiles;
+    //non FXML
     private final ViewOpener viewOpener = new ViewOpener();
     private final Preferences pref = Preferences.userNodeForPackage(MainViewController.class);
     private final String LIGHTTHEME_IS_ACTIVE = "gameboosteractive";
-    @FXML
-    private VBox vboxCheckboxes;
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setLanguage(super.getLanguage());
     }
 
     @FXML
@@ -88,6 +92,18 @@ public class StorageController implements Initializable {
         boolean checked = chkSelectAll.isSelected();
         vboxCheckboxes.getChildren().stream().filter(item -> item instanceof CheckBox).map(item -> (CheckBox) item).filter(item -> item.isSelected() != checked)
                 .forEach(item -> item.setSelected(checked));
+    }
+
+    @Override
+    public void setLanguage(String lang) {
+        Locale locale = new Locale(lang);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.lang", locale);
+        btnApply.setText(bundle.getString("btnApply"));
+        btnRemoveTempNCache.setText(bundle.getString("btnRemoveTempNCache"));
+        chkSelectAll.setText(bundle.getString("chkSelectAll"));
+        chkDeleteInstallerDownload.setText(bundle.getString("chkDeleteInstallerDownload"));
+        btnRemoveLogs.setText(bundle.getString("btnRemoveLogs"));
+        chkDoubleFiles.setText(bundle.getString("chkDoubleFiles"));
     }
 
 }

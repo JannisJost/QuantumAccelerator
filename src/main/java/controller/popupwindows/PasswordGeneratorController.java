@@ -9,6 +9,7 @@ import java.awt.datatransfer.ClipboardOwner;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -36,12 +37,6 @@ public class PasswordGeneratorController extends ThemeableWindow implements Init
     private Button btnCopyPassword;
     @FXML
     private Button btnClose;
-    private double xOffset = 0;
-    private double yOffset = 0;
-    private double mouseX;
-    private double mouseY;
-    private boolean isMouseOnRectangle = false;
-    private PasswordGenerator generator;
     @FXML
     private TextField txtPassword;
     @FXML
@@ -52,9 +47,21 @@ public class PasswordGeneratorController extends ThemeableWindow implements Init
     private Button btnClear;
     @FXML
     private Button btnHelpTrulyRandom;
+    @FXML
+    private Label lblInstruction;
+    @FXML
+    private Label lblTrulyRandomInfo;
+    //non FXML
+    private double xOffset = 0;
+    private double yOffset = 0;
+    private double mouseX;
+    private double mouseY;
+    private boolean isMouseOnRectangle = false;
+    private PasswordGenerator generator;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setLanguage(super.getLanguage());
         sldPwLength.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -166,6 +173,16 @@ public class PasswordGeneratorController extends ThemeableWindow implements Init
     @FXML
     private void showToolTipTrulyRandom(MouseEvent event) {
         new CustomToolTip().showToolTip(new ToolTipTexts().getTrulyRandom(), event);
+    }
+
+    @Override
+    public void setLanguage(String lang) {
+        Locale locale = new Locale(lang);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.popup", locale);
+        btnCopyPassword.setText(bundle.getString("bntCopyPassword"));
+        btnClear.setText(bundle.getString("btnClear"));
+        lblInstruction.setText(bundle.getString("lblInstruction"));
+        lblTrulyRandomInfo.setText(bundle.getString("lblTrulyRandomInfo"));
     }
 
 }

@@ -125,4 +125,9 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
         btnClose.setDisable(isApplying);
         btnCancel.setDisable(isApplying);
     }
+
+    @Override
+    public void setLanguage(String language) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -10,6 +10,7 @@ import animatefx.animation.RotateOut;
 import ch.dragxfly.quantumaccelerator.Hardware.HardwareObserver;
 import ch.dragxfly.quantumaccelerator.Style.Animations.ButtonAnimator;
 import ch.dragxfly.quantumaccelerator.Style.Animations.MainAnimations;
+import ch.dragxfly.quantumaccelerator.ViewManager.MultilingualView;
 import ch.dragxfly.quantumaccelerator.notifications.NotificationManager;
 import controller.popupwindows.SystemMonitorController;
 import java.io.IOException;
@@ -42,10 +43,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class MainViewController implements Initializable, Observer {
-
-    private ResourceBundle bundle;
-    private Locale locale;
+public class MainViewController extends MultilingualView implements Initializable, Observer {
+    
     @FXML
     private Button btnGameBooster;
     @FXML
@@ -108,9 +107,10 @@ public class MainViewController implements Initializable, Observer {
     private double xOffset;
     private double yOffset;
     private final HardwareObserver hardware = new HardwareObserver();
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setLanguage(super.getLanguage());
         hardware.addObserver(this);
         hardware.startObserver();
         //Sets the "Feature" view as default view from start
@@ -131,7 +131,7 @@ public class MainViewController implements Initializable, Observer {
             selectButton(btnFeatures);
         }
     }
-
+    
     @FXML
     private void showStorage(ActionEvent event) {
         if (menuButtonPressedLast != btnShowStorage) {
@@ -141,7 +141,7 @@ public class MainViewController implements Initializable, Observer {
             selectButton(btnShowStorage);
         }
     }
-
+    
     @FXML
     private void showDelWindowsApps(ActionEvent event) {
         if (menuButtonPressedLast != btnDelWindowsApps) {
@@ -151,7 +151,7 @@ public class MainViewController implements Initializable, Observer {
             selectButton(btnDelWindowsApps);
         }
     }
-
+    
     @FXML
     private void showGamingbooster(ActionEvent event) {
         if (menuButtonPressedLast != btnGameBooster) {
@@ -161,7 +161,7 @@ public class MainViewController implements Initializable, Observer {
             selectButton(btnGameBooster);
         }
     }
-
+    
     @FXML
     private void showPrivacy(ActionEvent event) {
         if (menuButtonPressedLast != btnShowPrivacy) {
@@ -171,7 +171,7 @@ public class MainViewController implements Initializable, Observer {
             selectButton(btnShowPrivacy);
         }
     }
-
+    
     @FXML
     private void openSettings(ActionEvent event) {
         if (menuButtonPressedLast != btnSettings) {
@@ -180,7 +180,7 @@ public class MainViewController implements Initializable, Observer {
             selectButton(btnSettings);
         }
     }
-
+    
     @FXML
     private void showExtras(ActionEvent event) {
         if (menuButtonPressedLast != btnExtras) {
@@ -282,11 +282,11 @@ public class MainViewController implements Initializable, Observer {
         }
         System.exit(0);
     }
-
+    
     public void setViewsModel(ViewsModel viewsModel) {
         this.viewsModel = viewsModel;
     }
-
+    
     private void selectButton(Button pressedButton) {
         if (menuButtonPressedLast != null) {
             //Resets the look of the unselected button
@@ -295,12 +295,12 @@ public class MainViewController implements Initializable, Observer {
         pressedButton.setStyle("-fx-border-width: 0 0 0 5;");
         menuButtonPressedLast = pressedButton;
     }
-
+    
     public void setStarterTheme() {
         lightThemeActive = pref.get(CURRENTTHEME, "/styles/darktheme.css").equals("/styles/darktheme.css");
         btnChangeTheme.fire();
     }
-
+    
     @FXML
     public void changeTheme(ActionEvent event) {
         String file;
@@ -318,7 +318,7 @@ public class MainViewController implements Initializable, Observer {
         try {
             pref.flush();
         } catch (BackingStoreException e) {
-
+            
         }
         Image image = new Image(file);
         lightThemeActive = !lightThemeActive;
@@ -335,7 +335,7 @@ public class MainViewController implements Initializable, Observer {
             imgTheme.setImage(image);
         }
     }
-
+    
     @FXML
     private void fullScreen(ActionEvent event) {
         System.setProperty("prism.forcerepaint", "true");
@@ -361,7 +361,7 @@ public class MainViewController implements Initializable, Observer {
         Stage stage = (Stage) btnMinimize.getScene().getWindow();
         stage.setIconified(true);
     }
-
+    
     @Override
     public void update(Observable o, Object arg) {
         double memoryUsage = hardware.getMemoryUsage();
@@ -373,7 +373,7 @@ public class MainViewController implements Initializable, Observer {
         }
         if (CPUUsage >= 0.90) {
             progCPUUsage.setStyle("-fx-accent: #b80000 ;");
-
+            
         } else {
             progCPUUsage.setStyle("");
         }
@@ -419,23 +419,21 @@ public class MainViewController implements Initializable, Observer {
         selectButton(btnFeatures);
         viewOpener.openThemeableView("/fxml/RestorePointCreator.fxml", "Restore", true);
     }
-
+    
     @FXML
     private void runGarbageCollector(MouseEvent event) {
         System.gc();
     }
-
-    /**
-     * Loads a language (not yet working)
-     *
-     * @param lang language to load
-     */
-    public void loadLang(String lang) {
-        locale = new Locale(lang);
-        bundle = ResourceBundle.getBundle("languages.lang", locale);
-        btnFeatures.setText(bundle.getString("btnFeatures"));
+    
+    @Override
+    public void setLanguage(String lang) {
+        Locale locale = new Locale(lang);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.lang", locale);
+        btnExtras.setText(bundle.getString("btnExtras"));
+        btnNotifications.setText(bundle.getString("btnNotifications"));
         btnShowStorage.setText(bundle.getString("btnShowStorage"));
         btnShowPrivacy.setText(bundle.getString("btnShowPrivacy"));
+        btnGameBooster.setText(bundle.getString("btnGameBooster"));
     }
-
+    
 }

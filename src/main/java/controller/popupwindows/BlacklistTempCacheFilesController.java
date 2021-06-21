@@ -5,6 +5,7 @@ import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.chooser.FolderChooser;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
@@ -18,12 +19,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
  *
  * @author janni
  */
 public class BlacklistTempCacheFilesController extends ThemeableWindow implements Initializable, Observer {
-
+    
     @FXML
     private ListView<String> lstBlacklistedItems;
     @FXML
@@ -40,9 +40,10 @@ public class BlacklistTempCacheFilesController extends ThemeableWindow implement
     private double yOffset = 0;
     private FolderChooser folderChooser;
     private final TempfilesBlacklistManager manager = new TempfilesBlacklistManager();
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setLanguage(super.getLanguage());
         folderChooser = new FolderChooser("Folder to blacklist", this);
         lstBlacklistedItems.getSelectionModel().selectedItemProperty().addListener(listener -> {
             enableBtnRemove();
@@ -53,19 +54,19 @@ public class BlacklistTempCacheFilesController extends ThemeableWindow implement
             System.err.println(ex);
         }
     }
-
+    
     @Override
     public void setTheme() {
         Scene scene = btnSave.getScene();
         scene.getStylesheets().clear();
         scene.getStylesheets().add(super.getPref().get(ThemeableWindow.getCURRENTTHEME(), ""));
     }
-
+    
     @FXML
     private void closeWindow(ActionEvent event) {
         close();
     }
-
+    
     @FXML
     private void moveWindowSecond(MouseEvent event) {
         Stage currentStage = (Stage) btnClose.getScene().getWindow();
@@ -94,30 +95,30 @@ public class BlacklistTempCacheFilesController extends ThemeableWindow implement
     private void addBlacklistedFolder(ActionEvent event) {
         folderChooser.show();
     }
-
+    
     private void close() {
         Stage currentStage = (Stage) btnClose.getScene().getWindow();
         currentStage.close();
     }
-
+    
     @FXML
     private void cancel(ActionEvent event) {
         close();
     }
-
+    
     @Override
     public void update(Observable o, Object arg) {
         if (o.getClass().equals(FolderChooser.class)) {
             lstBlacklistedItems.getItems().add((String) arg);
         }
     }
-
+    
     private void enableBtnRemove() {
         if (!lstBlacklistedItems.getItems().isEmpty()) {
             btnRemoveItem.setDisable(false);
         }
     }
-
+    
     @FXML
     private void saveBlacklist(ActionEvent event) {
         try {
@@ -127,11 +128,21 @@ public class BlacklistTempCacheFilesController extends ThemeableWindow implement
             System.err.println(ex);
         }
     }
-
+    
     @FXML
     private void removeSelectedItem(ActionEvent event) {
         String selectedItem = lstBlacklistedItems.getSelectionModel().getSelectedItem();
         lstBlacklistedItems.getItems().remove(selectedItem);
     }
-
+    
+    @Override
+    public void setLanguage(String language) {
+        ResourceBundle bundle;
+        Locale locale = new Locale(language);
+        bundle = ResourceBundle.getBundle("languages.popup", locale);
+        btnRemoveItem.setText(bundle.getString("btnRemoveItem"));
+        btnAddItem.setText(bundle.getString("btnAddItem"));
+        btnCancel.setText(bundle.getString("btnCancel"));
+        btnSave.setText(bundle.getString("btnSave"));
+    }  
 }

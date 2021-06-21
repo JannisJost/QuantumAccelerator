@@ -4,8 +4,10 @@ import ch.dragxfly.quantumaccelerator.CustomControls.ToggleSwitch;
 import ch.dragxfly.quantumaccelerator.tasks.GameboosterTasks;
 import ch.dragxfly.quantumaccelerator.Executors.Gamebooster;
 import ch.dragxfly.quantumaccelerator.Style.Logo.Logo;
+import ch.dragxfly.quantumaccelerator.ViewManager.MultilingualView;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 import javafx.concurrent.Task;
@@ -24,11 +26,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 /**
- * FXML Controller class
  *
  * @author janni
  */
-public class GameboosterController implements Initializable {
+public class GameboosterController extends MultilingualView implements Initializable {
 
     @FXML
     private AnchorPane anchorPaneGameboosterSwitch;
@@ -48,6 +49,16 @@ public class GameboosterController implements Initializable {
     private GridPane gridSettingsDeactivateGamebooster;
     @FXML
     private VBox vboxGameboosterSwitch;
+    @FXML
+    private Label lblOnDeactivateBooster;
+    @FXML
+    private Label lblResetPowerPlan;
+    @FXML
+    private Label lblResetCPUPrio;
+    @FXML
+    private Label lblResetSysMain;
+    @FXML
+    private Button btnFPSBoostPerGame;
     //non FXML
     private Task task;
     private Logo logo;
@@ -66,6 +77,7 @@ public class GameboosterController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setLanguage(super.getLanguage());
         tglswResetPowerPlan.setActivated(true);
         tglswCPUPrio.setActivated(true);
         tglswResetSysMain.setActivated(true);
@@ -170,6 +182,20 @@ public class GameboosterController implements Initializable {
         if (chkDelInstallersFromDownload.isSelected()) {
             new Thread(tasks.getTaskDeleteInstallerFromDownload()).start();
         }
+    }
+
+    @Override
+    public void setLanguage(String lang) {
+        Locale locale = new Locale(lang);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.lang", locale);
+        btnApplyCheckBoxes.setText(bundle.getString("btnRun"));
+        btnFreeStandbyRAM.setText(bundle.getString("btnFreeStandbyRAM"));
+        chkDelInstallersFromDownload.setText(bundle.getString("chkDeleteInstallerDownload"));
+        lblOnDeactivateBooster.setText(bundle.getString("lblOnDeactivateBooster"));
+        lblResetPowerPlan.setText(bundle.getString("lblResetPowerPlan"));
+        lblResetCPUPrio.setText(bundle.getString("lblResetCPUPrio"));
+       lblResetSysMain.setText(bundle.getString("lblResetSysMain"));
+       btnFPSBoostPerGame.setText(bundle.getString("btnFPSBoostPerGame"));
     }
 
 }

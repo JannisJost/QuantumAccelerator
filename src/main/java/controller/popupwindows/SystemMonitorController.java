@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
@@ -58,6 +59,7 @@ public class SystemMonitorController extends ThemeableWindow implements Initiali
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setLanguage(super.getLanguage());
         tglswMeasureCPUTemp.setActivated(true);
         hboxTopBar.getChildren().add(0, tglswMeasureCPUTemp);
         isShowCPUTemp.bindBidirectional(tglswMeasureCPUTemp.isSwitchedOn());
@@ -188,5 +190,12 @@ public class SystemMonitorController extends ThemeableWindow implements Initiali
             hardware.setMeasureCPUTemp(false);
         }
         cpuTempHistory.clear();
+    }
+
+    @Override
+    public void setLanguage(String lang) {
+        Locale locale = new Locale(lang);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.popup", locale);   
+        btnAlwaysOnTop.setText(bundle.getString("btnAlwaysOnTop"));
     }
 }

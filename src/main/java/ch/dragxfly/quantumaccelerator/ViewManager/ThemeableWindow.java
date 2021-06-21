@@ -2,7 +2,7 @@ package ch.dragxfly.quantumaccelerator.ViewManager;
 
 import java.util.prefs.Preferences;
 
-public abstract class ThemeableWindow {
+public abstract class ThemeableWindow extends MultilingualView{
 
     static final String CURRENTTHEME = "currentTheme";
     private final Preferences pref = Preferences.userRoot();

@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -24,6 +25,9 @@ public class ErrorController extends ThemeableWindow implements Initializable {
     private Label lblErrorText;
     @FXML
     private Button btnOk;
+    //non FXML
+    private double xOffset = 0;
+    private double yOffset = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -44,5 +48,24 @@ public class ErrorController extends ThemeableWindow implements Initializable {
         Scene scene = btnClose.getScene();
         scene.getStylesheets().clear();
         scene.getStylesheets().add(super.getPref().get(ThemeableWindow.getCURRENTTHEME(), ""));
+    }
+
+    @Override
+    public void setLanguage(String language) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @FXML
+    private void moveWindowSecond(MouseEvent event) {
+        Stage currentStage = (Stage) btnClose.getScene().getWindow();
+        currentStage.setX(event.getScreenX() + xOffset);
+        currentStage.setY(event.getScreenY() + yOffset);
+    }
+
+    @FXML
+    private void moveWindow(MouseEvent event) {
+        Stage currentStage = (Stage) btnClose.getScene().getWindow();
+        xOffset = currentStage.getX() - event.getScreenX();
+        yOffset = currentStage.getY() - event.getScreenY();
     }
 }

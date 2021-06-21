@@ -182,4 +182,9 @@ public class RemoveLogsController extends ThemeableWindow implements Initializab
         };
         return task;
     }
+
+    @Override
+    public void setLanguage(String language) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

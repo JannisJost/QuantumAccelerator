@@ -5,20 +5,22 @@ import ch.dragxfly.quantumaccelerator.ViewManager.ViewOpener;
 import ch.dragxfly.quantumaccelerator.Hardware.Benchmark.CPUBenchmark;
 import ch.dragxfly.quantumaccelerator.CustomControls.CustomToolTip;
 import ch.dragxfly.quantumaccelerator.CustomControls.ToolTipTexts;
+import ch.dragxfly.quantumaccelerator.ViewManager.MultilingualView;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
 /**
- * FXML Controller class
  *
  * @author janni
  */
-public class ExtrasController implements Initializable {
+public class ExtrasController extends MultilingualView implements Initializable {
 
     @FXML
     private Button btnEnableGodmode;
@@ -40,6 +42,10 @@ public class ExtrasController implements Initializable {
     private Button btnHelpRestorepoint;
     @FXML
     private Button btnHelpStressTest;
+    @FXML
+    private Label lblSecurity;
+    @FXML
+    private Label lblTesting;
     //non FXML
     private CPUBenchmark benchmark;
     private final CustomToolTip toolTip = new CustomToolTip();
@@ -47,6 +53,7 @@ public class ExtrasController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setLanguage(super.getLanguage());
     }
 
     @FXML
@@ -97,6 +104,19 @@ public class ExtrasController implements Initializable {
     private void showToolTipStressTest(MouseEvent event) {
         toolTip.showToolTip(new ToolTipTexts().getStressTest(), event);
 
+    }
+
+    @Override
+    public void setLanguage(String lang) {
+        Locale locale = new Locale(lang);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.lang", locale);
+        lblSecurity.setText(bundle.getString("lblSecurity"));
+        btnEnableGodmode.setText(bundle.getString("btnEnableGodmode"));
+        btnCreateRestorepoint.setText(bundle.getString("btnCreateRestorepoint"));
+        btnOrganizeDesktop.setText(bundle.getString("btnOrganizeDesktop"));
+        lblTesting.setText(bundle.getString("lblTesting"));
+        btnZipBombIdentifier.setText(bundle.getString("btnZipBombIdentifier"));
+        btnCreateCPULoad.setText(bundle.getString("btnCreateCPULoad"));
     }
 
 }

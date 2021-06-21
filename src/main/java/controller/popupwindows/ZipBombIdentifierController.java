@@ -216,4 +216,9 @@ public class ZipBombIdentifierController extends ThemeableWindow implements Init
         btnScan.setDisable(false);
         lblHint.setVisible(false);
     }
+
+    @Override
+    public void setLanguage(String language) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

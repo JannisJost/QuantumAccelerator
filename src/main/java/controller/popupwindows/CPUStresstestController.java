@@ -4,6 +4,7 @@ import ch.dragxfly.quantumaccelerator.Hardware.Benchmark.CPUBenchmark;
 import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
 import controller.popupwindows.warning.InfoWindow;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.prefs.BackingStoreException;
 import javafx.application.Platform;
@@ -54,26 +55,33 @@ public class CPUStresstestController extends ThemeableWindow implements Initiali
     private Label lblStressTestStatus;
     @FXML
     private Label lblFanSpeed;
+    @FXML
+    private Label lblWarning;
     //non FXML
     private double xOffset = 0;
     private double yOffset = 0;
     private CPUBenchmark benchmark;
+    private String keepLoadAt;
+    private String stopIfTempReaches;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setLanguage(super.getLanguage());
+        keepLoadAt = lblKeepLoadAt.getText();
+        stopIfTempReaches = chkStopIfTempHigh.getText();
         sliderMaxTemp.disableProperty().bind(chkStopIfTempHigh.selectedProperty().not());
         //binds the MaxTemp slider to its slider
         sliderMaxTemp.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                chkStopIfTempHigh.setText("Stop if temp reaches: " + String.format("%.0f", newValue) + "℃/" + String.format("%.2f", newValue.doubleValue() * 1.8 + 32) + "℉");
+                chkStopIfTempHigh.setText(stopIfTempReaches + " " + String.format("%.0f", newValue) + "℃/" + String.format("%.2f", newValue.doubleValue() * 1.8 + 32) + "℉");
             }
         });
         //Binds the keeploadat label to its slider
         sliderKeepLoadAt.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                lblKeepLoadAt.setText("Keep load at: ~" + Math.round(newValue.doubleValue() / 10.0) * 10 + "%");
+                lblKeepLoadAt.setText(keepLoadAt + " ~" + Math.round(newValue.doubleValue() / 10.0) * 10 + "%");
             }
         });
     }
@@ -142,5 +150,16 @@ public class CPUStresstestController extends ThemeableWindow implements Initiali
             boolean isDisable = !new InfoWindow().ShowInfoWindow("In very rare cases disabling this option might lead to overheating. If your system has overheating issues, you might wanna keep this option enabled");
             chkStopIfTempHigh.setSelected(isDisable);
         }
+    }
+
+    @Override
+    public void setLanguage(String lang) {
+        Locale locale = new Locale(lang);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.popup", locale);
+        chkStopIfTempHigh.setText(bundle.getString("chkStopIfTempHigh"));
+        btnRunStressTest.setText(bundle.getString("btnRunStressTest"));
+        lblKeepLoadAt.setText(bundle.getString("lblKeepLoadAt"));
+        btnStopCPUStressTest.setText(bundle.getString("btnStopCPUStressTest"));
+        lblWarning.setText(bundle.getString("lblWarning"));
     }
 }

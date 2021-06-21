@@ -4,8 +4,10 @@ import ch.dragxfly.quantumaccelerator.Executors.PrivacyExecutor;
 import ch.dragxfly.quantumaccelerator.tasks.PrivacyTasks;
 import ch.dragxfly.quantumaccelerator.CustomControls.CustomToolTip;
 import ch.dragxfly.quantumaccelerator.CustomControls.ToolTipTexts;
+import ch.dragxfly.quantumaccelerator.ViewManager.MultilingualView;
 import ch.dragxfly.quantumaccelerator.ViewManager.ViewOpener;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
@@ -22,11 +24,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 /**
- * FXML Controller class
  *
  * @author janni
  */
-public class PrivacyController implements Initializable {
+public class PrivacyController extends MultilingualView implements Initializable {
 
     @FXML
     private CheckBox chkDeleteDNSCache;
@@ -67,6 +68,7 @@ public class PrivacyController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setLanguage(super.getLanguage());
         camIsActive = prefs.getBoolean(CAMISACTIVE, true);
     }
 
@@ -143,6 +145,20 @@ public class PrivacyController implements Initializable {
     @FXML
     private void showToolTipCam(MouseEvent event) {
         new CustomToolTip().showToolTip(new ToolTipTexts().getCam(), event);
+    }
+
+    @Override
+    public void setLanguage(String lang) {
+        Locale locale = new Locale(lang);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.lang", locale);
+        chkSelectAll.setText(bundle.getString("chkSelectAll"));
+        chkDeleteDNSCache.setText(bundle.getString("chkDeleteDNSCache"));
+        chkDeleteCookies.setText(bundle.getString("chkDeleteCookies"));
+        chkDeleteBrowserHistory.setText(bundle.getString("chkDeleteBrowserHistory"));
+        btnFileShredder.setText(bundle.getString("btnFileShredder"));
+        btnTelemetryOptions.setText(bundle.getString("btnTelemetryOptions"));
+        btnRun.setText(bundle.getString("btnRun"));
+        btnPasswordGenerator.setText(bundle.getString("btnPasswordGenerator"));
     }
 
 }

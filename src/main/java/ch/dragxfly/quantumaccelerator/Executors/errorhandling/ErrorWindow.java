@@ -26,6 +26,7 @@ public class ErrorWindow {
             controller.setErrorMessage(errorMessage);
             controller.setTheme();
         } catch (IOException ex) {
+            System.err.print(ex);
         }
 
     }
