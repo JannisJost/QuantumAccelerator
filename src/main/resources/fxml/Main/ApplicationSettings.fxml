@@ -17,7 +17,7 @@
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="300.0" spacing="5.0">
+            <VBox prefHeight="200.0" prefWidth="300.0" spacing="5.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label fx:id="lblGeneral" text="General">
                      <font>
@@ -65,7 +65,7 @@
                   <Insets left="10.0" right="5.0" top="10.0" />
                </padding>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="300.0" spacing="5.0">
+            <VBox prefHeight="200.0" prefWidth="300.0" spacing="5.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label fx:id="lblAppearance" text="Appearance">
                      <font>
@@ -73,8 +73,12 @@
                      </font></Label>
                   <Separator prefWidth="200.0" />
                   <Label fx:id="lblLanguage" text="Language:" />
-                  <ChoiceBox fx:id="choiseLanguage" prefWidth="150.0" />
-                <Button fx:id="btnApplyLanguage" mnemonicParsing="false" onAction="#applyLanguage" text="Apply" textFill="WHITE" />
+                  <HBox minHeight="31.0" prefHeight="31.0" prefWidth="285.0" spacing="5.0" VBox.vgrow="NEVER">
+                     <children>
+                        <ChoiceBox fx:id="choiseLanguage" prefWidth="150.0" />
+                      <Button fx:id="btnApplyLanguage" mnemonicParsing="false" onAction="#applyLanguage" text="Apply" />
+                     </children>
+                  </HBox>
                </children>
                <HBox.margin>
                   <Insets />

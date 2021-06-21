@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -43,6 +44,8 @@ public class MainApp extends Application {
         stage.setTitle("QuantumAccelerator");
         stage.setScene(scene);
         stage.initStyle(StageStyle.UNDECORATED);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        scene.setFill(Color.TRANSPARENT);
         stage.show();
         controller.setStarterTheme();
         //runs stuff that is required on startup

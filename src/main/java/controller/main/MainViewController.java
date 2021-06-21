@@ -44,7 +44,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class MainViewController extends MultilingualView implements Initializable, Observer {
-    
+
     @FXML
     private Button btnGameBooster;
     @FXML
@@ -107,7 +107,7 @@ public class MainViewController extends MultilingualView implements Initializabl
     private double xOffset;
     private double yOffset;
     private final HardwareObserver hardware = new HardwareObserver();
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setLanguage(super.getLanguage());
@@ -131,7 +131,7 @@ public class MainViewController extends MultilingualView implements Initializabl
             selectButton(btnFeatures);
         }
     }
-    
+
     @FXML
     private void showStorage(ActionEvent event) {
         if (menuButtonPressedLast != btnShowStorage) {
@@ -141,7 +141,7 @@ public class MainViewController extends MultilingualView implements Initializabl
             selectButton(btnShowStorage);
         }
     }
-    
+
     @FXML
     private void showDelWindowsApps(ActionEvent event) {
         if (menuButtonPressedLast != btnDelWindowsApps) {
@@ -151,7 +151,7 @@ public class MainViewController extends MultilingualView implements Initializabl
             selectButton(btnDelWindowsApps);
         }
     }
-    
+
     @FXML
     private void showGamingbooster(ActionEvent event) {
         if (menuButtonPressedLast != btnGameBooster) {
@@ -161,7 +161,7 @@ public class MainViewController extends MultilingualView implements Initializabl
             selectButton(btnGameBooster);
         }
     }
-    
+
     @FXML
     private void showPrivacy(ActionEvent event) {
         if (menuButtonPressedLast != btnShowPrivacy) {
@@ -171,7 +171,7 @@ public class MainViewController extends MultilingualView implements Initializabl
             selectButton(btnShowPrivacy);
         }
     }
-    
+
     @FXML
     private void openSettings(ActionEvent event) {
         if (menuButtonPressedLast != btnSettings) {
@@ -180,7 +180,7 @@ public class MainViewController extends MultilingualView implements Initializabl
             selectButton(btnSettings);
         }
     }
-    
+
     @FXML
     private void showExtras(ActionEvent event) {
         if (menuButtonPressedLast != btnExtras) {
@@ -282,11 +282,11 @@ public class MainViewController extends MultilingualView implements Initializabl
         }
         System.exit(0);
     }
-    
+
     public void setViewsModel(ViewsModel viewsModel) {
         this.viewsModel = viewsModel;
     }
-    
+
     private void selectButton(Button pressedButton) {
         if (menuButtonPressedLast != null) {
             //Resets the look of the unselected button
@@ -295,12 +295,12 @@ public class MainViewController extends MultilingualView implements Initializabl
         pressedButton.setStyle("-fx-border-width: 0 0 0 5;");
         menuButtonPressedLast = pressedButton;
     }
-    
+
     public void setStarterTheme() {
         lightThemeActive = pref.get(CURRENTTHEME, "/styles/darktheme.css").equals("/styles/darktheme.css");
         btnChangeTheme.fire();
     }
-    
+
     @FXML
     public void changeTheme(ActionEvent event) {
         String file;
@@ -318,7 +318,7 @@ public class MainViewController extends MultilingualView implements Initializabl
         try {
             pref.flush();
         } catch (BackingStoreException e) {
-            
+
         }
         Image image = new Image(file);
         lightThemeActive = !lightThemeActive;
@@ -335,16 +335,19 @@ public class MainViewController extends MultilingualView implements Initializabl
             imgTheme.setImage(image);
         }
     }
-    
+
     @FXML
     private void fullScreen(ActionEvent event) {
         System.setProperty("prism.forcerepaint", "true");
         Stage stage = (Stage) btnCloseApplication.getScene().getWindow();
         if (!isFullscreen) {
             stage.setMaximized(true);
+            btnCloseApplication.getScene().getRoot().setStyle("-fx-background-radius: 0;");
+
             imgMaximize.setImage(new Image("/styles/icons/menubar/notMaximized.png"));
         } else {
             stage.setMaximized(false);
+            btnCloseApplication.getScene().getRoot().setStyle("-fx-background-radius: 12;");
             imgMaximize.setImage(new Image("/styles/icons/menubar/maximize.png"));
         }
         isFullscreen = !isFullscreen;
@@ -361,7 +364,7 @@ public class MainViewController extends MultilingualView implements Initializabl
         Stage stage = (Stage) btnMinimize.getScene().getWindow();
         stage.setIconified(true);
     }
-    
+
     @Override
     public void update(Observable o, Object arg) {
         double memoryUsage = hardware.getMemoryUsage();
@@ -373,7 +376,7 @@ public class MainViewController extends MultilingualView implements Initializabl
         }
         if (CPUUsage >= 0.90) {
             progCPUUsage.setStyle("-fx-accent: #b80000 ;");
-            
+
         } else {
             progCPUUsage.setStyle("");
         }
@@ -415,16 +418,17 @@ public class MainViewController extends MultilingualView implements Initializabl
      * Is called from the invocator on startup
      */
     public void startup() {
+        btnCloseApplication.getScene().getRoot().setStyle("-fx-background-radius: 12;");
         mainPane.setCenter(viewsModel.getFeatures());
         selectButton(btnFeatures);
         viewOpener.openThemeableView("/fxml/RestorePointCreator.fxml", "Restore", true);
     }
-    
+
     @FXML
     private void runGarbageCollector(MouseEvent event) {
         System.gc();
     }
-    
+
     @Override
     public void setLanguage(String lang) {
         Locale locale = new Locale(lang);
@@ -435,5 +439,5 @@ public class MainViewController extends MultilingualView implements Initializabl
         btnShowPrivacy.setText(bundle.getString("btnShowPrivacy"));
         btnGameBooster.setText(bundle.getString("btnGameBooster"));
     }
-    
+
 }

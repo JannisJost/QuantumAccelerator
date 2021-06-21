@@ -34,7 +34,7 @@
                                           <Font name="HoloLens MDL2 Assets" size="45.0" />
                                        </font>
                                     </Label>
-                                    <ToggleButton fx:id="toggleBtnGameboost" mnemonicParsing="false" onAction="#activateOrDeactivateGameboost" styleClass="button" text="Gameboost" textFill="WHITE">
+                                    <ToggleButton fx:id="toggleBtnGameboost" mnemonicParsing="false" onAction="#activateOrDeactivateGameboost" styleClass="button" text="Gameboost" textFill="WHITE" VBox.vgrow="ALWAYS">
                                        <tooltip>
                                           <Tooltip text="Activates or deactivates Gameboost" />
                                        </tooltip>
@@ -84,8 +84,8 @@
                <children>
                   <VBox layoutX="48.0" layoutY="140.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button fx:id="btnFreeStandbyRAM" mnemonicParsing="false" onAction="#freeStandbyRAM" prefHeight="50.0" prefWidth="285.0" text="Clean standby RAM" textFill="WHITE" />
-                        <Button fx:id="btnFPSBoostPerGame" mnemonicParsing="false" prefHeight="50.0" prefWidth="285.0" text="FPS-boost per game" textFill="WHITE" />
+                        <Button fx:id="btnFreeStandbyRAM" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#freeStandbyRAM" prefHeight="50.0" prefWidth="285.0" text="Clean standby RAM" textFill="WHITE" VBox.vgrow="ALWAYS" />
+                        <Button fx:id="btnFPSBoostPerGame" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="50.0" prefWidth="285.0" text="FPS-boost per game" textFill="WHITE" VBox.vgrow="ALWAYS" />
                         <Separator prefWidth="200.0" />
                         <CheckBox fx:id="chkDelInstallersFromDownload" mnemonicParsing="false" selected="true" text="Delete installers from downloads" />
                      </children>

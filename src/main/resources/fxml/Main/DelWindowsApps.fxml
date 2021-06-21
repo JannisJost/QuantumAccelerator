@@ -24,17 +24,17 @@
                         <Group fx:id="groupCheckboxes" />
                         <CheckBox fx:id="chkSelectAll" mnemonicParsing="false" onAction="#selectAll" prefHeight="21.0" prefWidth="275.0" text="Select all" />
                         <Separator prefWidth="200.0" />
-                        <CheckBox fx:id="chkDelCoartana" accessibleText="Microsoft.549981C3F5F10" mnemonicParsing="false" text="Delete Cortana" />
-                        <CheckBox fx:id="chkXboxGamebar" mnemonicParsing="false" text="Xbox Gamebar" />
-                        <CheckBox fx:id="chkDelCandyCrush" accessibleText="*CandyCrush*" mnemonicParsing="false" text="Delete Candy Crush" />
-                        <CheckBox fx:id="chkDelMaps" accessibleText="Microsoft.WindowsMaps" mnemonicParsing="false" text="Delete Maps" />
-                        <CheckBox fx:id="chkDelFeedbackHub" accessibleText="Microsoft.WindowsFeedbackHub" mnemonicParsing="false" text="Delete Feedback Hub" />
-                        <CheckBox fx:id="chkDelCamera" accessibleText="Microsoft.WindowsCamera" mnemonicParsing="false" text="Delete Camera" />
-                        <CheckBox fx:id="chkDeleteNews" accessibleText="Microsoft.News" mnemonicParsing="false" text="Delete Microsoft News" />
-                        <CheckBox fx:id="chkDelSolitaire" accessibleText="Microsoft.MicrosoftSolitaireCollection" mnemonicParsing="false" text="Delete Solitaire Collection" />
-                        <CheckBox fx:id="chkDelWeather" accessibleText="Microsoft.BingWeather" mnemonicParsing="false" text="Microsoft Weather" />
-                        <CheckBox fx:id="chkDelDefaultMail" accessibleText="Microsoft.windowscommunicationsapps" mnemonicParsing="false" text="Default Mail" />
-                        <CheckBox fx:id="checkDelPrint3D" accessibleText="Microsoft.Print3D" mnemonicParsing="false" text="Delete Print3D" />
+                        <CheckBox fx:id="chkDelCoartana" accessibleText="Microsoft.549981C3F5F10" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete Cortana" />
+                        <CheckBox fx:id="chkXboxGamebar" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Xbox Gamebar" />
+                        <CheckBox fx:id="chkDelCandyCrush" accessibleText="*CandyCrush*" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete Candy Crush" />
+                        <CheckBox fx:id="chkDelMaps" accessibleText="Microsoft.WindowsMaps" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete Maps" />
+                        <CheckBox fx:id="chkDelFeedbackHub" accessibleText="Microsoft.WindowsFeedbackHub" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete Feedback Hub" />
+                        <CheckBox fx:id="chkDelCamera" accessibleText="Microsoft.WindowsCamera" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete Camera" />
+                        <CheckBox fx:id="chkDeleteNews" accessibleText="Microsoft.News" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete Microsoft News" />
+                        <CheckBox fx:id="chkDelSolitaire" accessibleText="Microsoft.MicrosoftSolitaireCollection" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete Solitaire Collection" />
+                        <CheckBox fx:id="chkDelWeather" accessibleText="Microsoft.BingWeather" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Microsoft Weather" />
+                        <CheckBox fx:id="chkDelDefaultMail" accessibleText="Microsoft.windowscommunicationsapps" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Default Mail" />
+                        <CheckBox fx:id="checkDelPrint3D" accessibleText="Microsoft.Print3D" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete Print3D" />
                      </children>
                   </VBox>
                   <ButtonBar prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -55,7 +55,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                      <children>
-                        <Button fx:id="btnRevokeRights" mnemonicParsing="false" prefHeight="50.0" prefWidth="285.0" text="Revoke app rights" />
+                        <Button fx:id="btnRevokeRights" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="50.0" prefWidth="285.0" text="Revoke app rights" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                </children>

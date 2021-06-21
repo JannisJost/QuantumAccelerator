@@ -4,6 +4,7 @@ import ch.dragxfly.quantumaccelerator.Executors.errorhandling.ErrorWindow;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -18,8 +19,10 @@ public class ViewOpener {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource(path));
             Scene scene = new Scene(fxmlLoader.load());
+            scene.setFill(Color.TRANSPARENT);
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
+            stage.initStyle(StageStyle.TRANSPARENT);
             stage.setTitle(title);
             stage.setScene(scene);
             stage.show();
@@ -33,9 +36,11 @@ public class ViewOpener {
         try {
             fxmlLoader.setLocation(getClass().getResource(path));
             Scene scene = new Scene(fxmlLoader.load());
+            scene.setFill(Color.TRANSPARENT);
             ThemeableWindow themeable = fxmlLoader.getController();
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
+            stage.initStyle(StageStyle.TRANSPARENT);
             stage.setTitle(title);
             stage.setScene(scene);
             stage.show();

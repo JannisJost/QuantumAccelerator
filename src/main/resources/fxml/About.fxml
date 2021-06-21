@@ -6,7 +6,6 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tooltip?>
-<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,19 +14,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.popupwindows.AboutController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.popupwindows.AboutController">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <image>
-            <Image url="@../styles/backgroundimages/background_main.jpg" />
-         </image>
-         <effect>
-            <ColorAdjust brightness="-0.18" hue="-0.2" saturation="-0.32" />
-         </effect>
-      </ImageView>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="4.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label text="Thank you for trusting QuantumAccelerator" textFill="WHITE">
+            <Label text="Thank you for trusting QuantumAccelerator">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -35,22 +26,22 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Label>
-            <Label fx:id="lblTitle" text="About QuantumAccelerator" textFill="WHITE">
+            <Label fx:id="lblTitle" text="About QuantumAccelerator">
                <font>
                   <Font name="Verdana Pro Light" size="39.0" />
                </font>
             </Label>
-            <Label fx:id="lblVersion" text="V 0.1 (Beta)" textFill="WHITE">
+            <Label fx:id="lblVersion" text="V 0.1 (Beta)">
                <font>
                   <Font name="Sitka Display Italic" size="22.0" />
                </font>
             </Label>
-            <Label text="Developed by Dragxfly" textFill="WHITE" />
-            <Label text="EmptyStandbyList by Wen Jia Liu " textFill="WHITE" />
-            <Label text="Beta tester: Arial" textFill="WHITE" />
+            <Label text="Developed by Dragxfly" />
+            <Label text="EmptyStandbyList by Wen Jia Liu " />
+            <Label text="Beta tester: Arial" />
             <HBox alignment="CENTER" prefHeight="44.0" prefWidth="600.0">
                <children>
-                  <Label text="Icons by" textFill="WHITE" underline="true">
+                  <Label text="Icons by" underline="true">
                      <tooltip>
                         <Tooltip text="Icons by Icons8" />
                      </tooltip>
@@ -102,7 +93,7 @@
          </padding>
       </ButtonBar>
       <Pane opacity="0.13" prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <ButtonBar onMouseDragged="#moveWindowSecond" onMousePressed="#moveWindow" prefHeight="40.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ButtonBar id="topBar" onMouseDragged="#moveWindowSecond" onMousePressed="#moveWindow" prefHeight="40.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <buttons>
           <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeWindow" prefHeight="31.0" text="X" />
         </buttons>

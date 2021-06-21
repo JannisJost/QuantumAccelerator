@@ -17,10 +17,10 @@
                <children>
                   <VBox fx:id="vboxCheckboxes" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <CheckBox fx:id="chkSelectAll" mnemonicParsing="false" onAction="#selectAll" text="Select all" />
+                        <CheckBox fx:id="chkSelectAll" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#selectAll" text="Select all" />
                         <Separator prefWidth="200.0" />
-                        <CheckBox fx:id="chkDoubleFiles" mnemonicParsing="false" text="Search for double files" />
-                        <CheckBox fx:id="chkDeleteInstallerDownload" mnemonicParsing="false" text="Remove installers in download folder" />
+                        <CheckBox fx:id="chkDoubleFiles" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Search for double files" />
+                        <CheckBox fx:id="chkDeleteInstallerDownload" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Remove installers in download folder" />
                      </children>
                      <padding>
                         <Insets left="5.0" top="5.0" />
@@ -41,11 +41,11 @@
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button fx:id="btnRemoveTempNCache" mnemonicParsing="false" onAction="#showTempNCache" prefHeight="50.0" prefWidth="285.0" text="Temp and cache remover" />
-                        <Button fx:id="btnRemoveLogs" mnemonicParsing="false" onAction="#showViewRemoveLogs" prefHeight="50.0" prefWidth="285.0" text="Remove log files" />
+                        <Button fx:id="btnRemoveTempNCache" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showTempNCache" prefHeight="50.0" prefWidth="285.0" text="Temp and cache remover" VBox.vgrow="ALWAYS" />
+                        <Button fx:id="btnRemoveLogs" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showViewRemoveLogs" prefHeight="50.0" prefWidth="285.0" text="Remove log files" VBox.vgrow="ALWAYS" />
                      </children>
                      <padding>
-                        <Insets top="5.0" />
+                        <Insets left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </VBox>
                </children>

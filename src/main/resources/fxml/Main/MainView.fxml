@@ -57,7 +57,7 @@
                            </tooltip>
                         </ProgressIndicator>
                         <Separator orientation="VERTICAL" prefHeight="200.0" />
-                        <Button fx:id="btnShowSystemGraph" minHeight="15.0" minWidth="15.0" mnemonicParsing="false" onAction="#showSystemGraph" prefHeight="50.0" prefWidth="18.0" text="▶">
+                        <Button id="btnSystemMonitor" fx:id="btnShowSystemGraph" minHeight="15.0" minWidth="15.0" mnemonicParsing="false" onAction="#showSystemGraph" prefHeight="50.0" prefWidth="18.0" text="▶">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
