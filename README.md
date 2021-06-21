@@ -24,6 +24,10 @@ Managing files and privacy settings is heavily trust based and in my opinion sho
      * Zip bomb detector
      * Create restore points
 
+### Comming soon:
+ * More modern UI (Windows 11 ready)
+ * Multilingual support
+
 ## Download
 
 [![Download QuantumAccelerator](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/quantumaccelerator/files/latest/download)
@@ -46,6 +50,8 @@ Some actions like measuring CPU temp, deleting files and some more require admin
 **Java (jar only)**: *Java 8 or newer with JavaFX/Openjfx (Java 8 is recommmended, because it comes with JavaFX)*
 
 **CPU/GPU**: *Any capable of running Windows 10*
+
+**Supported languages:** *English*
 
 * **How can I compile QuantumAccelerator myself?**
 
