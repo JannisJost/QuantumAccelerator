@@ -1,52 +1,92 @@
+.root {
+	/*background of window*/
+    -fx-base: #9C9C9C;
+    -fx-accent: #e7eff7 ;
+    -fx-default-button: #7f878f ;
+    -fx-focus-color: #efefef;
+    -fx-faint-focus-color: #efefef;
+    -fx-focused-text-base-color : ladder(
+        -fx-selection-bar,
+        -fx-light-text-color 45%,
+        -fx-dark-text-color 46%,
+        -fx-dark-text-color 59%,
+        -fx-mid-text-color 60%
+        );
+    -fx-focused-mark-color: -fx-focused-text-base-color ;   
+}
+/*global button styling*/
 .button{
-	-fx-background-color: #4287f5;
-	-fx-background-radius: 0;
+	-fx-background-color: #9393C7;
+	-fx-background-radius: 10;
 	-fx-text-color: white;
 	-fx-text-fill: white;
-	-fx-border-color: #0b5bda;
+	-fx-border-color: #9393C7;
 	-fx-border-width: 0;
 }
-#topBar{
-		-fx-background-color:  #d1d1d1;
-}
 .button:hover{
-	-fx-background-color: #5e92ff;
+	-fx-background-color: #ababd4;
 }
+/*left menubar button styling*/
+#leftBar .button{
+	-fx-background-color: transparent;
+}
+#leftBar .button:hover{
+	-fx-background-color: #cdcde5;
+}
+/*open system monitor button styling*/
+#leftBar #btnSystemMonitor{
+	-fx-background-color: #cdcde5;
+}
+#leftBar #btnSystemMonitor:hover{
+	-fx-background-color: #9393C7;
+}
+/*title bar styling*/
+#topBar{
+		-fx-background-color:  #494963;
+}
+/*left menu bar styling*/
 #leftBar{
-	 -fx-background-color: #d1d1d1;
+	 -fx-background-color: #494963;
+	 -fx-background-radius: 0 12 12 12
 }
-
+/*cpu and memory usage top left*/
 .progress-indicator .indicator {
 	    -fx-background-color: transparent ;
 		-fx-border-radius: 10px;
-		-fx-border-color: #5E92FF;
+		-fx-border-color: transparent;
 }
 .progress-indicator  {
--fx-accent: #5E92FF ;
+-fx-accent: #9393C7 ;
 }
+.progress-indicator .percentage {
+    -fx-fill: white;
+}
+/*system monitor chart styling*/
 .default-color0.chart-series-line { -fx-stroke:  #4287f5; }
 .default-color0.chart-line-symbol{-fx-background-color: #4287f5, #4287f5;}
 .default-color1.chart-series-line { -fx-stroke:  #FBA71B; }
 .default-color1.chart-line-symbol{-fx-background-color: #FBA71B, #FBA71B;}
-
-
+/*system monitor chart legend styling*/
 .chart-legend {
    -fx-background-color:  rgb(66,135,245,0.3);
 }
-
+/*DO NOT EDIT*/
 .AnchorPane{
 	-fx-border-color: black;
 	-fx-border-width: 0.4;
 }
+/*zib bomb identifier list styling*/
 #zipList{
 	-fx-background-color: #d1d1d1;
 }
+/*DO NOT EDIT*/
 .help{
-		-fx-cursor: hand;
+	-fx-cursor: hand;
 }
 .btnHelp{
 	-fx-background-radius: 25%;
 }
+/*global progress bar styling*/
 .progress-bar{
 	-fx-background-color: transparent;
 	-fx-border-width: 1;
@@ -61,9 +101,37 @@
   -fx-background-color: #4287f5;
   -fx-background-radius: 0;
 }
+/*DO NOT EDIT*/
 .lblDisclaimer{
 	-fx-text-fill: #f74a4d;
 }
+/*password generator rectangle styling*/
 .passwordGenRectangle{
 	-fx-fill:#D1D1D1;
+}
+/*global check box styling*/
+.check-box .box {
+-fx-background-color: #ababd4;
+-fx-border-color: #9393C7;
+-fx-border-radius:3px; 
+}
+.check-box .box:hover {
+-fx-background-color: #8989c2;
+}
+.check-box:hover{
+-fx-background-color: rgb(63,77, 217, 0.25);
+-fx-background-radius: 0.40em;
+}
+/*global radio button styling*/
+.radio-button{
+	-fx-background-color: transparent;
+}
+.radio-button .radio{
+	-fx-background-color: #6a74e2;
+}
+/*seperator line styling PROBABLY YOU DO NOT WANT TO EDIT THIS*/
+.separator *.line { 
+-fx-border-style: solid;
+-fx-border-width: 1px;
+-fx-border-color: rgb(255,255,255,0.2);
 }

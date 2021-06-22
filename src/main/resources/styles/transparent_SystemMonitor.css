@@ -1,9 +1,12 @@
 .root{
 -fx-background-color: rgba(48,48, 48, 0.4);
+-fx-background-radius: 0 12 12 12;
 }
 .button{
 	-fx-text-fill: #09ff00;
 	-fx-background-color: transparent;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
 	-fx-border-color: #2ea664;
 	-fx-border-width: 1px;
 }
@@ -48,4 +51,9 @@
 }
 .label{
 	-fx-text-fill: rgba(255,255, 255, 0.6);
+}
+.separator *.line { 
+-fx-border-style: solid;
+-fx-border-width: 1px;
+-fx-border-color: rgb(255, 255,255,0.1);
 }

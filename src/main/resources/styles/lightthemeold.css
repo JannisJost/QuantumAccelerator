@@ -1,0 +1,69 @@
+.button{
+	-fx-background-color: #4287f5;
+	-fx-background-radius: 0;
+	-fx-text-color: white;
+	-fx-text-fill: white;
+	-fx-border-color: #0b5bda;
+	-fx-border-width: 0;
+}
+#topBar{
+		-fx-background-color:  #d1d1d1;
+}
+.button:hover{
+	-fx-background-color: #5e92ff;
+}
+#leftBar{
+	 -fx-background-color: #d1d1d1;
+}
+
+.progress-indicator .indicator {
+	    -fx-background-color: transparent ;
+		-fx-border-radius: 10px;
+		-fx-border-color: #5E92FF;
+}
+.progress-indicator  {
+-fx-accent: #5E92FF ;
+}
+.default-color0.chart-series-line { -fx-stroke:  #4287f5; }
+.default-color0.chart-line-symbol{-fx-background-color: #4287f5, #4287f5;}
+.default-color1.chart-series-line { -fx-stroke:  #FBA71B; }
+.default-color1.chart-line-symbol{-fx-background-color: #FBA71B, #FBA71B;}
+
+
+.chart-legend {
+   -fx-background-color:  rgb(66,135,245,0.3);
+}
+
+.AnchorPane{
+	-fx-border-color: black;
+	-fx-border-width: 0.4;
+}
+#zipList{
+	-fx-background-color: #d1d1d1;
+}
+.help{
+		-fx-cursor: hand;
+}
+.btnHelp{
+	-fx-background-radius: 25%;
+}
+.progress-bar{
+	-fx-background-color: transparent;
+	-fx-border-width: 1;
+	-fx-border-color: #4287f5;
+}
+.progress-bar > .track {
+  -fx-text-box-border: transparent;
+  -fx-control-inner-background: transparent;
+  -fx-background-color: transparent;
+}
+.progress-bar > .bar {
+  -fx-background-color: #4287f5;
+  -fx-background-radius: 0;
+}
+.lblDisclaimer{
+	-fx-text-fill: #f74a4d;
+}
+.passwordGenRectangle{
+	-fx-fill:#D1D1D1;
+}
