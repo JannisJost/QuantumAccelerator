@@ -29,10 +29,12 @@ public class DebloatExecutor {
     }
 
     private void deleteApps() {
+        PowerShell powershell = PowerShell.openSession();
         for (String appName : appsToDelete) {
             String command = "Get-AppxPackage -Name " + appName + "| Remove-AppxPackage";
-            PowerShell.openSession().executeCommand(command);
+            powershell.executeCommand(command);
         }
+        powershell.close();
     }
 
     private Task getDebloatingTask() {
