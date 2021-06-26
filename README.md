@@ -12,6 +12,8 @@ With this application I want to allow less tech experienced people to be able to
 
 Managing files and privacy settings is heavily trust based and in my opinion should be available to everyone. That's why this application is completely free and open source. (the code won't be perfectly clean, because I am still learning a lot about coding) suggestions for improvement are always welcome 😉
 
+## Why QuantumAccelerator?
+Are you bored of other "boosters" stating to boost your computer by over 100%, charging you money to unlock all features, promising things that will never happen even if you pay them? Then QuantumAccelerator is the application you need. It's completely free and I mean it, no pay walls, no ads or annoying popups and no personal data being collected. QuantumAccelerator might not be the fastest solution, but it doesn't promise things that will never happen, and its being improved over time.
 
 ## Features:
    * Free storage
@@ -36,7 +38,7 @@ Managing files and privacy settings is heavily trust based and in my opinion sho
 
  * **How do I install QuantumAccelerator?**
 
-Just download the jar from <a href="https://github.com/JannisJost/QuantumAccelerator/releases" URL>releases</a>, to be able to run it you'll need JavaFX (Openjfx) installed. If you have not installed JavaFX you can download the installer which is bigger but doesnt need Java or JavaFX installed and utilizes an Windows executable file wich can be run as administrator more easily. You can also download QuantumAccelerator from Sourceforge just click on the button bellow.
+Download the installer, which doesnt need Java or JavaFX installed and utilizes a Windows executable file wich can easily be run as administrator (needed for all features to work). You can also download QuantumAccelerator from Sourceforge just click on the button bellow. Or just download the jar from <a href="https://github.com/JannisJost/QuantumAccelerator/releases" URL>releases</a>, to be able to run it you'll need JavaFX (Openjfx) installed.
 
 
 * **Some features do not work properly, what should I do?**
