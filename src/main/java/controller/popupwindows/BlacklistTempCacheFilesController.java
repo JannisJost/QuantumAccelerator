@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -36,6 +37,9 @@ public class BlacklistTempCacheFilesController extends ThemeableWindow implement
     private Button btnSave;
     @FXML
     private Button btnClose;
+    @FXML
+    private Label lblBlacklistInfo;
+    //non FXML
     private double xOffset = 0;
     private double yOffset = 0;
     private FolderChooser folderChooser;
@@ -144,5 +148,6 @@ public class BlacklistTempCacheFilesController extends ThemeableWindow implement
         btnAddItem.setText(bundle.getString("btnAddItem"));
         btnCancel.setText(bundle.getString("btnCancel"));
         btnSave.setText(bundle.getString("btnSave"));
-    }  
+        lblBlacklistInfo.setText(bundle.getString("lblBlacklistInfo"));        
+    }
 }

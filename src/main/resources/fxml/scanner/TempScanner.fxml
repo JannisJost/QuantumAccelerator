@@ -49,12 +49,12 @@
                      </tooltip>
                   </CheckBox>
                   <CheckBox fx:id="chkSearchCache" mnemonicParsing="false" onAction="#showExperiencedUserOnlyInfo" text="Search cache folders" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <RadioButton fx:id="chkQuickScan" mnemonicParsing="false" text="Quick scan">
+                  <RadioButton fx:id="chkQuickScan" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="22.0" prefWidth="120.0" text="Quick scan">
                      <tooltip>
                         <Tooltip text="Cleans specific folders and reads from earliers scans" />
                      </tooltip>
                   </RadioButton>
-                  <RadioButton fx:id="chkDeepScan" mnemonicParsing="false" prefHeight="22.0" prefWidth="99.0" selected="true" text="Deep scan" GridPane.rowIndex="1">
+                  <RadioButton fx:id="chkDeepScan" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="22.0" prefWidth="120.0" selected="true" text="Deep scan" GridPane.rowIndex="1">
                      <tooltip>
                         <Tooltip text="Scans the whole computer" />
                      </tooltip>
@@ -64,11 +64,7 @@
                   <Insets />
                </VBox.margin>
             </GridPane>
-            <Button fx:id="btnEditBlacklist" mnemonicParsing="false" onAction="#showBlacklist" text="Blacklist">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin></Button>
-            <Button fx:id="btnStartScan" mnemonicParsing="false" onAction="#startScan" scaleX="1.5" scaleY="1.5" text="Start scan">
+            <Button fx:id="btnStartScan" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#startScan" scaleX="1.5" scaleY="1.5" text="Start scan">
                <VBox.margin>
                   <Insets bottom="10.0" top="15.0" />
                </VBox.margin>
@@ -76,15 +72,19 @@
                   <Tooltip text="Starts the scan (increased CPU and storage usage)" />
                </tooltip>
             </Button>
+            <Button fx:id="btnEditBlacklist" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showBlacklist" prefHeight="31.0" prefWidth="125.0" text="Blacklist">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin></Button>
             <Button fx:id="btnCancelScan" mnemonicParsing="false" onAction="#cancelScan" text="Cancel" textFill="WHITE" visible="false">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin></Button>
          </children>
       </VBox>
-      <Pane onMouseDragged="#moveWindowSecond" onMousePressed="#moveWindow" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #b6d1fb;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane onMouseDragged="#moveWindowSecond" onMousePressed="#moveWindow" prefHeight="40.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="599.2" spacing="5.0">
+            <HBox id="topBar" alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="599.2" spacing="5.0">
                <children>
                   <Button fx:id="btnMinimize" mnemonicParsing="false" onAction="#minimize" prefWidth="30.0" text="-" />
                   <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeWindow" prefHeight="30.0" prefWidth="30.0" text="X" />

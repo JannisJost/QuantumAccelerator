@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -64,6 +65,7 @@ public class ZipBombIdentifierController extends ThemeableWindow implements Init
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setLanguage(super.getLanguage());
     }
 
     @FXML
@@ -218,7 +220,10 @@ public class ZipBombIdentifierController extends ThemeableWindow implements Init
     }
 
     @Override
-    public void setLanguage(String language) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setLanguage(String lang) {
+        Locale locale = new Locale(lang);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.popup", locale);
+        btnChooseZIP.setText(bundle.getString("btnChooseZIP"));
+        btnScan.setText(bundle.getString("btnScan"));
     }
 }
