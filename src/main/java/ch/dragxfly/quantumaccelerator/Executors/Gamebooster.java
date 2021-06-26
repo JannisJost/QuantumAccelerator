@@ -4,6 +4,7 @@ import shellscripts.PowerShell;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.JOptionPane;
+import shellscripts.RegistryEditor;
 
 /**
  *
@@ -12,6 +13,7 @@ import javax.swing.JOptionPane;
 public class Gamebooster {
 
     private final PowerShell powershell = new PowerShell();
+    private final RegistryEditor regedit = new RegistryEditor();
 
     public void runGameboost() throws InterruptedException, IOException {
         disableSysMain();
@@ -59,21 +61,21 @@ public class Gamebooster {
             }
             showJOptionPane("deleted all installers from downloads folder", "Success");
         } catch (Exception e) {
+            System.err.print(e);
         }
     }
 
     private void showJOptionPane(String title, String message) {
         JOptionPane.showMessageDialog(null, title, message, JOptionPane.INFORMATION_MESSAGE);
-
     }
     //Disables superfetcher and prefetcher
 
     private void disableSysMain() {
-        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Stop-Service -Force -Name “SysMain”; Set-Service -Name “SysMain” -StartupType Disabled");
+        powershell.executeCommand("Stop-Service -Force -Name “SysMain”; Set-Service -Name “SysMain” -StartupType Disabled");
     }
 
     private void enableSysMain() {
-        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Start-Service -Force -Name “SysMain”; Set-Service -Name “SysMain” -StartupType Automatic");
+        powershell.executeCommand("Start-Service -Force -Name “SysMain”; Set-Service -Name “SysMain” -StartupType Automatic");
     }
 
     private void runUltimatePowerPowerShell() throws InterruptedException, IOException {
@@ -85,11 +87,11 @@ public class Gamebooster {
     }
 
     private void deactivateBackgroundApps() {
-        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Reg Add HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\BackgroundAccessApplications /v GlobalUserDisabled /t REG_DWORD /d 1 /f");
+        regedit.setOrCreateKey("HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\BackgroundAccessApplications", "GlobalUserDisabled", "1");
     }
 
     private void reactivateBackgroundApps() {
-        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Reg Add HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\BackgroundAccessApplications /v GlobalUserDisabled /t REG_DWORD /d 0 /f ");
+        regedit.setOrCreateKey("HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\BackgroundAccessApplications", "GlobalUserDisabled", "0");
     }
 
     private void increaseGPUPriotity() {
@@ -109,11 +111,11 @@ public class Gamebooster {
     }
 
     private void stopWindowsSearch() {
-        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Stop-Service -Name WSearch");
+        powershell.executeCommand("Stop-Service -Name WSearch");
     }
 
     private void startWindowsSearch() {
-        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Start-Service -Name WSearch");
+        powershell.executeCommand("Start-Service -Name WSearch");
     }
 
 }

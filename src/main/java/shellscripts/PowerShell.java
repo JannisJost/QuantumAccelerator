@@ -2,6 +2,8 @@ package shellscripts;
 
 import ch.dragxfly.quantumaccelerator.Executors.errorhandling.ErrorWindow;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,6 +23,14 @@ public class PowerShell {
         } catch (IOException | InterruptedException e) {
             new ErrorWindow().showErrorWindow("Could not run " + nameOfScript);
         }
+    }
 
+    public void executeCommand(String command) {
+        String fullCommand = "powershell.exe " + command;
+        try {
+            Runtime.getRuntime().exec(fullCommand);
+        } catch (IOException ex) {
+            System.err.println("error while executing powershell command");
+        }
     }
 }

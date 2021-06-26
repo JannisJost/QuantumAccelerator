@@ -2,6 +2,8 @@ package ch.dragxfly.quantumaccelerator.Executors;
 
 import controller.popupwindows.TelemetryOptionsController;
 import javafx.concurrent.Task;
+import shellscripts.PowerShell;
+import shellscripts.RegistryEditor;
 
 /**
  *
@@ -10,6 +12,8 @@ import javafx.concurrent.Task;
 public class TelemetryBlocker {
 
     private Task telemetryBlockerTask;
+    private PowerShell ps = new PowerShell();
+    private RegistryEditor regEdit = new RegistryEditor();
 
     /**
      *
@@ -22,6 +26,7 @@ public class TelemetryBlocker {
      * Services"
      * @param isEnabledWifiSense defines wether to activate/deactivate "Wifi
      * Sense"
+     * @param isEnabledSendMalewareSamples
      */
     public void blockTelemetry(TelemetryOptionsController invocator, boolean isEnabledMRT, boolean isEnabledCEIP,
             boolean isEnabledTrackingService, boolean isEnabledPushService, boolean isEnabledWifiSense, boolean isEnabledSendMalewareSamples) {
@@ -44,28 +49,28 @@ public class TelemetryBlocker {
     }
 
     private void setMRT(boolean isEnabledMRT) {
-        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("New-ItemProperty -Path \"HKLM:\\Software\\Policies\\Microsoft\\MRT\" -Name DontReportInfectionInformation -Value " + (isEnabledMRT ? "1" : "0") + " -Force");
+        regEdit.setOrCreateKey("HKLM:\\SOFTWARE\\Policies\\Microsoft\\MRT", "DontReportInfectionInformation", (isEnabledMRT ? "1" : "0"));
     }
 
     private void setCEIP(boolean isEnabledCEIP) {
-        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Get-ScheduledTask -TaskPath \"\\Microsoft\\Windows\\Customer Experience Improvement Program\\\" | " + (isEnabledCEIP ? "Enable-ScheduledTask" : "Disable-ScheduledTask"));
+        ps.executeCommand("Get-ScheduledTask -TaskPath \"\\Microsoft\\Windows\\Customer Experience Improvement Program\\\" | " + (isEnabledCEIP ? "Enable-ScheduledTask" : "Disable-ScheduledTask"));
     }
 
     private void setTrackingService(boolean isEnabledTrackingService) {
-        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Set-Service -Name DiagTrack -StartupType "
+        ps.executeCommand("Set-Service -Name DiagTrack -StartupType "
                 + (isEnabledTrackingService ? "Automatic" : "Disable"));
     }
 
     private void setPushService(boolean disablePushService) {
-        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("Set-Service -Name dmwappushservice -StartupType "
+        ps.executeCommand("Set-Service -Name dmwappushservice -StartupType "
                 + (disablePushService ? "Disable" : "Automatic"));
     }
 
     private void setWifiSense(boolean isEnabledWifiSense) {
-        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("New-ItemProperty -Path \"HKLM:\\SOFTWARE\\Microsoft\\WcmSvc\\wifinetworkmanager\\config\" -Name AutoConnectAllowedOEM -Value " + (isEnabledWifiSense ? "1" : "0") + "-Force");
+        regEdit.setOrCreateKey("HKLM:\\SOFTWARE\\Microsoft\\WcmSvc\\wifinetworkmanager\\config", "AutoConnectAllowedOEM", (isEnabledWifiSense ? "1" : "0"));
     }
 
     private void setSendMalewareSamples(boolean isEnabledSendMalewareSamples) {
-        com.profesorfalken.jpowershell.PowerShell.executeSingleCommand("New-ItemProperty -Path \"HKLM:\\Software\\Policies\\Microsoft\\Windows Defender\\Spynet\" -Name SubmitSamplesConsent -Value " + (isEnabledSendMalewareSamples ? "1" : "2") + " -Force");
+        regEdit.setOrCreateKey("HKLM:\\Software\\Policies\\Microsoft\\Windows Defender\\Spynet", "SubmitSamplesConsent", (isEnabledSendMalewareSamples ? "1" : "2"));
     }
 }

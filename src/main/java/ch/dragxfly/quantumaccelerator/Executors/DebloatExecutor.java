@@ -1,10 +1,10 @@
 package ch.dragxfly.quantumaccelerator.Executors;
 
 import ch.dragxfly.quantumaccelerator.notifications.LoadingScreen;
-import com.profesorfalken.jpowershell.PowerShell;
 import java.util.LinkedList;
 import java.util.List;
 import javafx.concurrent.Task;
+import shellscripts.PowerShell;
 
 /**
  *
@@ -29,12 +29,11 @@ public class DebloatExecutor {
     }
 
     private void deleteApps() {
-        PowerShell powershell = PowerShell.openSession();
+        PowerShell ps = new PowerShell();
         for (String appName : appsToDelete) {
             String command = "Get-AppxPackage -Name " + appName + "| Remove-AppxPackage";
-            powershell.executeCommand(command);
+            ps.executeCommand(command);
         }
-        powershell.close();
     }
 
     private Task getDebloatingTask() {
