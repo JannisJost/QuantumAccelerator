@@ -123,7 +123,7 @@
 /*global check box styling*/
 .check-box .box {
 -fx-background-color: #29328D;
--fx-border-color: #3F4DD9;
+-fx-border-width:0;
 -fx-border-radius:3px; 
 }
 .check-box .box:hover {
@@ -146,11 +146,32 @@
 	-fx-border-color: rgb(255, 255,255,0.4);
 	-fx-highlight-fill:rgb(255, 255,255,0.3);
 	-fx-border-width: 0 0 1 0;
-}
+} 
 /*seperator line styling PROBABLY YOU DO NOT WANT TO EDIT THIS*/
 .separator *.line { 
 -fx-border-style: solid;
 -fx-border-width: 1px;
 -fx-border-color: rgb(255, 255,255,0.1);
+}
+.choice-box {
+  -fx-background-color: #3F4DD9;
+  -fx-mark-color: white; /*arrow*/
+}
+.choice-box > .label { -fx-text-fill: white; }
+/*Background*/
+.choice-box .context-menu { -fx-background-color: #3F4DD9;
+-fx-background-radius:10; }
+/*Focused item*/
+.choice-box .menu-item:focused { -fx-background-color: #101660;
+-fx-background-radius: 10; }
+/* normal text color*/
+.choice-box .menu-item > .label { -fx-text-fill: white; }
+/*focused item*/
+.choice-box .menu-item:focused > .label { -fx-text-fill: white; }
+.arc-indicator{
+    -fx-fill: transparent;
+    -fx-stroke-width: 8;
+    -fx-stroke: #3F4DD9;
+    -fx-stroke-line-cap: round;
 }
 	

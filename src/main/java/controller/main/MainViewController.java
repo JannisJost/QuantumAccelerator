@@ -7,6 +7,7 @@ import animatefx.animation.BounceInRight;
 import animatefx.animation.BounceOutRight;
 import animatefx.animation.RotateIn;
 import animatefx.animation.RotateOut;
+import ch.dragxfly.quantumaccelerator.CustomControls.progressindicator.CustomProgressIndicator;
 import ch.dragxfly.quantumaccelerator.Hardware.HardwareObserver;
 import ch.dragxfly.quantumaccelerator.Style.Animations.ButtonAnimator;
 import ch.dragxfly.quantumaccelerator.Style.Animations.MainAnimations;
@@ -37,6 +38,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -82,16 +84,18 @@ public class MainViewController extends MultilingualView implements Initializabl
     private Button btnFullscreen;
     @FXML
     private Button btnMinimize;
-    @FXML
-    private ProgressIndicator progCPUUsage;
-    @FXML
-    private ProgressIndicator progMemory;
+//    private ProgressIndicator progCPUUsage;
+//    private ProgressIndicator progMemory;
     @FXML
     private Button btnShowSystemGraph;
     @FXML
     private ImageView imgSettings;
     @FXML
     private ImageView imgMaximize;
+    @FXML
+    private HBox boxCPU;
+    @FXML
+    private HBox boxMemory;
     //Non FXML
     private final NotificationManager notificationManager = new NotificationManager();
     private final Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
@@ -107,10 +111,17 @@ public class MainViewController extends MultilingualView implements Initializabl
     private double xOffset;
     private double yOffset;
     private final HardwareObserver hardware = new HardwareObserver();
+    private CustomProgressIndicator progCPU = new CustomProgressIndicator("/styles/icons/menubar/CPU.png");
+    private CustomProgressIndicator progMemory = new CustomProgressIndicator("/styles/icons/menubar/memory.png");
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setLanguage(super.getLanguage());
+        progCPU.setStyleSheet(pref.get(CURRENTTHEME, "/styles/darktheme.css"));
+        progCPU.setRadius(38);
+        progMemory.setRadius(38);
+        boxCPU.getChildren().add(progCPU);
+        boxMemory.getChildren().add(progMemory);
         hardware.addObserver(this);
         hardware.startObserver();
         //Sets the "Feature" view as default view from start
@@ -308,12 +319,16 @@ public class MainViewController extends MultilingualView implements Initializabl
         currentScene.getStylesheets().clear();
         if (lightThemeActive) {
             currentScene.getStylesheets().add("/styles/darktheme.css");
+            progCPU.setStyleSheet("/styles/darktheme.css");
+            progMemory.setStyleSheet("/styles/darktheme.css");
             pref.put(CURRENTTHEME, "/styles/darktheme.css");
             file = "/styles/icons/button/darktheme.png";
         } else {
             currentScene.getStylesheets().add("/styles/lighttheme.css");
             pref.put(CURRENTTHEME, "/styles/lighttheme.css");
             file = "/styles/icons/button/lighttheme.png";
+            progMemory.setStyleSheet("/styles/lighttheme.css");
+            progCPU.setStyleSheet("/styles/lighttheme.css");
         }
         try {
             pref.flush();
@@ -367,23 +382,12 @@ public class MainViewController extends MultilingualView implements Initializabl
 
     @Override
     public void update(Observable o, Object arg) {
-        double memoryUsage = hardware.getMemoryUsage();
-        double CPUUsage = hardware.getCpuUsage();
-        if (memoryUsage >= 0.75) {
-            progMemory.setStyle("-fx-accent: #b80000 ;");
-        } else {
-            progMemory.setStyle("");
-        }
-        if (CPUUsage >= 0.90) {
-            progCPUUsage.setStyle("-fx-accent: #b80000 ;");
-
-        } else {
-            progCPUUsage.setStyle("");
-        }
+        Double memoryUsage = hardware.getMemoryUsage() * 100;
+        Double CPUUsage = hardware.getCpuUsage() * 100;
         //Runlater sets the prog indicators
         Platform.runLater(() -> {
-            progMemory.setProgress(memoryUsage);
-            progCPUUsage.setProgress(CPUUsage);
+            progMemory.setProgress(memoryUsage.intValue());
+            progCPU.setProgress(CPUUsage.intValue());
         });
     }
 
@@ -424,7 +428,6 @@ public class MainViewController extends MultilingualView implements Initializabl
         viewOpener.openThemeableView("/fxml/RestorePointCreator.fxml", "Restore", true);
     }
 
-    @FXML
     private void runGarbageCollector(MouseEvent event) {
         System.gc();
     }

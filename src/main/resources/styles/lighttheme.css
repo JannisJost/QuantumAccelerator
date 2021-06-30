@@ -1,6 +1,6 @@
 .root {
 	/*background of window*/
-    -fx-base: #CDCDFF;
+    -fx-base: #F0F1F2;
     -fx-accent: #e7eff7 ;
     -fx-default-button: #7f878f ;
     -fx-focus-color: #efefef;
@@ -16,37 +16,38 @@
 }
 /*global button styling*/
 .button{
-	-fx-background-color: #9393C7;
+	-fx-background-color: #FC7553;
 	-fx-background-radius: 10;
 	-fx-text-color: white;
 	-fx-text-fill: white;
-	-fx-border-color: #9393C7;
+	-fx-border-color: #FC7553;
 	-fx-border-width: 0;
 }
 .button:hover{
-	-fx-background-color: #ababd4;
+	-fx-background-color: #fd8668;
 }
 /*left menubar button styling*/
 #leftBar .button{
 	-fx-background-color: transparent;
 }
 #leftBar .button:hover{
-	-fx-background-color: #cdcde5;
+	-fx-background-color: #CA7851;
+	-fx-text-fill: white;
 }
 /*open system monitor button styling*/
 #leftBar #btnSystemMonitor{
-	-fx-background-color: #cdcde5;
+	-fx-background-color: #CA7851;
 }
 #leftBar #btnSystemMonitor:hover{
-	-fx-background-color: #9393C7;
+	-fx-background-color: #FF8D53;
 }
 /*title bar styling*/
 #topBar{
-		-fx-background-color:  #494963;
+		-fx-background-color:  #3d3d3d;
 }
 /*left menu bar styling*/
 #leftBar{
-	 -fx-background-color: #494963;
+	 -fx-background-color: #3d3d3d;
 	 -fx-background-radius: 0 12 12 12
 }
 /*cpu and memory usage top left*/
@@ -56,7 +57,7 @@
 		-fx-border-color: transparent;
 }
 .progress-indicator  {
--fx-accent: #9393C7 ;
+-fx-accent: #FC7553 ;
 }
 .progress-indicator .percentage {
     -fx-fill: white;
@@ -68,7 +69,10 @@
 .default-color1.chart-line-symbol{-fx-background-color: #FBA71B, #FBA71B;}
 /*system monitor chart legend styling*/
 .chart-legend {
-   -fx-background-color:  rgb(66,135,245,0.3);
+   -fx-background-color:  rgb(252, 117, 83,0.5);
+}
+.chart-legend-item{
+    -fx-text-fill: white;
 }
 /*DO NOT EDIT*/
 .AnchorPane{
@@ -90,7 +94,8 @@
 .progress-bar{
 	-fx-background-color: transparent;
 	-fx-border-width: 1;
-	-fx-border-color: #4287f5;
+	-fx-border-color: #FC7553;
+	-fx-border-radius: 12;
 }
 .progress-bar > .track {
   -fx-text-box-border: transparent;
@@ -98,8 +103,8 @@
   -fx-background-color: transparent;
 }
 .progress-bar > .bar {
-  -fx-background-color: #4287f5;
-  -fx-background-radius: 0;
+  -fx-background-color: #FC7553;
+  -fx-background-radius: 12;
 }
 /*DO NOT EDIT*/
 .lblDisclaimer{
@@ -111,27 +116,51 @@
 }
 /*global check box styling*/
 .check-box .box {
--fx-background-color: #ababd4;
--fx-border-color: #9393C7;
+-fx-background-color: #FFB692;
+-fx-border-width:0;
 -fx-border-radius:3px; 
 }
 .check-box .box:hover {
--fx-background-color: #8989c2;
+-fx-background-color: #FCA088;
 }
 .check-box:hover{
--fx-background-color: rgb(63,77, 217, 0.25);
+-fx-background-color: rgb(252, 117, 83,0.25);
 -fx-background-radius: 0.40em;
+}
+.check-box:selected .mark {
+    -fx-background-color:white;
 }
 /*global radio button styling*/
 .radio-button{
 	-fx-background-color: transparent;
 }
 .radio-button .radio{
-	-fx-background-color: #6a74e2;
+	-fx-background-color: #FC7553;
 }
 /*seperator line styling PROBABLY YOU DO NOT WANT TO EDIT THIS*/
 .separator *.line { 
 -fx-border-style: solid;
 -fx-border-width: 1px;
--fx-border-color: rgb(255,255,255,0.2);
+-fx-border-color: rgb(0,0,0,0.2);
+}
+.choice-box {
+  -fx-background-color: #FC7553;
+  -fx-mark-color: white; /*arrow*/
+}
+.choice-box > .label { -fx-text-fill: white; }
+/*Background*/
+.choice-box .context-menu { -fx-background-color: #FC7553;
+-fx-background-radius: 10; }
+/*Focused item*/
+.choice-box .menu-item:focused { -fx-background-color: #FF8D53;
+-fx-background-radius: 10; }
+/* normal text color*/
+.choice-box .menu-item > .label { -fx-text-fill: white; }
+/*focused item*/
+.choice-box .menu-item:focused > .label { -fx-text-fill: white; }
+.arc-indicator{
+    -fx-fill: transparent;
+    -fx-stroke-width: 8;
+    -fx-stroke: #FC7553;
+    -fx-stroke-line-cap: round;
 }

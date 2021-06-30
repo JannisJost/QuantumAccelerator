@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.effect.DropShadow?>
@@ -23,39 +22,9 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="70.0" prefWidth="175.0">
                      <children>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../styles/icons/menubar/CPU.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets left="5.0" right="5.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <ProgressIndicator fx:id="progCPUUsage" prefHeight="20.0" prefWidth="38.0" progress="0.0" scaleX="0.8" scaleY="0.8">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <tooltip>
-                              <Tooltip text="CPU usage" />
-                           </tooltip>
-                        </ProgressIndicator>
+                        <HBox fx:id="boxCPU" alignment="CENTER" prefWidth="60.0" HBox.hgrow="ALWAYS" />
                         <Separator orientation="VERTICAL" prefHeight="200.0" />
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../styles/icons/menubar/memory.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets left="5.0" right="5.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <ProgressIndicator fx:id="progMemory" onMouseClicked="#runGarbageCollector" progress="0.0" scaleX="0.8" scaleY="0.8">
-                           <tooltip>
-                              <Tooltip text="Memory usage" />
-                           </tooltip>
-                        </ProgressIndicator>
+                        <HBox fx:id="boxMemory" alignment="CENTER" prefWidth="60.0" HBox.hgrow="ALWAYS" />
                         <Separator orientation="VERTICAL" prefHeight="200.0" />
                         <Button id="btnSystemMonitor" fx:id="btnShowSystemGraph" minHeight="15.0" minWidth="15.0" mnemonicParsing="false" onAction="#showSystemGraph" prefHeight="50.0" prefWidth="18.0" text="▶">
                            <HBox.margin>
