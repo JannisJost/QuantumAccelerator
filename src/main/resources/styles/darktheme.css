@@ -43,21 +43,13 @@
 #topBar{
     -fx-background-color: #070a2c;
 }
+#topBarSecondary{
+	-fx-background-color:#1D2467;
+}
 /*left menu bar styling*/
 #leftBar{
     -fx-background-color: #070a2c;
 	-fx-background-radius: 0 12 12 12
-}
-/*cpu and memory usage top left*/
-.progress-indicator .percentage {
-    -fx-fill: white;
-}
-.progress-indicator .indicator {
-    -fx-background-color: transparent ;
-    -fx-border-radius: 10px;
-}
-.progress-indicator  {
-    -fx-accent: #3F4DD9 ;
 }
 /*system monitor chart styling*/
 .default-color0.chart-series-line { -fx-stroke: #3F4DD9; }
@@ -129,6 +121,9 @@
 .check-box .box:hover {
 -fx-background-color: #3945c6;
 }
+.check-box-desktop-organizer:selected {
+-fx-background-color: rgb(63,77, 217, 0.25);
+}
 .check-box:hover{
 -fx-background-color: rgb(63,77, 217, 0.25);
 -fx-background-radius: 0.40em;
@@ -143,7 +138,7 @@
 /*global text field styling*/
 .text-field{
 	-fx-background-color: transparent;
-	-fx-border-color: rgb(255, 255,255,0.4);
+	-fx-border-color: rgb(255, 255,255,0.6);
 	-fx-highlight-fill:rgb(255, 255,255,0.3);
 	-fx-border-width: 0 0 1 0;
 } 
@@ -173,5 +168,8 @@
     -fx-stroke-width: 8;
     -fx-stroke: #3F4DD9;
     -fx-stroke-line-cap: round;
+}
+.progress-rail{
+	-fx-stroke:#3F4DD9; 
 }
 	

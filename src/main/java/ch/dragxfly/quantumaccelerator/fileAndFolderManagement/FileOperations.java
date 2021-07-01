@@ -2,7 +2,7 @@ package ch.dragxfly.quantumaccelerator.fileAndFolderManagement;
 
 /**
  *
- * @author janni
+ * @author jannis
  */
 public class FileOperations {
 

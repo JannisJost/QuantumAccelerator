@@ -5,15 +5,21 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.popupwindows.DesktopOrganizerController">
    <children>
-      <ButtonBar id="topBar" layoutX="288.0" layoutY="251.0" onMouseDragged="#moveWindowSecond" onMousePressed="#moveWindow" prefHeight="40.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ButtonBar id="topBarSecondary" layoutX="288.0" layoutY="251.0" onMouseDragged="#moveWindowSecond" onMousePressed="#moveWindow" prefHeight="40.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <buttons>
           <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeWindow" text="X" />
         </buttons>
@@ -21,34 +27,77 @@
             <Insets left="5.0" right="5.0" />
          </padding>
       </ButtonBar>
-      <VBox layoutX="177.0" layoutY="142.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+      <VBox alignment="CENTER" layoutX="177.0" layoutY="142.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
          <children>
-            <Label fx:id="lblCreateFoldersFor" text="Create folders for:" />
-            <GridPane>
+            <Label text="Desktop organizer">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <GridPane alignment="CENTER" hgap="5.0" minHeight="-Infinity" minWidth="-Infinity" prefWidth="170.0" vgap="5.0" VBox.vgrow="ALWAYS">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints fillWidth="false" halignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="300.0" />
+                  <ColumnConstraints halignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="300.0" />
               </columnConstraints>
               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <CheckBox fx:id="chkTxtFiles" mnemonicParsing="false" selected="true" text="Text files" />
-                  <CheckBox fx:id="chkPictures" mnemonicParsing="false" selected="true" text="Pictures" GridPane.rowIndex="1" />
-                  <CheckBox fx:id="chkExe" mnemonicParsing="false" text="Executables" GridPane.rowIndex="2" />
+                  <CheckBox fx:id="chkTxtFiles" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="300.0" selected="true" styleClass="check-box-desktop-organizer" text="Text documents (txt, docx)" GridPane.rowIndex="1" />
+                  <CheckBox fx:id="chkPictures" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="300.0" selected="true" styleClass="check-box-desktop-organizer" text="Pictures (png, jpg, jpeg, svg)" GridPane.rowIndex="2" />
+                  <CheckBox fx:id="chkExe" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="300.0" styleClass="check-box-desktop-organizer" text="Executables (exe, jar)" GridPane.rowIndex="3" />
+                  <Label fx:id="lblCreateFoldersFor" prefWidth="200.0" text="Create folders for:" underline="true" />
+                  <HBox alignment="CENTER_LEFT" spacing="5.0" />
+                  <Label text="Folder name:" underline="true" GridPane.columnIndex="1" />
+                  <HBox fx:id="hboxTextOptions" alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <RadioButton fx:id="radioDefaultTxt" mnemonicParsing="false" selected="true" text="Default">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="grText" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
+                        <RadioButton fx:id="radioCustomTxt" mnemonicParsing="false" text="Custom" toggleGroup="$grText" />
+                        <TextField fx:id="txtText" prefHeight="31.0" prefWidth="100.0" promptText="Name" />
+                     </children>
+                  </HBox>
+                  <HBox fx:id="hboxPictureOptions" alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <RadioButton fx:id="radioDefaultPictures" mnemonicParsing="false" selected="true" text="Default">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="grPicture" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
+                        <RadioButton fx:id="radioCustomPictures" mnemonicParsing="false" text="Custom" toggleGroup="$grPicture" />
+                        <TextField fx:id="txtPictures" prefHeight="31.0" prefWidth="100.0" promptText="Name" />
+                     </children>
+                  </HBox>
+                  <HBox fx:id="hboxExecutableOptions" alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <children>
+                        <RadioButton fx:id="radioDefaultExecutables" mnemonicParsing="false" selected="true" text="Default">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="grExecutables" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
+                        <RadioButton fx:id="radioCustomExecutables" mnemonicParsing="false" text="Custom" toggleGroup="$grExecutables" />
+                        <TextField fx:id="txtExecutables" prefHeight="31.0" prefWidth="100.0" promptText="Name" />
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
-            <ButtonBar prefHeight="40.0" prefWidth="200.0">
-              <buttons>
-                <Button fx:id="btnOrganize" mnemonicParsing="false" onAction="#organizeDesktop" text="Organize" />
-              </buttons>
-            </ButtonBar>
+          <Button fx:id="btnOrganize" mnemonicParsing="false" onAction="#organizeDesktop" prefHeight="50.0" prefWidth="250.0" text="Organize" />
          </children>
          <padding>
             <Insets left="5.0" right="5.0" />
          </padding>
       </VBox>
    </children>
+   <padding>
+      <Insets bottom="5.0" />
+   </padding>
 </AnchorPane>

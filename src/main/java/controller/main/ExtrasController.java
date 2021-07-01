@@ -63,6 +63,7 @@ public class ExtrasController extends MultilingualView implements Initializable 
 
     @FXML
     private void organizeDesktop(ActionEvent event) {
+        new ViewOpener().openThemeableView("/fxml/DesktopOrganizer.fxml", "Desktop organizer", false);
     }
 
     @FXML

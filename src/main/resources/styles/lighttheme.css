@@ -50,18 +50,6 @@
 	 -fx-background-color: #3d3d3d;
 	 -fx-background-radius: 0 12 12 12
 }
-/*cpu and memory usage top left*/
-.progress-indicator .indicator {
-	    -fx-background-color: transparent ;
-		-fx-border-radius: 10px;
-		-fx-border-color: transparent;
-}
-.progress-indicator  {
--fx-accent: #FC7553 ;
-}
-.progress-indicator .percentage {
-    -fx-fill: white;
-}
 /*system monitor chart styling*/
 .default-color0.chart-series-line { -fx-stroke:  #4287f5; }
 .default-color0.chart-line-symbol{-fx-background-color: #4287f5, #4287f5;}
