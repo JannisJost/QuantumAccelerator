@@ -20,7 +20,7 @@ import javafx.stage.StageStyle;
 
 /**
  *
- * @author janni
+ * @author jannis
  */
 public class CustomToolTip implements Observer {
 
@@ -34,10 +34,18 @@ public class CustomToolTip implements Observer {
     private double xOffset = 0;
     private double yOffset = 0;
     private CustomToolTipTasks tasks;
+    private static CustomToolTip instance = null;
 
-    public CustomToolTip() {
+    private CustomToolTip() {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.initStyle(StageStyle.TRANSPARENT);
+    }
+
+    public static CustomToolTip getInstance() {
+        if (instance == null) {
+            instance = new CustomToolTip();
+        }
+        return instance;
     }
 
     private void resetAll() {
@@ -99,7 +107,6 @@ public class CustomToolTip implements Observer {
     }
 
     private void hideToolTip() {
-        //Closes the tooltip
         tasks.cancelCountdown();
         stage.close();
     }

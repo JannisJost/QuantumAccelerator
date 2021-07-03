@@ -25,7 +25,7 @@ import javafx.scene.layout.VBox;
 
 /**
  *
- * @author janni
+ * @author jannis
  */
 public class PrivacyController extends MultilingualView implements Initializable {
 
@@ -63,7 +63,7 @@ public class PrivacyController extends MultilingualView implements Initializable
     private PrivacyExecutor executor;
     private final static String CAMISACTIVE = "camera";
     private final PrivacyTasks tasks = new PrivacyTasks();
-    private final CustomToolTip toolTip = new CustomToolTip();
+    private final CustomToolTip toolTip = CustomToolTip.getInstance();
     private final Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
 
     @Override
@@ -134,17 +134,17 @@ public class PrivacyController extends MultilingualView implements Initializable
 
     @FXML
     private void showToolTipTelemetry(MouseEvent event) {
-        new CustomToolTip().showToolTip(new ToolTipTexts().getTelemetry(), event);
+        toolTip.showToolTip(new ToolTipTexts().getTelemetry(), event);
     }
 
     @FXML
     private void showToolTipPwGen(MouseEvent event) {
-        new CustomToolTip().showToolTip(new ToolTipTexts().getPwGen(), event);
+        toolTip.showToolTip(new ToolTipTexts().getPwGen(), event);
     }
 
     @FXML
     private void showToolTipCam(MouseEvent event) {
-        new CustomToolTip().showToolTip(new ToolTipTexts().getCam(), event);
+        toolTip.showToolTip(new ToolTipTexts().getCam(), event);
     }
 
     @Override

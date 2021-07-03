@@ -18,7 +18,7 @@ import javafx.scene.input.MouseEvent;
 
 /**
  *
- * @author janni
+ * @author jannis
  */
 public class ExtrasController extends MultilingualView implements Initializable {
 
@@ -48,7 +48,7 @@ public class ExtrasController extends MultilingualView implements Initializable 
     private Label lblTesting;
     //non FXML
     private CPUBenchmark benchmark;
-    private final CustomToolTip toolTip = new CustomToolTip();
+    private final CustomToolTip toolTip = CustomToolTip.getInstance();
     private final ExtrasExecutor executor = new ExtrasExecutor();
 
     @Override

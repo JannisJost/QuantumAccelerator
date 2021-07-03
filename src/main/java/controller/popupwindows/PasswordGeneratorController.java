@@ -29,7 +29,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author janni
+ * @author jannis
  */
 public class PasswordGeneratorController extends ThemeableWindow implements Initializable {
 
@@ -58,6 +58,7 @@ public class PasswordGeneratorController extends ThemeableWindow implements Init
     private double mouseY;
     private boolean isMouseOnRectangle = false;
     private PasswordGenerator generator;
+    private final CustomToolTip toolTip = CustomToolTip.getInstance();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -172,7 +173,7 @@ public class PasswordGeneratorController extends ThemeableWindow implements Init
 
     @FXML
     private void showToolTipTrulyRandom(MouseEvent event) {
-        new CustomToolTip().showToolTip(new ToolTipTexts().getTrulyRandom(), event);
+         toolTip.showToolTip(new ToolTipTexts().getTrulyRandom(), event);
     }
 
     @Override
