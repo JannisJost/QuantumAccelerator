@@ -2,12 +2,10 @@ package shellscripts;
 
 import ch.dragxfly.quantumaccelerator.Executors.errorhandling.ErrorWindow;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
- * @author janni
+ * @author jannis
  */
 public class PowerShell {
 
@@ -16,8 +14,9 @@ public class PowerShell {
             //Gets current working path
             String pathToScript = "@" + nameOfScript + ".ps1";
             Runtime runtime = Runtime.getRuntime();
+            String fullCommand = "cmd.exe /c powershell.exe " + pathToScript;
             //Runs Powershell script to search activate or create powerplan
-            Process processPowershell = runtime.exec("cmd.exe /c powershell.exe " + pathToScript);
+            Process processPowershell = runtime.exec(fullCommand);
             //Waiting for Powershell command to finish
             processPowershell.waitFor();
         } catch (IOException | InterruptedException e) {
