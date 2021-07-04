@@ -1,8 +1,8 @@
 package controller.popupwindows;
 
-import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
+import ch.dragxfly.quantumaccelerator.views.ThemeableWindow;
 import animatefx.animation.Shake;
-import ch.dragxfly.quantumaccelerator.Executors.errorhandling.ErrorWindow;
+import ch.dragxfly.quantumaccelerator.executors.errorhandling.ErrorWindow;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.FileOperations;
 import java.io.File;
 import java.io.IOException;
@@ -160,6 +160,7 @@ public class ZipBombIdentifierController extends ThemeableWindow implements Init
                         if (compressedSize * 10 < uncompressedSize) {
                             zipBombs.add(zipPath);
                         }
+                        zip.close();
                     }
                 } catch (IOException e) {
                     new ErrorWindow().showErrorWindow("Error while scanning zip files");

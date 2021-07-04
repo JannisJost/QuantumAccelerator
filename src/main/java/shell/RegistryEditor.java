@@ -1,4 +1,4 @@
-package shellscripts;
+package shell;
 
 /**
  *

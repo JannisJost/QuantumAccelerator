@@ -1,10 +1,9 @@
 package controller.popupwindows;
 
-import ch.dragxfly.quantumaccelerator.CustomControls.ToggleSwitch;
-import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
-import ch.dragxfly.quantumaccelerator.Hardware.HardwareObserver;
+import ch.dragxfly.quantumaccelerator.customControls.ToggleSwitch;
+import ch.dragxfly.quantumaccelerator.views.ThemeableWindow;
+import ch.dragxfly.quantumaccelerator.hardware.HardwareObserver;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -55,7 +54,6 @@ public class SystemMonitorController extends ThemeableWindow implements Initiali
     private final BooleanProperty isShowCPUTemp = new SimpleBooleanProperty(false);
     private final List<Pair<Double, String>> cpuUsageHistory = new LinkedList<>();
     private final List<Pair<Double, String>> cpuTempHistory = new LinkedList<>();
-    private final List<Double> memoryUsageHistory = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

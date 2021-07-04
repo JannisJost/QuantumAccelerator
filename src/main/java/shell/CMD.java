@@ -1,6 +1,6 @@
-package shellscripts;
+package shell;
 
-import ch.dragxfly.quantumaccelerator.Executors.errorhandling.ErrorWindow;
+import ch.dragxfly.quantumaccelerator.executors.errorhandling.ErrorWindow;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -47,8 +47,7 @@ public class CMD {
             String fullCommand = "cmd /B start cmd.exe /K \"" + command + "\"";
             p1 = Runtime.getRuntime().exec(fullCommand);
             BufferedReader reader = new BufferedReader(new InputStreamReader(p1.getInputStream()));
-            String line = "";
-            line = reader.readLine();
+            String line = reader.readLine();
             return line;
         } catch (IOException e) {
             System.out.println(e);

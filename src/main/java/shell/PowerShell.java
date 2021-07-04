@@ -1,6 +1,7 @@
-package shellscripts;
+package shell;
 
-import ch.dragxfly.quantumaccelerator.Executors.errorhandling.ErrorWindow;
+import ch.dragxfly.quantumaccelerator.executors.errorhandling.ErrorWindow;
+import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.ApplicationFilesHelper;
 import java.io.IOException;
 
 /**
@@ -12,7 +13,7 @@ public class PowerShell {
     public void runPowershellScript(String nameOfScript) {
         try {
             //Gets current working path
-            String pathToScript = "@" + nameOfScript + ".ps1";
+            String pathToScript = new ApplicationFilesHelper().getInstallationPath() + "Powershell_Scripts\\" + nameOfScript + ".ps1";
             Runtime runtime = Runtime.getRuntime();
             String fullCommand = "cmd.exe /c powershell.exe " + pathToScript;
             //Runs Powershell script to search activate or create powerplan

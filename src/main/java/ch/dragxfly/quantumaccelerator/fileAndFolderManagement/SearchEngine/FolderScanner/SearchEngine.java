@@ -1,24 +1,17 @@
 package ch.dragxfly.quantumaccelerator.fileAndFolderManagement.SearchEngine.FolderScanner;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  *
- * @author janni
+ * @author jannis
  */
 public class SearchEngine {
 
     private final List<String> accessDenied = new LinkedList<>();
-    LinkedList<String> requested = new LinkedList<>();
 
     /**
      * searches for folders containing a specific String in name
@@ -29,29 +22,29 @@ public class SearchEngine {
      * @return list of all folders which names contain toSearchFor
      */
     public LinkedList<String> searchFoldersContaining(String startDirectory, String toSearchFor) {
-        requested.clear();
-        searchFolders(startDirectory, toSearchFor);
-        return requested;
+        return searchFolders(startDirectory, toSearchFor);
     }
 
     public LinkedList<String> searchFoldersContaining(String startDirectory, String[] toSearchFor) {
-        requested.clear();
-        searchFolders(startDirectory, toSearchFor);
-        return requested;
+        return searchFolders(startDirectory, toSearchFor);
     }
 
-    public void searchFolders(String startDirectory, String toSearchFor) {
+    public LinkedList<String> searchFolders(String startDirectory, String toSearchFor) {
+        LinkedList<String> requested = new LinkedList<>();
         if (!getChildren(startDirectory).isEmpty()) {
             for (String path : getFoldersOnly(getChildren(startDirectory))) {
                 if (path.toLowerCase().endsWith(toSearchFor)) {
                     requested.add(path);
+                } else {
+                    requested.addAll(searchFolders(path, toSearchFor));
                 }
-                searchFolders(path, toSearchFor);
             }
         }
+        return requested;
     }
 
-    public void searchFolders(String startDirectory, String[] toSearchFor) {
+    public LinkedList<String> searchFolders(String startDirectory, String[] toSearchFor) {
+        LinkedList<String> requested = new LinkedList<>();
         if (!getChildren(startDirectory).isEmpty()) {
             for (String path : getFoldersOnly(getChildren(startDirectory))) {
                 for (int i = 0; i < toSearchFor.length - 1; i++) {
@@ -60,38 +53,46 @@ public class SearchEngine {
                         break;
                     }
                 }
-                searchFolders(path, toSearchFor);
+                requested.addAll(searchFolders(path, toSearchFor));
             }
         }
-    }
-
-    public LinkedList<String> searchForFilesContaining(String startDirectory, String[] toSearchFor) {
-        searchFiles(startDirectory, toSearchFor);
         return requested;
     }
 
-    public void searchFiles(String startDirectory, String[] toSearchFor) {
+    public LinkedList<String> searchForFilesContaining(String startDirectory, String[] toSearchFor) {
+        return searchFiles(startDirectory, toSearchFor);
+    }
+
+    public LinkedList<String> searchFiles(String startDirectory, String[] toSearchFor) {
+        LinkedList<String> requested = new LinkedList<>();
         if (!getChildren(startDirectory).isEmpty()) {
             for (String path : getChildren(startDirectory)) {
                 for (int i = 0; i < toSearchFor.length - 1; i++) {
-                    if (path.contains(toSearchFor[i])) {
+                    if (new File(path).isFile()) {
+                        if (path.toLowerCase().contains(toSearchFor[i])) {
+                            requested.add(path);
+                        }
+                    }
+                }
+                requested.addAll(searchFolders(path, toSearchFor));
+            }
+        }
+        return requested;
+    }
+
+    public LinkedList<String> searchFiles(String startDirectory, String toSearchFor) {
+        LinkedList<String> requested = new LinkedList<>();
+        if (!getChildren(startDirectory).isEmpty()) {
+            for (String path : getChildren(startDirectory)) {
+                if (new File(path).isFile()) {
+                    if (path.toLowerCase().contains(toSearchFor)) {
                         requested.add(path);
                     }
                 }
-                searchFolders(path, toSearchFor);
+                requested.addAll(searchFolders(path, toSearchFor));
             }
         }
-    }
-
-    public void searchFiles(String startDirectory, String toSearchFor) {
-        if (!getChildren(startDirectory).isEmpty()) {
-            for (String path : getChildren(startDirectory)) {
-                if (path.contains(toSearchFor)) {
-                    requested.add(path);
-                }
-                searchFolders(path, toSearchFor);
-            }
-        }
+        return requested;
     }
 
     /**
@@ -102,9 +103,7 @@ public class SearchEngine {
      * @return files with specified extension
      */
     public LinkedList<String> searchForFilesWithExtension(String startDirectory, String extension) {
-        requested.clear();
-        searchFiles(startDirectory, extension);
-        return requested;
+        return searchFiles(startDirectory, extension);
     }
 
     /**
@@ -114,23 +113,17 @@ public class SearchEngine {
      */
     private List<String> getChildren(String parentPath) {
         //Get child folders and files of a given directory
-        List<File> files = new ArrayList<>();
         try {
-            files = Files.list(Paths.get(parentPath)).map(Path::toFile)
-                    .collect(Collectors.toList());
-        } catch (IOException e) {
-            accessDenied.add(parentPath);
+            List<String> fileNames = Arrays.asList(new File(parentPath).list());
+            List<String> files = new LinkedList<>();
+            for (String f : fileNames) {
+                files.add(parentPath+"\\" + f);
+            }
+            return files;
+        } catch (Exception e) {
+            System.out.println(e + " " + parentPath);
+            return new LinkedList<>();
         }
-        return FilesToString(files);
-    }
-
-    private List<String> FilesToString(List<File> files) {
-        //Converts an array to a list
-        List<String> listString = new LinkedList<>();
-        for (File f : files) {
-            listString.add(f.getAbsolutePath());
-        }
-        return listString;
     }
 
     /**
