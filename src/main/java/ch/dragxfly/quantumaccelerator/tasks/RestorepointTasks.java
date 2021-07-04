@@ -2,7 +2,7 @@ package ch.dragxfly.quantumaccelerator.tasks;
 
 import java.util.Date;
 import javafx.concurrent.Task;
-import shellscripts.CMD;
+import shell.CMD;
 
 /**
  *

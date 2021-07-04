@@ -1,4 +1,4 @@
-package ch.dragxfly.quantumaccelerator.ViewManager;
+package ch.dragxfly.quantumaccelerator.views;
 
 import java.util.prefs.Preferences;
 

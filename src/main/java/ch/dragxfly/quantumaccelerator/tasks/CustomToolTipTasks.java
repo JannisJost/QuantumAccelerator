@@ -1,6 +1,6 @@
 package ch.dragxfly.quantumaccelerator.tasks;
 
-import ch.dragxfly.quantumaccelerator.CustomControls.CustomToolTip;
+import ch.dragxfly.quantumaccelerator.customControls.CustomToolTip;
 import java.math.BigDecimal;
 import java.util.Observable;
 import java.util.Timer;

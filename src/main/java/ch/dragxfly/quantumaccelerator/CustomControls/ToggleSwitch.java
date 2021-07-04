@@ -1,4 +1,4 @@
-package ch.dragxfly.quantumaccelerator.CustomControls;
+package ch.dragxfly.quantumaccelerator.customControls;
 
 import javafx.animation.FillTransition;
 import javafx.animation.ParallelTransition;
@@ -13,7 +13,7 @@ import javafx.util.Duration;
 
 /**
  *
- * @author janni
+ * @author jannis
  */
 public class ToggleSwitch extends Parent {
 
@@ -38,7 +38,7 @@ public class ToggleSwitch extends Parent {
         //configures the "on click" animation
         switchAnimation.setNode(thumb);
         colorTransition.setShape(background);
-        getChildren().addAll(background, thumb);
+        this.getChildren().addAll(background, thumb);
         isSwitchedOn.addListener((obs, oldState, newState) -> {
             boolean isOn = newState;
             switchAnimation.setToX(isOn ? 50 - 25 : 0);

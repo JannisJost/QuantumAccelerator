@@ -1,13 +1,13 @@
-package ch.dragxfly.quantumaccelerator.CustomControls;
+package ch.dragxfly.quantumaccelerator.customControls;
 
-import ch.dragxfly.quantumaccelerator.ViewManager.MultilingualView;
+import ch.dragxfly.quantumaccelerator.views.MultilingualView;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
  * Written with help from Arial
  *
- * @author janni
+ * @author jannis
  */
 public final class ToolTipTexts extends MultilingualView {
     

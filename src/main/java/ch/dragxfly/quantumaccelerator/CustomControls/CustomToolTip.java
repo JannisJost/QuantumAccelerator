@@ -1,4 +1,4 @@
-package ch.dragxfly.quantumaccelerator.CustomControls;
+package ch.dragxfly.quantumaccelerator.customControls;
 
 import ch.dragxfly.quantumaccelerator.tasks.CustomToolTipTasks;
 import java.util.Observable;

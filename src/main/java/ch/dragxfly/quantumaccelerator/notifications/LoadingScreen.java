@@ -1,6 +1,6 @@
 package ch.dragxfly.quantumaccelerator.notifications;
 
-import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
+import ch.dragxfly.quantumaccelerator.views.ThemeableWindow;
 import java.util.Observable;
 import java.util.Observer;
 import javafx.geometry.Pos;

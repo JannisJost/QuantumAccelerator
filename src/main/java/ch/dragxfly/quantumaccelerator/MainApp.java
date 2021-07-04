@@ -1,9 +1,9 @@
 package ch.dragxfly.quantumaccelerator;
 
-import Models.ViewsModel;
+import ch.dragxfly.quantumaccelerator.models.ViewsModel;
 import animatefx.animation.FadeIn;
 import controller.main.MainViewController;
-import ch.dragxfly.quantumaccelerator.ViewManager.ViewCreator;
+import ch.dragxfly.quantumaccelerator.views.ViewCreator;
 import java.io.IOException;
 import javafx.application.Application;
 import static javafx.application.Application.launch;

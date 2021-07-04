@@ -1,6 +1,6 @@
-package ch.dragxfly.quantumaccelerator.ViewManager;
+package ch.dragxfly.quantumaccelerator.views;
 
-import ch.dragxfly.quantumaccelerator.Executors.errorhandling.ErrorWindow;
+import ch.dragxfly.quantumaccelerator.executors.errorhandling.ErrorWindow;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

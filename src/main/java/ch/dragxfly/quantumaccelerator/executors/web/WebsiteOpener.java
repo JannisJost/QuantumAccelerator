@@ -1,5 +1,4 @@
-
-package ch.dragxfly.quantumaccelerator.ViewManager.Web;
+package ch.dragxfly.quantumaccelerator.executors.web;
 
 import java.awt.Desktop;
 import java.io.IOException;
