@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -37,8 +36,40 @@
                               </Button>
                            </graphic>
                         </CheckBox>
-                        <CheckBox fx:id="chkDeleteCookies" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete browser cookies" />
-                        <CheckBox fx:id="chkDeleteBrowserHistory" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete browser history" />
+                        <CheckBox fx:id="chkDeleteBrowserCache" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete browser cache">
+                           <graphic>
+                              <Button contentDisplay="TEXT_ONLY" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onMouseClicked="#showToolTipBrowserCache" prefHeight="20.0" prefWidth="20.0" styleClass="btnHelp" text="?">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </graphic></CheckBox>
+                        <CheckBox fx:id="chkDeleteBrowserHistory" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete browser history">
+                           <graphic>
+                              <Button contentDisplay="TEXT_ONLY" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onMouseClicked="#showToolTipBrowserHistory" prefHeight="20.0" prefWidth="20.0" styleClass="btnHelp" text="?">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </graphic></CheckBox>
+                        <CheckBox fx:id="chkDeleteBrowserCookies" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete browser cookies">
+                           <graphic>
+                              <Button contentDisplay="TEXT_ONLY" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onMouseClicked="#showToolTipBrowserCookies" prefHeight="20.0" prefWidth="20.0" styleClass="btnHelp" text="?">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </graphic>
+                        </CheckBox>
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -76,11 +107,7 @@
                            <children>
                               <Button fx:id="btnTelemetryOptions" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showTelemetryOptions" prefHeight="50.0" prefWidth="285.0" text="Telemetry options" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
                               <Button fx:id="btnPasswordGenerator" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showPasswordGenerator" prefHeight="50.0" prefWidth="285.0" text="Password generator" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
-                              <Button fx:id="btnDeactivateCam" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#activateOrDeactivateCam" prefHeight="50.0" prefWidth="285.0" text="Deactivate/activate cam" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
-                                 <graphic>
-                                    <ProgressIndicator fx:id="progChangingCamState" prefHeight="30.0" visible="false" />
-                                 </graphic>
-                              </Button>
+                              <Button fx:id="btnDeactivateCam" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#activateOrDeactivateCam" prefHeight="50.0" prefWidth="285.0" text="Deactivate/activate cam" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
                               <Button fx:id="btnFileShredder" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="50.0" prefWidth="285.0" text="File shredder" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
                               <Button fx:id="btnHelpTelemetry" contentDisplay="TEXT_ONLY" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onMouseClicked="#showToolTipTelemetry" prefHeight="20.0" prefWidth="20.0" styleClass="btnHelp" text="?" GridPane.columnIndex="1">
                                  <font>

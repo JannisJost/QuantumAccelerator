@@ -1,11 +1,13 @@
 package controller.main;
 
-import ch.dragxfly.quantumaccelerator.Executors.PrivacyExecutor;
+import ch.dragxfly.quantumaccelerator.executors.PrivacyExecutor;
 import ch.dragxfly.quantumaccelerator.tasks.PrivacyTasks;
-import ch.dragxfly.quantumaccelerator.CustomControls.CustomToolTip;
-import ch.dragxfly.quantumaccelerator.CustomControls.ToolTipTexts;
-import ch.dragxfly.quantumaccelerator.ViewManager.MultilingualView;
-import ch.dragxfly.quantumaccelerator.ViewManager.ViewOpener;
+import ch.dragxfly.quantumaccelerator.customControls.CustomToolTip;
+import ch.dragxfly.quantumaccelerator.customControls.ToolTipTexts;
+import ch.dragxfly.quantumaccelerator.views.MultilingualView;
+import ch.dragxfly.quantumaccelerator.views.ViewOpener;
+import controller.popupwindows.warning.InfoDecisionWindow;
+import controller.popupwindows.warning.InfoWindow;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -32,9 +34,9 @@ public class PrivacyController extends MultilingualView implements Initializable
     @FXML
     private CheckBox chkDeleteDNSCache;
     @FXML
-    private CheckBox chkDeleteCookies;
-    @FXML
     private CheckBox chkDeleteBrowserHistory;
+    @FXML
+    private CheckBox chkDeleteBrowserCache;
     @FXML
     private CheckBox chkSelectAll;
     @FXML
@@ -50,17 +52,17 @@ public class PrivacyController extends MultilingualView implements Initializable
     @FXML
     private Button btnPasswordGenerator;
     @FXML
-    private ProgressIndicator progChangingCamState;
-    @FXML
     private Button btnHelpTelemetry;
     @FXML
     private Button btnHelpPwGen;
     @FXML
     private Button btnHelpCam;
+    @FXML
+    private CheckBox chkDeleteBrowserCookies;
     //non FXML
     private Task t;
     boolean camIsActive;
-    private PrivacyExecutor executor;
+    private final PrivacyExecutor executor = new PrivacyExecutor();
     private final static String CAMISACTIVE = "camera";
     private final PrivacyTasks tasks = new PrivacyTasks();
     private final CustomToolTip toolTip = CustomToolTip.getInstance();
@@ -74,7 +76,6 @@ public class PrivacyController extends MultilingualView implements Initializable
 
     @FXML
     private void activateOrDeactivateCam(ActionEvent event) {
-        progChangingCamState.setVisible(true);
         if (camIsActive) {
             t = tasks.getDeactivateCamTask();
         } else {
@@ -91,7 +92,6 @@ public class PrivacyController extends MultilingualView implements Initializable
         t.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent t1) {
-                progChangingCamState.setVisible(false);
                 setCameraButtonText();
             }
         });
@@ -124,7 +124,17 @@ public class PrivacyController extends MultilingualView implements Initializable
 
     @FXML
     private void applyPrivacyOptions(ActionEvent event) {
-        boolean deleteDNSCache = chkDeleteDNSCache.isSelected();
+        Locale locale = new Locale(super.getLanguage());
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.warnings.warnings", locale);
+        boolean doContinue = new InfoDecisionWindow().ShowInfoWindow(bundle.getString("CloseBrowser"));
+        if (doContinue) {
+            boolean deleteDNSCache = chkDeleteDNSCache.isSelected();
+            boolean clearBrowserCache = chkDeleteBrowserCache.isSelected();
+            boolean clearBrowserHistory = chkDeleteBrowserHistory.isSelected();
+            boolean clearBrowserCookies = chkDeleteBrowserCookies.isSelected();
+            executor.run(deleteDNSCache, clearBrowserCache, clearBrowserHistory, clearBrowserCookies);
+            new InfoWindow().ShowInfoWindow("Successfully performed all selected");
+        }
     }
 
     @FXML
@@ -147,18 +157,34 @@ public class PrivacyController extends MultilingualView implements Initializable
         toolTip.showToolTip(new ToolTipTexts().getCam(), event);
     }
 
+    @FXML
+    private void showToolTipBrowserCache(MouseEvent event) {
+        toolTip.showToolTip(new ToolTipTexts().getBrowserCache(), event);
+    }
+
+    @FXML
+    private void showToolTipBrowserHistory(MouseEvent event) {
+        toolTip.showToolTip(new ToolTipTexts().getBrowserHistory(), event);
+    }
+
+    @FXML
+    private void showToolTipBrowserCookies(MouseEvent event) {
+        toolTip.showToolTip(new ToolTipTexts().getBrowserCookies(), event);
+    }
+
     @Override
     public void setLanguage(String lang) {
         Locale locale = new Locale(lang);
         ResourceBundle bundle = ResourceBundle.getBundle("languages.lang", locale);
         chkSelectAll.setText(bundle.getString("chkSelectAll"));
         chkDeleteDNSCache.setText(bundle.getString("chkDeleteDNSCache"));
-        chkDeleteCookies.setText(bundle.getString("chkDeleteCookies"));
+        chkDeleteBrowserCache.setText(bundle.getString("chkDeleteCache"));
         chkDeleteBrowserHistory.setText(bundle.getString("chkDeleteBrowserHistory"));
         btnFileShredder.setText(bundle.getString("btnFileShredder"));
         btnTelemetryOptions.setText(bundle.getString("btnTelemetryOptions"));
         btnRun.setText(bundle.getString("btnRun"));
         btnPasswordGenerator.setText(bundle.getString("btnPasswordGenerator"));
+        chkDeleteBrowserCookies.setText(bundle.getString("chkDeleteBrowserCookies"));
     }
 
 }
