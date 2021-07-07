@@ -18,6 +18,16 @@
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="4.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
+            <Label fx:id="lblTitle" text="About QuantumAccelerator">
+               <font>
+                  <Font name="Verdana Pro Light" size="39.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblVersion" text="V 0.3 (Beta)">
+               <font>
+                  <Font name="Sitka Display Italic" size="22.0" />
+               </font>
+            </Label>
             <Label text="Thank you for trusting QuantumAccelerator">
                <font>
                   <Font name="System Bold" size="15.0" />
@@ -26,20 +36,10 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Label>
-            <Label fx:id="lblTitle" text="About QuantumAccelerator">
-               <font>
-                  <Font name="Verdana Pro Light" size="39.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblVersion" text="V 0.1 (Beta)">
-               <font>
-                  <Font name="Sitka Display Italic" size="22.0" />
-               </font>
-            </Label>
-            <Label text="Developed by Dragxfly" />
-            <Label text="EmptyStandbyList by Wen Jia Liu " />
-            <Label text="Beta tester: Arial" />
-            <HBox alignment="CENTER" prefHeight="44.0" prefWidth="600.0">
+            <Label prefWidth="225.0" text="Developed by Jannis J." />
+            <Label prefWidth="225.0" text="EmptyStandbyList by Wen Jia Liu " />
+            <Label prefWidth="225.0" text="Beta tester: Arial" />
+            <HBox alignment="CENTER" prefHeight="44.0">
                <children>
                   <Label text="Icons by" underline="true">
                      <tooltip>
