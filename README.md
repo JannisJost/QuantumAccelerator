@@ -82,6 +82,8 @@ First of all thank you all for using and trusting QuantumAccelerator. Without yo
 
 Feature requests and testing:              *Arial*
 
+French translation:                        <a href="https://github.com/shiipou" URL> *shiipou (Flavien CADET)* </a> <!-- link to shiipou's github -->
+
 EmptyStandbyList.exe:                      <a href="https://github.com/wj32" URL> *Wen Jia Liu aka. wj32* </a> <!-- link to wj32's github -->
 
 Logo:                                       *Joshua B.*
