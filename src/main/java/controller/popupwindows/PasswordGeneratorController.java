@@ -1,9 +1,9 @@
 package controller.popupwindows;
 
-import ch.dragxfly.quantumaccelerator.CustomControls.CustomToolTip;
-import ch.dragxfly.quantumaccelerator.CustomControls.ToolTipTexts;
-import ch.dragxfly.quantumaccelerator.Executors.PasswordGenerator;
-import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
+import ch.dragxfly.quantumaccelerator.customControls.CustomToolTip;
+import ch.dragxfly.quantumaccelerator.customControls.ToolTipTexts;
+import ch.dragxfly.quantumaccelerator.executors.PasswordGenerator;
+import ch.dragxfly.quantumaccelerator.views.ThemeableWindow;
 import java.awt.Toolkit;
 import java.awt.datatransfer.ClipboardOwner;
 import java.awt.datatransfer.StringSelection;
@@ -27,7 +27,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
  *
  * @author jannis
  */
@@ -182,7 +181,7 @@ public class PasswordGeneratorController extends ThemeableWindow implements Init
         ResourceBundle bundle = ResourceBundle.getBundle("languages.popup", locale);
         btnCopyPassword.setText(bundle.getString("bntCopyPassword"));
         btnClear.setText(bundle.getString("btnClear"));
-        lblInstruction.setText(bundle.getString("lblInstruction"));
+        lblInstruction.setText(bundle.getString("lblPWInstruction"));
         lblTrulyRandomInfo.setText(bundle.getString("lblTrulyRandomInfo"));
     }
 

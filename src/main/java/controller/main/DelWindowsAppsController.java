@@ -1,7 +1,8 @@
 package controller.main;
 
-import ch.dragxfly.quantumaccelerator.Executors.DebloatExecutor;
-import ch.dragxfly.quantumaccelerator.ViewManager.MultilingualView;
+import ch.dragxfly.quantumaccelerator.executors.DebloatExecutor;
+import ch.dragxfly.quantumaccelerator.views.MultilingualView;
+import ch.dragxfly.quantumaccelerator.views.ViewOpener;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,10 +15,11 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.VBox;
+import shell.RegistryEditor;
 
 /**
  *
- * @author janni
+ * @author jannis
  */
 public class DelWindowsAppsController extends MultilingualView implements Initializable {
 
@@ -77,6 +79,12 @@ public class DelWindowsAppsController extends MultilingualView implements Initia
                 .forEach(item -> toDelete.add(item.getAccessibleText()));
         DebloatExecutor debloater = new DebloatExecutor(toDelete);
         debloater.startDebloating();
+    }
+
+    @FXML
+    private void showAppRightManager(ActionEvent event) {
+        new RegistryEditor().readKey("HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\DeviceAccess\\Global\\{E5323777-F976-4f5b-9B55-B94699C46E44}", "Value");
+        new ViewOpener().openThemeableView("/fxml/AppRightManager.fxml", "App right manager", false);
     }
 
     @Override

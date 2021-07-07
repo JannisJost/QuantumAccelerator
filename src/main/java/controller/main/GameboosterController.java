@@ -1,10 +1,11 @@
 package controller.main;
 
-import ch.dragxfly.quantumaccelerator.CustomControls.ToggleSwitch;
+import ch.dragxfly.quantumaccelerator.customControls.ToggleSwitch;
 import ch.dragxfly.quantumaccelerator.tasks.GameboosterTasks;
-import ch.dragxfly.quantumaccelerator.Executors.Gamebooster;
-import ch.dragxfly.quantumaccelerator.Style.Logo.Logo;
-import ch.dragxfly.quantumaccelerator.ViewManager.MultilingualView;
+import ch.dragxfly.quantumaccelerator.executors.Gamebooster;
+import ch.dragxfly.quantumaccelerator.style.logo.Logo;
+import ch.dragxfly.quantumaccelerator.views.MultilingualView;
+import controller.popupwindows.warning.InfoDecisionWindow;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
@@ -19,7 +20,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -27,7 +27,7 @@ import javafx.scene.layout.VBox;
 
 /**
  *
- * @author janni
+ * @author jannis
  */
 public class GameboosterController extends MultilingualView implements Initializable {
 
@@ -37,8 +37,6 @@ public class GameboosterController extends MultilingualView implements Initializ
     private Label lblGameboostStatus;
     @FXML
     private ToggleButton toggleBtnGameboost;
-    @FXML
-    private ProgressIndicator progressBoost;
     @FXML
     private Button btnApplyCheckBoxes;
     @FXML
@@ -57,8 +55,6 @@ public class GameboosterController extends MultilingualView implements Initializ
     private Label lblResetCPUPrio;
     @FXML
     private Label lblResetSysMain;
-    @FXML
-    private Button btnFPSBoostPerGame;
     //non FXML
     private Task task;
     private Logo logo;
@@ -172,7 +168,6 @@ public class GameboosterController extends MultilingualView implements Initializ
             public void handle(WorkerStateEvent t) {
                 btnFreeStandbyRAM.setDisable(false);
                 canRunStandByCleaner = true;
-                System.out.println("Cleared standby ram");
             }
         });
     }
@@ -180,7 +175,12 @@ public class GameboosterController extends MultilingualView implements Initializ
     @FXML
     private void runSelected(ActionEvent event) {
         if (chkDelInstallersFromDownload.isSelected()) {
-            new Thread(tasks.getTaskDeleteInstallerFromDownload()).start();
+            Task task = tasks.getTaskDeleteInstallerFromDownload();
+            Thread t = new Thread(task);
+            t.start();
+            task.setOnSucceeded(e -> {
+                new InfoDecisionWindow().ShowInfoWindow("Completed all selected");
+            });
         }
     }
 
@@ -194,8 +194,6 @@ public class GameboosterController extends MultilingualView implements Initializ
         lblOnDeactivateBooster.setText(bundle.getString("lblOnDeactivateBooster"));
         lblResetPowerPlan.setText(bundle.getString("lblResetPowerPlan"));
         lblResetCPUPrio.setText(bundle.getString("lblResetCPUPrio"));
-       lblResetSysMain.setText(bundle.getString("lblResetSysMain"));
-       btnFPSBoostPerGame.setText(bundle.getString("btnFPSBoostPerGame"));
+        lblResetSysMain.setText(bundle.getString("lblResetSysMain"));
     }
-
 }

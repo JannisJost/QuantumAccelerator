@@ -1,8 +1,8 @@
 package controller.Logo;
 
-import ch.dragxfly.quantumaccelerator.Style.Logo.Dash;
-import ch.dragxfly.quantumaccelerator.Style.Logo.Gear;
-import ch.dragxfly.quantumaccelerator.Style.Logo.Needle;
+import ch.dragxfly.quantumaccelerator.style.logo.Dash;
+import ch.dragxfly.quantumaccelerator.style.logo.Gear;
+import ch.dragxfly.quantumaccelerator.style.logo.Needle;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.Animation;

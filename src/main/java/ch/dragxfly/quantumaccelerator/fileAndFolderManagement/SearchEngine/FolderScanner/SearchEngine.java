@@ -95,6 +95,19 @@ public class SearchEngine {
         return requested;
     }
 
+    public LinkedList<String> getAllFilesFrom(String startDirectory) {
+        LinkedList<String> requested = new LinkedList<>();
+        if (!getChildren(startDirectory).isEmpty()) {
+            for (String path : getChildren(startDirectory)) {
+                if (new File(path).isFile()) {
+                    requested.add(path);
+                }
+                requested.addAll(getAllFilesFrom(path));
+            }
+        }
+        return requested;
+    }
+
     /**
      *
      * @param startDirectory defines the directory from which to start searching
@@ -117,11 +130,11 @@ public class SearchEngine {
             List<String> fileNames = Arrays.asList(new File(parentPath).list());
             List<String> files = new LinkedList<>();
             for (String f : fileNames) {
-                files.add(parentPath+"\\" + f);
+                files.add(parentPath + "\\" + f);
             }
             return files;
         } catch (Exception e) {
-            System.out.println(e + " " + parentPath);
+            System.out.println(e);
             return new LinkedList<>();
         }
     }

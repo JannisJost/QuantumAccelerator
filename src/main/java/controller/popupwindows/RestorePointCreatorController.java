@@ -1,6 +1,6 @@
 package controller.popupwindows;
 
-import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
+import ch.dragxfly.quantumaccelerator.views.ThemeableWindow;
 import ch.dragxfly.quantumaccelerator.tasks.RestorepointTasks;
 import java.net.URL;
 import java.util.Locale;

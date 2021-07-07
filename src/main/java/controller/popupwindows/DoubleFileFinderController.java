@@ -1,6 +1,6 @@
 package controller.popupwindows;
 
-import ch.dragxfly.quantumaccelerator.CustomControls.ButtonTableCell;
+import ch.dragxfly.quantumaccelerator.customControls.ButtonTableCell;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.DoubleFileFinder;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.SearchEngine.FolderScanner.FileDuplicatePair;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.chooser.FolderChooser;
@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -32,7 +33,7 @@ import shell.CMD;
  * @author jannis
  */
 public class DoubleFileFinderController extends ThemeableWindow implements Initializable, Observer {
-    
+
     @FXML
     private Button btnClose;
     @FXML
@@ -63,15 +64,19 @@ public class DoubleFileFinderController extends ThemeableWindow implements Initi
     private Button btnCancel;
     @FXML
     private TableView<FileDuplicatePair> tblDuplicates;
+    @FXML
+    private ProgressIndicator progIndicatorIsSearching;
     //non FXML
     private double xOffset = 0;
     private double yOffset = 0;
     private FolderChooser folderChooser;
     private DoubleFileFinder finder;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setLanguage(super.getLanguage());
+        finder = new DoubleFileFinder(this);
+        progIndicatorIsSearching.visibleProperty().bind(btnSearch.disableProperty());
         colCheckBox.setCellFactory(ButtonTableCell.<FileDuplicatePair>forTableColumn("Explorer", (FileDuplicatePair pair) -> {
             CMD cmd = new CMD();
             String command1 = "explorer.exe /select, " + pair.getFile1();
@@ -85,18 +90,19 @@ public class DoubleFileFinderController extends ThemeableWindow implements Initi
         colFile1.setCellValueFactory(new PropertyValueFactory<>("file1"));
         colFile2.setCellValueFactory(new PropertyValueFactory<>("file2"));
     }
-    
+
     @FXML
     private void closeWindow(ActionEvent event) {
+        finder.cancelScan();
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
     }
-    
+
     @FXML
     private void selectStartPath(ActionEvent event) {
         folderChooser.show();
     }
-    
+
     @FXML
     private void searchDoubleFiles(ActionEvent event) {
         Locale locale = new Locale(super.getLanguage());
@@ -111,23 +117,22 @@ public class DoubleFileFinderController extends ThemeableWindow implements Initi
         } else {
             startDoubleScan();
         }
-        
+
     }
-    
+
     private void startDoubleScan() {
         btnSearch.setDisable(true);
         tblDuplicates.getItems().clear();
-        finder = new DoubleFileFinder(this);
         finder.findDoubleFiles(txtStartPath.getText(), chkEqualSize.isSelected(), chkEqualContent.isSelected(), chkEqualLastModified.isSelected());
     }
-    
+
     @Override
     public void setTheme() {
         Scene scene = btnClose.getScene();
         scene.getStylesheets().clear();
         scene.getStylesheets().add(super.getPref().get(ThemeableWindow.getCURRENTTHEME(), ""));
     }
-    
+
     @Override
     public void setLanguage(String lang) {
         Locale locale = new Locale(lang);
@@ -142,41 +147,41 @@ public class DoubleFileFinderController extends ThemeableWindow implements Initi
         chkEqualContent.setText(bundle.getString("chkEqualContent"));
         chkEqualLastModified.setText(bundle.getString("chkEqualLastModified"));
     }
-    
+
     @FXML
     private void moveWindowSecond(MouseEvent event) {
         Stage currentStage = (Stage) btnClose.getScene().getWindow();
         currentStage.setX(event.getScreenX() + xOffset);
         currentStage.setY(event.getScreenY() + yOffset);
     }
-    
+
     @FXML
     private void moveWindow(MouseEvent event) {
         Stage currentStage = (Stage) btnClose.getScene().getWindow();
         xOffset = currentStage.getX() - event.getScreenX();
         yOffset = currentStage.getY() - event.getScreenY();
     }
-    
+
     @Override
     public void update(Observable o, Object arg) {
         if (o.getClass().equals(FolderChooser.class)) {
             txtStartPath.setText((String) arg);
         }
     }
-    
+
     public void addDuplicate(FileDuplicatePair duplicate) {
         tblDuplicates.getItems().add(duplicate);
     }
-    
+
     @FXML
     private void cancelScan(ActionEvent event) {
         if (finder != null) {
             finder.cancelScan();
         }
     }
-    
+
     public void scanDone() {
         btnSearch.setDisable(false);
     }
-    
+
 }

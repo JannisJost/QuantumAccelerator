@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.CheckBox?>
@@ -8,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.main.StorageController">
    <children>
@@ -19,8 +21,18 @@
                      <children>
                         <CheckBox fx:id="chkSelectAll" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#selectAll" text="Select all" />
                         <Separator prefWidth="200.0" />
-                        <CheckBox fx:id="chkDoubleFiles" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Search for double files" />
                         <CheckBox fx:id="chkDeleteInstallerDownload" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Remove installers in download folder" />
+                        <CheckBox fx:id="chkDeleteThumbnailCache" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete thumbnail cache">
+                           <graphic>
+                              <Button contentDisplay="TEXT_ONLY" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onMouseClicked="#showToolTipThumbnailCache" prefHeight="20.0" prefWidth="20.0" styleClass="btnHelp" text="?">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </graphic></CheckBox>
                      </children>
                      <padding>
                         <Insets left="5.0" right="5.0" top="5.0" />
@@ -28,7 +40,7 @@
                   </VBox>
                   <ButtonBar prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <buttons>
-                        <Button fx:id="btnApply" mnemonicParsing="false" text="Apply" textFill="WHITE" />
+                        <Button fx:id="btnApply" mnemonicParsing="false" onAction="#apply" text="Apply" />
                     </buttons>
                      <padding>
                         <Insets right="5.0" />
@@ -43,6 +55,7 @@
                      <children>
                         <Button fx:id="btnRemoveTempNCache" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showTempNCache" prefHeight="50.0" prefWidth="285.0" text="Temp and cache remover" VBox.vgrow="ALWAYS" />
                         <Button fx:id="btnRemoveLogs" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showViewRemoveLogs" prefHeight="50.0" prefWidth="285.0" text="Remove log files" VBox.vgrow="ALWAYS" />
+                        <Button fx:id="btnFindDoubleFiles" layoutX="15.0" layoutY="75.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showViewDoubleFilesFinder" prefHeight="50.0" prefWidth="285.0" text="Find double files" />
                      </children>
                      <padding>
                         <Insets left="5.0" right="5.0" top="5.0" />

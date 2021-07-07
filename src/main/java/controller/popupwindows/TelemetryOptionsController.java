@@ -1,9 +1,10 @@
 package controller.popupwindows;
 
-import ch.dragxfly.quantumaccelerator.CustomControls.ToggleSwitch;
-import ch.dragxfly.quantumaccelerator.Executors.TelemetryBlocker;
-import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
+import ch.dragxfly.quantumaccelerator.customControls.ToggleSwitch;
+import ch.dragxfly.quantumaccelerator.executors.TelemetryBlocker;
+import ch.dragxfly.quantumaccelerator.views.ThemeableWindow;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 import javafx.event.ActionEvent;
@@ -11,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -33,6 +35,21 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
     private GridPane gridSettings;
     @FXML
     private ProgressIndicator progApplyingOptions;
+    @FXML
+    private Label lblInstruction;
+    @FXML
+    private Label lblMRT;
+    @FXML
+    private Label lblCEIP;
+    @FXML
+    private Label lblDiagTrack;
+    @FXML
+    private Label lblDmwapp;
+    @FXML
+    private Label lblWifiSense;
+    @FXML
+    private Label lblMalwareSamples;
+
     //non FXML
     private double xOffset = 0;
     private double yOffset = 0;
@@ -54,11 +71,12 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setLanguage(super.getLanguage());
         tglTrackingService.setActivated(prefs.getBoolean(KEY_TRACKING_SERVICES, true));
         tglPushService.setActivated(prefs.getBoolean(KEY_PUSH_SERVICE, true));
         tglCEIPTasks.setActivated(prefs.getBoolean(KEY_CEIP, true));
         tglMRTTelemetry.setActivated(prefs.getBoolean(KEY_MRT, true));
-        tglWifiSense.setActivated(prefs.getBoolean(KEY_WIFI_SENSE, false));
+        tglWifiSense.setActivated(prefs.getBoolean(KEY_WIFI_SENSE, true));
         tglSendMalewareSamples.setActivated(prefs.getBoolean(SEND_MALEWARE_SAMPLES, true));
         gridSettings.add(tglMRTTelemetry, 1, 0);
         gridSettings.add(tglCEIPTasks, 1, 1);
@@ -127,7 +145,17 @@ public class TelemetryOptionsController extends ThemeableWindow implements Initi
     }
 
     @Override
-    public void setLanguage(String language) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setLanguage(String lang) {
+        Locale locale = new Locale(lang);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.popup", locale);
+        lblInstruction.setText(bundle.getString("lblInstruction"));
+        lblMRT.setText(bundle.getString("lblMRT"));
+        lblCEIP.setText(bundle.getString("lblCEIP"));
+        lblDiagTrack.setText(bundle.getString("lblDiagTrack"));
+        lblDmwapp.setText(bundle.getString("lblDmwapp"));
+        lblWifiSense.setText(bundle.getString("lblWifiSense"));
+        lblMalwareSamples.setText(bundle.getString("lblMalwareSamples"));
+        btnCancel.setText(bundle.getString("btnCancel"));
+        btnSaveAndApply.setText(bundle.getString("btnSaveAndApply"));
     }
 }

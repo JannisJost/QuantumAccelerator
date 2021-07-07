@@ -26,10 +26,6 @@ Are you bored of other "boosters" stating to boost your computer by over 100%, c
      * Zip bomb detector
      * Create restore points
 
-### Comming soon:
- * More modern UI (Windows 11 ready)
- * Multilingual support
-
 ## Download
 
 [![Download QuantumAccelerator](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/quantumaccelerator/files/latest/download)
@@ -38,7 +34,7 @@ Are you bored of other "boosters" stating to boost your computer by over 100%, c
 
  * **How do I install QuantumAccelerator?**
 
-Download the installer, which doesnt need Java or JavaFX installed and utilizes a Windows executable file wich can easily be run as administrator (needed for all features to work). You can also download QuantumAccelerator from Sourceforge just click on the button bellow. Or just download the jar from <a href="https://github.com/JannisJost/QuantumAccelerator/releases" URL>releases</a>, to be able to run it you'll need JavaFX (Openjfx) installed.
+Download the installer, which doesnt need Java or JavaFX installed and utilizes a Windows executable file wich can easily be run as administrator (needed for all features to work). You can also download QuantumAccelerator from Sourceforge just click on the button bellow.
 
 
 * **Some features do not work properly, what should I do?**
@@ -49,11 +45,9 @@ Some actions like measuring CPU temp, deleting files and some more require admin
 
 **Operating system**: *Windows 10*
 
-**Java (jar only)**: *Java 8 or newer with JavaFX/Openjfx (Java 8 is recommmended, because it comes with JavaFX)*
-
 **CPU/GPU**: *Any capable of running Windows 10*
 
-**Supported languages:** *English*
+**Supported languages:** *English, German, French*
 
 * **How can I compile QuantumAccelerator myself?**
 

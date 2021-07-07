@@ -1,11 +1,11 @@
 package controller.main;
 
-import ch.dragxfly.quantumaccelerator.Executors.ExtrasExecutor;
-import ch.dragxfly.quantumaccelerator.ViewManager.ViewOpener;
-import ch.dragxfly.quantumaccelerator.Hardware.Benchmark.CPUBenchmark;
-import ch.dragxfly.quantumaccelerator.CustomControls.CustomToolTip;
-import ch.dragxfly.quantumaccelerator.CustomControls.ToolTipTexts;
-import ch.dragxfly.quantumaccelerator.ViewManager.MultilingualView;
+import ch.dragxfly.quantumaccelerator.executors.ExtrasExecutor;
+import ch.dragxfly.quantumaccelerator.views.ViewOpener;
+import ch.dragxfly.quantumaccelerator.hardware.benchmark.CPUBenchmark;
+import ch.dragxfly.quantumaccelerator.customControls.CustomToolTip;
+import ch.dragxfly.quantumaccelerator.customControls.ToolTipTexts;
+import ch.dragxfly.quantumaccelerator.views.MultilingualView;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;

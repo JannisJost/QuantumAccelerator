@@ -39,7 +39,7 @@ public class MainApp extends Application {
         scene.getStylesheets().clear();
         scene.getRoot().setStyle("");
         //sets app logo as icon
-        Image icon = new Image("/styles/icons/appLogo_Big.png");
+        Image icon = new Image("/styles/icons/appicon.png");
         stage.getIcons().add(icon);
         stage.setTitle("QuantumAccelerator");
         stage.setScene(scene);
@@ -48,7 +48,7 @@ public class MainApp extends Application {
         scene.setFill(Color.TRANSPARENT);
         stage.show();
         controller.setStarterTheme();
-        //runs stuff that is required on startup
+        //runs things required on startup
         controller.startup();
         new FadeIn(root).play();
     }

@@ -1,7 +1,7 @@
 package controller.popupwindows;
 
-import ch.dragxfly.quantumaccelerator.Models.LogFilesModel;
-import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
+import ch.dragxfly.quantumaccelerator.models.LogFilesModel;
+import ch.dragxfly.quantumaccelerator.views.ThemeableWindow;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.deleter.FileDeleter;
 import java.net.URL;
 import java.util.ArrayList;

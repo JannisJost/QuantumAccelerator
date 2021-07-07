@@ -44,11 +44,15 @@ public class CMD {
     public String execCommandReadOutput(String command) {
         Process p1;
         try {
-            String fullCommand = "cmd /B start cmd.exe /K \"" + command + "\"";
-            p1 = Runtime.getRuntime().exec(fullCommand);
+            p1 = Runtime.getRuntime().exec(command);
             BufferedReader reader = new BufferedReader(new InputStreamReader(p1.getInputStream()));
-            String line = reader.readLine();
-            return line;
+            String output = "";
+            String line;
+            while ((line = reader.readLine()) != null) {
+                output += (line + "\n");
+            }
+            reader.close();
+            return output;
         } catch (IOException e) {
             System.out.println(e);
         }

@@ -1,18 +1,6 @@
 .root {
-	/*global background*/
+    /*global background*/
     -fx-base: #05071E;
-    -fx-accent: #e7eff7 ;
-    -fx-default-button: #7f878f ;
-    -fx-focus-color: #efefef;
-    -fx-faint-focus-color: #efefef;
-    -fx-focused-text-base-color : ladder(
-        -fx-selection-bar,
-        -fx-light-text-color 45%,
-        -fx-dark-text-color 46%,
-        -fx-dark-text-color 59%,
-        -fx-mid-text-color 60%
-        );
-    -fx-focused-mark-color: -fx-focused-text-base-color ;   
 }
 /*general button styling*/
 .button{
@@ -27,29 +15,29 @@
 }
 /*left menubar button styling*/
 #leftBar .button{
-	-fx-background-color: transparent;
+    -fx-background-color: transparent;
 }
 #leftBar .button:hover{
-	-fx-background-color: #101660;
+    -fx-background-color: #101660;
 }
 /*open system monitor button styling*/
 #leftBar #btnSystemMonitor{
-	-fx-background-color: #101660;
+    -fx-background-color: #101660;
 }
 #leftBar #btnSystemMonitor:hover{
-	-fx-background-color: #3F4DD9;
+    -fx-background-color: #3F4DD9;
 }
 /*title bar styling*/
 #topBar{
     -fx-background-color: #070a2c;
 }
 #topBarSecondary{
-	-fx-background-color:#1D2467;
+    -fx-background-color:#070a2c;
 }
 /*left menu bar styling*/
 #leftBar{
     -fx-background-color: #070a2c;
-	-fx-background-radius: 0 12 12 12
+    -fx-background-radius: 0 12 12 12
 }
 /*system monitor chart styling*/
 .default-color0.chart-series-line { -fx-stroke: #3F4DD9; }
@@ -58,7 +46,14 @@
 .default-color1.chart-line-symbol{-fx-background-color: #d66248, #d66248;}
 /*system monitor chart legend styling*/
 .chart-legend {
-   -fx-background-color:  rgb(63, 77, 217,0.3);
+    -fx-background-color:  rgb(63, 77, 217,0.3);
+}
+.chart-vertical-grid-lines {
+    -fx-stroke:#595959;
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke: #595959;
 }
 /*combo box styling*/
 .combo-box .combo-box-popup .list-view, .combo-box .combo-box-popup .list-cell {
@@ -68,7 +63,7 @@
 }
 /*DO NOT EDIT*/
 .AnchorPane{
-    -fx-border-color: black;
+    -fx-border-color: gray;
     -fx-border-width: 0.4;
 }
 /*global list styling*/
@@ -89,7 +84,7 @@
 .progress-bar{
     -fx-background-color: transparent;
     -fx-border-width: 1;
-	-fx-border-radius: 50em;
+    -fx-border-radius: 50em;
     -fx-border-color: white;
 }
 .progress-bar > .track {
@@ -114,51 +109,52 @@
 }
 /*global check box styling*/
 .check-box .box {
--fx-background-color: #29328D;
--fx-border-width:0;
--fx-border-radius:3px; 
+    -fx-background-color: #29328D;
+    -fx-border-width:0;
+    -fx-border-radius:3px; 
 }
 .check-box .box:hover {
--fx-background-color: #3945c6;
+    -fx-background-color: #3945c6;
 }
 .check-box-desktop-organizer:selected {
--fx-background-color: rgb(63,77, 217, 0.25);
+    -fx-background-radius: 0.40em;
+    -fx-background-color: rgb(63,77, 217, 0.25);
 }
 .check-box:hover{
--fx-background-color: rgb(63,77, 217, 0.25);
--fx-background-radius: 0.40em;
+    -fx-background-color: rgb(63,77, 217, 0.25);
+    -fx-background-radius: 0.40em;
 }
 /*global radio button styling*/
 .radio-button{
-	-fx-background-color: transparent;
+    -fx-background-color: transparent;
 }
 .radio-button .radio{
-	-fx-background-color: #6a74e2;
+    -fx-background-color: #6a74e2;
 }
 /*global text field styling*/
 .text-field{
-	-fx-background-color: transparent;
-	-fx-border-color: rgb(255, 255,255,0.6);
-	-fx-highlight-fill:rgb(255, 255,255,0.3);
-	-fx-border-width: 0 0 1 0;
+    -fx-background-color: transparent;
+    -fx-border-color: rgb(255, 255,255,0.6);
+    -fx-highlight-fill:rgb(255, 255,255,0.3);
+    -fx-border-width: 0 0 1 0;
 } 
 /*seperator line styling PROBABLY YOU DO NOT WANT TO EDIT THIS*/
 .separator *.line { 
--fx-border-style: solid;
--fx-border-width: 1px;
--fx-border-color: rgb(255, 255,255,0.1);
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(255, 255,255,0.1);
 }
 .choice-box {
-  -fx-background-color: #3F4DD9;
-  -fx-mark-color: white; /*arrow*/
+    -fx-background-color: #3F4DD9;
+    -fx-mark-color: white; /*arrow*/
 }
 .choice-box > .label { -fx-text-fill: white; }
 /*Background*/
 .choice-box .context-menu { -fx-background-color: #3F4DD9;
--fx-background-radius:10; }
+                            -fx-background-radius:10; }
 /*Focused item*/
 .choice-box .menu-item:focused { -fx-background-color: #101660;
--fx-background-radius: 10; }
+                                 -fx-background-radius: 10; }
 /* normal text color*/
 .choice-box .menu-item > .label { -fx-text-fill: white; }
 /*focused item*/
@@ -170,6 +166,68 @@
     -fx-stroke-line-cap: round;
 }
 .progress-rail{
-	-fx-stroke:#3F4DD9; 
+    -fx-stroke:#3F4DD9; 
 }
-	
+/*Table view styling*/
+.table-view{
+    -fx-background-color:#31366E;
+    -fx-background-radius: 12 0 0 12;
+
+}
+.table-view .filler{
+    -fx-background-color: #3F4DD9;
+}
+.table-view .table-cell{
+    -fx-text-fill: white;
+}
+.table-view .column-header-background{
+    -fx-background-color: #31366E;
+    -fx-background-radius: 12 0 0 0;
+}
+
+.table-view .column-header-background .label{
+    -fx-background-color: #3F4DD9;
+    -fx-background-radius: 0.40em;
+    -fx-text-fill: white;
+}
+
+.table-view .column-header {
+    -fx-background-color: #31366E;
+    -fx-background-radius: 0.40em;
+}
+.table-row-cell{
+    -fx-border-color: #31366E;
+    -fx-background-color: -fx-table-cell-border-color, #31366E;
+    -fx-background-insets: 0;
+    -fx-padding: 0.0em;
+}
+.table-row-cell:odd{
+    -fx-background-color: -fx-table-cell-border-color, #31366E;
+    -fx-background-insets: 0;
+    -fx-padding: 0.0em; 
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #31366E;
+    -fx-border-width: 1;
+    -fx-border-radius: 0.40em;
+    -fx-border-color: #b3b3b3;
+}
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical .track,
+.table-view .virtual-flow .scroll-bar:vertical .track-background,
+.table-view .virtual-flow .scroll-bar:horizontal,
+.table-view .virtual-flow .scroll-bar:horizontal .track,
+.table-view .virtual-flow .scroll-bar:horizontal .track-background {
+    -fx-background-color: transparent;
+}
+.table-view .virtual-flow .scroll-bar .increment-button,
+.table-view .virtual-flow .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+}
+.table-view .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color: #3F4DD9;
+}
+.table-view .virtual-flow .scroll-bar:horizontal .thumb {
+    -fx-background-color: #3F4DD9;
+}

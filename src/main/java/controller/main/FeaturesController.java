@@ -2,7 +2,7 @@
 package controller.main;
 
 import animatefx.animation.RubberBand;
-import ch.dragxfly.quantumaccelerator.ViewManager.Web.WebsiteOpener;
+import ch.dragxfly.quantumaccelerator.executors.web.WebsiteOpener;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
