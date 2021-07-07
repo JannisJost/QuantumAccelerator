@@ -25,7 +25,7 @@
                         <CheckBox fx:id="chkSelectAll" mnemonicParsing="false" onAction="#selectAll" prefHeight="21.0" prefWidth="275.0" text="Select all" />
                         <Separator prefWidth="200.0" />
                         <CheckBox fx:id="chkDelCoartana" accessibleText="Microsoft.549981C3F5F10" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete Cortana" />
-                        <CheckBox fx:id="chkXboxGamebar" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Xbox Gamebar" />
+                        <CheckBox fx:id="chkXboxGamebar" accessibleText="Microsoft.XboxGamingOverlay" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Xbox Gamebar" />
                         <CheckBox fx:id="chkDelCandyCrush" accessibleText="*CandyCrush*" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete Candy Crush" />
                         <CheckBox fx:id="chkDelMaps" accessibleText="Microsoft.WindowsMaps" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete Maps" />
                         <CheckBox fx:id="chkDelFeedbackHub" accessibleText="Microsoft.WindowsFeedbackHub" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete Feedback Hub" />
@@ -55,7 +55,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                      <children>
-                        <Button fx:id="btnRevokeRights" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="50.0" prefWidth="285.0" text="Revoke app rights" VBox.vgrow="ALWAYS" />
+                        <Button fx:id="btnRevokeRights" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showAppRightManager" prefHeight="50.0" prefWidth="285.0" text="Revoke app rights" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                </children>
