@@ -28,7 +28,7 @@
             <Font size="43.0" />
          </font>
       </Label>
-      <Pane onMouseDragged="#moveWindowSecond" onMousePressed="#moveWindow" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #b6d1fb;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane id="topBar" onMouseDragged="#moveWindowSecond" onMousePressed="#moveWindow" prefHeight="40.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button fx:id="btnClose" layoutX="557.0" layoutY="5.0" mnemonicParsing="false" onAction="#close" text="X" />
          </children></Pane>

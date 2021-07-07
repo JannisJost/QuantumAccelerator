@@ -1,7 +1,7 @@
 package controller.popupwindows;
 
-import ch.dragxfly.quantumaccelerator.Executors.TempfilesBlacklistManager;
-import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
+import ch.dragxfly.quantumaccelerator.executors.TempfilesBlacklistManager;
+import ch.dragxfly.quantumaccelerator.views.ThemeableWindow;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.chooser.FolderChooser;
 import java.io.IOException;
 import java.net.URL;
@@ -140,10 +140,9 @@ public class BlacklistTempCacheFilesController extends ThemeableWindow implement
     }
     
     @Override
-    public void setLanguage(String language) {
-        ResourceBundle bundle;
-        Locale locale = new Locale(language);
-        bundle = ResourceBundle.getBundle("languages.popup", locale);
+    public void setLanguage(String lang) {
+        Locale locale = new Locale(lang);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.popup", locale);
         btnRemoveItem.setText(bundle.getString("btnRemoveItem"));
         btnAddItem.setText(bundle.getString("btnAddItem"));
         btnCancel.setText(bundle.getString("btnCancel"));

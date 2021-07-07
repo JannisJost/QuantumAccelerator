@@ -1,4 +1,4 @@
-package ch.dragxfly.quantumaccelerator.Style.Logo;
+package ch.dragxfly.quantumaccelerator.style.logo;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;

@@ -1,4 +1,4 @@
-package ch.dragxfly.quantumaccelerator.Style.Logo;
+package ch.dragxfly.quantumaccelerator.style.logo;
 
 import controller.Logo.LogoController;
 import java.io.IOException;

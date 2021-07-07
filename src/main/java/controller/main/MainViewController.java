@@ -1,17 +1,17 @@
 package controller.main;
 
-import Models.ViewsModel;
-import ch.dragxfly.quantumaccelerator.ViewManager.ViewOpener;
+import ch.dragxfly.quantumaccelerator.models.ViewsModel;
+import ch.dragxfly.quantumaccelerator.views.ViewOpener;
 import animatefx.animation.AnimationFX;
 import animatefx.animation.BounceInRight;
 import animatefx.animation.BounceOutRight;
 import animatefx.animation.RotateIn;
 import animatefx.animation.RotateOut;
-import ch.dragxfly.quantumaccelerator.CustomControls.progressindicator.CustomProgressIndicator;
-import ch.dragxfly.quantumaccelerator.Hardware.HardwareObserver;
-import ch.dragxfly.quantumaccelerator.Style.Animations.ButtonAnimator;
-import ch.dragxfly.quantumaccelerator.Style.Animations.MainAnimations;
-import ch.dragxfly.quantumaccelerator.ViewManager.MultilingualView;
+import ch.dragxfly.quantumaccelerator.customControls.Progressindicator.CustomProgressIndicator;
+import ch.dragxfly.quantumaccelerator.hardware.HardwareObserver;
+import ch.dragxfly.quantumaccelerator.style.animations.ButtonAnimator;
+import ch.dragxfly.quantumaccelerator.style.animations.MainAnimations;
+import ch.dragxfly.quantumaccelerator.views.MultilingualView;
 import ch.dragxfly.quantumaccelerator.notifications.NotificationManager;
 import controller.popupwindows.SystemMonitorController;
 import java.io.IOException;
@@ -33,7 +33,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -84,8 +83,6 @@ public class MainViewController extends MultilingualView implements Initializabl
     private Button btnFullscreen;
     @FXML
     private Button btnMinimize;
-//    private ProgressIndicator progCPUUsage;
-//    private ProgressIndicator progMemory;
     @FXML
     private Button btnShowSystemGraph;
     @FXML
@@ -107,19 +104,19 @@ public class MainViewController extends MultilingualView implements Initializabl
     private final Preferences pref = Preferences.userRoot();
     private final ViewOpener viewOpener = new ViewOpener();
     private Pane view;
-    private boolean isFullscreen = false;
     private double xOffset;
     private double yOffset;
+    private boolean isFullscreen = false;
     private final HardwareObserver hardware = new HardwareObserver();
-    private CustomProgressIndicator progCPU = new CustomProgressIndicator("/styles/icons/menubar/CPU.png");
-    private CustomProgressIndicator progMemory = new CustomProgressIndicator("/styles/icons/menubar/memory.png");
+    private final CustomProgressIndicator progCPU = new CustomProgressIndicator("/styles/icons/menubar/CPU.png");
+    private final CustomProgressIndicator progMemory = new CustomProgressIndicator("/styles/icons/menubar/memory.png");
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setLanguage(super.getLanguage());
         progCPU.setStyleSheet(pref.get(CURRENTTHEME, "/styles/darktheme.css"));
-        progCPU.setRadius(38);
-        progMemory.setRadius(38);
+        progCPU.setRadius(36);
+        progMemory.setRadius(36);
         boxCPU.getChildren().add(progCPU);
         boxMemory.getChildren().add(progMemory);
         hardware.addObserver(this);

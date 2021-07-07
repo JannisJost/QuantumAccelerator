@@ -1,8 +1,8 @@
 package controller.popupwindows;
 
-import ch.dragxfly.quantumaccelerator.Models.TempfileModel;
-import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
-import ch.dragxfly.quantumaccelerator.ViewManager.ViewOpener;
+import ch.dragxfly.quantumaccelerator.models.TempfileModel;
+import ch.dragxfly.quantumaccelerator.views.ThemeableWindow;
+import ch.dragxfly.quantumaccelerator.views.ViewOpener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,11 +27,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.SearchEngine.FolderScanner.SearchEngine;
-import controller.popupwindows.warning.InfoWindow;
+import controller.popupwindows.warning.InfoDecisionWindow;
 import java.util.LinkedList;
+import java.util.Locale;
 
 /**
- * FXML Controller class
  *
  * @author janni
  */
@@ -76,6 +76,7 @@ public class TempScannerController extends ThemeableWindow implements Initializa
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setLanguage(super.getLanguage());
         ToggleGroup gp = new ToggleGroup();
         chkDeepScan.setToggleGroup(gp);
         chkQuickScan.setToggleGroup(gp);
@@ -89,7 +90,7 @@ public class TempScannerController extends ThemeableWindow implements Initializa
         taskSearch = getTaskSearchEngine();
         progressTask.progressProperty().bind(taskSearch.progressProperty());
         searchThread = new Thread(taskSearch);
-        searchThread.setDaemon(true);
+        searchThread.setDaemon(false);
         searchThread.setPriority(Thread.MAX_PRIORITY);
         searchThread.start();
         taskSearch.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
@@ -118,8 +119,6 @@ public class TempScannerController extends ThemeableWindow implements Initializa
     private void scanDone() {
         btnCancelScan.setVisible(false);
         try {
-            Stage current = (Stage) btnCancelScan.getScene().getWindow();
-            current.close();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TempFileScanDone.fxml"));
             Parent root = loader.load();
             TempFileScanDoneController controller = loader.getController();
@@ -131,6 +130,8 @@ public class TempScannerController extends ThemeableWindow implements Initializa
             stage.setTitle("Scan done");
             stage.show();
             controller.setTheme();
+            Stage current = (Stage) btnCancelScan.getScene().getWindow();
+            current.close();
             controller.loadTempfilesList();
         } catch (IOException e) {
             System.err.println(e);
@@ -140,7 +141,6 @@ public class TempScannerController extends ThemeableWindow implements Initializa
     @FXML
     private void closeWindow(ActionEvent event) {
         Stage stage = (Stage) btnClose.getScene().getWindow();
-
         stage.close();
     }
 
@@ -184,7 +184,6 @@ public class TempScannerController extends ThemeableWindow implements Initializa
         progressTask.setVisible(false);
         if (taskSearch.isRunning()) {
             taskSearch.cancel();
-            searchThread.stop();
         }
 
     }
@@ -229,13 +228,22 @@ public class TempScannerController extends ThemeableWindow implements Initializa
     @FXML
     private void showExperiencedUserOnlyInfo(ActionEvent event) {
         if (chkSearchCache.isSelected()) {
-            boolean isKeepSelected = new InfoWindow().ShowInfoWindow("Searching and deleting cache will probably harm your system, please only continue if you know what you are doing!");
+            boolean isKeepSelected = new InfoDecisionWindow().ShowInfoWindow("Searching and deleting cache will probably harm your system, please only continue if you know what you are doing!");
             chkSearchCache.setSelected(isKeepSelected);
         }
     }
 
     @Override
-    public void setLanguage(String language) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setLanguage(String lang) {
+        Locale locale = new Locale(lang);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.popup", locale);
+        chkSearchTemp.setText(bundle.getString("chkSearchTemp"));
+        chkSearchCache.setText(bundle.getString("chkSearchCache"));
+        btnStartScan.setText(bundle.getString("btnStartScan"));
+        btnCancelScan.setText(bundle.getString("btnCancel"));
+        lblStatus.setText(bundle.getString("folderscan"));
+        chkQuickScan.setText(bundle.getString("chkQuickScan"));
+        chkDeepScan.setText(bundle.getString("chkDeepScan"));
+        btnEditBlacklist.setText(bundle.getString("btnEditBlacklist"));
     }
 }

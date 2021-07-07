@@ -1,6 +1,6 @@
-package ch.dragxfly.quantumaccelerator.Hardware.Benchmark;
+package ch.dragxfly.quantumaccelerator.hardware.benchmark;
 
-import Hardware.Benchmark.CPULoadGeneratorThread;
+import ch.dragxfly.quantumaccelerator.hardware.benchmark.CPULoadGeneratorThread;
 import controller.popupwindows.CPUStresstestController;
 import com.profesorfalken.jsensors.JSensors;
 import com.profesorfalken.jsensors.model.components.Components;
@@ -16,11 +16,9 @@ import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 
-
-
 /**
  *
- * @author janni
+ * @author jannis
  */
 public class CPUBenchmark {
 
@@ -67,11 +65,11 @@ public class CPUBenchmark {
      */
     public void checkIfCPUIsStressed() {
         if (osmb.getSystemCpuLoad() < minLoad - 0.05) {
-            System.out.println("Adding Thread");
+            stressTestController.setStatus("Adding Thread(s)");
             cpuThreads.add(new CPULoadGeneratorThread());
             startNotRunningThread();
         } else if (osmb.getSystemCpuLoad() > minLoad + 0.05) {
-            System.out.println("Removing Thread");
+            stressTestController.setStatus("Removing Thread(s)");
             if (!cpuThreads.isEmpty()) {
                 cpuThreads.get(0).stopLoad();
                 cpuThreads.remove(0);
@@ -132,7 +130,7 @@ public class CPUBenchmark {
                 System.out.println("Checked CPU temp: " + lastMeasuredTemp);
                 tempTaskIsRunning = false;
                 if (lastMeasuredTemp >= maxTemp && stopIfMaxTemp) {
-                    System.err.println("CPU reached max temp, there for stopping stress test!");
+                    stressTestController.overheated();
                     stopLoad();
                 }
             }

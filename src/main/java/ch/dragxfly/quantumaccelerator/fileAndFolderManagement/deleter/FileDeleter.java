@@ -17,9 +17,11 @@ public class FileDeleter {
      * @param path path pointing to the file to delete
      */
     public void deleteFile(String path) {
-        File tempFile = new File(path);
+        File fileToDelete = new File(path);
         try {
-            FileDeleteStrategy.FORCE.delete(tempFile);
+            if (fileToDelete.exists()) {
+                FileDeleteStrategy.FORCE.delete(fileToDelete);
+            }
         } catch (IOException e) {
             System.err.println(e);
         }
@@ -32,14 +34,25 @@ public class FileDeleter {
      */
     public void deleteFiles(List<String> path) {
         for (int i = 0; i < path.size(); i++) {
-            File tempFile = new File(path.get(i));
+            File fileToDelete = new File(path.get(i));
             try {
-                FileDeleteStrategy.FORCE.delete(tempFile);
+                if (fileToDelete.exists()) {
+                    FileDeleteStrategy.FORCE.delete(fileToDelete);
+                }
             } catch (IOException e) {
                 System.err.println(e);
             }
         }
         {
+        }
+    }
+
+    public void deleteAllFilesInDirectory(String pathToDirectory) {
+        if (new File(pathToDirectory).exists()) {
+            String[] filesToDelete = new File(pathToDirectory).list();
+            for (int i = 0; i <= filesToDelete.length - 1; i++) {
+                deleteFile(pathToDirectory + "\\" + filesToDelete[i]);
+            }
         }
     }
 }

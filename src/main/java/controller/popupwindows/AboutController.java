@@ -1,8 +1,8 @@
 package controller.popupwindows;
 
-import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
-import ch.dragxfly.quantumaccelerator.Style.Animations.ButtonAnimator;
-import ch.dragxfly.quantumaccelerator.ViewManager.Web.WebsiteOpener;
+import ch.dragxfly.quantumaccelerator.views.ThemeableWindow;
+import ch.dragxfly.quantumaccelerator.style.animations.ButtonAnimator;
+import ch.dragxfly.quantumaccelerator.executors.web.WebsiteOpener;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author janni
+ * @author jannis
  */
 public class AboutController extends ThemeableWindow implements Initializable {
 

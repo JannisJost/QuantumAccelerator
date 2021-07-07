@@ -1,4 +1,4 @@
-package ch.dragxfly.quantumaccelerator.Style.Animations;
+package ch.dragxfly.quantumaccelerator.style.animations;
 
 import java.util.prefs.Preferences;
 import javafx.animation.RotateTransition;

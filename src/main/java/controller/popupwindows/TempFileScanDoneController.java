@@ -1,7 +1,7 @@
 package controller.popupwindows;
 
-import ch.dragxfly.quantumaccelerator.Models.TempfileModel;
-import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
+import ch.dragxfly.quantumaccelerator.models.TempfileModel;
+import ch.dragxfly.quantumaccelerator.views.ThemeableWindow;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.deleter.FileDeleter;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.FileSizeCalculator;
 import java.net.URL;
@@ -24,10 +24,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.SearchEngine.FolderScanner.Model.ScanDoneModel;
+import java.util.Locale;
 import java.util.prefs.BackingStoreException;
 
 /**
- * FXML Controller class
  *
  * @author janni
  */
@@ -56,7 +56,6 @@ public class TempFileScanDoneController extends ThemeableWindow implements Initi
     private double yOffset;
     private TempfileModel tempFileModel;
     private final ScanDoneModel model = new ScanDoneModel();
-    private final List<CheckBox> chksTempFiles = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -68,10 +67,9 @@ public class TempFileScanDoneController extends ThemeableWindow implements Initi
 
     @FXML
     private void close(ActionEvent event) {
-        chksTempFiles.clear();
+        tempFileModel = null;
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
-        System.gc();
     }
 
     @FXML
@@ -107,7 +105,6 @@ public class TempFileScanDoneController extends ThemeableWindow implements Initi
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                System.gc();
                 List<String> tempFiles = tempFileModel.getTempFilesList();
                 double sizeInMBytes = new FileSizeCalculator().getFileSizeInMbytes(tempFiles);
                 List<CheckBox> boxes = new ArrayList<>();
@@ -201,7 +198,8 @@ public class TempFileScanDoneController extends ThemeableWindow implements Initi
     }
 
     @Override
-    public void setLanguage(String language) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setLanguage(String lang) {
+        Locale locale = new Locale(lang);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.popup", locale);
     }
 }

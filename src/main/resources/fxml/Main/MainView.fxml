@@ -120,7 +120,7 @@
                            <graphic>
                               <ImageView fx:id="imgSettings" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../styles/icons/button/Settings.png" />
+                                    <Image url="@../../styles/icons/button/settings.png" />
                                  </image>
                               </ImageView>
                            </graphic>

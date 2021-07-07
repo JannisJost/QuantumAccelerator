@@ -1,8 +1,8 @@
 package controller.main;
 
-import ch.dragxfly.quantumaccelerator.CustomControls.ToggleSwitch;
-import ch.dragxfly.quantumaccelerator.Executors.errorhandling.ErrorWindow;
-import ch.dragxfly.quantumaccelerator.ViewManager.MultilingualView;
+import ch.dragxfly.quantumaccelerator.customControls.ToggleSwitch;
+import ch.dragxfly.quantumaccelerator.views.MultilingualView;
+import controller.popupwindows.warning.InfoWindow;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -18,7 +18,7 @@ import javafx.scene.layout.GridPane;
 
 /**
  *
- * @author janni
+ * @author jannis
  */
 public class ApplicationSettingsController extends MultilingualView implements Initializable {
 
@@ -108,7 +108,6 @@ public class ApplicationSettingsController extends MultilingualView implements I
 
     @FXML
     private void applyLanguage(ActionEvent event) {
-        new ErrorWindow().showErrorWindow("Changes will be applied after restart");
         switch (choiseLanguage.getValue()) {
             case "English":
                 super.setNewLanguage("en");
@@ -122,5 +121,8 @@ public class ApplicationSettingsController extends MultilingualView implements I
             default:
                 super.setNewLanguage("en");
         }
+        Locale locale = new Locale(super.getLanguage());
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.warnings.warnings", locale);
+        new InfoWindow().ShowInfoWindow(bundle.getString("appliedAfterRestart"));
     }
 }

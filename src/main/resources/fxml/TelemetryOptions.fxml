@@ -17,7 +17,7 @@
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
          <children>
-            <Label text="Off = service is deactivated">
+            <Label fx:id="lblInstruction" text="Off = service is deactivated">
                <font>
                   <Font name="System Italic" size="15.0" />
                </font>
@@ -36,32 +36,32 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="MRT telemetry:">
+                  <Label fx:id="lblMRT" maxHeight="1.7976931348623157E308" text="MRT telemetry:" wrapText="true">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label text="CEIP Tasks:" GridPane.rowIndex="1">
+                  <Label fx:id="lblCEIP" maxHeight="1.7976931348623157E308" text="CEIP Tasks:" wrapText="true" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="21.0" prefWidth="258.0" text="Diagnostic Tracking Service:" GridPane.rowIndex="2">
+                  <Label fx:id="lblDiagTrack" maxHeight="1.7976931348623157E308" prefHeight="21.0" prefWidth="258.0" text="Diagnostic Tracking Service:" wrapText="true" GridPane.rowIndex="2">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label text="dmwappushservice:" GridPane.rowIndex="3">
+                  <Label fx:id="lblDmwapp" maxHeight="1.7976931348623157E308" text="dmwappushservice:" wrapText="true" GridPane.rowIndex="3">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label text="Wifi sense:" GridPane.columnIndex="2">
+                  <Label fx:id="lblWifiSense" maxHeight="1.7976931348623157E308" text="Wifi sense:" wrapText="true" GridPane.columnIndex="2">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label text="Send maleware samples to Microsoft:" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Label fx:id="lblMalwareSamples" maxHeight="1.7976931348623157E308" text="Send maleware samples to Microsoft:" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>

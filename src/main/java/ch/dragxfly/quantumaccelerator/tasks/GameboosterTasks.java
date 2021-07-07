@@ -3,12 +3,12 @@ package ch.dragxfly.quantumaccelerator.tasks;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.deleter.FileDeleter;
 import java.util.List;
 import javafx.concurrent.Task;
-import shellscripts.CMD;
+import shell.CMD;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.SearchEngine.FolderScanner.SearchEngine;
 
 /**
  *
- * @author janni
+ * @author jannis
  */
 public class GameboosterTasks {
 
@@ -16,8 +16,8 @@ public class GameboosterTasks {
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                String executablePath = System.getProperty("user.dir") + "\\src\\main\\java\\EmptyStandbyListBy_WenJiaLiu";
-                String clearStandbyListCommand = "cd " + executablePath + " && .\\EmptyStandbyList.exe standbylist && exit";
+                String executablePath = System.getProperty("user.dir") + "EmptyStandbyListBy_WenJiaLiu";
+                String clearStandbyListCommand = "cd " + executablePath.replace("app", "") + " && .\\EmptyStandbyList.exe standbylist && exit";
                 new CMD().executeCmdCommandCMDVisible(clearStandbyListCommand);
                 return null;
             }

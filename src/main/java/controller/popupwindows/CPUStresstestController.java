@@ -1,8 +1,9 @@
 package controller.popupwindows;
 
-import ch.dragxfly.quantumaccelerator.Hardware.Benchmark.CPUBenchmark;
-import ch.dragxfly.quantumaccelerator.ViewManager.ThemeableWindow;
-import controller.popupwindows.warning.InfoWindow;
+import ch.dragxfly.quantumaccelerator.executors.errorhandling.ErrorWindow;
+import ch.dragxfly.quantumaccelerator.hardware.benchmark.CPUBenchmark;
+import ch.dragxfly.quantumaccelerator.views.ThemeableWindow;
+import controller.popupwindows.warning.InfoDecisionWindow;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -23,9 +24,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
  *
- * @author janni
+ * @author jannis
  */
 public class CPUStresstestController extends ThemeableWindow implements Initializable {
 
@@ -144,10 +144,23 @@ public class CPUStresstestController extends ThemeableWindow implements Initiali
         });
     }
 
+    public void setStatus(String status) {
+        Platform.runLater(() -> {
+            lblStressTestStatus.setText("Status: " + status);
+        });
+    }
+
+    public void overheated() {
+        new ErrorWindow().showErrorWindow("looks like your Computer reached the max temp. Dont worry QuantumAccelerator stopped the stress test for you.");
+        btnStopCPUStressTest.fire();
+    }
+
     @FXML
     private void warningMightOverheat(ActionEvent event) {
         if (!chkStopIfTempHigh.isSelected()) {
-            boolean isDisable = !new InfoWindow().ShowInfoWindow("In very rare cases disabling this option might lead to overheating. If your system has overheating issues, you might wanna keep this option enabled");
+            Locale locale = new Locale(super.getLanguage());
+            ResourceBundle bundle = ResourceBundle.getBundle("languages.warnings.warnings", locale);
+            boolean isDisable = !new InfoDecisionWindow().ShowInfoWindow(bundle.getString("overheating"));
             chkStopIfTempHigh.setSelected(isDisable);
         }
     }

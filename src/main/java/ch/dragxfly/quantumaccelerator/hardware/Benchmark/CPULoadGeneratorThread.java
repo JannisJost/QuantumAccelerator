@@ -1,4 +1,4 @@
-package Hardware.Benchmark;
+package ch.dragxfly.quantumaccelerator.hardware.benchmark;
 
 import java.util.Random;
 

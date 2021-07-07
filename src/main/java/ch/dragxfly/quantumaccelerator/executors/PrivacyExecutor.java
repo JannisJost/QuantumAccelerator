@@ -5,7 +5,6 @@ import ch.dragxfly.quantumaccelerator.executors.web.Browser.Brave;
 import ch.dragxfly.quantumaccelerator.executors.web.Browser.Browser;
 import ch.dragxfly.quantumaccelerator.executors.web.Browser.Chrome;
 import ch.dragxfly.quantumaccelerator.executors.web.Browser.Edge;
-import ch.dragxfly.quantumaccelerator.executors.web.Browser.Firefox;
 import ch.dragxfly.quantumaccelerator.executors.web.Browser.Opera;
 import ch.dragxfly.quantumaccelerator.notifications.LoadingScreen;
 import java.io.IOException;
