@@ -19,7 +19,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.popupwindows.DesktopOrganizerController">
    <children>
-      <ButtonBar id="topBarSecondary" layoutX="288.0" layoutY="251.0" onMouseDragged="#moveWindowSecond" onMousePressed="#moveWindow" prefHeight="40.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ButtonBar id="topBar" layoutX="288.0" layoutY="251.0" onMouseDragged="#moveWindowSecond" onMousePressed="#moveWindow" prefHeight="40.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <buttons>
           <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeWindow" text="X" />
         </buttons>
@@ -34,7 +34,7 @@
                   <Font name="System Bold" size="30.0" />
                </font>
             </Label>
-            <GridPane alignment="CENTER" hgap="5.0" minHeight="-Infinity" minWidth="-Infinity" prefWidth="170.0" vgap="5.0" VBox.vgrow="ALWAYS">
+            <GridPane alignment="CENTER" hgap="5.0" minHeight="-Infinity" minWidth="-Infinity" prefWidth="170.0" styleClass="backgroundContainer" vgap="5.0" VBox.vgrow="ALWAYS">
               <columnConstraints>
                 <ColumnConstraints fillWidth="false" halignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="300.0" />
                   <ColumnConstraints halignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="300.0" />
@@ -51,7 +51,7 @@
                   <CheckBox fx:id="chkExe" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="300.0" styleClass="check-box-desktop-organizer" text="Executables (exe, jar)" GridPane.rowIndex="3" />
                   <Label fx:id="lblCreateFoldersFor" prefWidth="200.0" text="Create folders for:" underline="true" />
                   <HBox alignment="CENTER_LEFT" spacing="5.0" />
-                  <Label text="Folder name:" underline="true" GridPane.columnIndex="1" />
+                  <Label fx:id="lblFolderName" text="Folder name:" underline="true" GridPane.columnIndex="1" />
                   <HBox fx:id="hboxTextOptions" alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <RadioButton fx:id="radioDefaultTxt" mnemonicParsing="false" selected="true" text="Default">
