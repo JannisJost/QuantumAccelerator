@@ -3,7 +3,9 @@ package controller.popupwindows;
 import ch.dragxfly.quantumaccelerator.views.ThemeableWindow;
 import animatefx.animation.Shake;
 import ch.dragxfly.quantumaccelerator.executors.errorhandling.ErrorWindow;
+import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.FileFilter;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.FileOperations;
+import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.chooser.FileChooser;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -11,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -31,16 +35,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import org.apache.commons.io.FilenameUtils;
 
 /**
- * FXML Controller class
  *
- * @author janni
+ * @author jannis
  */
-public class ZipBombIdentifierController extends ThemeableWindow implements Initializable {
+public class ZipBombIdentifierController extends ThemeableWindow implements Initializable, Observer {
 
     @FXML
     private Button btnChooseZIP;
@@ -70,8 +71,10 @@ public class ZipBombIdentifierController extends ThemeableWindow implements Init
 
     @FXML
     private void chooseZip(ActionEvent event) {
-        Task chooseZip = getTaskGetZipFiles();
-        new Thread(chooseZip).start();
+        FileChooser chooser = new FileChooser(this);
+        FileFilter filter = new FileFilter("zip");
+        chooser.setFileFilter(filter);
+        chooser.show();
     }
 
     @FXML
@@ -121,30 +124,11 @@ public class ZipBombIdentifierController extends ThemeableWindow implements Init
         });
     }
 
-    private Task getTaskGetZipFiles() {
-        Task<Void> task = new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-                JFileChooser chooser = new JFileChooser();
-                FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                        "ZIP files", "zip");
-                chooser.setFileFilter(filter);
-                int returnVal = chooser.showOpenDialog(null);
-                if (returnVal == JFileChooser.APPROVE_OPTION && !lstZipFolders.getItems().contains(chooser.getSelectedFile().getAbsolutePath())) {
-                    listNotEmpty();
-                    lstZipFolders.getItems().add(chooser.getSelectedFile().getAbsolutePath());
-                }
-                return null;
-            }
-        };
-        return task;
-    }
-
     private Task getTaskScanZip() {
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                List<String> zipFiles = new ArrayList<>();
+                List<String> zipFiles;
                 long uncompressedSize = 0;
                 long compressedSize = 0;
                 zipFiles = lstZipFolders.getItems();
@@ -226,5 +210,12 @@ public class ZipBombIdentifierController extends ThemeableWindow implements Init
         ResourceBundle bundle = ResourceBundle.getBundle("languages.popup", locale);
         btnChooseZIP.setText(bundle.getString("btnChooseZIP"));
         btnScan.setText(bundle.getString("btnScan"));
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if (o.getClass().equals(FileChooser.class)) {
+            lstZipFolders.getItems().add((String) arg);
+        }
     }
 }

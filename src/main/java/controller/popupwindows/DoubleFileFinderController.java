@@ -2,8 +2,9 @@ package controller.popupwindows;
 
 import ch.dragxfly.quantumaccelerator.customControls.ButtonTableCell;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.DoubleFileFinder;
+import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.FileFilter;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.SearchEngine.FolderScanner.FileDuplicatePair;
-import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.chooser.FolderChooser;
+import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.chooser.FileChooser;
 import ch.dragxfly.quantumaccelerator.views.ThemeableWindow;
 import controller.popupwindows.warning.InfoDecisionWindow;
 import controller.popupwindows.warning.InfoWindow;
@@ -69,7 +70,6 @@ public class DoubleFileFinderController extends ThemeableWindow implements Initi
     //non FXML
     private double xOffset = 0;
     private double yOffset = 0;
-    private FolderChooser folderChooser;
     private DoubleFileFinder finder;
 
     @Override
@@ -86,7 +86,6 @@ public class DoubleFileFinderController extends ThemeableWindow implements Initi
             return pair;
         }));
         btnCancel.disableProperty().bind(btnSearch.disableProperty().not());
-        folderChooser = new FolderChooser("Start path", this);
         colFile1.setCellValueFactory(new PropertyValueFactory<>("file1"));
         colFile2.setCellValueFactory(new PropertyValueFactory<>("file2"));
     }
@@ -100,7 +99,10 @@ public class DoubleFileFinderController extends ThemeableWindow implements Initi
 
     @FXML
     private void selectStartPath(ActionEvent event) {
-        folderChooser.show();
+        FileFilter filter = new FileFilter(true);
+        FileChooser chooser = new FileChooser(this);
+        chooser.setFileFilter(filter);
+        chooser.show();
     }
 
     @FXML
@@ -164,7 +166,7 @@ public class DoubleFileFinderController extends ThemeableWindow implements Initi
 
     @Override
     public void update(Observable o, Object arg) {
-        if (o.getClass().equals(FolderChooser.class)) {
+        if (o.getClass().equals(FileChooser.class)) {
             txtStartPath.setText((String) arg);
         }
     }

@@ -13,7 +13,6 @@ public class FolderChooser extends Observable {
 
     private final JFileChooser folderChooser;
 
-
     public FolderChooser(String title, Observer o) {
         addObserver(o);
         folderChooser = new JFileChooser();
