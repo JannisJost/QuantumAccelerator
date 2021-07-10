@@ -379,12 +379,12 @@ public class MainViewController extends MultilingualView implements Initializabl
 
     @Override
     public void update(Observable o, Object arg) {
-        Double memoryUsage = hardware.getMemoryUsage() * 100;
-        Double CPUUsage = hardware.getCpuUsage() * 100;
+        double memoryUsage = hardware.getMemoryUsage() * 100;
+        double CPUUsage = hardware.getCpuUsage() * 100;
         //Runlater sets the prog indicators
         Platform.runLater(() -> {
-            progMemory.setProgress(memoryUsage.intValue());
-            progCPU.setProgress(CPUUsage.intValue());
+            progMemory.setProgress((int)memoryUsage);
+            progCPU.setProgress((int)CPUUsage);
         });
     }
 

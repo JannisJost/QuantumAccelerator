@@ -29,7 +29,7 @@ public class FileSizeCalculator {
         int size = 0;
         for (String path : folders) {
             File f = new File(path);
-            size += FileUtils.sizeOfDirectory(f);
+            size += (int)FileUtils.sizeOfDirectory(f);
         }
         return size;
     }
