@@ -6,10 +6,11 @@ import ch.dragxfly.quantumaccelerator.executors.web.Browser.Browser;
 import ch.dragxfly.quantumaccelerator.executors.web.Browser.Chrome;
 import ch.dragxfly.quantumaccelerator.executors.web.Browser.Edge;
 import ch.dragxfly.quantumaccelerator.executors.web.Browser.Opera;
-import ch.dragxfly.quantumaccelerator.notifications.LoadingScreen;
+import controller.popupwindows.warning.InfoWindow;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import javafx.concurrent.Task;
 
 /**
  *
@@ -17,7 +18,6 @@ import java.util.List;
  */
 public class PrivacyExecutor {
 
-    LoadingScreen loading = new LoadingScreen("Applying selected options");
     List<Browser> browsers = new LinkedList<>();
 
     public PrivacyExecutor() {
@@ -28,23 +28,32 @@ public class PrivacyExecutor {
     }
 
     public void run(boolean deleteDNSCache, boolean deleteBrowserCache, boolean deleteBrowserHistory, boolean deleteBrowserCookies) {
-        loading.showLoading();
-        for(Browser browser : browsers){
-            browser.kill();
-        }
-        if (deleteDNSCache) {
-            deleteDNSCache();
-        }
-        if (deleteBrowserCache) {
-            DeleteBrowserCache();
-        }
-        if (deleteBrowserHistory) {
-            deleteBrowserHistory();
-        }
-        if (deleteBrowserCookies) {
-            deleteBrowserCookies();
-        }
-        loading.closeScene();
+        Task t1 = new Task() {
+            @Override
+            protected Object call() throws Exception {
+
+                for (Browser browser : browsers) {
+                    browser.kill();
+                }
+                if (deleteDNSCache) {
+                    deleteDNSCache();
+                }
+                if (deleteBrowserCache) {
+                    DeleteBrowserCache();
+                }
+                if (deleteBrowserHistory) {
+                    deleteBrowserHistory();
+                }
+                if (deleteBrowserCookies) {
+                    deleteBrowserCookies();
+                }
+                return null;
+            }
+        };
+        new Thread(t1).start();
+        t1.setOnSucceeded(event -> {
+            new InfoWindow().ShowInfoWindow("Successfully performed all selected");
+        });
     }
 
     /**

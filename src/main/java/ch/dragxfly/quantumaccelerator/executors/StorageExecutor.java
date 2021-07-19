@@ -1,8 +1,9 @@
 package ch.dragxfly.quantumaccelerator.executors;
 
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.deleter.FileDeleter;
-import ch.dragxfly.quantumaccelerator.notifications.LoadingScreen;
+import controller.popupwindows.warning.InfoWindow;
 import java.io.File;
+import javafx.concurrent.Task;
 
 /**
  *
@@ -13,15 +14,22 @@ public class StorageExecutor {
     private final FileDeleter deleter = new FileDeleter();
 
     public void run(boolean deleteDownloadInstallers, boolean deleteExplorerThumbnails) {
-        LoadingScreen loadingScreen = new LoadingScreen("Applying storage options");
-        loadingScreen.showLoading();
-        if (deleteDownloadInstallers) {
-            deleteInstallerFromDownloads();
-        }
-        if (deleteExplorerThumbnails) {
-            deleteExplorerThumbnails();
-        }
-        loadingScreen.closeScene();
+        Task t1 = new Task() {
+            @Override
+            protected Object call() throws Exception {
+                if (deleteDownloadInstallers) {
+                    deleteInstallerFromDownloads();
+                }
+                if (deleteExplorerThumbnails) {
+                    deleteExplorerThumbnails();
+                }
+                return null;
+            }
+        };
+        new Thread(t1).start();
+        t1.setOnSucceeded(event -> {
+            new InfoWindow().ShowInfoWindow("Performed all selected");
+        });
     }
 
     private void deleteInstallerFromDownloads() {

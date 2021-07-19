@@ -24,13 +24,16 @@ public class ToggleSwitch extends Parent {
     private ParallelTransition animation = new ParallelTransition(switchAnimation, colorTransition);
 
     public ToggleSwitch() {
+        this.getStyleClass().add("toggle-switch");
         //configures background
         Rectangle background = new Rectangle(50, 25);
         background.setFill(Color.web("#7D7D7D"));
         background.setArcWidth(25);
         background.setArcHeight(50);
+        background.getStyleClass().add("background");
         //configures thumb
         Circle thumb = new Circle(12.5);
+        thumb.getStyleClass().add("thumb");
         thumb.setCenterX(12.5);
         thumb.setCenterY(12.5);
         thumb.setFill(Color.LIGHTGRAY);

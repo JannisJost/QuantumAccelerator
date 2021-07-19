@@ -5,7 +5,6 @@ import ch.dragxfly.quantumaccelerator.customControls.ToolTipTexts;
 import ch.dragxfly.quantumaccelerator.executors.StorageExecutor;
 import ch.dragxfly.quantumaccelerator.views.MultilingualView;
 import ch.dragxfly.quantumaccelerator.views.ViewOpener;
-import controller.popupwindows.warning.InfoWindow;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -88,8 +87,6 @@ public class StorageController extends MultilingualView implements Initializable
         boolean deleteInstallers = chkDeleteInstallerDownload.isSelected();
         boolean clearThumbnailCache = chkDeleteThumbnailCache.isSelected();
         new StorageExecutor().run(deleteInstallers, clearThumbnailCache);
-        new InfoWindow().ShowInfoWindow("Performed all selected");
-        
     }
     
     @FXML

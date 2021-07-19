@@ -132,7 +132,6 @@ public class PrivacyController extends MultilingualView implements Initializable
             boolean clearBrowserHistory = chkDeleteBrowserHistory.isSelected();
             boolean clearBrowserCookies = chkDeleteBrowserCookies.isSelected();
             executor.run(deleteDNSCache, clearBrowserCache, clearBrowserHistory, clearBrowserCookies);
-            new InfoWindow().ShowInfoWindow("Successfully performed all selected");
         }
     }
 
