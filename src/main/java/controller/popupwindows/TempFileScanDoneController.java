@@ -29,7 +29,7 @@ import java.util.prefs.BackingStoreException;
 
 /**
  *
- * @author janni
+ * @author jannis
  */
 public class TempFileScanDoneController extends ThemeableWindow implements Initializable {
 
@@ -143,6 +143,7 @@ public class TempFileScanDoneController extends ThemeableWindow implements Initi
      */
     @FXML
     private void deleteTempFiles(ActionEvent event) {
+        hBoxLabels.setVisible(false);
         lblSelectedTempFiles.setVisible(false);
         lblStatus.setText("Deleting temp files");
         lblStatus.setVisible(true);
