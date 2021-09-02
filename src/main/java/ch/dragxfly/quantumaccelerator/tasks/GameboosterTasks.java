@@ -1,10 +1,8 @@
 package ch.dragxfly.quantumaccelerator.tasks;
 
-import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.deleter.FileDeleter;
-import java.util.List;
+import ch.dragxfly.quantumaccelerator.executors.Gamebooster;
 import javafx.concurrent.Task;
 import shell.CMD;
-import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.SearchEngine.FolderScanner.SearchEngine;
 
 /**
  *
@@ -18,24 +16,40 @@ public class GameboosterTasks {
             protected Void call() throws Exception {
                 String executablePath = System.getProperty("user.dir") + "EmptyStandbyListBy_WenJiaLiu";
                 String clearStandbyListCommand = "cd " + executablePath.replace("app", "") + " && .\\EmptyStandbyList.exe standbylist && exit";
-                new CMD().executeCmdCommandCMDVisible(clearStandbyListCommand);
+                new CMD().executeCommand(clearStandbyListCommand);
                 return null;
             }
         };
         return task;
     }
 
-    public Task getTaskDeleteInstallerFromDownload() {
+    public Task getTaskActivatePerformancePlan() {
         Task<Void> task = new Task<Void>() {
-            SearchEngine searchEngine = new SearchEngine();
-
             @Override
             protected Void call() throws Exception {
-                String downloadsPath = System.getProperty("user.home") + "/Downloads";
-                String[] installerNames = {"installer", "setup", ".msi"};
-                List<String> installers = searchEngine.searchForFilesContaining(downloadsPath, installerNames);
-                FileDeleter fDeleter = new FileDeleter();
-                fDeleter.deleteFiles(installers);
+                new Gamebooster().setPerfomancePowerPlan();
+                return null;
+            }
+        };
+        return task;
+    }
+
+    public Task getTaskActivateStandardPlan() {
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                new Gamebooster().setStandardPowerPlan();
+                return null;
+            }
+        };
+        return task;
+    }
+
+    public Task getTaskActivateEcoPlan() {
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                new Gamebooster().setEcoPowerPlan();
                 return null;
             }
         };

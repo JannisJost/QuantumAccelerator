@@ -30,6 +30,7 @@
 /*title bar styling*/
 #topBar{
     -fx-background-color: #070a2c;
+	-fx-background-radius: 12 12 0 0;
 }
 #topBarSecondary{
     -fx-background-color:#070a2c;
@@ -64,6 +65,8 @@
 /*DO NOT EDIT*/
 .AnchorPane{
     -fx-border-color: gray;
+	-fx-background-radius: 12;
+	-fx-border-radius: 12;
     -fx-border-width: 0.4;
 }
 /*global list styling*/
@@ -165,13 +168,10 @@
     -fx-stroke: #3F4DD9;
     -fx-stroke-line-cap: round;
 }
-.progress-rail{
-    -fx-stroke:#3F4DD9; 
-}
 /*Table view styling*/
 .table-view{
     -fx-background-color:#31366E;
-    -fx-background-radius: 12 0 0 12;
+    -fx-background-radius: 12 0 12 12;
 
 }
 .table-view .filler{
@@ -182,7 +182,7 @@
 }
 .table-view .column-header-background{
     -fx-background-color: #31366E;
-    -fx-background-radius: 12 0 0 0;
+    -fx-background-radius: 12 0 12 0;
 }
 
 .table-view .column-header-background .label{
@@ -226,8 +226,29 @@
     -fx-opacity: 0;
 }
 .table-view .virtual-flow .scroll-bar:vertical .thumb{
-    -fx-background-color: #3F4DD9;
+    -fx-background-color: #3F4DD9; 
 }
 .table-view .virtual-flow .scroll-bar:horizontal .thumb {
     -fx-background-color: #3F4DD9;
 }
+.vboxBooster{
+	-fx-background-color: rgb(33, 36, 73, 0.7);
+	-fx-background-radius: 5 25 5 5;
+}
+.boost-button{
+	-fx-border-color: linear-gradient(to top left, #CE4AEA, #3F4DD9);
+	-fx-border-width: 5;
+	-fx-border-radius: 50%;
+	-fx-background-radius: 50%;
+	-fx-background-color: transparent;
+}
+.boost-radio{
+	-fx-border-color: rgb(255, 255,255,0.1);
+	-fx-border-width: 2 0 0 0;
+			-fx-border-style: dashed;
+}
+	#visualPowerIndicator{
+		-fx-fill: linear-gradient(to top left, #CE4AEA, #3F4DD9);
+		-fx-arc-width: 12.5;
+		-fx-arc-height: 12.5;
+	}

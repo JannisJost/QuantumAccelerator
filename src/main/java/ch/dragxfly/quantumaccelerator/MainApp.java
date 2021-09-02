@@ -2,6 +2,7 @@ package ch.dragxfly.quantumaccelerator;
 
 import ch.dragxfly.quantumaccelerator.models.ViewsModel;
 import animatefx.animation.FadeIn;
+import ch.dragxfly.quantumaccelerator.views.MainView;
 import controller.main.MainViewController;
 import ch.dragxfly.quantumaccelerator.views.ViewCreator;
 import java.io.IOException;
@@ -15,12 +16,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Pair;
 
 public class MainApp extends Application {
 
     private Pane features;
     private Pane storage;
-    private Pane gamebooster;
+    private Pair<Pane,MainView> gamebooster;
     private Pane delWindowsApps;
     private Pane extras;
     private Pane privacy;

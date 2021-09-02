@@ -18,7 +18,7 @@ public class RestorepointTasks {
                 String date = Integer.toString(d.getMonth() + d.getDay() + d.getMinutes());
                 String command = "wmic.exe /Namespace:\\\\root\\default Path SystemRestore Call CreateRestorePoint \"<QuantumAccelerator" + date + ">\", 100, 7";
                 CMD cmd = new CMD();
-                cmd.executeCmdCommand(command);
+                cmd.executeCommand(command);
                 return null;
             }
         };

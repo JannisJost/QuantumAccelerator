@@ -1,16 +1,21 @@
 package controller.main;
 
+import animatefx.animation.GlowText;
 import ch.dragxfly.quantumaccelerator.customControls.ToggleSwitch;
 import ch.dragxfly.quantumaccelerator.tasks.GameboosterTasks;
 import ch.dragxfly.quantumaccelerator.executors.Gamebooster;
-import ch.dragxfly.quantumaccelerator.style.logo.Logo;
+import ch.dragxfly.quantumaccelerator.views.MainView;
 import ch.dragxfly.quantumaccelerator.views.MultilingualView;
-import controller.popupwindows.warning.InfoDecisionWindow;
-import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
+import javafx.animation.Animation;
+import javafx.animation.Animation.Status;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.ScaleTransition;
+import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
@@ -18,31 +23,38 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 /**
  *
  * @author jannis
  */
-public class GameboosterController extends MultilingualView implements Initializable {
+public class GameboosterController extends MultilingualView implements Initializable, MainView {
 
-    @FXML
-    private AnchorPane anchorPaneGameboosterSwitch;
-    @FXML
-    private Label lblGameboostStatus;
     @FXML
     private ToggleButton toggleBtnGameboost;
     @FXML
-    private Button btnApplyCheckBoxes;
-    @FXML
     private Button btnFreeStandbyRAM;
-    @FXML
-    private CheckBox chkDelInstallersFromDownload;
     @FXML
     private GridPane gridSettingsDeactivateGamebooster;
     @FXML
@@ -55,17 +67,37 @@ public class GameboosterController extends MultilingualView implements Initializ
     private Label lblResetCPUPrio;
     @FXML
     private Label lblResetSysMain;
+    @FXML
+    private VBox vboxBooster;
+    @FXML
+    private ImageView imgRocket;
+    @FXML
+    private AnchorPane container;
+    @FXML
+    private VBox vboxEnergy;
+    @FXML
+    private VBox vboxTweaks;
+    @FXML
+    private RadioButton chkFullPower;
+    @FXML
+    private RadioButton chkStandart;
+    @FXML
+    private RadioButton chkEco;
+    @FXML
+    private Rectangle recPowerVisualizer;
     //non FXML
     private Task task;
-    private Logo logo;
     private Thread thread;
     boolean resetPowerPlan;
+    private GlowText glowText;
     private Preferences prefs;
     private Gamebooster gameboost;
     private boolean isResetGPUPrio;
     private boolean isResetSysMain;
     private boolean gameBoosterIsActive;
+    private ScaleTransition pulseAnimation;
     private boolean canRunStandByCleaner = true;
+    private final ToggleGroup tglGrpPower = new ToggleGroup();
     private final ToggleSwitch tglswCPUPrio = new ToggleSwitch();
     private final GameboosterTasks tasks = new GameboosterTasks();
     private final ToggleSwitch tglswResetSysMain = new ToggleSwitch();
@@ -73,6 +105,25 @@ public class GameboosterController extends MultilingualView implements Initializ
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        chkFullPower.layoutYProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                updateVisualPowerIndicatorHeight();
+            }
+        });
+        pulseAnimation = new ScaleTransition(Duration.seconds(0.2), toggleBtnGameboost);
+        prefs = Preferences.userRoot().node(this.getClass().getName());
+        gameBoosterIsActive = prefs.getBoolean("GameboosterIsActive", false);
+        tglGrpPower.getToggles().add(chkFullPower);
+        tglGrpPower.getToggles().add(chkStandart);
+        tglGrpPower.getToggles().add(chkEco);
+        vboxBooster.setEffect(new DropShadow(BlurType.THREE_PASS_BOX, Color.web("#0A0B21"), 20, 0, 0, 0));
+        vboxEnergy.setEffect(new DropShadow(BlurType.THREE_PASS_BOX, Color.web("#0A0B21"), 20, 0, 0, 0));
+        vboxTweaks.setEffect(new DropShadow(BlurType.THREE_PASS_BOX, Color.web("#0A0B21"), 20, 0, 0, 0));
+        BackgroundImage boosterBackground = new BackgroundImage(new Image("/styles/icons/booster/BoosterBackground.png", true),
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+                new BackgroundSize(1.0, 1.0, true, true, false, false)
+        );
+        container.setBackground(new Background(boosterBackground));
         setLanguage(super.getLanguage());
         tglswResetPowerPlan.setActivated(true);
         tglswCPUPrio.setActivated(true);
@@ -82,50 +133,63 @@ public class GameboosterController extends MultilingualView implements Initializ
         gridSettingsDeactivateGamebooster.add(tglswResetSysMain, 1, 2);
         gameBoosterIsActive = toggleBtnGameboost.isSelected();
         gameboost = new Gamebooster();
-        prefs = Preferences.userRoot().node(this.getClass().getName());
-        gameBoosterIsActive = prefs.getBoolean("GameboosterIsActive", false);
         toggleBtnGameboost.setSelected(gameBoosterIsActive);
-        anchorPaneGameboosterSwitch.setStyle(gameBoosterIsActive ? "-fx-background-color:#83c480;" : "-fx-background-color:#c48080;");
-        lblGameboostStatus.setText(gameBoosterIsActive ? "active" : "deactivated");
-        try {
-            logo = new Logo(64);
-        } catch (IOException ex) {
-            System.err.println(ex);
-        }
-        logo.setShowing(false);
-        vboxGameboosterSwitch.getChildren().add(logo);
+        toggleBtnGameboost.setText(gameBoosterIsActive ? "Stop" : "Boost");
     }
 
     @FXML
     private void activateOrDeactivateGameboost(ActionEvent event) {
+        playLoadingAnimations();
+        vboxEnergy.setDisable(true);
         resetPowerPlan = tglswResetPowerPlan.isActivated();
         isResetGPUPrio = tglswCPUPrio.isActivated();
         isResetSysMain = tglswResetSysMain.isActivated();
         gameBoosterIsActive = toggleBtnGameboost.isSelected();
         prefs.putBoolean("GameboosterIsActive", gameBoosterIsActive);
-        logo.setShowing(true, true);
-        logo.playLoadingAnimation();
         Task boost = getGameboosterTask();
         Task stopBoost = getDeactivateGameboosterTask();
-        lblGameboostStatus.setText(gameBoosterIsActive ? "initializing..." : "deactivating...");
+        toggleBtnGameboost.setText(gameBoosterIsActive ? "initializing" : "deactivating");
         thread = new Thread(gameBoosterIsActive ? boost : stopBoost);
         thread.start();
         boost.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent t) {
-                logo.playLoadingFinishedAnimation();
-                anchorPaneGameboosterSwitch.setStyle("-fx-background-color:#83c480;");
-                lblGameboostStatus.setText("active");
+                stopLoadingAnimations();
+                toggleBtnGameboost.setText("Stop");
             }
         });
         stopBoost.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent t) {
-                logo.playLoadingFinishedAnimation();
-                anchorPaneGameboosterSwitch.setStyle("-fx-background-color:#c48080;");
-                lblGameboostStatus.setText("deactivated");
+                vboxEnergy.setDisable(false);
+                stopLoadingAnimations();
+                toggleBtnGameboost.setText("Boost");
             }
         });
+    }
+
+    private void playLoadingAnimations() {
+        toggleBtnGameboost.setStyle("-fx-font-size: 16; -fx-font-family: \"Unispace\";");
+        toggleBtnGameboost.setContentDisplay(ContentDisplay.TEXT_ONLY);
+        glowText = new GlowText(toggleBtnGameboost, Color.web("#CE4AEA"), Color.web("#3F4DD9"));
+        glowText.setCycleCount(Animation.INDEFINITE);
+        glowText.setSpeed(0.5);
+        pulseAnimation = new ScaleTransition(Duration.seconds(1), toggleBtnGameboost);
+        pulseAnimation.setFromX(1);
+        pulseAnimation.setFromY(1);
+        pulseAnimation.setToX(1.1);
+        pulseAnimation.setToY(1.1);
+        pulseAnimation.setAutoReverse(true);
+        pulseAnimation.setCycleCount(Animation.INDEFINITE);
+        glowText.play();
+        pulseAnimation.play();
+    }
+
+    private void stopLoadingAnimations() {
+        toggleBtnGameboost.setContentDisplay(ContentDisplay.TOP);
+        toggleBtnGameboost.setStyle("-fx-font-size: 12; -fx-font-family: \"Unispace\"; -fx-text-fill:white;");
+        pulseAnimation.stop();
+        glowText.stop();
     }
 
     private Task getGameboosterTask() {
@@ -172,28 +236,70 @@ public class GameboosterController extends MultilingualView implements Initializ
         });
     }
 
-    @FXML
-    private void runSelected(ActionEvent event) {
-        if (chkDelInstallersFromDownload.isSelected()) {
-            Task task = tasks.getTaskDeleteInstallerFromDownload();
-            Thread t = new Thread(task);
-            t.start();
-            task.setOnSucceeded(e -> {
-                new InfoDecisionWindow().ShowInfoWindow("Completed all selected");
-            });
-        }
-    }
-
     @Override
     public void setLanguage(String lang) {
         Locale locale = new Locale(lang);
         ResourceBundle bundle = ResourceBundle.getBundle("languages.lang", locale);
-        btnApplyCheckBoxes.setText(bundle.getString("btnRun"));
         btnFreeStandbyRAM.setText(bundle.getString("btnFreeStandbyRAM"));
-        chkDelInstallersFromDownload.setText(bundle.getString("chkDeleteInstallerDownload"));
         lblOnDeactivateBooster.setText(bundle.getString("lblOnDeactivateBooster"));
         lblResetPowerPlan.setText(bundle.getString("lblResetPowerPlan"));
         lblResetCPUPrio.setText(bundle.getString("lblResetCPUPrio"));
         lblResetSysMain.setText(bundle.getString("lblResetSysMain"));
+    }
+
+    @FXML
+    private void playBoostAnimation(MouseEvent event) {
+        if (pulseAnimation.getStatus() != Status.RUNNING) {
+            pulseAnimation.setToX(1.1);
+            pulseAnimation.setToY(1.1);
+            pulseAnimation.play();
+        }
+    }
+
+    @FXML
+    private void stopBoostAnimation(MouseEvent event) {
+        if (pulseAnimation.getStatus() != Status.RUNNING) {
+            pulseAnimation.setToY(1);
+            pulseAnimation.setToX(1);
+            pulseAnimation.play();
+        }
+    }
+
+    @FXML
+    private void activateFullPower(ActionEvent event) {
+        new Thread(tasks.getTaskActivatePerformancePlan()).start();
+        updateVisualPowerIndicatorHeight();
+    }
+
+    @FXML
+    private void acitvateNeutralPower(ActionEvent event) {
+        new Thread(tasks.getTaskActivateStandardPlan()).start();
+        updateVisualPowerIndicatorHeight();
+    }
+
+    @FXML
+    private void activateEcoPower(ActionEvent event) {
+        new Thread(tasks.getTaskActivateEcoPlan()).start();
+        updateVisualPowerIndicatorHeight();
+    }
+
+    private void updateVisualPowerIndicatorHeight() {
+        double newHeight = 0;
+        recPowerVisualizer.setWidth(vboxEnergy.getWidth());
+        if (chkFullPower.isSelected()) {
+            newHeight = vboxEnergy.getHeight() - chkFullPower.getLayoutY();
+        } else if (chkStandart.isSelected()) {
+            newHeight = vboxEnergy.getHeight() - chkStandart.getLayoutY();
+        } else if (chkEco.isSelected()) {
+            newHeight = vboxEnergy.getHeight() - chkEco.getLayoutY();
+        }
+        Timeline resize = new Timeline(
+                new KeyFrame(Duration.seconds(1.5), new KeyValue(recPowerVisualizer.heightProperty(), newHeight))
+        );
+        resize.play();
+    }
+
+    @Override
+    public void onOpen() {
     }
 }

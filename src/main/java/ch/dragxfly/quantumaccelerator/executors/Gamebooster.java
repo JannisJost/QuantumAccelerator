@@ -1,7 +1,6 @@
 package ch.dragxfly.quantumaccelerator.executors;
 
 import shell.PowerShell;
-import java.io.File;
 import java.io.IOException;
 import shell.RegistryEditor;
 
@@ -39,28 +38,7 @@ public class Gamebooster {
         startWindowsSearch();
     }
 
-    private void fpsAdjustPerGame() {
-
-    }
-
-    private void deleteInstallerFromDownloads() {
-        try {
-            String osDrive = System.getenv("SystemDrive");
-            String userName = System.getProperty("user.name");
-            File folder = new File(osDrive + "\\Users\\" + userName + "\\Downloads");
-            File[] filesInDownload = folder.listFiles();
-            for (File file : filesInDownload) {
-                if (file.getName().contains("Installer") || file.getName().contains("install") || file.getName().contains("installer") || file.getName().contains("setup") && file.canExecute()) {
-                    file.delete();
-                }
-            }
-        } catch (Exception e) {
-            System.err.print(e);
-        }
-    }
-
     //Disables superfetcher and prefetcher
-
     private void disableSysMain() {
         powershell.executeCommand("Stop-Service -Force -Name “SysMain”; Set-Service -Name “SysMain” -StartupType Disabled");
     }
@@ -109,4 +87,15 @@ public class Gamebooster {
         powershell.executeCommand("Start-Service -Name WSearch");
     }
 
+    public void setPerfomancePowerPlan() {
+        powershell.runPowershellScript("UltimatePowerModeActivator");
+    }
+
+    public void setStandardPowerPlan() {
+        powershell.runPowershellScript("UltimatePowerModeDeactivator");
+    }
+
+    public void setEcoPowerPlan() {
+        powershell.runPowershellScript("EcoPowerPlanActivator");
+    }
 }

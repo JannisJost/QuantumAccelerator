@@ -5,10 +5,11 @@ import java.io.IOException;
 import java.util.prefs.Preferences;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
+import javafx.util.Pair;
 
 /**
  *
- * @author janni
+ * @author jannis
  */
 public class ViewCreator {
 
@@ -19,9 +20,11 @@ public class ViewCreator {
         return new FXMLLoader(getClass().getResource("/fxml/Main/Features.fxml")).load();
     }
 
-    public Pane getViewGamebooster() throws IOException {
-        return new FXMLLoader(getClass().getResource("/fxml/Main/Gamebooster.fxml")).load();
-
+    public Pair<Pane, MainView> getViewGamebooster() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Main/Gamebooster.fxml"));
+        Pane p = loader.load();
+        MainView controller = loader.getController();
+        return new Pair<>(p, controller);
     }
 
     public Pane getViewDelWindowsApps() throws IOException {
