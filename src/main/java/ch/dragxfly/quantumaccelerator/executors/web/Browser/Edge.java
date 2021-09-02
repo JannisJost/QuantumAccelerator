@@ -65,7 +65,7 @@ public class Edge implements Browser {
 
     @Override
     public void kill() {
-        new CMD().executeCmdCommand("taskkill /im msedge.exe /t /f");
+        new CMD().executeCommand("taskkill /im msedge.exe /t /f");
         try {
             Thread.sleep(1000);
         } catch (InterruptedException ex) {

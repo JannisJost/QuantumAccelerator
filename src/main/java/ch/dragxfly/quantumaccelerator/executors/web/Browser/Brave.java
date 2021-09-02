@@ -65,7 +65,7 @@ public class Brave implements Browser {
     
     @Override
     public void kill() {
-        new CMD().executeCmdCommand("taskkill /im brave.exe /t /f");
+        new CMD().executeCommand("taskkill /im brave.exe /t /f");
         try {
             Thread.sleep(500);
         } catch (InterruptedException ex) {

@@ -11,48 +11,52 @@ import java.io.InputStreamReader;
  */
 public class CMD {
 
-    public void executeCmdCommand(String command) {
+    private final CommandSecurityHelper securityHelper = new CommandSecurityHelper();
+
+    public void executeCommand(String command) {
         try {
-            Process p1 = Runtime.getRuntime().exec(command);
-            p1.waitFor();
+            if (securityHelper.commandIsSave(command)) {
+                Process p1 = Runtime.getRuntime().exec(command);
+                p1.waitFor();
+            } else {
+                System.out.println("command " + command + " is not save");
+            }
+
         } catch (InterruptedException | IOException ex) {
             new ErrorWindow().showErrorWindow("Could not execute CMD command " + command);
         }
     }
 
-    public void executeCmdCommands(String[] commands) {
+    public void executeCommands(String[] commands) {
         try {
-            ProcessBuilder builder = new ProcessBuilder(commands);
-            Process p1 = builder.start();
-            p1.waitFor();
+            if (securityHelper.commandsAreSave(commands)) {
+                ProcessBuilder builder = new ProcessBuilder(commands);
+                Process p1 = builder.start();
+                p1.waitFor();
+            } else {
+                throw new InterruptedException("Commands are not save");
+            }
         } catch (InterruptedException | IOException ex) {
             new ErrorWindow().showErrorWindow("Could not execute CMD commands");
-        }
-    }
-
-    public void executeCmdCommandCMDVisible(String command) {
-        try {
-            String fullCommand = "cmd /B start cmd.exe /K \"" + command + "\"";
-            Process p1 = Runtime.getRuntime().exec(fullCommand);
-            p1.waitFor();
-        } catch (IOException ex) {
-        } catch (InterruptedException ex) {
-            new ErrorWindow().showErrorWindow("Could not execute CMD command " + command);
         }
     }
 
     public String execCommandReadOutput(String command) {
         Process p1;
         try {
-            p1 = Runtime.getRuntime().exec(command);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(p1.getInputStream()));
-            String output = "";
-            String line;
-            while ((line = reader.readLine()) != null) {
-                output += (line + "\n");
+            if (securityHelper.commandIsSave(command)) {
+                p1 = Runtime.getRuntime().exec(command);
+                BufferedReader reader = new BufferedReader(new InputStreamReader(p1.getInputStream()));
+                String output = "";
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    output += (line + "\n");
+                }
+                reader.close();
+                return output;
+            } else {
+                System.out.println("Command " + command + " is not save");
             }
-            reader.close();
-            return output;
         } catch (IOException e) {
             System.out.println(e);
         }

@@ -28,7 +28,7 @@ public class Opera implements Browser {
 
     @Override
     public void kill() {
-        new CMD().executeCmdCommand("taskkill /im opera.exe /t /f");
+        new CMD().executeCommand("taskkill /im opera.exe /t /f");
         try {
             Thread.sleep(500);
         } catch (InterruptedException ex) {

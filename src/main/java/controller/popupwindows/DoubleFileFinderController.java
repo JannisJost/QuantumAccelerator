@@ -81,8 +81,8 @@ public class DoubleFileFinderController extends ThemeableWindow implements Initi
             CMD cmd = new CMD();
             String command1 = "explorer.exe /select, " + pair.getFile1();
             String command2 = "explorer.exe /select, " + pair.getFile2();
-            cmd.executeCmdCommand(command1);
-            cmd.executeCmdCommand(command2);
+            cmd.executeCommand(command1);
+            cmd.executeCommand(command2);
             return pair;
         }));
         btnCancel.disableProperty().bind(btnSearch.disableProperty().not());

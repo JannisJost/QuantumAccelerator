@@ -65,7 +65,7 @@ public class Chrome implements Browser {
 
     @Override
     public void kill() {
-        new CMD().executeCmdCommand("taskkill /im chrome.exe /t /f");
+        new CMD().executeCommand("taskkill /im chrome.exe /t /f");
         try {
             Thread.sleep(1000);
         } catch (InterruptedException ex) {
