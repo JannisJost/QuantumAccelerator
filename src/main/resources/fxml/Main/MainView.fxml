@@ -72,11 +72,11 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="btnGameBooster" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showGamingbooster" pickOnBounds="false" prefHeight="70.0" prefWidth="180.0" text="Gamebooster" VBox.vgrow="ALWAYS">
+                  <Button fx:id="btnGameBooster" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showGamingbooster" pickOnBounds="false" prefHeight="70.0" prefWidth="180.0" text="Power" VBox.vgrow="ALWAYS">
                      <graphic>
                         <ImageView cache="true" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../styles/icons/button/controller.png" />
+                              <Image url="@../../styles/icons/button/energy.png" />
                            </image>
                         </ImageView>
                      </graphic>
