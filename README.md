@@ -63,7 +63,10 @@ If you like QuantumAccelerator and you want to support me and my projects you ca
 
 * Recommend QuantumAccelerator to family and friends
 
-* (Financial support will be added later)
+* If you really like my project and you want to support it financially feel free to buy me a coffee☕
+
+
+<a href="https://www.buymeacoffee.com/JannisJost" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-blue.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
 ## Contribute
 
