@@ -1,5 +1,6 @@
 package controller.popupwindows;
 
+import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.FileListOperations;
 import ch.dragxfly.quantumaccelerator.models.LogFilesModel;
 import ch.dragxfly.quantumaccelerator.views.ThemeableWindow;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.deleter.FileDeleter;
@@ -27,7 +28,7 @@ import java.util.prefs.BackingStoreException;
 /**
  * FXML Controller class
  *
- * @author janni
+ * @author jannis
  */
 public class RemoveLogsController extends ThemeableWindow implements Initializable {
 
@@ -43,6 +44,8 @@ public class RemoveLogsController extends ThemeableWindow implements Initializab
     private Button btnDelLogFiles;
     @FXML
     private Button btnClose;
+    @FXML
+    private CheckBox chkOlderThanFiveDays;
     //non FXML
     private double xOffset = 0;
     private double yOffset = 0;
@@ -55,6 +58,7 @@ public class RemoveLogsController extends ThemeableWindow implements Initializab
     @FXML
     private void startScan(ActionEvent event) {
         btnStartScan.setDisable(true);
+        chkOlderThanFiveDays.setVisible(false);
         Task searchLogFiles = getTaskSearchLogFiles();
         Task loadList = getTaskLoadList();
         progressTask.progressProperty().bind(searchLogFiles.progressProperty());
@@ -85,7 +89,11 @@ public class RemoveLogsController extends ThemeableWindow implements Initializab
             @Override
             protected Void call() throws Exception {
                 SearchEngine searchEngine = new SearchEngine();
-                model.setLogFiles(searchEngine.searchForFilesWithExtension("C:\\", ".log"));
+                List<String> logFiles = searchEngine.searchForFilesWithExtension("C:\\", ".log");
+                if (chkOlderThanFiveDays.isSelected()) {
+                    logFiles = new FileListOperations().getFilesOlderThanDays(logFiles, 5);
+                }
+                model.setLogFiles(logFiles);
                 return null;
             }
         };
