@@ -23,7 +23,7 @@
                   <Font name="Verdana Pro Light" size="39.0" />
                </font>
             </Label>
-            <Label fx:id="lblVersion" text="V 0.3 (Beta)">
+            <Label fx:id="lblVersion" text="V 0.4.0 (Beta)">
                <font>
                   <Font name="Sitka Display Italic" size="22.0" />
                </font>
@@ -39,6 +39,7 @@
             <Label prefWidth="225.0" text="Developed by Jannis J." />
             <Label prefWidth="225.0" text="EmptyStandbyList by Wen Jia Liu " />
             <Label prefWidth="225.0" text="Beta tester: Arial" />
+            <Label layoutX="198.0" layoutY="238.0" prefWidth="225.0" text="Translations: Flavien Cadet (FR)" />
             <HBox alignment="CENTER" prefHeight="44.0">
                <children>
                   <Label text="Icons by" underline="true">
