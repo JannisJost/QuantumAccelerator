@@ -96,6 +96,7 @@ public class SearchEngine {
     }
 
     public LinkedList<String> getAllFilesFrom(String startDirectory) {
+        startDirectory = startDirectory.replace("\\\\", "\\");
         LinkedList<String> requested = new LinkedList<>();
         if (!getChildren(startDirectory).isEmpty()) {
             for (String path : getChildren(startDirectory)) {
@@ -113,7 +114,7 @@ public class SearchEngine {
      * @param startDirectory defines the directory from which to start searching
      * to bottom of the file system
      * @param extension file extention to search for
-     * @return files with specified extension
+     * @return files with specified extensioJn
      */
     public LinkedList<String> searchForFilesWithExtension(String startDirectory, String extension) {
         return searchFiles(startDirectory, extension);

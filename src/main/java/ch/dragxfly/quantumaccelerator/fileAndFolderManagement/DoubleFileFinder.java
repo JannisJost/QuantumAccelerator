@@ -21,9 +21,7 @@ public class DoubleFileFinder {
     private final DoubleFileFinderController invocator;
     private final SearchEngine engine;
     private Thread workingThread;
-    private boolean equalSize;
-    private boolean equalContent;
-    private boolean equalLastModified;
+    private boolean equalSize, equalContent, equalLastModified;
     private final List<FileDuplicatePair> alreadyMatched = new LinkedList<>();
 
     public DoubleFileFinder(DoubleFileFinderController invocator) {
@@ -50,10 +48,10 @@ public class DoubleFileFinder {
                 for (String search : allFiles) {
                     File toSearchFor = new File(search);
                     for (String possibleMatch : allFiles) {
-                        if (new File(possibleMatch).getName().equals(toSearchFor.getName()) && !possibleMatch.equals(toSearchFor.getAbsolutePath())) {
+                        if (new File(possibleMatch).getName().equals(toSearchFor.getName()) && !possibleMatch.equals(toSearchFor.getPath())) {
                             if (canBeAdded(toSearchFor, new File(possibleMatch))) {
-                                alreadyMatched.add(new FileDuplicatePair(toSearchFor.getAbsolutePath(), possibleMatch));
-                                invocator.addDuplicate(new FileDuplicatePair(toSearchFor.getAbsolutePath(), possibleMatch));
+                                alreadyMatched.add(new FileDuplicatePair(toSearchFor.getPath(), possibleMatch));
+                                invocator.addDuplicate(new FileDuplicatePair(toSearchFor.getPath(), possibleMatch));
                             }
                         }
                     }
@@ -105,10 +103,10 @@ public class DoubleFileFinder {
     }
 
     private boolean isSamePair(FileDuplicatePair p1, FileDuplicatePair p2) {
-        if (p1.getFile2().equals(p2.getFile1()) && p1.getFile1().equals(p2.getFile2())) {
+        if (p1.getSecondFile().equals(p2.getFirstFile()) && p1.getFirstFile().equals(p2.getSecondFile())) {
             return true;
         }
-        return p1.getFile1().equals(p2.getFile1()) && p1.getFile2().equals(p2.getFile2());
+        return p1.getFirstFile().equals(p2.getFirstFile()) && p1.getSecondFile().equals(p2.getSecondFile());
     }
 
     private boolean isSameContent(File f1, File f2) {

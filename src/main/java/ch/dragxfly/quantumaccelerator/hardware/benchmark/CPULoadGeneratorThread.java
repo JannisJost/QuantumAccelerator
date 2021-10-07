@@ -4,14 +4,13 @@ import java.util.Random;
 
 /**
  *
- * @author janni
+ * @author jannis
  */
 public class CPULoadGeneratorThread extends Thread {
 
     private final Random rnd = new Random();
     private double moreCalculation;
-    private boolean running = true;
-    private boolean started = false;
+    private boolean running = true, started = false;
 
     public CPULoadGeneratorThread() {
         this.moreCalculation = 1;
@@ -27,7 +26,7 @@ public class CPULoadGeneratorThread extends Thread {
         started = true;
         while (running) {
             double random = rnd.nextFloat();
-            double someCalculation =Math.sin(Math.cos(Math.sin(Math.cos(random))));
+            double someCalculation = Math.sin(Math.cos(Math.sin(Math.cos(random))));
             moreCalculation *= someCalculation;
         }
     }

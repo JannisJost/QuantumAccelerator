@@ -10,7 +10,7 @@ import javafx.stage.StageStyle;
 
 /**
  *
- * @author janni
+ * @author jannis
  */
 public class ViewOpener {
 

@@ -1,5 +1,6 @@
 package ch.dragxfly.quantumaccelerator.executors;
 
+import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.FileOperations;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.deleter.FileDeleter;
 import controller.popupwindows.warning.InfoWindow;
 import java.io.File;
@@ -36,10 +37,10 @@ public class StorageExecutor {
         try {
             String osDrive = System.getenv("SystemDrive");
             String userName = System.getProperty("user.name");
-            File folder = new File(osDrive + "\\Users\\" + userName + "\\Downloads");
-            File[] filesInDownload = folder.listFiles();
+            File downloadsLocation = new File(osDrive + "\\Users\\" + userName + "\\Downloads");
+            File[] filesInDownload = downloadsLocation.listFiles();
             for (File file : filesInDownload) {
-                if (file.getName().contains("Installer") || file.getName().contains("install") || file.getName().contains("installer") || file.getName().contains("setup") && file.canExecute()) {
+                if ("msi".equals(new FileOperations().getExtension(file.getAbsolutePath())) || file.getName().toLowerCase().contains("installer") || file.getName().toLowerCase().contains("install") || file.getName().toLowerCase().contains("setup") && file.canExecute()) {
                     file.delete();
                 }
             }
@@ -53,7 +54,7 @@ public class StorageExecutor {
         String thumbnailCacheLocation = appdataFolder + "\\Local\\Microsoft\\Windows\\Explorer";
         File[] thumbnailCache = new File(thumbnailCacheLocation).listFiles();
         for (int i = 0; i <= thumbnailCache.length - 1; i++) {
-            if (thumbnailCache[i].getName().contains("thumbcache")) {
+            if (thumbnailCache[i].getName().toLowerCase().contains("thumbcache")) {
                 deleter.deleteFile(thumbnailCache[i].getAbsolutePath());
             }
         }

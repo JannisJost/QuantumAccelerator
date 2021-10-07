@@ -20,13 +20,8 @@ import javafx.util.Pair;
 
 public class MainApp extends Application {
 
-    private Pane features;
-    private Pane storage;
-    private Pair<Pane,MainView> gamebooster;
-    private Pane delWindowsApps;
-    private Pane extras;
-    private Pane privacy;
-    private Pane settings;
+    private Pane features, storage, delWindowsApps, extras, privacy, settings;
+    private Pair<Pane, MainView> gamebooster;
 
     @Override
     public void start(Stage stage) throws Exception {

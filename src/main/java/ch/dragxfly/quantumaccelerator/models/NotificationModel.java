@@ -10,7 +10,7 @@ import javafx.scene.layout.Pane;
 
 /**
  *
- * @author janni
+ * @author jannis
  */
 public class NotificationModel implements Observer {
 

@@ -17,17 +17,15 @@ import javafx.concurrent.Task;
 
 /**
  *
- * @author janni
+ * @author jannis
  */
 public class HardwareObserver extends Observable {
 
     private Cpu cpu;
     private Timer timer;
-    private double cpuTemp = 0;
-    private double cpuUsage = 0;
+    private double cpuTemp = 0, cpuUsage = 0, memoryUsage = 0;
     private Components components;
     private TimerTask observerTask;
-    private double memoryUsage = 0;
     private boolean isMeasureCPUTemp = false;
     private Thread timerThread = new Thread();
     private final OperatingSystemMXBean operatingSystemMXBean = ManagementFactory.getPlatformMXBean(OperatingSystemMXBean.class);

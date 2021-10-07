@@ -29,9 +29,8 @@ import javafx.stage.Stage;
 import javafx.util.Pair;
 
 /**
- * FXML Controller class
  *
- * @author janni
+ * @author jannis
  */
 public class SystemMonitorController extends ThemeableWindow implements Initializable, Observer {
 
@@ -106,9 +105,9 @@ public class SystemMonitorController extends ThemeableWindow implements Initiali
     private void fillChart() {
         lineChartCPUUsage.getData().clear();
         XYChart.Series seriesLoad = new XYChart.Series();
-        seriesLoad.setName("Load");
+        seriesLoad.setName("Load in %");
         XYChart.Series seriesTemp = new XYChart.Series();
-        seriesTemp.setName("Temperature");
+        seriesTemp.setName("Temperature in ℃");
         for (Pair<Double, String> value : cpuUsageHistory) {
             seriesLoad.getData().add(new XYChart.Data(value.getValue(), value.getKey()));
         }

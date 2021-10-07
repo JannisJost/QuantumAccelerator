@@ -6,7 +6,7 @@ import javafx.scene.control.CheckBox;
 
 /**
  *
- * @author janni
+ * @author jannis
  */
 public class LogFilesModel {
 

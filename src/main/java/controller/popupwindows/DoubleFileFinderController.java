@@ -79,15 +79,15 @@ public class DoubleFileFinderController extends ThemeableWindow implements Initi
         progIndicatorIsSearching.visibleProperty().bind(btnSearch.disableProperty());
         colCheckBox.setCellFactory(ButtonTableCell.<FileDuplicatePair>forTableColumn("Explorer", (FileDuplicatePair pair) -> {
             CMD cmd = new CMD();
-            String command1 = "explorer.exe /select, " + pair.getFile1();
-            String command2 = "explorer.exe /select, " + pair.getFile2();
+            String command1 = "explorer.exe /select, " + pair.getFirstFile();
+            String command2 = "explorer.exe /select, " + pair.getSecondFile();
             cmd.executeCommand(command1);
             cmd.executeCommand(command2);
             return pair;
         }));
         btnCancel.disableProperty().bind(btnSearch.disableProperty().not());
-        colFile1.setCellValueFactory(new PropertyValueFactory<>("file1"));
-        colFile2.setCellValueFactory(new PropertyValueFactory<>("file2"));
+        colFile1.setCellValueFactory(new PropertyValueFactory<>("firstFile"));
+        colFile2.setCellValueFactory(new PropertyValueFactory<>("secondFile"));
     }
 
     @FXML

@@ -71,7 +71,7 @@ public class PasswordGeneratorController extends ThemeableWindow implements Init
             }
         });
         sldPwLength.valueProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
-            lblPWLength.setText("Password length: " + newValue);
+            lblPWLength.setText("Password length: " + newValue.intValue());
         });
         generator = new PasswordGenerator(this);
     }
@@ -102,7 +102,7 @@ public class PasswordGeneratorController extends ThemeableWindow implements Init
 
     @FXML
     private void setMouseOnRectangleTrue(MouseEvent event) {
-        if (!generator.isIsRunning()) {
+        if (!generator.isRunning()) {
             new Thread(getTaskGeneratePassword()).start();
         } else {
             //do nothing
@@ -172,7 +172,7 @@ public class PasswordGeneratorController extends ThemeableWindow implements Init
 
     @FXML
     private void showToolTipTrulyRandom(MouseEvent event) {
-         toolTip.showToolTip(new ToolTipTexts().getTrulyRandom(), event);
+        toolTip.showToolTip(new ToolTipTexts().getTrulyRandom(), event);
     }
 
     @Override

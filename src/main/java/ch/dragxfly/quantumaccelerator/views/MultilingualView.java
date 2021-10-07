@@ -4,7 +4,7 @@ import java.util.prefs.Preferences;
 
 /**
  *
- * @author janni
+ * @author jannis
  */
 public abstract class MultilingualView {
 
@@ -16,6 +16,7 @@ public abstract class MultilingualView {
     public String getLanguage() {
         return pref.get(keyLanguage, "en");
     }
+
     public void setNewLanguage(String language) {
         pref.put(keyLanguage, language);
     }
