@@ -85,6 +85,12 @@ public class GameboosterController extends MultilingualView implements Initializ
     private RadioButton chkEco;
     @FXML
     private Rectangle recPowerVisualizer;
+    @FXML
+    private Label lblTitleEnergy;
+    @FXML
+    private Label lblTitleBooster;
+    @FXML
+    private Label lblTitleTools;
     //non FXML
     private Task task;
     private Thread thread;
@@ -92,9 +98,7 @@ public class GameboosterController extends MultilingualView implements Initializ
     private GlowText glowText;
     private Preferences prefs;
     private Gamebooster gameboost;
-    private boolean isResetGPUPrio;
-    private boolean isResetSysMain;
-    private boolean gameBoosterIsActive;
+    private boolean isResetGPUPrio, isResetSysMain, gameBoosterIsActive;
     private ScaleTransition pulseAnimation;
     private boolean canRunStandByCleaner = true;
     private final ToggleGroup tglGrpPower = new ToggleGroup();
@@ -119,7 +123,7 @@ public class GameboosterController extends MultilingualView implements Initializ
         vboxBooster.setEffect(new DropShadow(BlurType.THREE_PASS_BOX, Color.web("#0A0B21"), 20, 0, 0, 0));
         vboxEnergy.setEffect(new DropShadow(BlurType.THREE_PASS_BOX, Color.web("#0A0B21"), 20, 0, 0, 0));
         vboxTweaks.setEffect(new DropShadow(BlurType.THREE_PASS_BOX, Color.web("#0A0B21"), 20, 0, 0, 0));
-        BackgroundImage boosterBackground = new BackgroundImage(new Image("/styles/icons/booster/BoosterBackground.png", true),
+        BackgroundImage boosterBackground = new BackgroundImage(new Image("/styles/icons/booster/BoosterBackgroundDark.png", true),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
                 new BackgroundSize(1.0, 1.0, true, true, false, false)
         );
@@ -245,6 +249,12 @@ public class GameboosterController extends MultilingualView implements Initializ
         lblResetPowerPlan.setText(bundle.getString("lblResetPowerPlan"));
         lblResetCPUPrio.setText(bundle.getString("lblResetCPUPrio"));
         lblResetSysMain.setText(bundle.getString("lblResetSysMain"));
+        chkFullPower.setText(bundle.getString("chkFullPower"));
+        chkStandart.setText(bundle.getString("chkStandart"));
+        chkEco.setText(bundle.getString("chkEco"));
+        lblTitleEnergy.setText(bundle.getString("lblTitleEnergy"));
+        lblTitleBooster.setText(bundle.getString("lblTitleBooster"));
+        lblTitleTools.setText(bundle.getString("lblTitleTools"));
     }
 
     @FXML
@@ -301,5 +311,21 @@ public class GameboosterController extends MultilingualView implements Initializ
 
     @Override
     public void onOpen() {
+    }
+
+    public void changeTheme(boolean isLightTheme) {
+        BackgroundImage boosterBackground;
+        if (isLightTheme) {
+            boosterBackground = new BackgroundImage(new Image("/styles/icons/booster/BoosterBackgroundLight.png", true),
+                    BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+                    new BackgroundSize(1.0, 1.0, true, true, false, false)
+            );
+        } else {
+            boosterBackground = new BackgroundImage(new Image("/styles/icons/booster/BoosterBackgroundDark.png", true),
+                    BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+                    new BackgroundSize(1.0, 1.0, true, true, false, false)
+            );
+        }
+        container.setBackground(new Background(boosterBackground));
     }
 }

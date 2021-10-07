@@ -20,18 +20,18 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="container" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.main.GameboosterController">
+<AnchorPane id="AnchorPane" fx:id="container" prefHeight="400.0" prefWidth="600.0" styleClass="gameboosterContainer" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.main.GameboosterController">
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox fx:id="vboxEnergy" alignment="TOP_CENTER" minWidth="-Infinity" prefWidth="120.0" spacing="5.0" styleClass="vboxBooster">
+            <VBox alignment="TOP_CENTER" minWidth="-Infinity" prefWidth="120.0" spacing="5.0" styleClass="vboxBooster">
                <children>
                   <StackPane alignment="BOTTOM_CENTER" prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Rectangle id="visualPowerIndicator" fx:id="recPowerVisualizer" arcHeight="30.0" arcWidth="30.0" fill="#ff1f1f" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="50.0" />
-                        <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                        <VBox fx:id="vboxEnergy" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                            <children>
-                              <Label contentDisplay="TOP" text="Energy">
+                              <Label fx:id="lblTitleEnergy" contentDisplay="TOP" text="Energy">
                                  <graphic>
                                     <ImageView fitHeight="150.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -85,7 +85,7 @@
                <children>
                   <VBox fx:id="vboxGameboosterSwitch" alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="290.0" spacing="5.0">
                      <children>
-                        <Label contentDisplay="TOP" text="Booster">
+                        <Label fx:id="lblTitleBooster" contentDisplay="TOP" text="Booster">
                            <graphic>
                               <ImageView fitHeight="150.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -160,7 +160,7 @@
             </VBox>
             <VBox fx:id="vboxTweaks" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="150.0" spacing="5.0" styleClass="vboxBooster" HBox.hgrow="ALWAYS">
                <children>
-                  <Label contentDisplay="TOP" text="Tools">
+                  <Label fx:id="lblTitleTools" contentDisplay="TOP" text="Tools">
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
