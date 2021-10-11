@@ -44,7 +44,7 @@
 /*title bar styling*/
 #topBar{
     -fx-background-color:  #3d3d3d;
-	-fx-background-radius: 12 12 0 0;
+    -fx-background-radius: 12 12 0 0;
 }
 /*left menu bar styling*/
 #leftBar{
@@ -67,12 +67,13 @@
 .AnchorPane{
     -fx-border-color: black;
     -fx-border-width: 0.4;
-	-fx-background-radius: 12;
-	-fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
 }
 /*zib bomb identifier list styling*/
 #zipList{
     -fx-background-color: #d1d1d1;
+	-fx-background-radius: 12;
 }
 /*DO NOT EDIT*/
 .help{
@@ -220,30 +221,37 @@
     -fx-background-color:  #FC7553 ;
 }
 .vboxBooster{
-	-fx-background-color: rgb(33, 36, 73, 0.7);
-	-fx-background-radius: 5 25 5 5;
+    -fx-background-color: rgb(61, 61, 61, 0.7);
+    -fx-background-radius: 5 25 5 5;
 }
 .vboxBooster .radio-button{
-	-fx-text-fill: white;
+    -fx-text-fill: white;
 }
 
 .boost-button{
-	-fx-border-color: linear-gradient(to top left, #CE4AEA, #3F4DD9);
-	-fx-border-width: 5;
-	-fx-border-radius: 50%;
-	-fx-background-radius: 50%;
-	-fx-background-color: transparent;
+    -fx-border-color: linear-gradient(to top left, #FC7553, #CA5AAE);
+    -fx-border-width: 5;
+    -fx-border-radius: 50%;
+    -fx-background-radius: 50%;
+    -fx-background-color: transparent;
 }
 .vboxBooster .label{
-	-fx-text-fill: white;
+    -fx-text-fill: white;
 }
 .boost-radio{
-	-fx-border-color: rgb(255, 255,255,0.1);
-	-fx-border-width: 2 0 0 0;
-	-fx-border-style: dashed;
+    -fx-border-color: rgb(255, 255,255,0.1);
+    -fx-border-width: 2 0 0 0;
+    -fx-border-style: dashed;
 }
-	#visualPowerIndicator{
-		-fx-fill: linear-gradient(to top left, #CE4AEA, #3F4DD9);
-		-fx-arc-width: 12.5;
-		-fx-arc-height: 12.5;
-	}
+.boost-radio .radio{
+    -fx-background-color: white;
+}
+#visualPowerIndicator{
+    -fx-fill: linear-gradient(to top left, #FC7553, #CA5AAE);
+    -fx-arc-width: 12.5;
+    -fx-arc-height: 12.5;
+}
+.slider .thumb{
+    -fx-background-color: #FC7553;
+    -fx-pref-height: 40;
+}
