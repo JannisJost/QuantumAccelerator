@@ -67,6 +67,9 @@ public class CPUStresstestController extends ThemeableWindow implements Initiali
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setLanguage(super.getLanguage());
+        Locale locale = new Locale(super.getLanguage());
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.warnings.warnings", locale);
+        new InfoDecisionWindow().ShowInfoWindow(bundle.getString("notAllCPUsSupported"));
         keepLoadAt = lblKeepLoadAt.getText();
         stopIfTempReaches = chkStopIfTempHigh.getText();
         sliderMaxTemp.disableProperty().bind(chkStopIfTempHigh.selectedProperty().not());
