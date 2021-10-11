@@ -58,4 +58,11 @@
                 <exec.classpathScope>${classPathScope}</exec.classpathScope>
             </properties>
         </action>
+        <action>
+            <actionName>CUSTOM-exe builder</actionName>
+            <displayName>exe builder</displayName>
+            <goals>
+                <goal>jfx:native</goal>
+            </goals>
+        </action>
     </actions>
