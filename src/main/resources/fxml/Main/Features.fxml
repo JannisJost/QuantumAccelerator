@@ -19,23 +19,31 @@
                   <Image url="@../../styles/icons/appLogo_Big.png" />
                </image>
             </ImageView>
-            <Label prefHeight="36.0" prefWidth="344.0" text="Quantum Accelerator Features:">
+            <Label fx:id="lblHeader" alignment="CENTER" prefHeight="36.0" prefWidth="400.0" text="Quantum Accelerator Features:">
                <font>
                   <Font size="25.0" />
                </font>
             </Label>
-            <Label prefHeight="20.0" prefWidth="170.0" text="Free Storage" />
-            <Label prefHeight="20.0" prefWidth="170.0" text="Disable Background Apps" />
-            <Label prefHeight="20.0" prefWidth="170.0" text="Disable Windows Visuals" />
-            <Label prefHeight="21.0" prefWidth="170.0" text="Boost games" />
+            <Label fx:id="lblFreeStorage" prefHeight="20.0" prefWidth="250.0" text="Free Storage" />
+            <Label fx:id="lblDisableBgApps" prefHeight="20.0" prefWidth="250.0" text="Disable Background Apps" />
+            <Label fx:id="lblManagePrivacy" prefHeight="20.0" prefWidth="250.0" text="Manage privacy" />
+            <Label fx:id="lblGameBooster" prefHeight="21.0" prefWidth="250.0" text="Game booster" />
          </children>
       </VBox>
-      <ButtonBar prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <ButtonBar prefHeight="60.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <buttons>
-          <Button fx:id="btnPatchnotes" mnemonicParsing="false" onAction="#openPatchnotes" text="Patchnotes" textFill="WHITE" />
+            <Button fx:id="btnDonate" layoutX="511.0" layoutY="15.0" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#openDonate" text="Donate">
+               <graphic>
+                  <ImageView fx:id="imgDonateButton" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../styles/icons/button/donate.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+          <Button fx:id="btnPatchnotes" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#openPatchnotes" text="Patchnotes" />
         </buttons>
          <padding>
-            <Insets right="5.0" />
+            <Insets bottom="5.0" right="5.0" />
          </padding>
       </ButtonBar>
    </children>
