@@ -23,10 +23,11 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.SearchEngine.FolderScanner.SearchEngine;
+import controller.popupwindows.warning.InfoDecisionWindow;
+import java.util.Locale;
 import java.util.prefs.BackingStoreException;
 
 /**
- * FXML Controller class
  *
  * @author jannis
  */
@@ -47,8 +48,7 @@ public class RemoveLogsController extends ThemeableWindow implements Initializab
     @FXML
     private CheckBox chkOlderThanFiveDays;
     //non FXML
-    private double xOffset = 0;
-    private double yOffset = 0;
+    private double xOffset, yOffset = 0;
     private final LogFilesModel model = new LogFilesModel();
 
     @Override
@@ -194,5 +194,15 @@ public class RemoveLogsController extends ThemeableWindow implements Initializab
     @Override
     public void setLanguage(String language) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @FXML
+    private void warningNotRecommended(ActionEvent event) {
+        if (!chkOlderThanFiveDays.isSelected()) {
+            Locale locale = new Locale(super.getLanguage());
+            ResourceBundle bundle = ResourceBundle.getBundle("languages.warnings.warnings", locale);
+            boolean isDisable = !new InfoDecisionWindow().ShowInfoWindow(bundle.getString("fiveDays"));
+            chkOlderThanFiveDays.setSelected(isDisable);
+        }
     }
 }

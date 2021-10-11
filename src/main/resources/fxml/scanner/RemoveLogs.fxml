@@ -33,6 +33,6 @@
          <children>
             <Button fx:id="btnClose" layoutX="557.0" layoutY="5.0" mnemonicParsing="false" onAction="#close" text="X" />
          </children></Pane>
-      <CheckBox fx:id="chkOlderThanFiveDays" alignment="CENTER" layoutY="224.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" selected="true" text="Only files older than 5 days" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <CheckBox fx:id="chkOlderThanFiveDays" alignment="CENTER" layoutY="224.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#warningNotRecommended" selected="true" text="Only files older than 5 days" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    </children>
 </AnchorPane>
