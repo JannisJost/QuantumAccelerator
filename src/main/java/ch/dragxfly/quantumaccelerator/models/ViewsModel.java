@@ -6,17 +6,12 @@ import javafx.util.Pair;
 
 /**
  *
- * @author janni
+ * @author jannis
  */
 public class ViewsModel {
 
-    private final Pane features;
-    private final Pane storage;
+    private final Pane features, storage, delWindowsApps, extras, privacy, settings;
     private final Pair<Pane, MainView> gamebooster;
-    private final Pane delWindowsApps;
-    private final Pane extras;
-    private final Pane privacy;
-    private final Pane settings;
 
     public ViewsModel(Pane features, Pane storage, Pair<Pane, MainView> gamebooster, Pane delWindowsApps, Pane extras, Pane privacy, Pane settings) {
         this.features = features;
@@ -55,5 +50,9 @@ public class ViewsModel {
 
     public Pane getSettings() {
         return settings;
+    }
+
+    public void setTheme(boolean isDarkTheme) {
+        gamebooster.getValue().changeTheme(isDarkTheme);
     }
 }

@@ -134,8 +134,7 @@ public class MainViewController extends MultilingualView implements Initializabl
     private void showFeatures(ActionEvent event) {
         if (menuButtonPressedLast != btnFeatures) {
             btnAnimator.animate(btnFeatures);
-            view = viewsModel.getFeatures();
-            mainPane.setCenter(view);
+            mainPane.setCenter(viewsModel.getFeatures());
             selectButton(btnFeatures);
         }
     }
@@ -144,8 +143,7 @@ public class MainViewController extends MultilingualView implements Initializabl
     private void showStorage(ActionEvent event) {
         if (menuButtonPressedLast != btnShowStorage) {
             btnAnimator.animate(btnShowStorage);
-            view = viewsModel.getStorage();
-            mainPane.setCenter(view);
+            mainPane.setCenter(viewsModel.getStorage());
             selectButton(btnShowStorage);
         }
     }
@@ -154,8 +152,7 @@ public class MainViewController extends MultilingualView implements Initializabl
     private void showDelWindowsApps(ActionEvent event) {
         if (menuButtonPressedLast != btnDelWindowsApps) {
             btnAnimator.animate(btnDelWindowsApps);
-            view = viewsModel.getDelWindowsApps();
-            mainPane.setCenter(view);
+            mainPane.setCenter(viewsModel.getDelWindowsApps());
             selectButton(btnDelWindowsApps);
         }
     }
@@ -164,8 +161,7 @@ public class MainViewController extends MultilingualView implements Initializabl
     private void showGamingbooster(ActionEvent event) {
         if (menuButtonPressedLast != btnGameBooster) {
             btnAnimator.animate(btnGameBooster);
-            view = viewsModel.getGamebooster();
-            mainPane.setCenter(view);
+            mainPane.setCenter(viewsModel.getGamebooster());
             selectButton(btnGameBooster);
         }
     }
@@ -174,8 +170,7 @@ public class MainViewController extends MultilingualView implements Initializabl
     private void showPrivacy(ActionEvent event) {
         if (menuButtonPressedLast != btnShowPrivacy) {
             btnAnimator.animate(btnShowPrivacy);
-            view = viewsModel.getPrivacy();
-            mainPane.setCenter(view);
+            mainPane.setCenter(viewsModel.getPrivacy());
             selectButton(btnShowPrivacy);
         }
     }
@@ -314,6 +309,7 @@ public class MainViewController extends MultilingualView implements Initializabl
         String file;
         Scene currentScene = ((Node) event.getSource()).getScene();
         currentScene.getStylesheets().clear();
+        viewsModel.setTheme(!lightThemeActive);
         if (lightThemeActive) {
             currentScene.getStylesheets().add("/styles/darktheme.css");
             progCPU.setStyleSheet("/styles/darktheme.css");
@@ -350,7 +346,6 @@ public class MainViewController extends MultilingualView implements Initializabl
 
     @FXML
     private void fullScreen(ActionEvent event) {
-        System.setProperty("prism.forcerepaint", "true");
         Stage stage = (Stage) btnCloseApplication.getScene().getWindow();
         if (!isFullscreen) {
             stage.setMaximized(true);
@@ -363,7 +358,6 @@ public class MainViewController extends MultilingualView implements Initializabl
             imgMaximize.setImage(new Image("/styles/icons/menubar/maximize.png"));
         }
         isFullscreen = !isFullscreen;
-        System.setProperty("prism.forcerepaint", "false");
     }
 
     /**
@@ -383,8 +377,8 @@ public class MainViewController extends MultilingualView implements Initializabl
         double CPUUsage = hardware.getCpuUsage() * 100;
         //Runlater sets the prog indicators
         Platform.runLater(() -> {
-            progMemory.setProgress((int)memoryUsage);
-            progCPU.setProgress((int)CPUUsage);
+            progMemory.setProgress((int) memoryUsage);
+            progCPU.setProgress((int) CPUUsage);
         });
     }
 
@@ -425,10 +419,6 @@ public class MainViewController extends MultilingualView implements Initializabl
         viewOpener.openThemeableView("/fxml/RestorePointCreator.fxml", "Restore", true);
     }
 
-    private void runGarbageCollector(MouseEvent event) {
-        System.gc();
-    }
-
     @Override
     public void setLanguage(String lang) {
         Locale locale = new Locale(lang);
@@ -439,5 +429,4 @@ public class MainViewController extends MultilingualView implements Initializabl
         btnShowPrivacy.setText(bundle.getString("btnShowPrivacy"));
         btnGameBooster.setText(bundle.getString("btnGameBooster"));
     }
-
 }

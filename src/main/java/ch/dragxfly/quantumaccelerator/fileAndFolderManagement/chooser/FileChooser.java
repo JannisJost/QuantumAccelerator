@@ -7,6 +7,7 @@ import java.util.Observable;
 import java.util.Observer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -30,8 +31,10 @@ public class FileChooser extends Observable {
             Scene scene = new Scene(loader.load());
             FileChooserController controller = loader.getController();
             stage.setTitle("File chooser");
+            scene.setFill(Color.TRANSPARENT);
             stage.setAlwaysOnTop(true);
             stage.initStyle(StageStyle.UNDECORATED);
+            stage.initStyle(StageStyle.TRANSPARENT);
             stage.setScene(scene);
             controller.setFilter(filter);
             controller.setInvocator(this);

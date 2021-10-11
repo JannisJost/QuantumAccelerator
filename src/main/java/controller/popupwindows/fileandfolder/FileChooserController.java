@@ -11,7 +11,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Observer;
 import java.util.ResourceBundle;
-import javafx.beans.InvalidationListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -52,10 +51,10 @@ public class FileChooserController extends ThemeableWindow implements Initializa
     @FXML
     private Button btnToDocuments;
     //non FXML
-    private double xOffset = 0;
-    private double yOffset = 0;
+    private double xOffset, yOffset = 0;
     private String currentDirectory = "C:\\";
     private final List<Observer> observers = new LinkedList<>();
+    private final JFileChooser helperChooser = new JFileChooser();
     private FileChooser invocator;
     private FileFilter filter;
 
@@ -123,11 +122,15 @@ public class FileChooserController extends ThemeableWindow implements Initializa
         for (String file : filesAndFolders) {
             Label l = new Label("");
             if (new File(currentDirectory + "\\" + file).isDirectory()) {
-                l = new Label(file, new ImageView("/styles/icons/file/folder.png"));
+                ImageView img = new ImageView("/styles/icons/file/folder.png");
+                img.getStyleClass().add("imgFolder");
+                l = new Label(file, img);
             } else {
                 if (!filter.isFolderOnly()) {
                     if (!"".equals(filter.getAllowedEnding()) && new FileOperations().getExtension(file).equals(filter.getAllowedEnding())) {
-                        l = new Label(file, new ImageView("/styles/icons/file/file.png"));
+                        ImageView img = new ImageView("/styles/icons/file/file.png");
+                        img.getStyleClass().add("imgFolder");
+                        l = new Label(file, img);
                     }
                 }
             }
@@ -157,7 +160,7 @@ public class FileChooserController extends ThemeableWindow implements Initializa
 
     @FXML
     private void moveToDocuments(ActionEvent event) {
-        currentDirectory = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
+        currentDirectory = helperChooser.getFileSystemView().getDefaultDirectory().toString();
         refresh();
     }
 

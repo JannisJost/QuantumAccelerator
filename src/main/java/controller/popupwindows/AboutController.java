@@ -21,7 +21,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
  *
  * @author jannis
  */
@@ -98,6 +97,7 @@ public class AboutController extends ThemeableWindow implements Initializable {
     @FXML
     private void openDonate(ActionEvent event) {
         animator.animate(btnDonate);
+        webopener.openWebsite("https://www.buymeacoffee.com/JannisJost");
     }
 
     /**

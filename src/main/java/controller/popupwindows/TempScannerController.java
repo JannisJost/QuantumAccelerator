@@ -30,6 +30,7 @@ import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.SearchEngine.Folde
 import controller.popupwindows.warning.InfoDecisionWindow;
 import java.util.LinkedList;
 import java.util.Locale;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -125,8 +126,10 @@ public class TempScannerController extends ThemeableWindow implements Initializa
             controller.setModel(model);
             Scene scene = new Scene(root);
             Stage stage = new Stage();
+            scene.setFill(Color.TRANSPARENT);
             stage.setScene(scene);
             stage.initStyle(StageStyle.UNDECORATED);
+            stage.initStyle(StageStyle.TRANSPARENT);
             stage.setTitle("Scan done");
             stage.show();
             controller.setTheme();
