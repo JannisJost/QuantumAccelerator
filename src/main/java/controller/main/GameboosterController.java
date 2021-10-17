@@ -313,6 +313,7 @@ public class GameboosterController extends MultilingualView implements Initializ
     public void onOpen() {
     }
 
+    @Override
     public void changeTheme(boolean isLightTheme) {
         BackgroundImage boosterBackground;
         if (isLightTheme) {

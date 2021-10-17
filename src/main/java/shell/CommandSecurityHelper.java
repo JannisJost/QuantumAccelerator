@@ -11,18 +11,16 @@ import java.util.Scanner;
 public class CommandSecurityHelper {
 
     public boolean commandIsSave(String command) {
-        if (command.toLowerCase().matches("(^)del(\\s)") ||command.toLowerCase().matches("(\\s)del(\\s)")) {
+        if (command.toLowerCase().matches("(^)del(\\s)") || command.toLowerCase().matches("(\\s)del(\\s)")) {
             return false;
         } else if (command.toLowerCase().matches("(\\s)rd(\\s)") || command.toLowerCase().matches("(\\s)format(\\s)")) {
             return false;
-        } else if (command.toLowerCase().matches("(^)ren(\\s)")||command.toLowerCase().matches("(\\s)ren(\\s)")) {
+        } else if (command.toLowerCase().matches("(^)ren(\\s)") || command.toLowerCase().matches("(\\s)ren(\\s)")) {
             return false;
-        } else if (command.toLowerCase().matches("(^)remove-item(\\s)")||command.toLowerCase().matches("(\\s)remove-item(\\s)")) {
+        } else if (command.toLowerCase().matches("(^)remove-item(\\s)") || command.toLowerCase().matches("(\\s)remove-item(\\s)")) {
             return false;
-        } else if (command.toLowerCase().matches("(^)new-partition(\\s)")||command.toLowerCase().matches("new-partition(\\s)")) {
-            return false;
-        }else {
-            return true;
+        } else {
+            return !(command.toLowerCase().matches("(^)new-partition(\\s)") || command.toLowerCase().matches("new-partition(\\s)"));
         }
     }
 
@@ -42,12 +40,13 @@ public class CommandSecurityHelper {
             Scanner reader = new Scanner(new File(pathToScript));
             while (reader.hasNextLine()) {
                 String line = reader.nextLine();
-                if (line.toLowerCase().matches("(^)invoke-webrequest(\\s)")||line.toLowerCase().matches("(\\s)invoke-webrequest(\\s)")) {
+                if (line.toLowerCase().matches("(^)invoke-webrequest(\\s)") || line.toLowerCase().matches("(\\s)invoke-webrequest(\\s)")) {
                     return false;
                 }
             }
             return true;
         } catch (FileNotFoundException ex) {
+            System.out.println(ex + pathToScript);
         }
         return false;
     }

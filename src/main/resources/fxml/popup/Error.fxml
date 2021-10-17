@@ -33,7 +33,7 @@
          <children>
             <ImageView fitHeight="93.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="/styles/icons/popup/Warning.png" />
+                  <Image url="@../../styles/icons/popup/Warning.png" />
                </image>
             </ImageView>
             <Label fx:id="lblErrorText" text="ErrorText" wrapText="true" GridPane.columnIndex="1" />

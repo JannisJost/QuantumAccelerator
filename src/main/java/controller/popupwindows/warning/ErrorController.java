@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 /**
  * Error window
  *
- * @author janni
+ * @author jannis
  */
 public class ErrorController extends ThemeableWindow implements Initializable {
 
@@ -52,7 +52,6 @@ public class ErrorController extends ThemeableWindow implements Initializable {
 
     @Override
     public void setLanguage(String language) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @FXML

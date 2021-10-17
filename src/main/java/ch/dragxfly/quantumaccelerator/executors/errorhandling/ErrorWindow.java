@@ -13,13 +13,14 @@ import javafx.stage.StageStyle;
  */
 public class ErrorWindow {
 
+    private final Stage stage = new Stage();
+
     public void showErrorWindow(String errorMessage) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/popup/Error.fxml"));
         ErrorController controller = new ErrorController();
         loader.setController(controller);
         try {
             Scene scene = new Scene(loader.load());
-            Stage stage = new Stage();
             stage.setScene(scene);
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
