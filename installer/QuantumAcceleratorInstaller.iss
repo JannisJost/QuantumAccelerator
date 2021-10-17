@@ -1,6 +1,6 @@
 
 #define MyAppName "QuantumAccelerator"
-#define MyAppVersion "0.3 beta"
+#define MyAppVersion "0.4 beta"
 #define MyAppPublisher "Jannis J."
 #define MyAppURL "https://github.com/JannisJost/QuantumAccelerator"
 #define MyAppExeName "QuantumAccelerator.exe"

@@ -1,1 +1,1 @@
-assistive_technologies=com.sun.java.accessibility.AccessBridge, microsoft.flows.rpa.JavaBridge
+assistive_technologies=com.sun.java.accessibility.AccessBridge, microsoft.flows.rpa.desktop.uiautomation.JavaBridge

@@ -3,7 +3,7 @@
 $current =$MyInvocation.MyCommand.Path
 $currentDirectory = (Get-Item $current ).DirectoryName
 foreach($value in $allConfigs){
-if($value -like '*(Quantum Accelerator*'){
+if($value -like '*(Quantum Accelerator Ultimate*'){
 $PowerPlan = $value
 }
 }
@@ -13,7 +13,7 @@ $PowDirectory = $currentDirectory + '\PowFiles\Quantum_Accelerator_Ultimate_Perf
 powercfg -import $PowDirectory
 [array]$allConfigs = cmd /c "powercfg /L"
 foreach($value in $allConfigs){
-if($value -like '*(Quantum Accelerator*'){
+if($value -like '*(Quantum Accelerator Ultimate*'){
 $PowerPlan = $value
 }
 }
