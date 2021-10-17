@@ -1,6 +1,5 @@
 package shell;
 
-import ch.dragxfly.quantumaccelerator.executors.errorhandling.ErrorWindow;
 import ch.dragxfly.quantumaccelerator.fileAndFolderManagement.ApplicationFilesHelper;
 import java.io.IOException;
 
@@ -14,14 +13,15 @@ public class PowerShell {
 
     public void runPowershellScript(String nameOfScript) {
         try {
-            if (securityHelper.psScriptIsSave(new ApplicationFilesHelper().getInstallationPath() + "Powershell_Scripts\\" + nameOfScript + ".ps1")) {
+            String pathToScript = new ApplicationFilesHelper().getInstallationPath() + "Powershell_Scripts\\" + nameOfScript + ".ps1";
+            if (securityHelper.psScriptIsSave(pathToScript)) {
                 //Gets current working path
-                String pathToScript = new ApplicationFilesHelper().getInstallationPath() + "Powershell_Scripts\\" + nameOfScript + ".ps1";
                 Runtime runtime = Runtime.getRuntime();
-                String fullCommand = "cmd.exe /c powershell.exe " + pathToScript;
-                if (securityHelper.commandIsSave(fullCommand)) {
+                String completeCommand = "powershell.exe -File " + "\"" + pathToScript + "\"";
+                System.out.println(completeCommand);
+                if (securityHelper.commandIsSave(completeCommand)) {
                     //Runs Powershell script to search activate or create powerplan
-                    Process processPowershell = runtime.exec(fullCommand);
+                    Process processPowershell = runtime.exec(completeCommand);
                     //Waiting for Powershell command to finish
                     processPowershell.waitFor();
                 } else {
@@ -31,16 +31,16 @@ public class PowerShell {
                 throw new InterruptedException("Script is not safe");
             }
         } catch (IOException | InterruptedException e) {
-            new ErrorWindow().showErrorWindow("Could not run " + nameOfScript);
+            System.out.println("Could not run " + nameOfScript);
         }
     }
 
     public void executeCommand(String command) {
-        String fullCommand = "powershell.exe " + command;
+        String completeCommand = "powershell.exe " + command;
 
-        if (securityHelper.commandIsSave(fullCommand)) {
+        if (securityHelper.commandIsSave(completeCommand)) {
             try {
-                Runtime.getRuntime().exec(fullCommand);
+                Runtime.getRuntime().exec(completeCommand);
             } catch (IOException ex) {
                 System.err.println("error while executing powershell command");
             }
