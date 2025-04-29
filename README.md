@@ -92,8 +92,3 @@ EmptyStandbyList.exe:                      <a href="https://github.com/wj32" URL
 Logo:                                       *Joshua B.*
 
 Icons:                                     <a href="https://icons8.com/" URL> *Icons8* </a>
-
-## Contact
-Official Discord server: <a href="https://discord.gg/ERVeQdmt" URL>Join</a> <!-- Discord invitation link -->
-
-Mail: quantumaccelerwin10@gmail.com
